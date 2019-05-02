@@ -6,7 +6,7 @@ import javax.ws.rs.core.MediaType;
 
 public class RestClient {
 
-    private static final String REST_URI = "http://localhost:8080/trnka-backend/rest";
+    private static final String REST_URI = "http://localhost:8080/trnka-backend/rest/";
 
     private Client client = ClientBuilder.newClient();
 
