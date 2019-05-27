@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: Trnka
+Build-Jdk: 1.8.0_211
+Created-By: Apache Maven 3.5.3
+Main-Class: com.trnka.device.Main
+Archiver-Version: Plexus Archiver
