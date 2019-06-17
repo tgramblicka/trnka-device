@@ -1,0 +1,21 @@
+pi
+raspberry
+ip: 192.168.1.15
+
+ssh pi@192.168.1.15
+
+
+5key event at 1559201302.748662, 6 (KEY_5), down
+/home/pi/audio
+
+
+Proper install java8 jdk8
+https://stackoverflow.com/questions/55920389/e-package-oracle-java8-installer-has-no-installation-candidate
+
+copy evdev/native libs to device
+cd to native
+run:
+gcc -I/opt/jdk/jdk1.8.0_202/include/linux -I/opt/jdk/jdk1.8.0_202/include -Wall -shared -f PIC -o libevdev-java.so evdev-java.c
+this will make a .so file
+
+java -Djava.library.path=/home/pi/trnka-device/ -jar trnka-device-jar-with-dependencies.jar
