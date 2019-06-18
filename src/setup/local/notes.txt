@@ -17,5 +17,12 @@ cd to native
 run:
 gcc -I/opt/jdk/jdk1.8.0_202/include/linux -I/opt/jdk/jdk1.8.0_202/include -Wall -shared -f PIC -o libevdev-java.so evdev-java.c
 this will make a .so file
+resp. ked nefunguje
+gcc -I/opt/jdk/jdk1.8.0_202/include/linux -I/opt/jdk/jdk1.8.0_202/include -Wall -shared -o libevdev-java.so evdev-java.c
 
-java -Djava.library.path=/home/pi/trnka-device/ -jar trnka-device-jar-with-dependencies.jar
+
+java -jar trnka-device-jar-with-dependencies.jar
+
+
+
+//java.io.IOException: Invalid argument
