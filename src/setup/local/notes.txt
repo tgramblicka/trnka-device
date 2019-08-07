@@ -26,3 +26,9 @@ java -jar trnka-device-jar-with-dependencies.jar
 
 
 //java.io.IOException: Invalid argument
+
+
+
+
+##### SPRING BOOOT COMMANDS
+mvn spring-boot:run

@@ -1,6 +1,7 @@
 package com.trnka.trnkadevice.controller;
 
 import com.trnka.trnkadevice.database.DbQueries;
+import com.trnka.trnkadevice.inputreader.InputReader;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,16 @@ public class MainController {
         DbQueries dbQueries = new DbQueries();
         dbQueries.selectionTest();
         return "selected";
+    }
+
+    @GetMapping(path = "input")
+    public String inputReader() {
+        try {
+            InputReader.read();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "read";
     }
 
 }
