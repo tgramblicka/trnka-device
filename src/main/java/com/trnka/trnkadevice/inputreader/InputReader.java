@@ -3,6 +3,8 @@ package com.trnka.trnkadevice.inputreader;
 import java.io.*;
 
 public class InputReader {
+
+
     public static void read() throws Exception {
         BufferedInputStream inBuffered;
         try {
@@ -19,6 +21,7 @@ public class InputReader {
             int type = getBytesAsWord(eventBytes, 16,2);
             int code = getBytesAsWord(eventBytes, 18,2);
             int value = getBytesAsWord(eventBytes, 20,4);
+            // "type" and "code" are in the end just numbers. Each number has a particular key, mapping here: https://github.com/spotify/linux/blob/master/include/linux/input.h
             System.out.printf("LINE1: %s %s %s \n", String.valueOf(type), String.valueOf(code), String.valueOf(value));
         }
 
