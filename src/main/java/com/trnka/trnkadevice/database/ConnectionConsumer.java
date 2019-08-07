@@ -1,4 +1,4 @@
-package com.trnka.device.database;
+package com.trnka.trnkadevice.database;
 
 import java.sql.SQLException;
 

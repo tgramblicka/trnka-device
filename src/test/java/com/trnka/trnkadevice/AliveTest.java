@@ -1,12 +1,11 @@
-package com.trnka.device;
+package com.trnka.trnkadevice;
 
-import com.trnka.device.rest.RestClient;
+import com.trnka.trnkadevice.controller.RestClient;
 import org.junit.Assert;
-import org.junit.Test;
 
 public class AliveTest {
 
-    @Test
+//    @Test
     public void testAlive() {
         RestClient client = new RestClient();
         String response = client.sendGetRequest("/monitoring/alive");

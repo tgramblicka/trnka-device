@@ -1,4 +1,4 @@
-package com.trnka.device.inputreader;
+package com.trnka.trnkadevice.inputreader;
 
 import java.io.*;
 

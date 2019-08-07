@@ -1,4 +1,4 @@
-package com.trnka.device.rest;
+package com.trnka.trnkadevice.controller;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;

@@ -1,7 +1,7 @@
-package com.trnka.device;
+package com.trnka.trnkadevice;
 
-import com.trnka.device.database.DbQueries;
-import com.trnka.device.inputreader.InputReader;
+import com.trnka.trnkadevice.database.DbQueries;
+import com.trnka.trnkadevice.inputreader.InputReader;
 
 public class Main {
 
