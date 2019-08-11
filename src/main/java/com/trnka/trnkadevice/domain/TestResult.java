@@ -14,7 +14,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class TestResult {
 
-
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     @Id
@@ -22,6 +21,5 @@ public class TestResult {
 
     @Column(name = "studentId")
     private Long studentId;
-
 
 }

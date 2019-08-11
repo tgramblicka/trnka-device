@@ -1,12 +1,26 @@
 package com.trnka.trnkadevice.inputreader;
 
-import java.io.*;
+import lombok.extern.slf4j.Slf4j;
 
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+@Slf4j
 public class InputReader {
 
-    public static void readKey() throws IOException {
-        DataInputStream in = getInputStream();
-        extractKey(in);
+    public static Keystroke readKey() {
+        try {
+            DataInputStream tmp = getInputStream();
+            extractKey(tmp);
+
+            DataInputStream in = getInputStream();
+            return extractKey(in);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getCause());
+        }
     }
 
     public static void read() throws Exception {
@@ -23,11 +37,15 @@ public class InputReader {
         }
     }
 
-    private static KeysMap extractKey(final DataInputStream in) throws IOException {
+    private static Keystroke extractKey(final DataInputStream in) throws IOException {
+        byte[] tmpBytes = new byte[24];
+        in.readFully(tmpBytes);
+
         byte[] eventBytes = new byte[24];
         in.readFully(eventBytes);
+
         int code = getBytesAsWord(eventBytes, 18, 2);
-        return KeysMap.getByCode(code);
+        return Keystroke.getByCode(code);
     }
 
     private static DataInputStream getInputStream() throws FileNotFoundException {

@@ -6,12 +6,14 @@ import com.trnka.trnkadevice.inputreader.InputReader;
 public class Main {
 
     public static void main(String[] args) {
-        //        RestClient client = new RestClient();
+        //        RestClientBackend client = new RestClientBackend();
         //        String response = client.sendGetRequest("/monitoring/alive");
         //        System.out.println(response);
 
         //        readInput();
-        dbSelectionTest();
+//        dbSelectionTest();
+
+//            System.out.println(Math.abs((0 - 1) % 3));
     }
 
     private static void dbSelectionTest() {
