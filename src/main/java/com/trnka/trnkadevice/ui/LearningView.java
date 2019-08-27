@@ -1,11 +1,10 @@
 package com.trnka.trnkadevice.ui;
 
-import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.ui.messages.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
+import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.ui.messages.Messages;
 
 @Component
 public class LearningView implements IView {
@@ -23,7 +22,7 @@ public class LearningView implements IView {
     @Override
     public void enter() {
         renderer.renderMessage(Messages.LEARNING_VIEW);
-        NavigatorUtil.mainMenuNavigation(navigator);
+        NavigatorUtil.registerMainMenuNavigation(navigator);
     }
 
     @Override

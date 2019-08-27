@@ -22,7 +22,7 @@ public class TestingView implements IView {
     @Override
     public void enter() {
         renderer.renderMessage(Messages.TESTING_VIEW);
-        NavigatorUtil.mainMenuNavigation(navigator);
+        NavigatorUtil.registerMainMenuNavigation(navigator);
     }
 
     @Override

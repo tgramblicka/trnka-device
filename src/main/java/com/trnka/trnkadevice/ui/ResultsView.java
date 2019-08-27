@@ -1,7 +1,5 @@
 package com.trnka.trnkadevice.ui;
 
-import com.trnka.trnkadevice.inputreader.InputReader;
-import com.trnka.trnkadevice.inputreader.Keystroke;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +23,7 @@ public class ResultsView implements IView {
     public void enter() {
         renderer.renderMessage(Messages.RESULTS_VIEW);
 
-        NavigatorUtil.mainMenuNavigation(navigator);
+        NavigatorUtil.registerMainMenuNavigation(navigator);
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.trnka.trnkadevice.inputreader.Keystroke;
 
 public class NavigatorUtil {
 
-    public static void mainMenuNavigation(Navigator navigator){
+    public static void registerMainMenuNavigation(Navigator navigator){
         Keystroke key = InputReader.readKey();
         while (!key.equals(Keystroke.MENU_1)) {
             key = InputReader.readKey();

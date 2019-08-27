@@ -2,8 +2,6 @@ package com.trnka.trnkadevice.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -14,15 +12,16 @@ import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
-@Component public class MenuStudentView implements IView {
+@Component
+public class MenuStudentView implements IView {
 
     private IRenderer renderer;
     private UserSession userSession;
     private Navigator navigator;
 
-    @Autowired private ApplicationContext context;
+    @Autowired
+    private ApplicationContext context;
 
-    private static List<Keystroke> ALLOWED_KEYS = Stream.of(Keystroke.SUBMIT, Keystroke.MENU_1).collect(Collectors.toList());
     private static List<Class<? extends IView>> MENU = new ArrayList<>();
 
     static {
@@ -31,14 +30,17 @@ import com.trnka.trnkadevice.ui.messages.Messages;
         MENU.add(ResultsView.class);
     }
 
-    @Autowired public MenuStudentView(
-            final IRenderer renderer, final UserSession userSession, final Navigator navigator) {
+    @Autowired
+    public MenuStudentView(final IRenderer renderer,
+                           final UserSession userSession,
+                           final Navigator navigator) {
         this.renderer = renderer;
         this.userSession = userSession;
         this.navigator = navigator;
     }
 
-    @Override public void enter() {
+    @Override
+    public void enter() {
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUser().getUserName());
 
         Keystroke key = InputReader.readKey();
@@ -51,7 +53,8 @@ import com.trnka.trnkadevice.ui.messages.Messages;
                 break;
             case DOWN:
                 index = (index - 1) % MENU.size();
-                index = index < 0 ? MENU.size() - 1 : index;
+                index = index < 0 ? MENU.size() - 1
+                                  : index;
                 renderViewName(index);
                 break;
             case SUBMIT:
@@ -67,7 +70,8 @@ import com.trnka.trnkadevice.ui.messages.Messages;
         renderer.renderMessage(context.getBean(viewClass).getViewName());
     }
 
-    @Override public Messages getViewName() {
+    @Override
+    public Messages getViewName() {
         return Messages.MAIN_MENU_LABEL;
     }
 
