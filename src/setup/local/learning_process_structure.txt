@@ -1,0 +1,17 @@
+Vyuka1
+
+vyber test (cisla 1 - 6) ak bude vyssie cislo ako ho vyberie ? mozno sipkami hore/dolu
+potvrdi
+system prehra prvy znak
+pouzivatel zadava znak na klavesnici
+pouzivatel potvrdi
+system vyhodnoti (spravne,nespravne)
+ak nespravne znovu ten isty znak <
+..... loopuje az po posledny znak
+system poskytne vysledky
+
+
+DataStructure vyuka:
+{
+
+}

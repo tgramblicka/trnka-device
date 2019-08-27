@@ -1,0 +1,23 @@
+{
+  "allowedRetries": 1,
+  "timeout": 50000,
+  "learningSuites": [
+    {
+      "character": "a",
+      "brailSequence": [1],
+      "preserveOrder": true
+    },
+    {
+      "character": "b",
+      "brailSequence": [1,2],
+      "preserveOrder": true
+    },
+    {
+      "character": "v",
+      "brailSequence": [1,2,3,6],
+      "preserveOrder": false
+    }
+  ]
+}
+
+
