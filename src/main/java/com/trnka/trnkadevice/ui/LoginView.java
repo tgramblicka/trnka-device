@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.trnka.restapi.dto.UserDTO;
 import com.trnka.trnkadevice.controller.RestClientBackend;
-import com.trnka.trnkadevice.inputreader.DeviceInputReader;
+import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.messages.Messages;
@@ -24,16 +24,19 @@ public class LoginView implements IView {
     private RestClientBackend restClientBackend;
     private UserSession userSession;
     private Navigator navigator;
+    private InputReader inputReader;
 
     @Autowired
     public LoginView(IRenderer renderer,
                      RestClientBackend restClientBackend,
                      UserSession userSession,
-                     Navigator navigator) {
+                     Navigator navigator,
+                     InputReader inputReader) {
         this.renderer = renderer;
         this.restClientBackend = restClientBackend;
         this.userSession = userSession;
         this.navigator = navigator;
+        this.inputReader = inputReader;
     }
 
     @Override
@@ -64,7 +67,7 @@ public class LoginView implements IView {
     private String readPassword() {
         StringBuilder builder = new StringBuilder("");
         for (int i = 0; i < PASSWORD_LENGHT; i++) {
-            Keystroke key = DeviceInputReader.readKey();
+            Keystroke key = inputReader.readFromInput();
             builder.append(key.getValue());
         }
         return builder.toString();

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.trnka.trnkadevice.inputreader.DeviceInputReader;
+import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.messages.Messages;
@@ -18,6 +18,7 @@ public class MenuStudentView implements IView {
     private IRenderer renderer;
     private UserSession userSession;
     private Navigator navigator;
+    private InputReader inputReader;
 
     @Autowired
     private ApplicationContext context;
@@ -33,17 +34,19 @@ public class MenuStudentView implements IView {
     @Autowired
     public MenuStudentView(final IRenderer renderer,
                            final UserSession userSession,
-                           final Navigator navigator) {
+                           final Navigator navigator,
+                           final InputReader inputReader) {
         this.renderer = renderer;
         this.userSession = userSession;
         this.navigator = navigator;
+        this.inputReader = inputReader;
     }
 
     @Override
     public void enter() {
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUser().getUserName());
 
-        Keystroke key = DeviceInputReader.readKey();
+        Keystroke key = inputReader.readFromInput();
         int index = 0;
         while (true) {
             switch (key) {
@@ -61,7 +64,7 @@ public class MenuStudentView implements IView {
                 navigator.navigate(MENU.get(index));
                 return;
             }
-            key = DeviceInputReader.readKey();
+            key = inputReader.readFromInput();
         }
     }
 
