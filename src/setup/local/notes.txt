@@ -32,3 +32,12 @@ java -jar trnka-device-jar-with-dependencies.jar
 
 ##### SPRING BOOOT COMMANDS
 mvn spring-boot:run
+
+
+///////////////////
+EVENTING :
+kazda navigation firene event
+kazdy button click firene listenery v aktualnom view ?
+foreach listeners check ktory je validny na aktualny buttton
+
+

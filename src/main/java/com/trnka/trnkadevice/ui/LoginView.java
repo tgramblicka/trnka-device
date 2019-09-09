@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.trnka.restapi.dto.UserDTO;
 import com.trnka.trnkadevice.controller.RestClientBackend;
-import com.trnka.trnkadevice.inputreader.InputReader;
+import com.trnka.trnkadevice.inputreader.DeviceInputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.messages.Messages;
@@ -64,7 +64,7 @@ public class LoginView implements IView {
     private String readPassword() {
         StringBuilder builder = new StringBuilder("");
         for (int i = 0; i < PASSWORD_LENGHT; i++) {
-            Keystroke key = InputReader.readKey();
+            Keystroke key = DeviceInputReader.readKey();
             builder.append(key.getValue());
         }
         return builder.toString();

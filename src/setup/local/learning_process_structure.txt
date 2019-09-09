@@ -1,17 +1,18 @@
 Vyuka1
 
-vyber test (cisla 1 - 6) ak bude vyssie cislo ako ho vyberie ? mozno sipkami hore/dolu
-potvrdi
-system prehra prvy znak
-pouzivatel zadava znak na klavesnici
-pouzivatel potvrdi
-system vyhodnoti (spravne,nespravne)
-ak nespravne znovu ten isty znak <
-..... loopuje az po posledny znak
-system poskytne vysledky
 
+0. Naviguj sa do Menu Vyuka
+1. vyber vyukovy test. -> OTAZKA1: vyber vyukoveho testu sipkami hore/dolu resp tlacidlom 1-6 ? ciselne tlacidla mame len 1 - 6 ak bude vyukovych testov >7 ako vyberie ? Pre mna je UI friendly vyber sipkami hore/dolu
+2. potvrdi potvrdzovacim tlacitkom
+3. system prehra prvy znak
+4. pouzivatel zadava znak na klavesnici
+5. pouzivatel explicitne potvrdi (pokial pred potvrdenim klikol viac znakov, system akceptuje ako potvrdeny POSLENDE stlaceny znak)
+6. system vyhodnoti (spravne,nespravne)
+7. ak nespravne znovu prehra ten isty znak a pokracuje na krok 3. (Pocet opakovanie podla parametru "allowed_retries" v datovej strukture. Ak allowed_retries=-1 moze skusat donekonecna az kym nezada spravny znak)
+8. kroky 3-7 loopuje az po posledny znak podla vyukoveho testu definovaneho v strukture
+9. system poskytne vysledky. OTAZKA2-> ake presne vysledky pri vyuke ? Mna napada:Pocet spravnych pokusov ? dlzka trvania vyuky? Priemerny cas straveny pri pismene ?
+TIMEOUT PODMIENKA: ak pouzivatel neinteraguje po dobu dlhsiu ako parameter "timeout" v strukture vyukoveho testu, zariadenie sa vrati spat na Hlavne Menu.
 
-DataStructure vyuka:
-{
+OTAZKA3:
+Nerozumiem ako bude fungovat vyuka pri vybere konkretneho pismena ? Toto nevyhodime ? Myslim ze si vystacime s vyberom vyukoveho testu.
 
-}

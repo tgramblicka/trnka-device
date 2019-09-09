@@ -1,6 +1,6 @@
 package com.trnka.trnkadevice.controller;
 
-import com.trnka.trnkadevice.inputreader.InputReader;
+import com.trnka.trnkadevice.inputreader.DeviceInputReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +42,7 @@ public class MainController {
     @GetMapping(path = "input")
     public String inputReader() {
         try {
-            InputReader.read();
+            DeviceInputReader.read();
         } catch (Exception e) {
             e.printStackTrace();
         }

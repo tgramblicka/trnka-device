@@ -1,6 +1,6 @@
 package com.trnka.trnkadevice.ui;
 
-import com.trnka.trnkadevice.inputreader.InputReader;
+import com.trnka.trnkadevice.inputreader.DeviceInputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class CycledMenuComponent {
     }
 
     public void cycleThroughMenu(final List<Class<? extends IView>> menu) {
-        Keystroke key = InputReader.readKey();
+        Keystroke key = DeviceInputReader.readKey();
         int index = 0;
         while (true) {
             switch (key) {
@@ -44,7 +44,7 @@ public class CycledMenuComponent {
                 navigator.navigate(menu.get(index));
                 return;
             }
-            key = InputReader.readKey();
+            key = DeviceInputReader.readKey();
         }
     }
 

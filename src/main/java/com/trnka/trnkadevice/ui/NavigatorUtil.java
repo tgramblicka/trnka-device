@@ -1,14 +1,14 @@
 package com.trnka.trnkadevice.ui;
 
-import com.trnka.trnkadevice.inputreader.InputReader;
+import com.trnka.trnkadevice.inputreader.DeviceInputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 
 public class NavigatorUtil {
 
     public static void registerMainMenuNavigation(Navigator navigator){
-        Keystroke key = InputReader.readKey();
+        Keystroke key = DeviceInputReader.readKey();
         while (!key.equals(Keystroke.MENU_1)) {
-            key = InputReader.readKey();
+            key = DeviceInputReader.readKey();
         }
         navigator.navigate(MenuStudentView.class);
     }
