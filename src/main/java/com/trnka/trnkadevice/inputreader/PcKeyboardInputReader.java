@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import lombok.extern.slf4j.Slf4j;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
@@ -15,7 +14,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.swing.text.html.Option;
+import lombok.extern.slf4j.Slf4j;
 
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 @Component
@@ -23,7 +22,7 @@ import javax.swing.text.html.Option;
 @Slf4j
 public class PcKeyboardInputReader implements InputReader {
 
-    private Keystroke pressedKey = null;
+    private volatile Keystroke pressedKey = null;
 
     public PcKeyboardInputReader() {
         registerListener();
@@ -31,13 +30,9 @@ public class PcKeyboardInputReader implements InputReader {
 
     @Override
     public Keystroke readFromInput() {
-        log.info("Reading from keyboard:");
 
         while (this.pressedKey == null) {
             // iterate
-            if (this.pressedKey != null) {
-                log.info("keypress:" + Optional.ofNullable(pressedKey).map(Keystroke :: getValue).orElse("null"));
-            }
         }
         Keystroke tmpPressedKey = pressedKey;
         pressedKey = null;
@@ -47,7 +42,6 @@ public class PcKeyboardInputReader implements InputReader {
     }
 
     public void setPressedKey(Keystroke pressedKey) {
-        log.info("set pressed key: " + pressedKey.getValue());
         this.pressedKey = pressedKey;
     }
 
