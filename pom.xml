@@ -23,11 +23,11 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter</artifactId>-->
-<!--            <version>2.1.7.RELEASE</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter</artifactId>-->
+        <!--            <version>2.1.7.RELEASE</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,17 +39,17 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>2.1.7.RELEASE</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
-<!--            <version>2.1.7.RELEASE</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
+        <!--            <version>2.1.7.RELEASE</version>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
-<!--            <version>2.0.1.RELEASE</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
+        <!--            <version>2.0.1.RELEASE</version>-->
+        <!--        </dependency>-->
 
 
         <dependency>
@@ -79,21 +79,21 @@
 
 
         <!--        persistance-->
-<!--        <dependency>-->
-<!--            <groupId>javax.persistence</groupId>-->
-<!--            <artifactId>javax.persistence-api</artifactId>-->
-<!--            <version>2.2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate</groupId>-->
-<!--            <artifactId>hibernate-core</artifactId>-->
-<!--            <version>5.4.4.Final</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate</groupId>-->
-<!--            <artifactId>hibernate-entitymanager</artifactId>-->
-<!--            <version>5.4.4.Final</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>javax.persistence</groupId>-->
+        <!--            <artifactId>javax.persistence-api</artifactId>-->
+        <!--            <version>2.2</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.hibernate</groupId>-->
+        <!--            <artifactId>hibernate-core</artifactId>-->
+        <!--            <version>5.4.4.Final</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.hibernate</groupId>-->
+        <!--            <artifactId>hibernate-entitymanager</artifactId>-->
+        <!--            <version>5.4.4.Final</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -108,6 +108,16 @@
             <artifactId>restapi</artifactId>
             <version>${version.trnka-restapi}</version>
         </dependency>
+
+
+        <!--        For PC keyboard input only-->
+        <!--         todo: delete from production code-->
+        <dependency>
+            <groupId>com.1stleg</groupId>
+            <artifactId>jnativehook</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -125,14 +135,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-<!--                <dependencies>-->
-<!--                    &lt;!&ndash; The following enables the "thin jar" deployment option. &ndash;&gt;-->
-<!--                    <dependency>-->
-<!--                        <groupId>org.springframework.boot.experimental</groupId>-->
-<!--                        <artifactId>spring-boot-thin-layout</artifactId>-->
-<!--                        <version>1.0.11.RELEASE</version>-->
-<!--                    </dependency>-->
-<!--                </dependencies>-->
+                <!--                <dependencies>-->
+                <!--                    &lt;!&ndash; The following enables the "thin jar" deployment option. &ndash;&gt;-->
+                <!--                    <dependency>-->
+                <!--                        <groupId>org.springframework.boot.experimental</groupId>-->
+                <!--                        <artifactId>spring-boot-thin-layout</artifactId>-->
+                <!--                        <version>1.0.11.RELEASE</version>-->
+                <!--                    </dependency>-->
+                <!--                </dependencies>-->
             </plugin>
 
             <plugin>

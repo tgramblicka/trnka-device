@@ -1,7 +1,8 @@
 package com.trnka.trnkadevice;
 
 import com.trnka.trnkadevice.database.DbQueries;
-import com.trnka.trnkadevice.inputreader.InputReader;
+import com.trnka.trnkadevice.inputreader.DeviceInputReader;
+import com.trnka.trnkadevice.inputreader.PcKeyboardInputReader;
 
 public class Main {
 
@@ -11,6 +12,8 @@ public class Main {
         //        System.out.println(response);
 
         //        readInput();
+        PcKeyboardInputReader.read3();
+
 //        dbSelectionTest();
 
 //            System.out.println(Math.abs((0 - 1) % 3));
@@ -23,7 +26,7 @@ public class Main {
 
     private static void readInput() {
         try {
-            InputReader.read();
+            DeviceInputReader.read();
         } catch (Exception e) {
             e.printStackTrace();
         }
