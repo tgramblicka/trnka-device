@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.trnka.trnkadevice.inputreader.InputReader;
-import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.ui.learning.LearningView;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
 @Component
@@ -18,8 +17,7 @@ public class MenuStudentView implements IView {
     private IRenderer renderer;
     private UserSession userSession;
     private Navigator navigator;
-    private InputReader inputReader;
-
+    private CycledMenuComponent cycledMenuComponent;
     @Autowired
     private ApplicationContext context;
 
@@ -35,42 +33,17 @@ public class MenuStudentView implements IView {
     public MenuStudentView(final IRenderer renderer,
                            final UserSession userSession,
                            final Navigator navigator,
-                           final InputReader inputReader) {
+                           final CycledMenuComponent cycledMenuComponent) {
         this.renderer = renderer;
         this.userSession = userSession;
         this.navigator = navigator;
-        this.inputReader = inputReader;
+        this.cycledMenuComponent = cycledMenuComponent;
     }
 
     @Override
     public void enter() {
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUser().getUserName());
-
-        Keystroke key = inputReader.readFromInput();
-        int index = 0;
-        while (true) {
-            switch (key) {
-            case UP:
-                index = (index + 1) % MENU.size();
-                renderViewName(index);
-                break;
-            case DOWN:
-                index = (index - 1) % MENU.size();
-                index = index < 0 ? MENU.size() - 1
-                                  : index;
-                renderViewName(index);
-                break;
-            case SUBMIT:
-                navigator.navigate(MENU.get(index));
-                return;
-            }
-            key = inputReader.readFromInput();
-        }
-    }
-
-    private void renderViewName(final int index) {
-        Class<? extends IView> viewClass = MENU.get(index);
-        renderer.renderMessage(context.getBean(viewClass).getViewName());
+        cycledMenuComponent.cycleThroughMenu(MENU, index -> navigator.navigate(MENU.get(index)));
     }
 
     @Override

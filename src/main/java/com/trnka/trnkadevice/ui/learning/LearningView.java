@@ -1,5 +1,8 @@
-package com.trnka.trnkadevice.ui;
+package com.trnka.trnkadevice.ui.learning;
 
+import com.trnka.trnkadevice.ui.IView;
+import com.trnka.trnkadevice.ui.Navigator;
+import com.trnka.trnkadevice.ui.NavigatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

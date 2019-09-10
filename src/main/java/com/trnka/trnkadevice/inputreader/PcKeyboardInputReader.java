@@ -53,8 +53,7 @@ public class PcKeyboardInputReader implements InputReader {
         @Override
         public void nativeKeyReleased(NativeKeyEvent nativeEvent) {
             String keyText = NativeKeyEvent.getKeyText(nativeEvent.getKeyCode());
-            System.out.println("User typed: " + keyText);
-
+            // System.out.println("User typed: " + keyText);
             Keystroke keystroke = Optional.ofNullable(PcKeystroak.MAP.get(nativeEvent.getKeyCode())).orElse(Keystroke.UNKNOWN);
             setPressedKey(keystroke);
         }
@@ -66,10 +65,7 @@ public class PcKeyboardInputReader implements InputReader {
 
     private void registerListener() {
         try {
-            // Clear previous logging configurations.kjoeri82
             LogManager.getLogManager().reset();
-
-            // Get the logger for "org.jnativehook" and set the level to off.
             Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
             logger.setLevel(Level.OFF);
 
