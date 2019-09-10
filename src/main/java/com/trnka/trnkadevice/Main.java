@@ -12,7 +12,8 @@ public class Main {
         //        System.out.println(response);
 
         //        readInput();
-        PcKeyboardInputReader.read3();
+        PcKeyboardInputReader reader = new PcKeyboardInputReader();
+        reader.readFromInput();
 
 //        dbSelectionTest();
 

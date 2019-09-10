@@ -10,7 +10,7 @@ import com.trnka.trnkadevice.database.DbQueries;
 import com.trnka.trnkadevice.ui.LoginView;
 
 @RestController
-@RequestMapping(path = "monitoring")
+@RequestMapping(path = "device")
 public class MainController {
 
     @Autowired
