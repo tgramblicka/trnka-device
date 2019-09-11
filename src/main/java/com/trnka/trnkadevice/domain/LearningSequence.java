@@ -1,14 +1,15 @@
 package com.trnka.trnkadevice.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TestSequence {
+public class LearningSequence {
 
     private int allowedRetries;
     private long timeout;
-    private List<SequenceStep> steps;
+    private List<SequenceStep> steps = new ArrayList<>();
 
-    public TestSequence() {
+    public LearningSequence() {
         super();
     }
 

@@ -15,7 +15,6 @@ import com.trnka.trnkadevice.renderer.IRenderer;
 public class CycledMenuComponent {
 
     private IRenderer renderer;
-    private Navigator navigator;
     private InputReader inputReader;
 
     @Autowired
@@ -23,14 +22,13 @@ public class CycledMenuComponent {
 
     @Autowired
     public CycledMenuComponent(final IRenderer renderer,
-                               final Navigator navigator,
                                final InputReader inputReader) {
         this.renderer = renderer;
-        this.navigator = navigator;
         this.inputReader = inputReader;
     }
 
-    public void cycleThroughMenu(final List<Class<? extends IView>> menu, final Consumer<Integer> onSubmit) {
+    public void cycleThroughMenu(final List<Class<? extends IView>> menu,
+                                 final Consumer<Integer> onSubmit) {
         Keystroke key = inputReader.readFromInput();
         int index = 0;
         while (true) {
