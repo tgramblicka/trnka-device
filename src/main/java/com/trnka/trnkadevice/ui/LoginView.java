@@ -55,11 +55,6 @@ public class LoginView implements IView {
         navigator.navigate(LoginView.class);
     }
 
-    @Override
-    public Messages getViewName() {
-        return Messages.LOGIN_VIEW_LABEL;
-    }
-
     private String readPassword1() {
         return TEST_PASSWORD;
     }
@@ -73,4 +68,8 @@ public class LoginView implements IView {
         return builder.toString();
     }
 
+    @Override
+    public Messages getLabel() {
+        return Messages.LOGIN_VIEW_LABEL;
+    }
 }

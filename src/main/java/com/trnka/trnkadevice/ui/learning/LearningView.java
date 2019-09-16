@@ -41,8 +41,7 @@ public class LearningView implements IView {
 
     }
 
-    @Override
-    public Messages getViewName() {
+    @Override public Messages getLabel() {
         return Messages.LEARNING_LABEL;
     }
 }

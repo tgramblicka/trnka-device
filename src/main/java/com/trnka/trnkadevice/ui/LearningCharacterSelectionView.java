@@ -19,7 +19,8 @@ public class LearningCharacterSelectionView implements IView {
 
     }
 
-    @Override public Messages getViewName() {
+    @Override
+    public Messages getLabel() {
         return Messages.LEARNING_CHARACTER_VIEW_LABEL;
     }
 }

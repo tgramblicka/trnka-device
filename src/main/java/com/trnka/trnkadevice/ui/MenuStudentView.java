@@ -1,7 +1,9 @@
 package com.trnka.trnkadevice.ui;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -43,12 +45,12 @@ public class MenuStudentView implements IView {
     @Override
     public void enter() {
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUser().getUserName());
-        cycledMenuComponent.cycleThroughMenu(MENU, index -> navigator.navigate(MENU.get(index)));
+        Consumer<Integer> consumer = index -> navigator.navigate(MENU.get(index));
+        cycledMenuComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
 
     @Override
-    public Messages getViewName() {
+    public Messages getLabel() {
         return Messages.MAIN_MENU_LABEL;
     }
-
 }

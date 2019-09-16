@@ -25,8 +25,7 @@ public class TestingView implements IView {
         NavigatorUtil.registerMainMenuNavigation(navigator);
     }
 
-    @Override
-    public Messages getViewName() {
+    @Override public Messages getLabel() {
         return Messages.TESTING_LABEL;
     }
 }

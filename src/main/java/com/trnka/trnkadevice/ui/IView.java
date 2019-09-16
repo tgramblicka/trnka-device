@@ -6,7 +6,4 @@ public interface IView extends Renderable{
 
     void enter();
 
-    Messages getViewName();
-
-
 }

@@ -27,7 +27,7 @@ public class ResultsView implements IView {
     }
 
     @Override
-    public Messages getViewName() {
+    public Messages getLabel() {
         return Messages.RESULTS_LABEL;
     }
 }
