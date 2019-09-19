@@ -1,29 +1,16 @@
 package com.trnka.trnkadevice.domain;
 
-import com.trnka.trnkadevice.inputreader.Keystroke;
-
-import java.util.List;
-
 public class SequenceStep {
 
-    private Character character;
-    private List<Keystroke> brailRepresentation;
+    private BrailCharacter brailCharacter;
     private boolean preserveOrder;
 
-    public Character getCharacter() {
-        return character;
+    public BrailCharacter getBrailCharacter() {
+        return brailCharacter;
     }
 
-    public void setCharacter(final Character character) {
-        this.character = character;
-    }
-
-    public List<Keystroke> getBrailRepresentation() {
-        return brailRepresentation;
-    }
-
-    public void setBrailRepresentation(final List<Keystroke> brailRepresentation) {
-        this.brailRepresentation = brailRepresentation;
+    public void setBrailCharacter(final BrailCharacter brailCharacter) {
+        this.brailCharacter = brailCharacter;
     }
 
     public boolean isPreserveOrder() {

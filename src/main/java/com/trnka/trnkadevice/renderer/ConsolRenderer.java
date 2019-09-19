@@ -2,10 +2,10 @@ package com.trnka.trnkadevice.renderer;
 
 import javax.inject.Singleton;
 
-import com.trnka.trnkadevice.ui.Renderable;
 import org.springframework.stereotype.Component;
 
-import com.trnka.trnkadevice.ui.messages.Messages;
+import com.trnka.trnkadevice.ui.Renderable;
+import com.trnka.trnkadevice.ui.messages.IMessage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ConsolRenderer implements IRenderer {
 
     @Override
-    public void renderMessage(final Messages message,
+    public void renderMessage(final IMessage message,
                               String... params) {
         log.info(">>> " + message.getText() + " <<<", params);
     }

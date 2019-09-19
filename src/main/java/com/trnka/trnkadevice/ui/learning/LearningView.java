@@ -1,5 +1,8 @@
 package com.trnka.trnkadevice.ui.learning;
 
+import com.trnka.trnkadevice.domain.BrailCharacter;
+import com.trnka.trnkadevice.inputreader.InputReader;
+import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.messages.Messages;
@@ -7,16 +10,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @Slf4j
 public class LearningView implements IView {
 
     private IRenderer renderer;
     private LearningSequenceComponent learningSequenceComponent;
+    private InputReader inputReader;
 
     @Autowired
-    public LearningView(final IRenderer renderer) {
+    public LearningView(final IRenderer renderer,
+                        final InputReader inputReader) {
         this.renderer = renderer;
+        this.inputReader = inputReader;
     }
 
     public void refresh(final LearningSequenceComponent learningSequenceComponent) {
@@ -31,8 +40,18 @@ public class LearningView implements IView {
         }
         this.renderer.renderLabel(learningSequenceComponent);
         this.learningSequenceComponent.getSequence().getSteps().forEach(step -> {
-            Character cahr = step.getCharacter();
+            renderer.renderMessage(step.getBrailCharacter());
+            List<Keystroke> keyStrokes = new ArrayList<>();
+            Keystroke keystroke = inputReader.readFromInput();
 
+            while (keystroke.equals(Keystroke.SUBMIT)) {
+                keyStrokes.add(keystroke);
+                keystroke = inputReader.readFromInput();
+            }
+
+            if (step.getBrailCharacter().getCharacter().equals(keystroke.getValue())) {
+                renderer.renderMessage(Messages.CORRECT_INPUT);
+            }
 
         });
     }

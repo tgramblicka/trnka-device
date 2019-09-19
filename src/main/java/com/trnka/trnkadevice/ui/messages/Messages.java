@@ -1,6 +1,6 @@
 package com.trnka.trnkadevice.ui.messages;
 
-public enum Messages {
+public enum Messages implements IMessage {
     LOGIN_VIEW_LABEL("Login", "audio"),
     TYPE_IN_YOUR_PASSWORD("Zadajte 4 miestny registracny kod", "audio"),
     YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN("Boli ste uspesne prihlaseny", "audio"),
@@ -14,6 +14,7 @@ public enum Messages {
     RESULTS_LABEL("Vysledky", "audio"),
     RESULTS_VIEW("Vyber vysledok testu zo zoznamu tlacidlami hore/dole", "audio"),
     RESULT_VIEW("Vysledky testu {}", "audio"),
+    CORRECT_INPUT("Zadany vstup bol spravny", "audio"),
 
     LEARNING_CHARACTER_VIEW_LABEL("Vyber znaku", "audio"),
     WRONG_INPUT_KEY("Nespravna klavesa!!!", "audio"),
@@ -27,7 +28,6 @@ public enum Messages {
     SEVEN("{} 7", "audio"),
     EIGHT("{} 8", "audio"),
     NINE("{} 9", "audio"),
-
 
     A("a", "audio"),
     B("b", "audio"),
@@ -47,10 +47,12 @@ public enum Messages {
         this.audioFile = audioFile;
     }
 
+    @Override
     public String getText() {
         return text;
     }
 
+    @Override
     public String getAudioFile() {
         return audioFile;
     }

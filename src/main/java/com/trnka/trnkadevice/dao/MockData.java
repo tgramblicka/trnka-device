@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.trnka.trnkadevice.domain.BrailCharacter;
 import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.domain.SequenceStep;
 import com.trnka.trnkadevice.inputreader.Keystroke;
@@ -50,11 +51,13 @@ public class MockData {
 
     private static SequenceStep letter(Character character,
                                        Keystroke... keystrokes) {
+        BrailCharacter brailCharacter = new BrailCharacter();
+        brailCharacter.setBrailRepresentation(Stream.of(keystrokes).collect(Collectors.toList()));
+        brailCharacter.setCharacter(character);
+
         SequenceStep step = new SequenceStep();
-        step.setCharacter(character);
         step.setPreserveOrder(false);
-        step.setBrailRepresentation(Stream.of(keystrokes).collect(Collectors.toList()));
+        step.setBrailCharacter(brailCharacter);
         return step;
     }
-
 }
