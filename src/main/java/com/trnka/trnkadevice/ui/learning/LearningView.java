@@ -1,47 +1,44 @@
 package com.trnka.trnkadevice.ui.learning;
 
-import com.trnka.trnkadevice.dao.LearningSequenceDAO;
-import com.trnka.trnkadevice.domain.LearningSequence;
+import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.IView;
-import com.trnka.trnkadevice.ui.Navigator;
-import com.trnka.trnkadevice.ui.NavigatorUtil;
-import com.trnka.trnkadevice.ui.UserSession;
+import com.trnka.trnkadevice.ui.messages.Messages;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.ui.messages.Messages;
-
-import java.util.Set;
-
 @Component
+@Slf4j
 public class LearningView implements IView {
 
-    private Navigator navigator;
     private IRenderer renderer;
-    private LearningSequenceDAO learningSequenceDAO;
-    private UserSession userSession;
+    private LearningSequenceComponent learningSequenceComponent;
 
     @Autowired
-    public LearningView(final Navigator navigator,
-                        final IRenderer renderer,
-                        final LearningSequenceDAO learningSequenceDAO,
-                        final UserSession userSession) {
-        this.navigator = navigator;
+    public LearningView(final IRenderer renderer) {
         this.renderer = renderer;
-        this.learningSequenceDAO = learningSequenceDAO;
-        this.userSession = userSession;
+    }
+
+    public void refresh(final LearningSequenceComponent learningSequenceComponent) {
+        this.learningSequenceComponent = learningSequenceComponent;
     }
 
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.LEARNING_VIEW);
-        NavigatorUtil.registerMainMenuNavigation(navigator);
-        Set<LearningSequence> sequences = learningSequenceDAO.getLearningSequences(userSession.getUser().getUserName());
+        if (learningSequenceComponent == null) {
+            log.error("Learning sequence component is null, this CANNOT HAPPEN");
+            return;
+        }
+        this.renderer.renderLabel(learningSequenceComponent);
+        this.learningSequenceComponent.getSequence().getSteps().forEach(step -> {
+            Character cahr = step.getCharacter();
 
+
+        });
     }
 
-    @Override public Messages getLabel() {
-        return Messages.LEARNING_LABEL;
+    @Override
+    public Messages getLabel() {
+        return null;
     }
 }

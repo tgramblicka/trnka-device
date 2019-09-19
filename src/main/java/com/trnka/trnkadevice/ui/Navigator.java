@@ -17,4 +17,12 @@ public class Navigator {
         T view = context.getBean(viewClass);
         view.enter();
     }
+
+    public <T extends IView> void navigate(T view) {
+        view.enter();
+    }
+
+
+
+
 }

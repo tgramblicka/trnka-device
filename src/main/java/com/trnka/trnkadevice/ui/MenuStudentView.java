@@ -1,6 +1,5 @@
 package com.trnka.trnkadevice.ui;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -10,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.ui.learning.LearningView;
+import com.trnka.trnkadevice.ui.learning.LearningSequenceSelectionView;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
 @Component
@@ -20,13 +19,11 @@ public class MenuStudentView implements IView {
     private UserSession userSession;
     private Navigator navigator;
     private CycledMenuComponent cycledMenuComponent;
-    @Autowired
-    private ApplicationContext context;
 
     private static List<Class<? extends IView>> MENU = new ArrayList<>();
 
     static {
-        MENU.add(LearningView.class);
+        MENU.add(LearningSequenceSelectionView.class);
         MENU.add(TestingView.class);
         MENU.add(ResultsView.class);
     }

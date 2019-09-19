@@ -16,7 +16,27 @@ public enum Messages {
     RESULT_VIEW("Vysledky testu {}", "audio"),
 
     LEARNING_CHARACTER_VIEW_LABEL("Vyber znaku", "audio"),
-    WRONG_INPUT_KEY("Nespravna klavesa!!!", "audio");
+    WRONG_INPUT_KEY("Nespravna klavesa!!!", "audio"),
+
+    ONE("{} 1", "audio"),
+    TWO("{} 2", "audio"),
+    THREE("{} 3", "audio"),
+    FOUR("{} 4", "audio"),
+    FIVE("{} 5", "audio"),
+    SIX("{} 6", "audio"),
+    SEVEN("{} 7", "audio"),
+    EIGHT("{} 8", "audio"),
+    NINE("{} 9", "audio"),
+
+
+    A("a", "audio"),
+    B("b", "audio"),
+    L("l", "audio"),
+    E("e", "audio"),
+    K("k", "audio"),
+    U("u", "audio"),
+
+    LEARNING_SEQUENCE_STARTED("Zacali ste sekvenciu ucenia cislo {}", "audio");
 
     private final String text;
     private final String audioFile;

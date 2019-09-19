@@ -29,6 +29,30 @@ public class CycledMenuComponent {
         this.inputReader = inputReader;
     }
 
+    public void cycleThroughComponents(final Consumer<Integer> onSubmit,
+                                       final List<? extends Renderable> list) {
+        Keystroke key = inputReader.readFromInput();
+        int index = 0;
+        while (true) {
+            switch (key) {
+            case UP:
+                index = (index + 1) % list.size();
+                renderer.renderLabel(list.get(index));
+                break;
+            case DOWN:
+                index = (index - 1) % list.size();
+                index = index < 0 ? list.size() - 1
+                                  : index;
+                renderer.renderLabel(list.get(index));
+                break;
+            case SUBMIT:
+                onSubmit.accept(index);
+                return;
+            }
+            key = inputReader.readFromInput();
+        }
+    }
+
     public <E extends Renderable> void cycleThroughMenu(final Consumer<Integer> onSubmit,
                                                         final Class<E>... renderables) {
         List<Class<E>> list = Stream.of(renderables).collect(Collectors.toList());
