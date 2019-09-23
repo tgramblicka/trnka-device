@@ -18,6 +18,9 @@ public enum Messages implements IMessage {
 
     LEARNING_CHARACTER_VIEW_LABEL("Vyber znaku", "audio"),
     WRONG_INPUT_KEY("Nespravna klavesa!!!", "audio"),
+    CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("Spravne, pokracujem na dalsie pismeno", "audio"),
+    INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Ostava {} pokusov. Zadajte znovu!", "audio"),
+    MAXIMUM_NEGATIVE_TRIES_REACHED("Maximalny pocet nespravnych opakovani bol dosiahnuty!", "audio"),
 
     ONE("{} 1", "audio"),
     TWO("{} 2", "audio"),
