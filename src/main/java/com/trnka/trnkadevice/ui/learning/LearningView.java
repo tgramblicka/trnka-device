@@ -53,13 +53,14 @@ public class LearningView implements IView {
             evaluateUserInput(step, stepStats, learningSequenceComponent.getSequence().getAllowedRetries(), 0);
             stepStats.setTook(System.currentTimeMillis() - start);
         }
+
     }
 
     private List<Keystroke> readInputKeystrokes() {
         List<Keystroke> keyStrokes = new ArrayList<>();
         Keystroke keystroke = inputReader.readFromInput();
 
-        while (keystroke.equals(Keystroke.SUBMIT)) {
+        while (!keystroke.equals(Keystroke.SUBMIT)) {
             keyStrokes.add(keystroke);
             keystroke = inputReader.readFromInput();
         }
@@ -69,18 +70,18 @@ public class LearningView implements IView {
     private boolean evaluateUserInput(
             SequenceStep step, StepStatistic stepStats, int maxAllowedTries, int negativeTries) {
         if (negativeTries == maxAllowedTries) {
-            renderer.renderMessage(Messages.MAXIMUM_NEGATIVE_TRIES_REACHED);
+            renderer.renderMessage(Messages.LEARNING_MAXIMUM_NEGATIVE_TRIES_REACHED);
             return false;
         }
         List<Keystroke> keystrokes = readInputKeystrokes();
         boolean isCorrect = step.getBrailCharacter().getBrailRepresentation().equals(keystrokes);
         if (isCorrect) {
-            renderer.renderMessage(Messages.CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED);
+            renderer.renderMessage(Messages.LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED);
             return true;
         } else {
             negativeTries++;
             stepStats.setRetries(negativeTries);
-            renderer.renderMessage(Messages.INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED, String.valueOf(maxAllowedTries - negativeTries));
+            renderer.renderMessage(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED, String.valueOf(maxAllowedTries - negativeTries));
             return evaluateUserInput(step, stepStats, maxAllowedTries, negativeTries);
         }
     }
