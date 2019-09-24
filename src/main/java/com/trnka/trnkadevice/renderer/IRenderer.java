@@ -8,6 +8,7 @@ public interface IRenderer {
     void renderMessage(IMessage message,
                        String... params);
 
-    void renderLabel(Renderable component);
+    void renderLabel(Renderable component,
+                     String... params);
 
 }

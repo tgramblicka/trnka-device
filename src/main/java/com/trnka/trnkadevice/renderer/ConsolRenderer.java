@@ -21,7 +21,8 @@ public class ConsolRenderer implements IRenderer {
     }
 
     @Override
-    public void renderLabel(final Renderable component) {
-        log.info(">>> " + component.getLabel().getText() + " <<<");
+    public void renderLabel(final Renderable component,
+                            final String... params) {
+        renderMessage(component.getLabel(), params);
     }
 }
