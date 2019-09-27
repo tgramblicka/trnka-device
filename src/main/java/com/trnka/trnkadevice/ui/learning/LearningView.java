@@ -74,7 +74,7 @@ public class LearningView implements IView {
             return false;
         }
         List<Keystroke> keystrokes = readInputKeystrokes();
-        boolean isCorrect = step.getBrailCharacter().getBrailRepresentation().equals(keystrokes);
+        boolean isCorrect = step.getBrailCharacter().getBrailRepresentationKeystrokes().equals(keystrokes);
         if (isCorrect) {
             renderer.renderMessage(Messages.LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED);
             return true;

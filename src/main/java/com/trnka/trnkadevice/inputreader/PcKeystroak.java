@@ -8,7 +8,7 @@ public class PcKeystroak {
 
     static {
         MAP.put(57416, Keystroke.UP);
-        MAP.put(57424, Keystroke.UP);
+        MAP.put(57424, Keystroke.DOWN);
 
         MAP.put(28, Keystroke.SUBMIT);
         MAP.put(30, Keystroke.KEY_A);

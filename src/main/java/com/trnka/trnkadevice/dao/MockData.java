@@ -52,7 +52,7 @@ public class MockData {
     private static SequenceStep letter(Character character,
                                        Keystroke... keystrokes) {
         BrailCharacter brailCharacter = new BrailCharacter();
-        brailCharacter.setBrailRepresentation(Stream.of(keystrokes).collect(Collectors.toList()));
+        brailCharacter.setBrailRepresentationKeystrokes(Stream.of(keystrokes).collect(Collectors.toList()));
         brailCharacter.setCharacter(character);
 
         SequenceStep step = new SequenceStep();
