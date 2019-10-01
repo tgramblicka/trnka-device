@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 import com.trnka.trnkadevice.domain.BrailCharacter;
 import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.domain.SequenceStep;
-import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
 public class MockData {
@@ -30,10 +29,10 @@ public class MockData {
         seq.setAudioMessage(Messages.ONE);
         seq.setAllowedRetries(1);
         seq.setTimeout(TIMEOUT);
-        seq.getSteps().add(letter('a', Keystroke.BRAIL_KEY_1));
-        seq.getSteps().add(letter('b', Keystroke.BRAIL_KEY_1, Keystroke.BRAIL_KEY_2));
-        seq.getSteps().add(letter('l', Keystroke.BRAIL_KEY_1, Keystroke.BRAIL_KEY_2, Keystroke.BRAIL_KEY_3));
-        seq.getSteps().add(letter('e', Keystroke.BRAIL_KEY_1, Keystroke.BRAIL_KEY_5));
+        seq.getSteps().add(letter('a', 1));
+        seq.getSteps().add(letter('b', 1, 2));
+        seq.getSteps().add(letter('l', 1, 2, 3));
+        seq.getSteps().add(letter('e', 1, 5));
         return seq;
     }
 
@@ -44,15 +43,15 @@ public class MockData {
 
         seq.setAllowedRetries(1);
         seq.setTimeout(TIMEOUT);
-        seq.getSteps().add(letter('k', Keystroke.BRAIL_KEY_1, Keystroke.BRAIL_KEY_3));
-        seq.getSteps().add(letter('u', Keystroke.BRAIL_KEY_1, Keystroke.BRAIL_KEY_3, Keystroke.BRAIL_KEY_6));
+        seq.getSteps().add(letter('k', 1, 3));
+        seq.getSteps().add(letter('u', 1, 3, 6));
         return seq;
     }
 
     private static SequenceStep letter(Character character,
-                                       Keystroke... keystrokes) {
+                                       Integer... brailRepre) {
         BrailCharacter brailCharacter = new BrailCharacter();
-        brailCharacter.setBrailRepresentationKeystrokes(Stream.of(keystrokes).collect(Collectors.toList()));
+        brailCharacter.setBrailRepresentation(Stream.of(brailRepre).collect(Collectors.toList()));
         brailCharacter.setCharacter(character);
 
         SequenceStep step = new SequenceStep();

@@ -2,15 +2,37 @@ package com.trnka.trnkadevice.domain;
 
 import com.trnka.trnkadevice.ui.messages.Messages;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "learning_sequence")
 public class LearningSequence {
 
+    @Id
     private long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "audio_message")
     private Messages audioMessage;
+
+    @Column(name = "allowed_retries")
     private int allowedRetries;
+    @Column(name = "timeout")
     private long timeout;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "learning_sequence_id")
     private List<SequenceStep> steps = new ArrayList<>();
 
     public LearningSequence() {
