@@ -19,7 +19,7 @@ public class SequenceStep {
     private Long id;
 
     @OneToOne
-    @JoinColumn(referencedColumnName = "brail_character_id")
+    @JoinColumn(name = "brail_character_id")
     @NotNull
     private BrailCharacter brailCharacter;
 

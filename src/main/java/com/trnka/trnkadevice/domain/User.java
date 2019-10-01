@@ -28,7 +28,7 @@ public class User {
     private String username;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "user_id")
+    @JoinColumn(referencedColumnName = "id", name = "user_id")
     Set<SequenceStatistic> statistics = new HashSet<>();
 
     public User() {

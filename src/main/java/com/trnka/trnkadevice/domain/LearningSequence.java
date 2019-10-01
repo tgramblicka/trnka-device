@@ -32,7 +32,7 @@ public class LearningSequence {
     private long timeout;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "learning_sequence_id")
+    @JoinColumn(referencedColumnName = "id", name = "learning_sequence_id")
     private List<SequenceStep> steps = new ArrayList<>();
 
     public LearningSequence() {
