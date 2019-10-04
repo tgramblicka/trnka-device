@@ -12,4 +12,6 @@ DROP TABLE IF EXISTS `learning_sequence` CASCADE;
 DROP TABLE IF EXISTS `hibernate_sequence` CASCADE;
 DROP TABLE IF EXISTS `brail_character` CASCADE;
 DROP TABLE IF EXISTS `sequence` CASCADE;
+DROP TABLE IF EXISTS `databasechangelog` CASCADE;
+DROP TABLE IF EXISTS `databasechangeloglock` CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
