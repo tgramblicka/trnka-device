@@ -11,15 +11,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "sequence_step")
+@Table(name = "step")
 @Data
-public class SequenceStep {
+public class Step {
 
     @Id
+    @Column(name = "id")
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "brail_character_id")
+    @JoinColumn(name = "brail_character_id", referencedColumnName = "id", nullable = false)
     @NotNull
     private BrailCharacter brailCharacter;
 
@@ -27,7 +28,7 @@ public class SequenceStep {
     private Boolean preserveOrder;
 
 
-    public SequenceStep() {
+    public Step() {
         super();
 
     }

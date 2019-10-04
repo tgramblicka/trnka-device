@@ -9,12 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.trnka.trnkadevice.inputreader.Keystroke;
-import com.trnka.trnkadevice.ui.messages.IMessage;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+
+import com.trnka.trnkadevice.inputreader.Keystroke;
+import com.trnka.trnkadevice.ui.messages.IMessage;
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
+
+import lombok.Data;
 
 @Entity
 @Table(name = "brail_character")
@@ -22,34 +24,21 @@ import org.hibernate.annotations.TypeDef;
         name = "json",
         typeClass = JsonStringType.class
 )
+@Data
 public class BrailCharacter implements IMessage {
 
     @Id
     private Long id;
-    private Character character;
+    @Column(name = "letter")
+    private String letter;
     @Column(name = "brail_representation", columnDefinition = "json")
     @Type(type = "json")
     private List<Integer> brailRepresentation;
+    @Column(name = "audio_file")
     private String audioFile;
 
     public BrailCharacter() {
         super();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
-
-    public Character getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(final Character character) {
-        this.character = character;
     }
 
     @Transient
@@ -57,13 +46,9 @@ public class BrailCharacter implements IMessage {
         return this.brailRepresentation.stream().map(Keystroke::getByCode).collect(Collectors.toList());
     }
 
-    public void setAudioFile(final String audioFile) {
-        this.audioFile = audioFile;
-    }
-
     @Override
     public String getText() {
-        return String.valueOf(character);
+        return letter;
     }
 
     @Override
@@ -71,11 +56,4 @@ public class BrailCharacter implements IMessage {
         return null;
     }
 
-    public List<Integer> getBrailRepresentation() {
-        return brailRepresentation;
-    }
-
-    public void setBrailRepresentation(final List<Integer> brailRepresentation) {
-        this.brailRepresentation = brailRepresentation;
-    }
 }

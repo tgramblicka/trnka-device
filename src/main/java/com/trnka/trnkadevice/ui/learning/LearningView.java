@@ -3,7 +3,7 @@ package com.trnka.trnkadevice.ui.learning;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.trnka.trnkadevice.domain.SequenceStep;
+import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
 import com.trnka.trnkadevice.domain.statistics.StepStatistic;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class LearningView implements IView {
         this.renderer.renderLabel(learningSequenceComponent);
 
         SequenceStatistic seqStats = new SequenceStatistic();
-        for (SequenceStep step : this.learningSequenceComponent.getSequence().getSteps()) {
+        for (Step step : this.learningSequenceComponent.getSequence().getSteps()) {
             StepStatistic stepStats = new StepStatistic();
             seqStats.getStepStats().add(stepStats);
             renderer.renderMessage(step.getBrailCharacter());
@@ -68,7 +68,7 @@ public class LearningView implements IView {
     }
 
     private boolean evaluateUserInput(
-            SequenceStep step, StepStatistic stepStats, int maxAllowedTries, int negativeTries) {
+            Step step, StepStatistic stepStats, int maxAllowedTries, int negativeTries) {
         if (negativeTries == maxAllowedTries) {
             renderer.renderMessage(Messages.LEARNING_MAXIMUM_NEGATIVE_TRIES_REACHED);
             return false;

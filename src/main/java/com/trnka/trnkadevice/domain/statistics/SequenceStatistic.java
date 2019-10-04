@@ -24,10 +24,11 @@ public class SequenceStatistic {
     @Id
     private Long id;
 
-    private Long sequence;
+    @Column(name = "sequence_id", updatable = false, insertable = false)
+    private Long sequenceId;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id" , name = "sequence_statistic_id")
+    @JoinColumn(referencedColumnName = "id" , name = "sequence_statistic_id", nullable = true)
     private List<StepStatistic> stepStats = new ArrayList<>();
 
     @Column private Date createdOn;

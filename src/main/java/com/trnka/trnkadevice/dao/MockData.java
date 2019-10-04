@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import com.trnka.trnkadevice.domain.BrailCharacter;
 import com.trnka.trnkadevice.domain.LearningSequence;
-import com.trnka.trnkadevice.domain.SequenceStep;
+import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
 public class MockData {
@@ -29,10 +29,10 @@ public class MockData {
         seq.setAudioMessage(Messages.ONE);
         seq.setAllowedRetries(1);
         seq.setTimeout(TIMEOUT);
-        seq.getSteps().add(letter('a', 1));
-        seq.getSteps().add(letter('b', 1, 2));
-        seq.getSteps().add(letter('l', 1, 2, 3));
-        seq.getSteps().add(letter('e', 1, 5));
+        seq.getSteps().add(letter("a", 1));
+        seq.getSteps().add(letter("b", 1, 2));
+        seq.getSteps().add(letter("l", 1, 2, 3));
+        seq.getSteps().add(letter("e", 1, 5));
         return seq;
     }
 
@@ -43,18 +43,18 @@ public class MockData {
 
         seq.setAllowedRetries(1);
         seq.setTimeout(TIMEOUT);
-        seq.getSteps().add(letter('k', 1, 3));
-        seq.getSteps().add(letter('u', 1, 3, 6));
+        seq.getSteps().add(letter("k", 1, 3));
+        seq.getSteps().add(letter("u", 1, 3, 6));
         return seq;
     }
 
-    private static SequenceStep letter(Character character,
-                                       Integer... brailRepre) {
+    private static Step letter(String letter,
+                               Integer... brailRepre) {
         BrailCharacter brailCharacter = new BrailCharacter();
         brailCharacter.setBrailRepresentation(Stream.of(brailRepre).collect(Collectors.toList()));
-        brailCharacter.setCharacter(character);
+        brailCharacter.setLetter(letter);
 
-        SequenceStep step = new SequenceStep();
+        Step step = new Step();
         step.setPreserveOrder(false);
         step.setBrailCharacter(brailCharacter);
         return step;
