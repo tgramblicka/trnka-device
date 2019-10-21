@@ -29,11 +29,25 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (25, NULL, '[1,3,5,6]', 'z');
 
 
-INSERT INTO hibernate_sequence (next_val) VALUES (101);
-INSERT INTO hibernate_sequence (next_val) VALUES (102);
-INSERT INTO hibernate_sequence (next_val) VALUES (103);
-INSERT INTO hibernate_sequence (next_val) VALUES (104);
-INSERT INTO hibernate_sequence (next_val) VALUES (105);
+
+
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 101, 1, 'ONE', 100000);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 106, 1, 'TWO', 100000);
+
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (102, b'0', 1, 101);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (103, b'0', 2, 101);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (104, b'0', 12, 101);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (105, b'0', 5, 101);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (107, b'0', 11, 106);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (108, b'0', 21, 106);
+
+INSERT INTO hibernate_sequence (next_val) VALUES (106);
+INSERT INTO hibernate_sequence (next_val) VALUES (107);
+INSERT INTO hibernate_sequence (next_val) VALUES (108);
+INSERT INTO hibernate_sequence (next_val) VALUES (109);
+INSERT INTO hibernate_sequence (next_val) VALUES (110);
+
+
 
 
 SET FOREIGN_KEY_CHECKS=1; --
