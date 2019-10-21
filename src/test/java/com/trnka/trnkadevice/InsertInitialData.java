@@ -1,7 +1,6 @@
 package com.trnka.trnkadevice;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.repository.BrailCharacterRepository;
 import com.trnka.trnkadevice.repository.LearningSequenceRepository;
 
@@ -23,19 +23,19 @@ public class InsertInitialData {
 
     @Autowired
     private LearningSequenceRepository repo;
+
     @Autowired
     BrailCharacterRepository brailCharacterRepository;
-
-    @PersistenceContext
-    private EntityManager em;
 
     @Test
     @Rollback(false)
     public void fillDB() {
         // MockBrails.BRAIL.forEach(brail -> brailCharacterRepository.save(brail));
 
-        MockData mockData = new MockData(brailCharacterRepository);
-        mockData.generateSequences().forEach(sequence -> {
+        MockData mockData = new MockData(brailCharacterRepository,
+                                         repo);
+        Set<LearningSequence> sequences = mockData.generateSequences();
+        sequences.forEach(sequence -> {
             repo.save(sequence);
         });
     }
