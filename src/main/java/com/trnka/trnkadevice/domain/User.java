@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 @Data
+@EqualsAndHashCode
 public class User {
 
     @GeneratedValue
