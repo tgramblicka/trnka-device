@@ -5,10 +5,13 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import com.trnka.trnkadevice.ui.MenuStudentView;
+import com.trnka.trnkadevice.ui.navigation.Navigator;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
@@ -28,6 +31,9 @@ public class PcKeyboardInputReader implements InputReader {
         registerListener();
     }
 
+    @Autowired
+    private Navigator navigator;
+
     @Override
     public Keystroke readFromInput() {
 
@@ -38,6 +44,11 @@ public class PcKeyboardInputReader implements InputReader {
         pressedKey = null;
 
         log.info("Keystroke: " + tmpPressedKey.getValue());
+        if (tmpPressedKey.equals(Keystroke.MENU_1)) {
+            navigator.navigate(MenuStudentView.class);
+            return null;
+        }
+
         return tmpPressedKey;
     }
 
