@@ -8,6 +8,6 @@ import lombok.Data;
 @Entity
 @Data
 @DiscriminatorValue(value = "T")
-public class TestingSequence extends LearningSequence {
+public class TestingSequence extends Sequence {
 
 }

@@ -1,7 +1,7 @@
 package com.trnka.trnkadevice.domain;
 
-import com.trnka.trnkadevice.ui.messages.Messages;
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,24 +10,30 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+
+import com.trnka.trnkadevice.ui.messages.Messages;
+
+import lombok.Data;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Table(name = "sequence")
 @Data
-public class Sequence {
+public abstract class Sequence {
 
     @Id
-    private long id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "audio_message")
