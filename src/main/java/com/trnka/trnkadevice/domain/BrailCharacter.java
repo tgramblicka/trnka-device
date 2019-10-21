@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -28,8 +30,9 @@ import lombok.Data;
 public class BrailCharacter implements IMessage {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    @Column(name = "letter")
+    @Column(name = "letter", unique = true)
     private String letter;
     @Column(name = "brail_representation", columnDefinition = "json")
     @Type(type = "json")
