@@ -32,11 +32,12 @@ public class InsertInitialData {
     @Test
     @Rollback(false)
     public void fillDB() {
-        MockBrails.BRAIL.forEach(brail -> brailCharacterRepository.save(brail));
+        // MockBrails.BRAIL.forEach(brail -> brailCharacterRepository.save(brail));
 
-        // MockData.SEQUENCES.forEach(sequence -> {
-        // repo.save(sequence);
-        // });
+        MockData mockData = new MockData(brailCharacterRepository);
+        mockData.generateSequences().forEach(sequence -> {
+            repo.save(sequence);
+        });
     }
 
 }

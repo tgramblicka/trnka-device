@@ -11,11 +11,10 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 
 public class MockData {
     private static final Long TIMEOUT = 100000L;
-    public static final Set<LearningSequence> SEQUENCES = new HashSet<>();
 
     private BrailCharacterRepository brailRepository;
 
-    private MockData(BrailCharacterRepository brailRepository) {
+    public MockData(BrailCharacterRepository brailRepository) {
         this.brailRepository = brailRepository;
     }
 
