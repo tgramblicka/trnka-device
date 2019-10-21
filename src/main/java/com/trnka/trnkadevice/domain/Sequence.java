@@ -2,6 +2,7 @@ package com.trnka.trnkadevice.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,13 +22,10 @@ import javax.persistence.Table;
 
 import com.trnka.trnkadevice.ui.messages.Messages;
 
-import lombok.Data;
-
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Table(name = "sequence")
-@Data
 public abstract class Sequence {
 
     @Id
@@ -48,4 +46,58 @@ public abstract class Sequence {
     @JoinColumn(referencedColumnName = "id", name = "sequence_id")
     private List<Step> steps = new ArrayList<>();
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }
+
+    public Messages getAudioMessage() {
+        return audioMessage;
+    }
+
+    public void setAudioMessage(final Messages audioMessage) {
+        this.audioMessage = audioMessage;
+    }
+
+    public int getAllowedRetries() {
+        return allowedRetries;
+    }
+
+    public void setAllowedRetries(final int allowedRetries) {
+        this.allowedRetries = allowedRetries;
+    }
+
+    public long getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(final long timeout) {
+        this.timeout = timeout;
+    }
+
+    public List<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(final List<Step> steps) {
+        this.steps = steps;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Sequence sequence = (Sequence) o;
+        return id.equals(sequence.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
