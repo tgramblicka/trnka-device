@@ -13,4 +13,12 @@
                  stripComments="true"/>
     </changeSet>
 
+    <changeSet author="tomas.gramblicka" id="001-insert-data.sql">
+        <sqlFile encoding="utf8"
+                 path="changes/001-insert-data.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+
 </databaseChangeLog>

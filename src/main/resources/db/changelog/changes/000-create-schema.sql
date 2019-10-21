@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS `brail_character` (
   `audio_file` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `brail_representation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`brail_representation`)),
   `letter` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_brail_character_letter` (`letter`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Data exporting was unselected.
