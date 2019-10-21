@@ -16,13 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 public class Application {
 
     public static void main(String[] args) {
-        log.info("Starting Application-service Service");
+        log.info("Starting trnka-device Service");
         log.info("");
 
         SpringApplication.run(Application.class, args);
 
         log.info("");
-        log.info("Application-service Service was started");
+        log.info("trnka-device was started");
     }
 
 }
