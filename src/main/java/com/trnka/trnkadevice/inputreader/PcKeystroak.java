@@ -10,6 +10,7 @@ public class PcKeystroak {
         MAP.put(57416, Keystroke.UP);
         MAP.put(57424, Keystroke.DOWN);
 
+        MAP.put(15, Keystroke.MENU_1);
         MAP.put(28, Keystroke.SUBMIT);
         MAP.put(30, Keystroke.KEY_A);
         MAP.put(48, Keystroke.KEY_B);
@@ -19,7 +20,6 @@ public class PcKeystroak {
         MAP.put(6, Keystroke.BRAIL_KEY_4); // KEY 4
         MAP.put(2, Keystroke.BRAIL_KEY_5); // KEY 1
         MAP.put(3, Keystroke.BRAIL_KEY_6); // KEY 2
-
 
     }
 

@@ -3,17 +3,18 @@ package com.trnka.trnkadevice.ui.learning;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.trnka.trnkadevice.domain.Step;
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
-import com.trnka.trnkadevice.domain.statistics.StepStatistic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.trnka.trnkadevice.domain.Step;
+import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
+import com.trnka.trnkadevice.domain.statistics.StepStatistic;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.messages.Messages;
+import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,12 +25,15 @@ public class LearningView implements IView {
     private IRenderer renderer;
     private LearningSequenceComponent learningSequenceComponent;
     private InputReader inputReader;
+    private Navigator navigator;
 
     @Autowired
     public LearningView(final IRenderer renderer,
-                        final InputReader inputReader) {
+                        final InputReader inputReader,
+                        final Navigator navigator) {
         this.renderer = renderer;
         this.inputReader = inputReader;
+        this.navigator = navigator;
     }
 
     public void refresh(final LearningSequenceComponent learningSequenceComponent) {
@@ -38,6 +42,7 @@ public class LearningView implements IView {
 
     @Override
     public void enter() {
+
         if (learningSequenceComponent == null) {
             log.error("Learning sequence component is null, this CANNOT HAPPEN");
             return;
@@ -47,13 +52,17 @@ public class LearningView implements IView {
         SequenceStatistic seqStats = new SequenceStatistic();
         for (Step step : this.learningSequenceComponent.getSequence().getSteps()) {
             StepStatistic stepStats = new StepStatistic();
-            seqStats.getStepStats().add(stepStats);
             renderer.renderMessage(step.getBrailCharacter());
             long start = System.currentTimeMillis();
-            evaluateUserInput(step, stepStats, learningSequenceComponent.getSequence().getAllowedRetries(), 0);
+            Integer negativeRetries = 0;
+            boolean isCorrect = evaluateUserInput(step, stepStats, learningSequenceComponent.getSequence().getAllowedRetries(), negativeRetries);
             stepStats.setTook(System.currentTimeMillis() - start);
+            stepStats.setCorrect(isCorrect);
+            seqStats.getStepStats().add(stepStats);
+            stepStats.setRetries(negativeRetries);
         }
-
+        renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
+        navigator.navigate(LearningSequenceSelectionView.class);
     }
 
     private List<Keystroke> readInputKeystrokes() {
@@ -67,8 +76,10 @@ public class LearningView implements IView {
         return keyStrokes;
     }
 
-    private boolean evaluateUserInput(
-            Step step, StepStatistic stepStats, int maxAllowedTries, int negativeTries) {
+    private boolean evaluateUserInput(Step step,
+                                      StepStatistic stepStats,
+                                      int maxAllowedTries,
+                                      int negativeTries) {
         if (negativeTries == maxAllowedTries) {
             renderer.renderMessage(Messages.LEARNING_MAXIMUM_NEGATIVE_TRIES_REACHED);
             return false;

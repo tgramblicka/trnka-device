@@ -1,4 +1,4 @@
-package com.trnka.trnkadevice.ui;
+package com.trnka.trnkadevice.ui.navigation;
 
 public class NavigatorUtil {
 

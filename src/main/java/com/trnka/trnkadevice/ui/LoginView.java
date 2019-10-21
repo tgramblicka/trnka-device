@@ -2,6 +2,7 @@ package com.trnka.trnkadevice.ui;
 
 import java.util.Optional;
 
+import com.trnka.trnkadevice.ui.navigation.Navigator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

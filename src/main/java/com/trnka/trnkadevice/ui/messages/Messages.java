@@ -17,6 +17,7 @@ public enum Messages implements IMessage {
         LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("Spravne, pokracujem na dalsie pismeno", "audio"),
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Ostava {} pokusov. Zadajte znovu!", "audio"),
     LEARNING_MAXIMUM_NEGATIVE_TRIES_REACHED("Maximalny pocet nespravnych opakovani bol dosiahnuty!", "audio"),
+    LEARNING_SEQUENCE_END("Koniec uciacej sekvencie!", "audio"),
 
     ONE("{} 1", "audio"),
     TWO("{} 2", "audio"),
