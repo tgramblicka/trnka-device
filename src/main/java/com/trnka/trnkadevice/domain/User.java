@@ -27,6 +27,9 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "code", length = 4)
+    private String code;
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "user_id")
     Set<SequenceStatistic> statistics = new HashSet<>();

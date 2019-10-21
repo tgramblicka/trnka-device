@@ -1,6 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0; --
 
-insert into USER (id, username) values (1, 'test1');
+insert into USER (id, username, code) values (1, 'test1', 'aaaa');
 
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (1, NULL, '[1]', 'a');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (2, NULL, '[1,2]', 'b');
