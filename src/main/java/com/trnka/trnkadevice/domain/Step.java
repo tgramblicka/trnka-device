@@ -1,6 +1,7 @@
 package com.trnka.trnkadevice.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "step")
 @Data
+@EqualsAndHashCode
 public class Step {
 
     @Id

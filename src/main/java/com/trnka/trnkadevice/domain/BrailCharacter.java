@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -27,6 +28,7 @@ import lombok.Data;
         typeClass = JsonStringType.class
 )
 @Data
+@EqualsAndHashCode
 public class BrailCharacter implements IMessage {
 
     @Id

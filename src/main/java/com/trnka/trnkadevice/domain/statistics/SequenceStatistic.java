@@ -15,10 +15,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
 @Table(name = "sequence_statistic")
+@EqualsAndHashCode
 public class SequenceStatistic {
 
     @Id
