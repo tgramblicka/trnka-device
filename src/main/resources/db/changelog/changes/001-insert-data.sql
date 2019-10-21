@@ -29,7 +29,11 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (25, NULL, '[1,3,5,6]', 'z');
 
 
-
+INSERT INTO hibernate_sequence (next_val) VALUES (101);
+INSERT INTO hibernate_sequence (next_val) VALUES (102);
+INSERT INTO hibernate_sequence (next_val) VALUES (103);
+INSERT INTO hibernate_sequence (next_val) VALUES (104);
+INSERT INTO hibernate_sequence (next_val) VALUES (105);
 
 
 SET FOREIGN_KEY_CHECKS=1; --
