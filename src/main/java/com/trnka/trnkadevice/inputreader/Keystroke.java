@@ -59,4 +59,8 @@ public enum Keystroke {
         return EnumSet.allOf(Keystroke.class).stream().filter(key -> key.getCode().equals(code)).findAny().orElse(UNKNOWN);
     }
 
+    public static Keystroke getByValue(final String value) {
+        return EnumSet.allOf(Keystroke.class).stream().filter(key -> key.getValue().equals(value)).findAny().orElse(UNKNOWN);
+    }
+
 }

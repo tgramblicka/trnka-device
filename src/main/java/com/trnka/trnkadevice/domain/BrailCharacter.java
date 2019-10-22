@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -20,19 +19,17 @@ import com.trnka.trnkadevice.ui.messages.IMessage;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "brail_character")
-@TypeDef(
-        name = "json",
-        typeClass = JsonStringType.class
-)
+@TypeDef(name = "json", typeClass = JsonStringType.class)
 @Data
 @EqualsAndHashCode
 public class BrailCharacter implements IMessage {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "letter", unique = true)
     private String letter;
@@ -48,7 +45,7 @@ public class BrailCharacter implements IMessage {
 
     @Transient
     public List<Keystroke> getBrailRepresentationKeystrokes() {
-        return this.brailRepresentation.stream().map(Keystroke::getByCode).collect(Collectors.toList());
+        return this.brailRepresentation.stream().map(String::valueOf).map(Keystroke::getByValue).collect(Collectors.toList());
     }
 
     @Override

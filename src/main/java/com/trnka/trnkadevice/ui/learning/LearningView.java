@@ -58,9 +58,11 @@ public class LearningView implements IView {
             boolean isCorrect = evaluateUserInput(step, stepStats, learningSequenceComponent.getSequence().getAllowedRetries(), negativeRetries);
             stepStats.setTook(System.currentTimeMillis() - start);
             stepStats.setCorrect(isCorrect);
-            seqStats.getStepStats().add(stepStats);
             stepStats.setRetries(negativeRetries);
+            seqStats.getStepStats().add(stepStats);
         }
+
+
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
         navigator.navigate(LearningSequenceSelectionView.class);
     }
@@ -70,9 +72,11 @@ public class LearningView implements IView {
         Keystroke keystroke = inputReader.readFromInput();
 
         while (!keystroke.equals(Keystroke.SUBMIT)) {
+            log.info("ADDING STROKE: {}", keystroke.getValue());
             keyStrokes.add(keystroke);
             keystroke = inputReader.readFromInput();
         }
+        log.info("SUBMITTED!");
         return keyStrokes;
     }
 
