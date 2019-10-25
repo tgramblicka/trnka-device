@@ -14,14 +14,23 @@ public class Navigator {
 
     @Autowired
     private ApplicationContext context;
+    private Class<?> currentView;
 
     public <T extends IView> void navigate(Class<T> viewClass) {
         T view = context.getBean(viewClass);
-        view.enter();
+        navigate(view);
     }
 
     public <T extends IView> void navigate(T view) {
         view.enter();
+        setCurrentView(view.getClass());
     }
 
+    public Class<?> getCurrentView() {
+        return currentView;
+    }
+
+    public void setCurrentView(final Class<?> currentView) {
+        this.currentView = currentView;
+    }
 }
