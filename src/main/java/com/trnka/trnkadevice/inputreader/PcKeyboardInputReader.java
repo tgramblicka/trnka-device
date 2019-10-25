@@ -1,12 +1,11 @@
 package com.trnka.trnkadevice.inputreader;
 
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import com.trnka.trnkadevice.ui.MenuStudentView;
-import com.trnka.trnkadevice.ui.navigation.Navigator;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
@@ -17,6 +16,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.trnka.trnkadevice.ui.navigation.Navigator;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -26,9 +27,11 @@ import lombok.extern.slf4j.Slf4j;
 public class PcKeyboardInputReader implements InputReader {
 
     private volatile Keystroke pressedKey = null;
+    private SpecialKeyBehaviourHandler specialKeyBehaviourHandler;
 
     public PcKeyboardInputReader() {
         registerListener();
+        specialKeyBehaviourHandler = new SpecialKeyBehaviourHandler();
     }
 
     @Autowired
@@ -44,8 +47,9 @@ public class PcKeyboardInputReader implements InputReader {
         pressedKey = null;
 
         log.info("Keystroke: " + tmpPressedKey.getValue());
-        if (tmpPressedKey.equals(Keystroke.MENU_1)) {
-            navigator.navigate(MenuStudentView.class);
+        Optional<BiConsumer<Keystroke, Navigator>> specialBehaviour = specialKeyBehaviourHandler.getSpecialKeyBehaviour(tmpPressedKey);
+        if (specialBehaviour.isPresent()) {
+            specialBehaviour.get().accept(tmpPressedKey, navigator);
             return null;
         }
 
