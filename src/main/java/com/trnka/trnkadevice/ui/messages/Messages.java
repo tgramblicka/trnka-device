@@ -14,10 +14,17 @@ public enum Messages implements IMessage {
     RESULTS_LABEL("Vysledky", "audio"),
     RESULTS_VIEW("Sekcia Vysledky: Vyber vysledok testu zo zoznamu tlacidlami hore/dole", "audio"),
 
-        LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("Spravne, pokracujem na dalsie pismeno", "audio"),
-    LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Ostava {} pokusov. Zadajte znovu!", "audio"),
+    LEARNING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre {} a potvrd!", "audio"),
+    LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("Spravne, pokracujem na dalsie pismeno", "audio"),
+    LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Spravna sekvencia je: {} .Ostava {} pokusov.", "audio"),
     LEARNING_MAXIMUM_NEGATIVE_TRIES_REACHED("Maximalny pocet nespravnych opakovani bol dosiahnuty!", "audio"),
     LEARNING_SEQUENCE_END("Koniec uciacej sekvencie!", "audio"),
+    LEARNING_SEQUENCE_STATISTIC("Statistika uciacej sekvencie, !", "audio"),
+
+    LOG_OUT("Odhlasenie", "audio"),
+    LOGGING_OUT("Pouzivatel bude odhlaseny", "audio"),
+
+    XXX("XXXX, !", "audio"),
 
     ONE("{} 1", "audio"),
     TWO("{} 2", "audio"),
