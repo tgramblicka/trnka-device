@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.trnka.trnkadevice.ui.navigation.Navigator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.learning.LearningSequenceSelectionView;
 import com.trnka.trnkadevice.ui.messages.Messages;
+import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 @Component
 public class MenuStudentView implements IView {
@@ -26,6 +26,7 @@ public class MenuStudentView implements IView {
         MENU.add(LearningSequenceSelectionView.class);
         MENU.add(TestingView.class);
         MENU.add(ResultsView.class);
+        MENU.add(LogoutView.class);
     }
 
     @Autowired
@@ -41,6 +42,10 @@ public class MenuStudentView implements IView {
 
     @Override
     public void enter() {
+        if (userSession.getUser() == null) {
+            navigator.navigate(LoginView.class);
+            return;
+        }
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUser().getUserName());
         Consumer<Integer> consumer = index -> navigator.navigate(MENU.get(index));
         cycledMenuComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
