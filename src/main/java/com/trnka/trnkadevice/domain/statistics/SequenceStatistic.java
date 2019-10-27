@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,17 +25,18 @@ import lombok.EqualsAndHashCode;
 public class SequenceStatistic {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "sequence_id", updatable = false, insertable = false)
     private Long sequenceId;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id" , name = "sequence_statistic_id", nullable = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id", name = "sequence_statistic_id", nullable = true)
     private List<StepStatistic> stepStats = new ArrayList<>();
 
-    @Column private Date createdOn;
+    @Column
+    private Date createdOn;
     private Long took;
 
 }
