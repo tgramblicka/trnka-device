@@ -46,13 +46,12 @@ public class PcKeyboardInputReader implements InputReader {
         Keystroke tmpPressedKey = pressedKey;
         pressedKey = null;
 
-        log.info("Keystroke: " + tmpPressedKey.getValue());
+//        log.info("Keystroke: " + tmpPressedKey.getValue());
         Optional<BiConsumer<Keystroke, Navigator>> specialBehaviour = specialKeyBehaviourHandler.getSpecialKeyBehaviour(tmpPressedKey);
         if (specialBehaviour.isPresent()) {
             specialBehaviour.get().accept(tmpPressedKey, navigator);
-            return null;
+            return tmpPressedKey;
         }
-
         return tmpPressedKey;
     }
 

@@ -1,8 +1,12 @@
 package com.trnka.trnkadevice.ui.learning;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.domain.LearningSequence;
+import com.trnka.trnkadevice.domain.Sequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +16,7 @@ import com.trnka.trnkadevice.domain.statistics.StepStatistic;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
@@ -26,14 +31,17 @@ public class LearningView implements IView {
     private LearningSequenceComponent learningSequenceComponent;
     private InputReader inputReader;
     private Navigator navigator;
+    private SequenceStatisticRepository sequenceStatisticRepository;
 
     @Autowired
     public LearningView(final IRenderer renderer,
                         final InputReader inputReader,
-                        final Navigator navigator) {
+                        final Navigator navigator,
+                        final SequenceStatisticRepository sequenceStatisticRepository) {
         this.renderer = renderer;
         this.inputReader = inputReader;
         this.navigator = navigator;
+        this.sequenceStatisticRepository = sequenceStatisticRepository;
     }
 
     public void refresh(final LearningSequenceComponent learningSequenceComponent) {
@@ -49,22 +57,34 @@ public class LearningView implements IView {
         }
         this.renderer.renderLabel(learningSequenceComponent);
 
-        SequenceStatistic seqStats = new SequenceStatistic();
-        for (Step step : this.learningSequenceComponent.getSequence().getSteps()) {
-            StepStatistic stepStats = new StepStatistic();
-            renderer.renderMessage(step.getBrailCharacter());
+        LearningSequence seq = this.learningSequenceComponent.getSequence();
+        SequenceStatistic seqStats = createStatistic(seq);
+        for (Step step : seq.getSteps()) {
+            renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
-            boolean isCorrect = evaluateUserInput(step, stepStats, learningSequenceComponent.getSequence().getAllowedRetries(), negativeRetries);
+            StepStatistic stepStats = new StepStatistic();
+            boolean isCorrect = evaluateUserInput(step, stepStats, seq.getAllowedRetries(), negativeRetries);
+
+            stepStats.setStep(step);
             stepStats.setTook(System.currentTimeMillis() - start);
             stepStats.setCorrect(isCorrect);
             stepStats.setRetries(negativeRetries);
             seqStats.getStepStats().add(stepStats);
         }
 
-
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
+
+        sequenceStatisticRepository.save(seqStats);
+
         navigator.navigate(LearningSequenceSelectionView.class);
+    }
+
+    private SequenceStatistic createStatistic(final Sequence seq) {
+        SequenceStatistic seqStats = new SequenceStatistic();
+        seqStats.setSequenceId(seq.getId());
+        seqStats.setCreatedOn(new Date());
+        return seqStats;
     }
 
     private List<Keystroke> readInputKeystrokes() {
@@ -72,11 +92,10 @@ public class LearningView implements IView {
         Keystroke keystroke = inputReader.readFromInput();
 
         while (!keystroke.equals(Keystroke.SUBMIT)) {
-            log.info("ADDING STROKE: {}", keystroke.getValue());
+            log.info(keystroke.getValue());
             keyStrokes.add(keystroke);
             keystroke = inputReader.readFromInput();
         }
-        log.info("SUBMITTED!");
         return keyStrokes;
     }
 
@@ -85,7 +104,6 @@ public class LearningView implements IView {
                                       int maxAllowedTries,
                                       int negativeTries) {
         if (negativeTries == maxAllowedTries) {
-            renderer.renderMessage(Messages.LEARNING_MAXIMUM_NEGATIVE_TRIES_REACHED);
             return false;
         }
         List<Keystroke> keystrokes = readInputKeystrokes();
@@ -96,7 +114,9 @@ public class LearningView implements IView {
         } else {
             negativeTries++;
             stepStats.setRetries(negativeTries);
-            renderer.renderMessage(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED, String.valueOf(maxAllowedTries - negativeTries));
+            renderer.renderMessage(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED,
+                    step.getBrailCharacter().getBrailRepresentation().stream().map(String::valueOf).collect(Collectors.joining(",")),
+                    String.valueOf(maxAllowedTries - negativeTries));
             return evaluateUserInput(step, stepStats, maxAllowedTries, negativeTries);
         }
     }
