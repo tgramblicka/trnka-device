@@ -11,6 +11,7 @@ import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.learning.LearningSequenceSelectionView;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
+import com.trnka.trnkadevice.ui.testing.TestSelectionView;
 
 @Component
 public class MenuStudentView implements IView {
@@ -24,7 +25,7 @@ public class MenuStudentView implements IView {
 
     static {
         MENU.add(LearningSequenceSelectionView.class);
-        MENU.add(TestingView.class);
+        MENU.add(TestSelectionView.class);
         MENU.add(ResultsView.class);
         MENU.add(LogoutView.class);
     }

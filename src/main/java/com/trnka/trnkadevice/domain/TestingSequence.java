@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value = "T")
+@DiscriminatorValue(value = "TS")
 public class TestingSequence extends Sequence {
 
     public TestingSequence() {

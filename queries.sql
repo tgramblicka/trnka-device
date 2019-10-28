@@ -25,7 +25,7 @@ create table hibernate_sequences(
 
 
 
-DELETE FROM databasechangelog WHERE id like '001-insert-data.sql'
+    DELETE FROM databasechangelog WHERE id like '001-insert-data.sql'
 
 
 alter table step drop foreign key FKf0ijab5k5ysid2xlfw1cai44e
@@ -47,6 +47,8 @@ TRUNCATE hibernate_sequence;
 TRUNCATE USER;
 TRUNCATE sequence;
 TRUNCATE step;
+TRUNCATE sequence_statistic;
+TRUNCATE step_statistic;
 SET FOREIGN_KEY_CHECKS=1;
 
 
