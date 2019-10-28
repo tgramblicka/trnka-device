@@ -1,15 +1,12 @@
 package com.trnka.trnkadevice.ui.learning;
 
-import java.util.Date;
-
+import com.trnka.trnkadevice.ui.SequenceComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.domain.LearningSequence;
-import com.trnka.trnkadevice.domain.Sequence;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
-import com.trnka.trnkadevice.domain.statistics.StepStatistic;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
@@ -26,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LearningView implements IView {
 
     private IRenderer renderer;
-    private LearningSequenceComponent learningSequenceComponent;
+    private SequenceComponent<LearningSequence> learningSequenceComponent;
     private InputReader inputReader;
     private Navigator navigator;
     private SequenceStatisticRepository sequenceStatisticRepository;
@@ -42,13 +39,12 @@ public class LearningView implements IView {
         this.sequenceStatisticRepository = sequenceStatisticRepository;
     }
 
-    public void refresh(final LearningSequenceComponent learningSequenceComponent) {
+    public void refresh(final SequenceComponent learningSequenceComponent) {
         this.learningSequenceComponent = learningSequenceComponent;
     }
 
     @Override
     public void enter() {
-
         if (learningSequenceComponent == null) {
             log.error("Learning sequence component is null, this CANNOT HAPPEN");
             return;
@@ -56,21 +52,17 @@ public class LearningView implements IView {
         this.renderer.renderLabel(learningSequenceComponent);
 
         LearningSequence seq = this.learningSequenceComponent.getSequence();
-        SequenceStatistic seqStats = createStatistic(seq);
+        SequenceStatistic seqStats = SequenceStatistic.create(seq);
         for (Step step : seq.getSteps()) {
             renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
 
-            SequenceEvaluator evaluator = new SequenceEvaluator(renderer, inputReader);
+            SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
+                                                                inputReader);
+            long took = System.currentTimeMillis() - start;
             SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
-
-            StepStatistic stepStats = new StepStatistic();
-            stepStats.setStep(step);
-            stepStats.setTook(System.currentTimeMillis() - start);
-            stepStats.setCorrect(evaluated.getCorrect());
-            stepStats.setRetries(evaluated.getNegativeTries());
-            seqStats.getStepStats().add(stepStats);
+            seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
 
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
@@ -79,15 +71,6 @@ public class LearningView implements IView {
 
         navigator.navigate(LearningSequenceSelectionView.class);
     }
-
-    private SequenceStatistic createStatistic(final Sequence seq) {
-        SequenceStatistic seqStats = new SequenceStatistic();
-        seqStats.setSequence(seq);
-        seqStats.setCreatedOn(new Date());
-        return seqStats;
-    }
-
-
 
     @Override
     public Messages getLabel() {

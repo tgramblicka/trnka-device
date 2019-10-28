@@ -1,27 +1,24 @@
 package com.trnka.trnkadevice.ui.learning;
 
-import com.trnka.trnkadevice.dao.LearningSequenceDAO;
-import com.trnka.trnkadevice.domain.LearningSequence;
-import com.trnka.trnkadevice.ui.CycledMenuComponent;
-import com.trnka.trnkadevice.ui.IView;
-import com.trnka.trnkadevice.ui.navigation.Navigator;
-import com.trnka.trnkadevice.ui.navigation.NavigatorUtil;
-import com.trnka.trnkadevice.ui.Renderable;
-import com.trnka.trnkadevice.ui.UserSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.ui.messages.Messages;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.ui.SequenceComponent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.trnka.trnkadevice.dao.LearningSequenceDAO;
+import com.trnka.trnkadevice.domain.LearningSequence;
+import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.ui.CycledMenuComponent;
+import com.trnka.trnkadevice.ui.IView;
+import com.trnka.trnkadevice.ui.UserSession;
+import com.trnka.trnkadevice.ui.messages.Messages;
+import com.trnka.trnkadevice.ui.navigation.Navigator;
+
 @Component
 public class LearningSequenceSelectionView implements IView {
-
-    private List<? extends Renderable> menu;
 
     private Navigator navigator;
     private IRenderer renderer;
@@ -43,20 +40,18 @@ public class LearningSequenceSelectionView implements IView {
         this.userSession = userSession;
         this.cycledMenuComponent = cycledMenuComponent;
         this.learningView = learningView;
-
     }
 
     @Override
     public void enter() {
         renderer.renderMessage(Messages.LEARNING_VIEW);
-        NavigatorUtil.registerMainMenuNavigation(navigator);
         Set<LearningSequence> sequences = learningSequenceDAO.getLearningSequences(userSession.getUser().getUserName());
 
-        List<LearningSequenceComponent> selection = sequences.stream().map(LearningSequenceComponent::new).collect(Collectors.toList());
+        List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
         cycledMenuComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index)), selection);
     }
 
-    private void startLearningWithSequence(final LearningSequenceComponent selectedComponent) {
+    private void startLearningWithSequence(final SequenceComponent selectedComponent) {
         learningView.refresh(selectedComponent);
         navigator.navigate(learningView);
     }

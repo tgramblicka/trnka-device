@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.trnka.trnkadevice.domain.Sequence;
+import com.trnka.trnkadevice.domain.Step;
+import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -42,5 +44,25 @@ public class SequenceStatistic {
     @Column
     private Date createdOn;
     private Long took;
+
+    public static SequenceStatistic create(final Sequence seq) {
+        SequenceStatistic seqStats = new SequenceStatistic();
+        seqStats.setSequence(seq);
+        seqStats.setCreatedOn(new Date());
+        return seqStats;
+    }
+
+    public StepStatistic addStepStatistic(final SequenceStatistic seqStats,
+                                          final Step step,
+                                          final long took,
+                                          final SequenceEvaluator.Evaluate evaluationOfSequence) {
+        StepStatistic stepStats = new StepStatistic();
+        stepStats.setStep(step);
+        stepStats.setTook(took);
+        stepStats.setCorrect(evaluationOfSequence.getCorrect());
+        stepStats.setRetries(evaluationOfSequence.getNegativeTries());
+        seqStats.getStepStats().add(stepStats);
+        return stepStats;
+    }
 
 }
