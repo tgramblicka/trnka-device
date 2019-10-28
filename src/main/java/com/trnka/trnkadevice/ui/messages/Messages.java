@@ -19,7 +19,7 @@ public enum Messages implements IMessage {
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Spravna sekvencia je: {} .Ostava {} pokusov.", "audio"),
     LEARNING_MAXIMUM_NEGATIVE_TRIES_REACHED("Maximalny pocet nespravnych opakovani bol dosiahnuty!", "audio"),
     LEARNING_SEQUENCE_END("Koniec uciacej sekvencie!", "audio"),
-    LEARNING_SEQUENCE_STATISTIC("Statistika uciacej sekvencie, !", "audio"),
+    SEQUENCE_STATISTIC("Statistika sekvencie: \n{}", "audio"),
 
     LOG_OUT("Odhlasenie", "audio"),
     LOGGING_OUT("Pouzivatel bude odhlaseny", "audio"),

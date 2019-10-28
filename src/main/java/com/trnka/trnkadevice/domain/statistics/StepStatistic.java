@@ -30,7 +30,7 @@ public class StepStatistic {
     private Step Step;
 
     @Column(name = "retries")
-    private int retries;
+    private Integer retries;
 
     @Column(name = "correct")
     private boolean correct;
