@@ -30,7 +30,7 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 
 
 
-
+-- LEARNING SEQUENCES
 INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 101, 2, 'ONE', 100000);
 INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 106, 2, 'TWO', 100000);
 
@@ -41,11 +41,24 @@ INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`)
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (107, b'0', 11, 106);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (108, b'0', 21, 106);
 
-INSERT INTO hibernate_sequence (next_val) VALUES (106);
-INSERT INTO hibernate_sequence (next_val) VALUES (107);
-INSERT INTO hibernate_sequence (next_val) VALUES (108);
-INSERT INTO hibernate_sequence (next_val) VALUES (109);
-INSERT INTO hibernate_sequence (next_val) VALUES (110);
+
+-- TESTING SEQUENCES
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 107, 1, 'ONE', 100000);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 108, 1, 'TWO', 100000);
+
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (109, b'0', 1, 107);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (110, b'0', 2, 107);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (111, b'0', 12, 107);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (112, b'0', 5, 107);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (113, b'0', 11, 108);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (114, b'0', 21, 108);
+
+
+INSERT INTO hibernate_sequence (next_val) VALUES (115);
+INSERT INTO hibernate_sequence (next_val) VALUES (116);
+INSERT INTO hibernate_sequence (next_val) VALUES (117);
+INSERT INTO hibernate_sequence (next_val) VALUES (118);
+INSERT INTO hibernate_sequence (next_val) VALUES (119);
 
 
 
