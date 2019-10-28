@@ -12,8 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.trnka.trnkadevice.domain.Sequence;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,8 +31,9 @@ public class SequenceStatistic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "sequence_id", updatable = false, insertable = false)
-    private Long sequenceId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id", name = "sequence_id", nullable = true)
+    private Sequence sequence;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id", name = "sequence_statistic_id", nullable = true)
