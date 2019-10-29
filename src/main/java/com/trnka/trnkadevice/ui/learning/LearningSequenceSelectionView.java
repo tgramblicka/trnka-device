@@ -45,7 +45,7 @@ public class LearningSequenceSelectionView implements IView {
     @Override
     public void enter() {
         renderer.renderMessage(Messages.LEARNING_VIEW);
-        Set<LearningSequence> sequences = learningSequenceDAO.getLearningSequences(userSession.getUser().getUserName());
+        Set<LearningSequence> sequences = learningSequenceDAO.getLearningSequences(userSession.getUsername());
 
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
         cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index)), selection);

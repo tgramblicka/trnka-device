@@ -45,7 +45,7 @@ public class TestSelectionView implements IView {
     @Override
     public void enter() {
         renderer.renderMessage(Messages.TESTING_VIEW);
-        Set<TestingSequence> sequences = testingSequenceDao.getSequences(userSession.getUser().getUserName());
+        Set<TestingSequence> sequences = testingSequenceDao.getSequences(userSession.getUsername());
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
         cycledComponent.cycleThroughComponents(index -> startTestingWithSequence(selection.get(index)), selection);
     }

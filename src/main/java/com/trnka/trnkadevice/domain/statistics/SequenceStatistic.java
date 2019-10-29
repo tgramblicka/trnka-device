@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,8 +29,11 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "sequence_statistic")
 @EqualsAndHashCode
+// todo add treat statement for ONLY test stats
+@NamedQuery(name = SequenceStatistic.FIND_ALL_TEST_STATS_FOR_USER,
+            query = "SELECT stats from User user JOIN user.statistics stats JOIN TREAT (stats.sequence AS LearningSequence) seq WHERE user.id = :userId")
 public class SequenceStatistic {
-
+    public static final String FIND_ALL_TEST_STATS_FOR_USER = "SequenceStatistic.findAllTestResultsForUser";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

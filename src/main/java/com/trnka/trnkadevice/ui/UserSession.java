@@ -5,19 +5,26 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.trnka.restapi.dto.UserDTO;
+import lombok.Data;
 
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Component
+@Data
 public class UserSession {
 
-    private UserDTO user;
+    private Long userId;
+    private String username;
 
-    public UserDTO getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(final UserDTO user) {
-        this.user = user;
+    public void setUserId(final Long userId) {
+        this.userId = userId;
+    }
+
+    public void logout() {
+        this.userId = null;
+        this.username = null;
     }
 }

@@ -22,6 +22,9 @@ public class RestClientBackend {
     }
 
     public Optional<UserDTO> authenticate(String password) {
+        // todo verify how to do authentication, there must be a copy of user table on device -> when no internet
+        // syncronization job will sync the users everytime
+
         if (password.equals(LoginView.TEST_PASSWORD)) {
             UserDTO dto = new UserDTO();
             dto.setUserName("testUser");

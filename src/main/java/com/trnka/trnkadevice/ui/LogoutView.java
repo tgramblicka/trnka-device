@@ -26,7 +26,7 @@ public class LogoutView implements IView {
     @Override
     public void enter() {
         renderer.renderMessage(Messages.LOGGING_OUT);
-        userSession.setUser(null);
+        userSession.logout();
         navigator.navigate(LoginView.class);
     }
 

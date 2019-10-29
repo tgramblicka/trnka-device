@@ -1,12 +1,10 @@
 package com.trnka.trnkadevice.ui;
 
-import java.util.Optional;
-
+import com.trnka.trnkadevice.Authentication;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.trnka.restapi.dto.UserDTO;
 import com.trnka.trnkadevice.controller.RestClientBackend;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
@@ -23,31 +21,31 @@ public class LoginView implements IView {
 
     private IRenderer renderer;
     private RestClientBackend restClientBackend;
-    private UserSession userSession;
     private Navigator navigator;
     private InputReader inputReader;
+    private Authentication authentication;
 
     @Autowired
     public LoginView(IRenderer renderer,
                      RestClientBackend restClientBackend,
                      UserSession userSession,
                      Navigator navigator,
-                     InputReader inputReader) {
+                     InputReader inputReader,
+                     Authentication authentication) {
         this.renderer = renderer;
         this.restClientBackend = restClientBackend;
-        this.userSession = userSession;
         this.navigator = navigator;
         this.inputReader = inputReader;
+        this.authentication = authentication;
     }
 
     @Override
     public void enter() {
         log.info("Entering login UI");
         renderer.renderMessage(Messages.TYPE_IN_YOUR_PASSWORD);
-        String password = readPassword();
-        Optional<UserDTO> userDTO = restClientBackend.authenticate(password);
-        if (userDTO.isPresent()) {
-            userSession.setUser(userDTO.get());
+        String code = readCode();
+        Boolean authenticated = authentication.authenticate(code);
+        if (authenticated) {
             renderer.renderMessage(Messages.YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN);
             navigator.navigate(MenuStudentView.class);
             return;
@@ -56,11 +54,7 @@ public class LoginView implements IView {
         navigator.navigate(LoginView.class);
     }
 
-    private String readPassword1() {
-        return TEST_PASSWORD;
-    }
-
-    private String readPassword() {
+    private String readCode() {
         StringBuilder builder = new StringBuilder("");
         for (int i = 0; i < PASSWORD_LENGHT; i++) {
             Keystroke key = inputReader.readFromInput();

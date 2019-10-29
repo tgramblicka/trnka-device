@@ -43,11 +43,11 @@ public class MenuStudentView implements IView {
 
     @Override
     public void enter() {
-        if (userSession.getUser() == null) {
+        if (userSession.getUserId() == null) {
             navigator.navigate(LoginView.class);
             return;
         }
-        renderer.renderMessage(Messages.MAIN_MENU, userSession.getUser().getUserName());
+        renderer.renderMessage(Messages.MAIN_MENU, userSession.getUsername());
         Consumer<Integer> consumer = index -> navigator.navigate(MENU.get(index));
         cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
