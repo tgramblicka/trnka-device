@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.trnka.trnkadevice.dao.TestingSequenceDAO;
 import com.trnka.trnkadevice.domain.TestingSequence;
 import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.ui.CycledMenuComponent;
+import com.trnka.trnkadevice.ui.CycledComponent;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.UserSession;
@@ -25,20 +25,20 @@ public class TestSelectionView implements IView {
     private UserSession userSession;
     private TestingView testingView;
     private TestingSequenceDAO testingSequenceDao;
-    private CycledMenuComponent cycledMenuComponent;
+    private CycledComponent cycledComponent;
 
     @Autowired
     public TestSelectionView(final Navigator navigator,
                              final IRenderer renderer,
                              final UserSession userSession,
-                             final CycledMenuComponent cycledMenuComponent,
+                             final CycledComponent cycledComponent,
                              final TestingSequenceDAO testingSequenceDao,
                              final TestingView testingView) {
         this.navigator = navigator;
         this.renderer = renderer;
         this.testingSequenceDao = testingSequenceDao;
         this.userSession = userSession;
-        this.cycledMenuComponent = cycledMenuComponent;
+        this.cycledComponent = cycledComponent;
         this.testingView = testingView;
     }
 
@@ -47,7 +47,7 @@ public class TestSelectionView implements IView {
         renderer.renderMessage(Messages.TESTING_VIEW);
         Set<TestingSequence> sequences = testingSequenceDao.getSequences(userSession.getUser().getUserName());
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
-        cycledMenuComponent.cycleThroughComponents(index -> startTestingWithSequence(selection.get(index)), selection);
+        cycledComponent.cycleThroughComponents(index -> startTestingWithSequence(selection.get(index)), selection);
     }
 
     private void startTestingWithSequence(final SequenceComponent selectedComponent) {

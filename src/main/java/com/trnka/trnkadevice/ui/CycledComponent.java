@@ -14,7 +14,7 @@ import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 
 @Component
-public class CycledMenuComponent {
+public class CycledComponent {
 
     private IRenderer renderer;
     private InputReader inputReader;
@@ -23,8 +23,8 @@ public class CycledMenuComponent {
     private ApplicationContext context;
 
     @Autowired
-    public CycledMenuComponent(final IRenderer renderer,
-                               final InputReader inputReader) {
+    public CycledComponent(final IRenderer renderer,
+                           final InputReader inputReader) {
         this.renderer = renderer;
         this.inputReader = inputReader;
     }

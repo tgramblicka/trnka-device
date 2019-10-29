@@ -19,7 +19,7 @@ public class MenuStudentView implements IView {
     private IRenderer renderer;
     private UserSession userSession;
     private Navigator navigator;
-    private CycledMenuComponent cycledMenuComponent;
+    private CycledComponent cycledComponent;
 
     private static List<Class<? extends IView>> MENU = new ArrayList<>();
 
@@ -34,11 +34,11 @@ public class MenuStudentView implements IView {
     public MenuStudentView(final IRenderer renderer,
                            final UserSession userSession,
                            final Navigator navigator,
-                           final CycledMenuComponent cycledMenuComponent) {
+                           final CycledComponent cycledComponent) {
         this.renderer = renderer;
         this.userSession = userSession;
         this.navigator = navigator;
-        this.cycledMenuComponent = cycledMenuComponent;
+        this.cycledComponent = cycledComponent;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class MenuStudentView implements IView {
         }
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUser().getUserName());
         Consumer<Integer> consumer = index -> navigator.navigate(MENU.get(index));
-        cycledMenuComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
+        cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
 
     @Override

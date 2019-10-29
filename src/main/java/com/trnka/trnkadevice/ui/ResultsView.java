@@ -25,6 +25,7 @@ public class ResultsView implements IView {
     public void enter() {
         renderer.renderMessage(Messages.RESULTS_VIEW);
         Keystroke key = inputReader.readFromInput();
+
         while (key != null) {
             key = inputReader.readFromInput();
         }

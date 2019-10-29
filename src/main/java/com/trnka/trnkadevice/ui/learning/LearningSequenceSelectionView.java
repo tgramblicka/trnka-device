@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.trnka.trnkadevice.dao.LearningSequenceDAO;
 import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.ui.CycledMenuComponent;
+import com.trnka.trnkadevice.ui.CycledComponent;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.messages.Messages;
@@ -24,7 +24,7 @@ public class LearningSequenceSelectionView implements IView {
     private IRenderer renderer;
     private LearningSequenceDAO learningSequenceDAO;
     private UserSession userSession;
-    private CycledMenuComponent cycledMenuComponent;
+    private CycledComponent cycledComponent;
     private LearningView learningView;
 
     @Autowired
@@ -32,13 +32,13 @@ public class LearningSequenceSelectionView implements IView {
                                          final IRenderer renderer,
                                          final LearningSequenceDAO learningSequenceDAO,
                                          final UserSession userSession,
-                                         final CycledMenuComponent cycledMenuComponent,
+                                         final CycledComponent cycledComponent,
                                          final LearningView learningView) {
         this.navigator = navigator;
         this.renderer = renderer;
         this.learningSequenceDAO = learningSequenceDAO;
         this.userSession = userSession;
-        this.cycledMenuComponent = cycledMenuComponent;
+        this.cycledComponent = cycledComponent;
         this.learningView = learningView;
     }
 
@@ -48,7 +48,7 @@ public class LearningSequenceSelectionView implements IView {
         Set<LearningSequence> sequences = learningSequenceDAO.getLearningSequences(userSession.getUser().getUserName());
 
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
-        cycledMenuComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index)), selection);
+        cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index)), selection);
     }
 
     private void startLearningWithSequence(final SequenceComponent selectedComponent) {
