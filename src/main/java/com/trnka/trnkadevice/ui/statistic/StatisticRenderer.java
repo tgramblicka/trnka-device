@@ -1,14 +1,23 @@
 package com.trnka.trnkadevice.ui.statistic;
 
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
+import com.trnka.trnkadevice.domain.statistics.StepStatistic;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
 public class StatisticRenderer {
 
-    public void renderStatistic(final IRenderer renderer,
-                                final SequenceStatistic seqStats) {
+    public void renderStatisticForTest(final IRenderer renderer,
+                                       final SequenceStatistic seqStats) {
+        renderStepsDetails(renderer, seqStats);
 
+        long correct = seqStats.getStepStats().stream().filter(StepStatistic::isCorrect).count();
+        String result = String.format("%d / %d", correct, seqStats.getStepStats().size());
+        renderer.renderMessage(Messages.TESTING_SEQUENCE_OVERALL_RESULT, result);
+    }
+
+    public void renderStepsDetails(final IRenderer renderer,
+                                   final SequenceStatistic seqStats) {
         StringBuilder b = new StringBuilder();
         seqStats.getStepStats().stream().forEach(s -> {
             String letter = s.getStep().getBrailCharacter().getText();

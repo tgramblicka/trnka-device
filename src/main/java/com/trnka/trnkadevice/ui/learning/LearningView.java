@@ -67,7 +67,7 @@ public class LearningView implements IView {
 
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
         sequenceStatisticRepository.save(seqStats);
-        new StatisticRenderer().renderStatistic(renderer, seqStats);
+        new StatisticRenderer().renderStepsDetails(renderer, seqStats);
 
         navigator.navigate(LearningSequenceSelectionView.class);
     }

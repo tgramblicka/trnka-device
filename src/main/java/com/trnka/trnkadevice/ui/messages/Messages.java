@@ -22,7 +22,7 @@ public enum Messages implements IMessage {
 
     TESTING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre {} a potvrd!", "audio"),
     TESTING_SEQUENCE_END("Koniec testu!", "audio"),
-
+    TESTING_SEQUENCE_OVERALL_RESULT("Vysledok testu {}", "audio"),
 
 
     SEQUENCE_STATISTIC("Statistika sekvencie: \n{}", "audio"),
@@ -35,8 +35,8 @@ public enum Messages implements IMessage {
 
     XXX("XXXX, !", "audio"),
 
-    ONE("{} 1", "audio"),
-    TWO("{} 2", "audio"),
+    ONE("Sekvencia 1", "audio"),
+    TWO("Sekvencia 2", "audio"),
     THREE("{} 3", "audio"),
     FOUR("{} 4", "audio"),
     FIVE("{} 5", "audio"),

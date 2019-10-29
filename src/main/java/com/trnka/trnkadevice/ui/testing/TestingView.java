@@ -67,7 +67,7 @@ public class TestingView implements IView {
 
         renderer.renderMessage(Messages.TESTING_SEQUENCE_END);
         sequenceStatisticRepository.save(seqStats);
-        new StatisticRenderer().renderStatistic(renderer, seqStats);
+        new StatisticRenderer().renderStatisticForTest(renderer, seqStats);
 
         navigator.navigate(LearningSequenceSelectionView.class);
     }
