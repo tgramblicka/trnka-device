@@ -7,7 +7,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import lombok.Data;
 
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Component
 @Data
 public class UserSession {
