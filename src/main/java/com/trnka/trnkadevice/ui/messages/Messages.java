@@ -25,7 +25,7 @@ public enum Messages implements IMessage {
     TESTING_SEQUENCE_OVERALL_RESULT("Vysledok testu {}", "audio"),
 
 
-    SEQUENCE_STATISTIC("Statistika sekvencie: \n{}\nVysledok testu:{}", "audio"),
+    SEQUENCE_STATISTIC("Statistika sekvencie: \n{}", "audio"),
 
 
 
