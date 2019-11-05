@@ -4,6 +4,16 @@ SET FOREIGN_KEY_CHECKS=0; --
 CREATE DATABASE IF NOT EXISTS `trnka-device` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `trnka-device`;
 
+-- Dumping structure for table trnka-device.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` bigint(20) NOT NULL,
+  `username` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `code` varchar(4) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 -- Dumping structure for table trnka-device.brail_character
 CREATE TABLE IF NOT EXISTS `brail_character` (
   `id` bigint(20) NOT NULL,
@@ -81,13 +91,5 @@ CREATE TABLE IF NOT EXISTS `step_statistic` (
 
 -- Data exporting was unselected.
 
--- Dumping structure for table trnka-device.user
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` bigint(20) NOT NULL,
-  `username` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `code` varchar(4) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 SET FOREIGN_KEY_CHECKS=1; --
