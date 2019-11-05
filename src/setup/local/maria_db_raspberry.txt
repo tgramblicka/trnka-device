@@ -1,0 +1,25 @@
+ mysql -u root -p
+( pwd je raspberry)
+
+
+----------------
+SHOW DATABASES;
+create database `trnka-device`;
+
+----------------------
+Pridaj access clientovi: https://websiteforstudents.com/configure-remote-access-mysql-mariadb-databases/
+
+sudo nano /etc/mysql/my.cnf
+pridaj
+bind-address=0.0.0.0
+
+sudo service mysql restart
+
+grantni clientovi (laptopu) access
+mysql -u root -p (prihlas sa ako admin)
+GRANT ALL ON `trnka-device`.* TO 'root'@'192.168.1.17' IDENTIFIED BY 'raspberry';
+
+---------------------------
+
+
+
