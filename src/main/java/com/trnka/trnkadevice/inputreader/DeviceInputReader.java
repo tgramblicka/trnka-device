@@ -1,6 +1,8 @@
 package com.trnka.trnkadevice.inputreader;
 
+import com.trnka.trnkadevice.ui.navigation.Navigator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -9,24 +11,41 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
+import java.util.function.BiConsumer;
 
 @Slf4j
 @Component
 @Profile("production")
 public class DeviceInputReader implements InputReader {
+    @Autowired
+    private Navigator navigator;
+
+    private SpecialKeyBehaviourHandler specialKeyBehaviourHandler;
+
+    public DeviceInputReader() {
+        specialKeyBehaviourHandler = new SpecialKeyBehaviourHandler();
+    }
 
     @Override
     public Keystroke readFromInput() {
         return readKey();
     }
 
-    public static Keystroke readKey() {
+    public Keystroke readKey() {
         try {
             DataInputStream tmp = getInputStream();
             extractKey(tmp);
 
             DataInputStream in = getInputStream();
-            return extractKey(in);
+            Keystroke pressedKey = extractKey(in);
+
+            Optional<BiConsumer<Keystroke, Navigator>> specialBehaviour = specialKeyBehaviourHandler.getSpecialKeyBehaviour(pressedKey);
+            if (specialBehaviour.isPresent()) {
+                specialBehaviour.get().accept(pressedKey, navigator);
+                return pressedKey;
+            }
+            return pressedKey;
         } catch (IOException e) {
             throw new RuntimeException(e.getCause());
         }
