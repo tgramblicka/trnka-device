@@ -1,9 +1,11 @@
 package com.trnka.trnkadevice.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.trnka.trnkadevice.ui.results.ResultsSelectionView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +28,7 @@ public class MenuStudentView implements IView {
     static {
         MENU.add(LearningSequenceSelectionView.class);
         MENU.add(TestSelectionView.class);
-        MENU.add(ResultsView.class);
+        MENU.add(ResultsSelectionView.class);
         MENU.add(LogoutView.class);
     }
 
@@ -56,4 +58,10 @@ public class MenuStudentView implements IView {
     public Messages getLabel() {
         return Messages.MAIN_MENU_LABEL;
     }
+
+    @Override
+    public List<String> getMessageParams() {
+        return Collections.emptyList();
+    }
+
 }

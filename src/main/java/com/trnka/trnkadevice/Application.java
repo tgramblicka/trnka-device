@@ -3,6 +3,7 @@ package com.trnka.trnkadevice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -19,10 +20,14 @@ public class Application {
         log.info("Starting trnka-device Service");
         log.info("");
 
-        SpringApplication.run(Application.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
         log.info("");
-        log.info("trnka-device was started");
+        log.info("----------------------------------");
+        log.info("----------------------------------");
+        log.info("----------------------------------");
+        log.info("KLAVESNICA JE PRIPRAVENA !!!");
+        context.getBean(AsyncGateway.class).startAsync();
     }
 
 }

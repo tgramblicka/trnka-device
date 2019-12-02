@@ -29,7 +29,6 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "sequence_statistic")
 @EqualsAndHashCode
-// todo add treat statement for ONLY test stats
 @NamedQuery(name = SequenceStatistic.FIND_ALL_TEST_STATS_FOR_USER,
             query = "SELECT stats from User user JOIN user.statistics stats JOIN TREAT (stats.sequence AS LearningSequence) seq WHERE user.id = :userId")
 public class SequenceStatistic {

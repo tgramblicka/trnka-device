@@ -19,6 +19,9 @@ import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Collections;
+import java.util.List;
+
 @Component
 @Slf4j
 public class TestingView implements IView {
@@ -76,4 +79,10 @@ public class TestingView implements IView {
     public Messages getLabel() {
         return Messages.TESTING_LABEL;
     }
+
+    @Override
+    public List<String> getMessageParams() {
+        return Collections.emptyList();
+    }
+
 }

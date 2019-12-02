@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
+import java.util.Collections;
+import java.util.List;
+
 @Component
 public class LogoutView implements IView {
 
@@ -34,4 +37,10 @@ public class LogoutView implements IView {
     public Messages getLabel() {
         return Messages.LOG_OUT;
     }
+
+    @Override
+    public List<String> getMessageParams() {
+        return Collections.emptyList();
+    }
+
 }

@@ -11,8 +11,10 @@ public enum Messages implements IMessage {
     LEARNING_VIEW("Sekcia: Vyuka, vyber moznosti tlacidlami hore/dole", "audio"),
     TESTING_LABEL("Testovanie", "audio"),
     TESTING_VIEW("Sekcia: Testovanie. Vyber test tlacidlami hore/dole", "audio"),
+
     RESULTS_LABEL("Vysledky", "audio"),
     RESULTS_VIEW("Sekcia Vysledky: Vyber vysledok testu zo zoznamu tlacidlami hore/dole", "audio"),
+    RESULT_NO_RESULTS_TO_DISPLAY("Nenasli sa ziadne Vase vysledky", "audio"),
 
     LEARNING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre {} a potvrd!", "audio"),
     LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("Spravne, pokracujem na dalsie pismeno", "audio"),
@@ -26,6 +28,8 @@ public enum Messages implements IMessage {
 
 
     SEQUENCE_STATISTIC("Statistika sekvencie: \n{}", "audio"),
+    TEST_RESULT_COMPONENT_LABEL("TEST {}", "audio"),
+
 
 
 
@@ -35,8 +39,8 @@ public enum Messages implements IMessage {
 
     XXX("XXXX, !", "audio"),
 
-    ONE("Sekvencia 1", "audio"),
-    TWO("Sekvencia 2", "audio"),
+    ONE("Sekvencia 1: {}", "audio"),
+    TWO("Sekvencia 2: {}", "audio"),
     THREE("{} 3", "audio"),
     FOUR("{} 4", "audio"),
     FIVE("{} 5", "audio"),

@@ -13,6 +13,9 @@ import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Collections;
+import java.util.List;
+
 @Slf4j
 @Component
 public class LoginView implements IView {
@@ -67,4 +70,10 @@ public class LoginView implements IView {
     public Messages getLabel() {
         return Messages.LOGIN_VIEW_LABEL;
     }
+
+    @Override
+    public List<String> getMessageParams() {
+        return Collections.emptyList();
+    }
+
 }

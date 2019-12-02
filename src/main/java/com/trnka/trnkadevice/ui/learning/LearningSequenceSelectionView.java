@@ -1,5 +1,6 @@
 package com.trnka.trnkadevice.ui.learning;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -59,5 +60,9 @@ public class LearningSequenceSelectionView implements IView {
     @Override
     public Messages getLabel() {
         return Messages.LEARNING_LABEL;
+    }
+
+    @Override public List<String> getMessageParams() {
+        return Collections.emptyList();
     }
 }
