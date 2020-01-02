@@ -6,7 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
@@ -29,29 +28,37 @@ public class PcKeyboardInputReader implements InputReader {
     private volatile Keystroke pressedKey = null;
     private SpecialKeyBehaviourHandler specialKeyBehaviourHandler;
 
+
     public PcKeyboardInputReader() {
-        registerListener();
         specialKeyBehaviourHandler = new SpecialKeyBehaviourHandler();
     }
 
     @Autowired
     private Navigator navigator;
 
+    /**
+     * Registering and unregistering GlobalScreen hook on every keystroke has a readon.
+     * If a hook is registered, then debugging app freezes whole intellij because of repetetive listener events,
+     * limiting the hook to be alive only during the reading keystroke method enables the whole app to be possible to debug.
+     */
     @Override
     public Keystroke readFromInput() {
+        registerListener(); // read comment on method
 
         while (this.pressedKey == null) {
-            // iterate
+            // iterates
         }
         Keystroke tmpPressedKey = pressedKey;
         pressedKey = null;
 
-//        log.info("Keystroke: " + tmpPressedKey.getValue());
+        // log.info("Keystroke: " + tmpPressedKey.getValue());
         Optional<BiConsumer<Keystroke, Navigator>> specialBehaviour = specialKeyBehaviourHandler.getSpecialKeyBehaviour(tmpPressedKey);
         if (specialBehaviour.isPresent()) {
             specialBehaviour.get().accept(tmpPressedKey, navigator);
             return tmpPressedKey;
         }
+
+        unregisterListener(); // read comment on method
         return tmpPressedKey;
     }
 
@@ -80,13 +87,23 @@ public class PcKeyboardInputReader implements InputReader {
     private void registerListener() {
         try {
             LogManager.getLogManager().reset();
-            Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
+            Logger logger = Logger.getLogger(CustomGlobalScreen.class.getPackage().getName());
             logger.setLevel(Level.OFF);
 
-            GlobalScreen.registerNativeHook();
-            GlobalScreen.addNativeKeyListener(new PcKeyboardInputReader.KeyListener() {
+            CustomGlobalScreen.registerNativeHook();
+            KeyListener registeredKeyListener = new KeyListener() {
+            };
+            CustomGlobalScreen.addNativeKeyListener(registeredKeyListener);
+        } catch (NativeHookException e) {
+            e.printStackTrace();
+        }
+    }
 
-            });
+    private void unregisterListener() {
+        try {
+//            CustomGlobalScreen.removeNativeKeyListener(registeredKeyListener);
+            CustomGlobalScreen.removeAllListeners();
+            CustomGlobalScreen.unregisterNativeHook();
         } catch (NativeHookException e) {
             e.printStackTrace();
         }
