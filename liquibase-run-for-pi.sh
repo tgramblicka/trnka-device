@@ -1,10 +1,6 @@
 #!/bin/sh
 
 mariaDbClientJar="/c/Users/200000591/apps/mariadb-java-client-2.4.3.jar"
-host="jdbc:mariadb://localhost:3306/trnka-device"
-raspi_host="jdbc:mariadb://localhost:3306/trnka-device"
-pwd="root"
-raspi_pwd="root"
 
 
 # LIQUIBASE FOR PC
@@ -17,6 +13,7 @@ liquibase \
 --password=$raspi_pwd \
 --logLevel="INFO" \
 update
+
 
 
 
