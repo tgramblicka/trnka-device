@@ -7,23 +7,24 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 
 public class StatisticRenderer {
 
-    public void renderStatisticForTest(final IRenderer renderer,
-                                       final SequenceStatistic seqStats) {
-        renderStepsDetails(renderer, seqStats);
+    public static void renderStatisticForTest(final IRenderer renderer,
+                                              final SequenceStatistic seqStats,
+                                              final int maxAllowedRetries) {
+        renderStepsDetails(renderer, seqStats, maxAllowedRetries);
 
         long correct = seqStats.getStepStats().stream().filter(StepStatistic::isCorrect).count();
         String result = String.format("%d / %d", correct, seqStats.getStepStats().size());
         renderer.renderMessage(Messages.TESTING_SEQUENCE_OVERALL_RESULT, result);
     }
 
-    public void renderStepsDetails(final IRenderer renderer,
-                                   final SequenceStatistic seqStats) {
+    public static void renderStepsDetails(final IRenderer renderer,
+                                          final SequenceStatistic seqStats,
+                                          final int maxAllowedRetries) {
         StringBuilder b = new StringBuilder();
         seqStats.getStepStats().stream().forEach(s -> {
             String letter = s.getStep().getBrailCharacter().getText();
             int negativeRetries = s.getRetries();
 
-            int maxAllowedRetries = seqStats.getSequence().getAllowedRetries();
             boolean correctGuess = maxAllowedRetries - negativeRetries > 0;
             String correctString = correctGuess ? "Spravne"
                                                 : "Nespravne";

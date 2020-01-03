@@ -13,7 +13,8 @@ public enum Messages implements IMessage {
     TESTING_VIEW("Sekcia: Testovanie. Vyber test tlacidlami hore/dole", "audio"),
 
     RESULTS_LABEL("Vysledky", "audio"),
-    RESULTS_VIEW("Sekcia Vysledky: Vyber vysledok testu zo zoznamu tlacidlami hore/dole", "audio"),
+    RESULTS_SELECTION_VIEW("Sekcia Vysledky: Vyber vysledok testu zo zoznamu tlacidlami hore/dole", "audio"),
+    RESULTS_VIEW("Sekcia: Vyuka, vyber moznosti tlacidlami hore/dole", "audio"),
     RESULT_NO_RESULTS_TO_DISPLAY("Nenasli sa ziadne Vase vysledky", "audio"),
 
     LEARNING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre {} a potvrd!", "audio"),

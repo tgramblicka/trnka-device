@@ -1,26 +1,28 @@
 package com.trnka.trnkadevice.ui.testing;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.trnka.trnkadevice.dao.StatisticDao;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.TestingSequence;
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 import com.trnka.trnkadevice.ui.IView;
-import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
-import com.trnka.trnkadevice.ui.learning.LearningSequenceSelectionView;
+import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.SequenceComponent;
+import com.trnka.trnkadevice.ui.UserSession;
+import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
 
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Collections;
-import java.util.List;
 
 @Component
 @Slf4j
@@ -30,17 +32,20 @@ public class TestingView implements IView {
     private IRenderer renderer;
     private Navigator navigator;
     private InputReader inputReader;
-    private SequenceStatisticRepository sequenceStatisticRepository;
+    private UserSession userSession;
+    private StatisticDao statisticDao;
 
     @Autowired
     public TestingView(final IRenderer renderer,
                        final Navigator navigator,
                        final InputReader inputReader,
-                       final SequenceStatisticRepository sequenceStatisticRepository) {
+                       final UserSession userSession,
+                       final StatisticDao statisticDao) {
         this.renderer = renderer;
         this.navigator = navigator;
         this.inputReader = inputReader;
-        this.sequenceStatisticRepository = sequenceStatisticRepository;
+        this.userSession = userSession;
+        this.statisticDao = statisticDao;
     }
 
     public void refresh(final SequenceComponent testingSequenceComponent) {
@@ -48,6 +53,7 @@ public class TestingView implements IView {
     }
 
     @Override
+    @Transactional
     public void enter() {
         if (testingSequenceComponent == null) {
             log.error("Learning sequence component is null, this CANNOT HAPPEN");
@@ -56,7 +62,7 @@ public class TestingView implements IView {
         this.renderer.renderLabel(testingSequenceComponent);
 
         TestingSequence seq = this.testingSequenceComponent.getSequence();
-        SequenceStatistic seqStats = SequenceStatistic.create(seq);
+        SequenceStatistic seqStats = SequenceStatistic.create(seq, userSession.getUser().get());
         for (Step step : seq.getSteps()) {
             renderer.renderMessage(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
             long start = System.currentTimeMillis();
@@ -67,12 +73,16 @@ public class TestingView implements IView {
             long took = System.currentTimeMillis() - start;
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
+        statisticDao.saveSequenceStats(seqStats);
 
+        renderStats(seqStats);
         renderer.renderMessage(Messages.TESTING_SEQUENCE_END);
-        sequenceStatisticRepository.save(seqStats);
-        new StatisticRenderer().renderStatisticForTest(renderer, seqStats);
 
-        navigator.navigate(LearningSequenceSelectionView.class);
+        navigator.navigate(MenuStudentView.class);
+    }
+
+    private void renderStats(final SequenceStatistic seqStats) {
+        StatisticRenderer.renderStepsDetails(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
     }
 
     @Override

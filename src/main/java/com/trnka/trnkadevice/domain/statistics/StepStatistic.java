@@ -12,10 +12,12 @@ import javax.validation.constraints.NotNull;
 
 import com.trnka.trnkadevice.domain.Step;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "step_statistic")
 @EqualsAndHashCode

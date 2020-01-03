@@ -1,10 +1,12 @@
 package com.trnka.trnkadevice.ui;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.Authentication;
-import com.trnka.trnkadevice.controller.RestClientBackend;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
@@ -13,9 +15,6 @@ import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Collections;
-import java.util.List;
-
 @Slf4j
 @Component
 public class LoginView implements IView {
@@ -23,20 +22,16 @@ public class LoginView implements IView {
     private static final int PASSWORD_LENGHT = 4;
 
     private IRenderer renderer;
-    private RestClientBackend restClientBackend;
     private Navigator navigator;
     private InputReader inputReader;
     private Authentication authentication;
 
     @Autowired
     public LoginView(IRenderer renderer,
-                     RestClientBackend restClientBackend,
-                     UserSession userSession,
                      Navigator navigator,
                      InputReader inputReader,
                      Authentication authentication) {
         this.renderer = renderer;
-        this.restClientBackend = restClientBackend;
         this.navigator = navigator;
         this.inputReader = inputReader;
         this.authentication = authentication;

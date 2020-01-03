@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -24,7 +26,8 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "brail_character")
 @TypeDef(name = "json", typeClass = JsonStringType.class)
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode
 public class BrailCharacter implements IMessage {
 

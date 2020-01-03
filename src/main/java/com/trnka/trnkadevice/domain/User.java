@@ -1,24 +1,26 @@
 package com.trnka.trnkadevice.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-import java.util.HashSet;
-import java.util.Set;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "user")
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode
 public class User {
 
@@ -32,12 +34,11 @@ public class User {
     @Column(name = "code", length = 4)
     private String code;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", name = "user_id")
-    Set<SequenceStatistic> statistics = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JoinColumn(referencedColumnName = "id", name = "user_id")
+    List<SequenceStatistic> statistics = new ArrayList<>();
 
     public User() {
         super();
     }
-
 }

@@ -13,24 +13,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.trnka.trnkadevice.domain.Sequence;
 import com.trnka.trnkadevice.domain.Step;
+import com.trnka.trnkadevice.domain.User;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 @Entity
 @Table(name = "sequence_statistic")
+@Getter
+@Setter
 @EqualsAndHashCode
+// @NamedQuery(name = SequenceStatistic.FIND_ALL_TEST_STATS_FOR_USER,
+// query = "SELECT stats from User user INNER JOIN user.statistics stats INNER JOIN TestingSequence as seq ON seq.id = stats.sequenceId WHERE TYPE(seq) =
+// TestingSequence AND user.id = :userId")
 @NamedQuery(name = SequenceStatistic.FIND_ALL_TEST_STATS_FOR_USER,
-            query = "SELECT stats from User user JOIN user.statistics stats JOIN TREAT (stats.sequence AS LearningSequence) seq WHERE user.id = :userId")
+            query = "SELECT stats from User user INNER JOIN user.statistics stats INNER JOIN stats.sequence as seq WHERE TYPE(seq) = TestingSequence AND user.id = :userId")
+
 public class SequenceStatistic {
     public static final String FIND_ALL_TEST_STATS_FOR_USER = "SequenceStatistic.findAllTestResultsForUser";
     @Id
@@ -45,14 +52,22 @@ public class SequenceStatistic {
     @JoinColumn(referencedColumnName = "id", name = "sequence_statistic_id", nullable = true)
     private List<StepStatistic> stepStats = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id", name = "user_id", nullable = false)
+    @NotNull
+    private User user;
+
     @Column
     private Date createdOn;
     private Long took;
 
-    public static SequenceStatistic create(final Sequence seq) {
+    public static SequenceStatistic create(final Sequence seq,
+                                           final User user) {
         SequenceStatistic seqStats = new SequenceStatistic();
         seqStats.setSequence(seq);
         seqStats.setCreatedOn(new Date());
+        user.getStatistics().add(seqStats);
+        seqStats.setUser(user);
         return seqStats;
     }
 
@@ -68,5 +83,4 @@ public class SequenceStatistic {
         seqStats.getStepStats().add(stepStats);
         return stepStats;
     }
-
 }
