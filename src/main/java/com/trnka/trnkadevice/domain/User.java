@@ -8,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,4 +44,20 @@ public class User {
     public User() {
         super();
     }
+
+    /**
+     * Holds info about those MethodicalLearningSequences that have been passed. Passed sequences unlock other, more advanced, sequences for user.
+     * This info could be queried also from SequenceStatistics, however when want to manually unlock all sequences to some user, it would be easier to do it in this table,
+     * rather than filling SequenceStatistics table with fake records.
+     */
+    @ManyToMany
+    @JoinTable(name = "passed_methodics",
+               joinColumns = @JoinColumn(referencedColumnName = "id", name = "sequence_id"),
+               inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<MethodicalLearningSequence> passedSequences = new ArrayList<>();
+
+    public void addPassedMethodic(MethodicalLearningSequence methodicSequence) {
+        getPassedSequences().add(methodicSequence);
+    }
+
 }

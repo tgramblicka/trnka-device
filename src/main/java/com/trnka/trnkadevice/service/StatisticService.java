@@ -1,5 +1,6 @@
-package com.trnka.trnkadevice.dao;
+package com.trnka.trnkadevice.service;
 
+import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,12 +13,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class StatisticDao {
+public class StatisticService {
 
     private SequenceStatisticRepository sequenceStatisticRepository;
 
     @Autowired
-    private StatisticDao(final SequenceStatisticRepository sequenceStatisticRepository) {
+    private StatisticService(final SequenceStatisticRepository sequenceStatisticRepository) {
         this.sequenceStatisticRepository = sequenceStatisticRepository;
     }
 
@@ -25,5 +26,14 @@ public class StatisticDao {
     public void saveSequenceStats(SequenceStatistic seqStats1) {
         SequenceStatistic saved = sequenceStatisticRepository.save(seqStats1);
     }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void saveMethodicalLearingTestStats(SequenceStatistic seqStats1) {
+        SequenceStatistic saved = sequenceStatisticRepository.save(seqStats1);
+
+
+    }
+
+
 
 }

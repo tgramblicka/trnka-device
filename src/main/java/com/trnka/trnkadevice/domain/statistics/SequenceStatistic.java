@@ -1,5 +1,6 @@
 package com.trnka.trnkadevice.domain.statistics;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -83,4 +84,9 @@ public class SequenceStatistic {
         seqStats.getStepStats().add(stepStats);
         return stepStats;
     }
+
+    public BigDecimal getScore() {
+        return BigDecimal.valueOf(getStepStats().stream().filter(StepStatistic::isCorrect).count()).divide(BigDecimal.valueOf(getStepStats().size()));
+    }
+
 }
