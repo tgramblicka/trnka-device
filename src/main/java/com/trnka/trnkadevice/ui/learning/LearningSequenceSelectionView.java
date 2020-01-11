@@ -26,7 +26,7 @@ public class LearningSequenceSelectionView implements IView {
     private LearningSequenceDAO learningSequenceDAO;
     private UserSession userSession;
     private CycledComponent cycledComponent;
-    private LearningView learningView;
+    private IndividualLearningView individualLearningView;
 
     @Autowired
     public LearningSequenceSelectionView(final Navigator navigator,
@@ -34,13 +34,13 @@ public class LearningSequenceSelectionView implements IView {
                                          final LearningSequenceDAO learningSequenceDAO,
                                          final UserSession userSession,
                                          final CycledComponent cycledComponent,
-                                         final LearningView learningView) {
+                                         final IndividualLearningView individualLearningView) {
         this.navigator = navigator;
         this.renderer = renderer;
         this.learningSequenceDAO = learningSequenceDAO;
         this.userSession = userSession;
         this.cycledComponent = cycledComponent;
-        this.learningView = learningView;
+        this.individualLearningView = individualLearningView;
     }
 
     @Override
@@ -53,8 +53,8 @@ public class LearningSequenceSelectionView implements IView {
     }
 
     private void startLearningWithSequence(final SequenceComponent selectedComponent) {
-        learningView.refresh(selectedComponent);
-        navigator.navigate(learningView);
+        individualLearningView.refresh(selectedComponent);
+        navigator.navigate(individualLearningView);
     }
 
     @Override

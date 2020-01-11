@@ -24,7 +24,7 @@ public class TestSelectionView implements IView {
     private IRenderer renderer;
     private Navigator navigator;
     private UserSession userSession;
-    private TestingView testingView;
+    private IndividualTestingView individualTestingView;
     private TestingSequenceDAO testingSequenceDao;
     private CycledComponent cycledComponent;
 
@@ -34,13 +34,13 @@ public class TestSelectionView implements IView {
                              final UserSession userSession,
                              final CycledComponent cycledComponent,
                              final TestingSequenceDAO testingSequenceDao,
-                             final TestingView testingView) {
+                             final IndividualTestingView individualTestingView) {
         this.navigator = navigator;
         this.renderer = renderer;
         this.testingSequenceDao = testingSequenceDao;
         this.userSession = userSession;
         this.cycledComponent = cycledComponent;
-        this.testingView = testingView;
+        this.individualTestingView = individualTestingView;
     }
 
     @Override
@@ -52,8 +52,8 @@ public class TestSelectionView implements IView {
     }
 
     private void startTestingWithSequence(final SequenceComponent selectedComponent) {
-        testingView.refresh(selectedComponent);
-        navigator.navigate(testingView);
+        individualTestingView.refresh(selectedComponent);
+        navigator.navigate(individualTestingView);
     }
 
     @Override

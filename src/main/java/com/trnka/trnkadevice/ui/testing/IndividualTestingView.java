@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trnka.trnkadevice.dao.StatisticDao;
+import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.TestingSequence;
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
@@ -26,26 +26,26 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class TestingView implements IView {
+public class IndividualTestingView implements IView {
     private SequenceComponent<TestingSequence> testingSequenceComponent;
 
     private IRenderer renderer;
     private Navigator navigator;
     private InputReader inputReader;
     private UserSession userSession;
-    private StatisticDao statisticDao;
+    private StatisticService statisticService;
 
     @Autowired
-    public TestingView(final IRenderer renderer,
-                       final Navigator navigator,
-                       final InputReader inputReader,
-                       final UserSession userSession,
-                       final StatisticDao statisticDao) {
+    public IndividualTestingView(final IRenderer renderer,
+                                 final Navigator navigator,
+                                 final InputReader inputReader,
+                                 final UserSession userSession,
+                                 final StatisticService statisticService) {
         this.renderer = renderer;
         this.navigator = navigator;
         this.inputReader = inputReader;
         this.userSession = userSession;
-        this.statisticDao = statisticDao;
+        this.statisticService = statisticService;
     }
 
     public void refresh(final SequenceComponent testingSequenceComponent) {
@@ -56,7 +56,7 @@ public class TestingView implements IView {
     @Transactional
     public void enter() {
         if (testingSequenceComponent == null) {
-            log.error("Learning sequence component is null, this CANNOT HAPPEN");
+            log.error("Testing sequence component is null, this CANNOT HAPPEN");
             return;
         }
         this.renderer.renderLabel(testingSequenceComponent);
@@ -73,7 +73,7 @@ public class TestingView implements IView {
             long took = System.currentTimeMillis() - start;
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
-        statisticDao.saveSequenceStats(seqStats);
+        statisticService.saveSequenceStats(seqStats);
 
         renderStats(seqStats);
         renderer.renderMessage(Messages.TESTING_SEQUENCE_END);

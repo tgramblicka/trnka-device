@@ -7,15 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trnka.trnkadevice.dao.StatisticDao;
+import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.repository.LearningSequenceRepository;
-import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
-import com.trnka.trnkadevice.repository.UserRepository;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.SequenceComponent;
@@ -29,27 +26,27 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class LearningView implements IView {
+public class IndividualLearningView implements IView {
 
     private IRenderer renderer;
     private SequenceComponent<LearningSequence> learningSequenceComponent;
     private InputReader inputReader;
     private Navigator navigator;
-    private StatisticDao statisticDao;
+    private StatisticService statisticService;
 
     private UserSession userSession;
 
     @Autowired
-    public LearningView(final IRenderer renderer,
-                        final InputReader inputReader,
-                        final Navigator navigator,
-                        final UserSession userSession,
-                        final StatisticDao statisticDao) {
+    public IndividualLearningView(final IRenderer renderer,
+                                  final InputReader inputReader,
+                                  final Navigator navigator,
+                                  final UserSession userSession,
+                                  final StatisticService statisticService) {
         this.renderer = renderer;
         this.inputReader = inputReader;
         this.navigator = navigator;
         this.userSession = userSession;
-        this.statisticDao = statisticDao;
+        this.statisticService = statisticService;
     }
 
     public void refresh(final SequenceComponent learningSequenceComponent) {
@@ -81,7 +78,7 @@ public class LearningView implements IView {
         }
 
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
-        statisticDao.saveSequenceStats(seqStats);
+        statisticService.saveSequenceStats(seqStats);
         renderStats(seqStats);
         navigator.navigate(MenuStudentView.class);
     }
