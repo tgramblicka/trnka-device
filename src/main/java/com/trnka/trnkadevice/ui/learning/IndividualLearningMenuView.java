@@ -19,7 +19,7 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 @Component
-public class LearningSequenceSelectionView implements IView {
+public class IndividualLearningMenuView implements IView {
 
     private Navigator navigator;
     private IRenderer renderer;
@@ -29,12 +29,12 @@ public class LearningSequenceSelectionView implements IView {
     private IndividualLearningView individualLearningView;
 
     @Autowired
-    public LearningSequenceSelectionView(final Navigator navigator,
-                                         final IRenderer renderer,
-                                         final LearningSequenceDAO learningSequenceDAO,
-                                         final UserSession userSession,
-                                         final CycledComponent cycledComponent,
-                                         final IndividualLearningView individualLearningView) {
+    public IndividualLearningMenuView(final Navigator navigator,
+                                      final IRenderer renderer,
+                                      final LearningSequenceDAO learningSequenceDAO,
+                                      final UserSession userSession,
+                                      final CycledComponent cycledComponent,
+                                      final IndividualLearningView individualLearningView) {
         this.navigator = navigator;
         this.renderer = renderer;
         this.learningSequenceDAO = learningSequenceDAO;

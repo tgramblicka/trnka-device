@@ -6,7 +6,7 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import java.util.Collections;
 import java.util.List;
 
-public class MethodicalLearningMenu implements IView {
+public class MethodicalLearningMenuView implements IView {
 
     @Override public void enter() {
 

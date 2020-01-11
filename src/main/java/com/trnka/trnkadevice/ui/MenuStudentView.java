@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.ui.learning.LearningSequenceSelectionView;
+import com.trnka.trnkadevice.ui.learning.IndividualLearningMenuView;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
-import com.trnka.trnkadevice.ui.testing.TestSelectionView;
+import com.trnka.trnkadevice.ui.testing.IndividualTestingMenuView;
 
 @Component
 public class MenuStudentView implements IView {
@@ -26,8 +26,8 @@ public class MenuStudentView implements IView {
     private static List<Class<? extends IView>> MENU = new ArrayList<>();
 
     static {
-        MENU.add(LearningSequenceSelectionView.class);
-        MENU.add(TestSelectionView.class);
+        MENU.add(IndividualLearningMenuView.class);
+        MENU.add(IndividualTestingMenuView.class);
         MENU.add(ResultsSelectionView.class);
         MENU.add(LogoutView.class);
     }

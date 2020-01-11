@@ -19,7 +19,7 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 @Component
-public class TestSelectionView implements IView {
+public class IndividualTestingMenuView implements IView {
 
     private IRenderer renderer;
     private Navigator navigator;
@@ -29,12 +29,12 @@ public class TestSelectionView implements IView {
     private CycledComponent cycledComponent;
 
     @Autowired
-    public TestSelectionView(final Navigator navigator,
-                             final IRenderer renderer,
-                             final UserSession userSession,
-                             final CycledComponent cycledComponent,
-                             final TestingSequenceDAO testingSequenceDao,
-                             final IndividualTestingView individualTestingView) {
+    public IndividualTestingMenuView(final Navigator navigator,
+                                     final IRenderer renderer,
+                                     final UserSession userSession,
+                                     final CycledComponent cycledComponent,
+                                     final TestingSequenceDAO testingSequenceDao,
+                                     final IndividualTestingView individualTestingView) {
         this.navigator = navigator;
         this.renderer = renderer;
         this.testingSequenceDao = testingSequenceDao;
