@@ -1,7 +1,7 @@
 package com.trnka.trnkadevice.ui.messages;
 
 public enum Messages implements IMessage {
-    LOGIN_VIEW_LABEL("Sekcia: Prihlasenie", "audio"),
+    LOGIN_VIEW_LABEL("Prihlasenie", "audio"),
     TYPE_IN_YOUR_PASSWORD("Zadajte 4 miestny prihlasovaci kod", "audio"),
     YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN("Boli ste uspesne prihlaseny", "audio"),
     WRONG_PASSWORD("Heslo nespravne", "audio"),
@@ -9,6 +9,8 @@ public enum Messages implements IMessage {
     MAIN_MENU("Vitaj {}. Posun v menu tlacidlami hore/dole. Vstup do menu potvrdzovacim tlacidlom", "audio"),
     LEARNING_LABEL("Vyuka", "audio"),
     LEARNING_VIEW("Sekcia: Vyuka, vyber moznosti tlacidlami hore/dole", "audio"),
+    METHODICAL_LEARNING_MENU("Vyber metodicku vyuku tlacidlami hore/dole", "audio"),
+    METHODICAL_LEARNING_VIEW("Sekcia: Metodicka Vyuka, vyber moznosti tlacidlami hore/dole", "audio"),
     TESTING_LABEL("Testovanie", "audio"),
     TESTING_VIEW("Sekcia: Testovanie. Vyber test tlacidlami hore/dole", "audio"),
 
@@ -22,6 +24,12 @@ public enum Messages implements IMessage {
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Spravna sekvencia je: {} .Ostava {} pokusov.", "audio"),
     LEARNING_MAXIMUM_NEGATIVE_TRIES_REACHED("Maximalny pocet nespravnych opakovani bol dosiahnuty!", "audio"),
     LEARNING_SEQUENCE_END("Koniec uciacej sekvencie!", "audio"),
+
+
+    METHODICAL_LEARNING_TEST_ENTERED("Zacina sa ostry test", "audio"),
+    METHODICAL_LEARNING_ENDED("Koniec testu!", "audio"),
+    METHODICAL_LEARNING_TEST_PASSED("Gratulujem! Uspesne ste presli testom!", "audio"),
+    METHODICAL_LEARNING_TEST_NOT_PASSED("Bohuzial, vase skore nie je dostatocne, testom ste nepresli!", "audio"),
 
     TESTING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre {} a potvrd!", "audio"),
     TESTING_SEQUENCE_END("Koniec testu!", "audio"),
