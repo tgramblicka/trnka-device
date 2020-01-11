@@ -38,6 +38,9 @@ CREATE TABLE IF NOT EXISTS `sequence` (
   `dtype` varchar(31) COLLATE utf8_bin NOT NULL,
   `id` bigint(20) NOT NULL,
   `allowed_retries` int(11) DEFAULT NULL,
+  `allowed_test_retries` int(2) DEFAULT NULL,
+  `passing_rate_percentage` DOUBLE(2,2) DEFAULT NULL,
+  `order` int(3) DEFAULT NULL,
   `audio_message` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `timeout` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -88,6 +91,16 @@ CREATE TABLE IF NOT EXISTS `step_statistic` (
   CONSTRAINT `FKfpbmmgdm2aqjhdcmgoj2bimbq` FOREIGN KEY (`sequence_statistic_id`) REFERENCES `sequence_statistic` (`id`),
   CONSTRAINT `FKj91gb64r3uqr35v5hx3lmhyu0` FOREIGN KEY (`step_id`) REFERENCES `step` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS `passed_methodics` (
+    `sequence_id` bigint(20) NOT NULL,
+    `user_id` bigint(20) NOT NULL,
+    KEY `FK_sequence_id` (`sequence_id`),
+    KEY `FK_user_id` (`user_id`),
+    CONSTRAINT `FK_sequence_id` FOREIGN KEY (`sequence_id`) REFERENCES `sequence` (`id`),
+    CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 -- Data exporting was unselected.
 
