@@ -34,10 +34,8 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 
 
 -- METHODICAL LEARNING SEQUENCES
-INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`)
-VALUES ('MLS', 120, 2, 'ONE', 100000, 1, 80, 1);
-INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`)
-VALUES ('MLS', 121, 2, 'TWO', 100000, 1, 80, 2);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 120, 1, 'ONE', 100000, 1, 80, 1);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 121, 1, 'TWO', 100000, 1, 80, 2);
 
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (122, b'0', 1, 120);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (123, b'0', 2, 120);
@@ -45,8 +43,6 @@ INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`)
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (125, b'0', 5, 120);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (126, b'0', 11, 121);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (127, b'0', 21, 121);
-
-
 
 
 

@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `sequence` (
   `id` bigint(20) NOT NULL,
   `allowed_retries` int(11) DEFAULT NULL,
   `allowed_test_retries` int(2) DEFAULT NULL,
-  `passing_rate_percentage` DOUBLE(2,2) DEFAULT NULL,
+  `passing_rate_percentage` DOUBLE(4,2) DEFAULT NULL,
   `order` int(3) DEFAULT NULL,
   `audio_message` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `timeout` bigint(20) DEFAULT NULL,
