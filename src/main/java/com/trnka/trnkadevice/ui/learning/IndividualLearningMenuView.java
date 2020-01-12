@@ -45,7 +45,7 @@ public class IndividualLearningMenuView implements IView {
 
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.LEARNING_VIEW);
+        renderer.renderMessage(Messages.METHODICAL_LEARNING_MENU);
         Set<LearningSequence> sequences = learningSequenceDAO.getLearningSequences(userSession.getUsername());
 
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());

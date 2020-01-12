@@ -1,0 +1,29 @@
+- prihlasovanie cez ciselne tlacidla
+- meno pouzivatela = kod
+- poradie v bodov v znaku - musi byt v spravnom poradi zadany
+- doplnit v texte vyucby aj text so spravnym poradim bodov pred aj po potvrdeni
+
+
+- vo vyuke pred zadanim povie ake znaky ma zadat
+- test povie len ake znaky ma zadat
+- CHYBA - ked skonci test hodi ma do vyuky
+-
+
+
+POSTUPOVANIEW
+- vyuka + postupovy test, vzdy sa skladaju z rovnakych pismen (zcelili sme to dokopy)
+- vyuka dalsi level sa odomyka az po zvladnuti postupoveho testu predoslej urovne
+
+
+
+
+
+MENU
+- Vyuka
+- Individualna vyuka ( nebude mat pridruzene testy)
+- Individualne testovanie
+- Vysledky
+
+Hned po vyuke1 ho naviguje na postupovy test1, uklada len vysledky z postupoveho testu, nie z vyukyu
+Vysledky z ostreho testovanie uklada nezavisle
+ked vojde do vyuky bude mat vzdy prednastavenu poslednu najvyussiu sekvenciu

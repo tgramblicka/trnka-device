@@ -2,40 +2,47 @@ package com.trnka.trnkadevice.ui.learning;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
-import com.trnka.trnkadevice.ui.testing.MethodicalTestingView;
+import com.trnka.trnkadevice.TransactionalUtil;
+import com.trnka.trnkadevice.exception.SequenceIdNotSetException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trnka.trnkadevice.service.StatisticService;
+import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import com.trnka.trnkadevice.domain.Step;
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.repository.MethodicalLearningSequenceRepository;
+import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.ui.IView;
-import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
-import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
+import com.trnka.trnkadevice.ui.testing.MethodicalTestingView;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class MethodicalLearningView implements IView {
 
     private IRenderer renderer;
-    private SequenceComponent<MethodicalLearningSequence> learningSequenceComponent;
     private InputReader inputReader;
     private Navigator navigator;
     private StatisticService statisticService;
     private MethodicalTestingView methodicalTestingView;
-
+    private MethodicalLearningSequenceRepository repo;
     private UserSession userSession;
+
+    private Long sequenceId;
+
+    @Autowired
+    private TransactionalUtil transactionalUtil;
 
     @Autowired
     public MethodicalLearningView(final IRenderer renderer,
@@ -43,29 +50,30 @@ public class MethodicalLearningView implements IView {
                                   final Navigator navigator,
                                   final UserSession userSession,
                                   final StatisticService statisticService,
+                                  final MethodicalLearningSequenceRepository repo,
                                   final MethodicalTestingView methodicalTestingView) {
         this.renderer = renderer;
         this.inputReader = inputReader;
         this.navigator = navigator;
         this.userSession = userSession;
         this.statisticService = statisticService;
+        this.repo = repo;
         this.methodicalTestingView = methodicalTestingView;
     }
 
-    public void refresh(final SequenceComponent learningSequenceComponent) {
-        this.learningSequenceComponent = learningSequenceComponent;
+    public void refresh(final Long sequenceId) {
+        this.sequenceId = sequenceId;
     }
 
     @Override
-    @Transactional
     public void enter() {
-        if (learningSequenceComponent == null) {
-            log.error("Learning sequence component is null, this CANNOT HAPPEN");
-            return;
+        if (sequenceId == null) {
+            log.error("Sequence id is null!");
+            throw new SequenceIdNotSetException("Sequence ID is null on entering the View!");
         }
-        this.renderer.renderLabel(learningSequenceComponent);
 
-        MethodicalLearningSequence seq = this.learningSequenceComponent.getSequence();
+        MethodicalLearningSequence seq = repo.findById(sequenceId).get();
+        this.renderer.renderMessage(seq.getAudioMessage());
 
         for (Step step : seq.getSteps()) {
             renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
@@ -76,7 +84,6 @@ public class MethodicalLearningView implements IView {
             evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
         }
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
-
         methodicalTestingView.refresh(seq.getId());
         navigator.navigate(methodicalTestingView);
     }

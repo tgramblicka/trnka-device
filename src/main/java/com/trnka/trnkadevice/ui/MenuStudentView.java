@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.trnka.trnkadevice.ui.learning.MethodicalLearningMenuView;
 import com.trnka.trnkadevice.ui.results.ResultsSelectionView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,7 @@ public class MenuStudentView implements IView {
     private static List<Class<? extends IView>> MENU = new ArrayList<>();
 
     static {
+        MENU.add(MethodicalLearningMenuView.class);
         MENU.add(IndividualLearningMenuView.class);
         MENU.add(IndividualTestingMenuView.class);
         MENU.add(ResultsSelectionView.class);

@@ -1,6 +1,5 @@
 package com.trnka.trnkadevice.service;
 
-import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,7 +17,7 @@ public class StatisticService {
     private SequenceStatisticRepository sequenceStatisticRepository;
 
     @Autowired
-    private StatisticService(final SequenceStatisticRepository sequenceStatisticRepository) {
+    public StatisticService(final SequenceStatisticRepository sequenceStatisticRepository) {
         this.sequenceStatisticRepository = sequenceStatisticRepository;
     }
 
