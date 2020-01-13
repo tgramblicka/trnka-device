@@ -52,7 +52,7 @@ public class MenuStudentView implements IView {
             return;
         }
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUsername());
-        Consumer<Integer> consumer = index -> navigator.navigate(MENU.get(index));
+        Consumer<Integer> consumer = index -> navigator.navigateAsync(MENU.get(index));
         cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
 
