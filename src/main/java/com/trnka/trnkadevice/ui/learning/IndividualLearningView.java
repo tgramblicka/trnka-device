@@ -2,6 +2,7 @@ package com.trnka.trnkadevice.ui.learning;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,12 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
+import com.trnka.trnkadevice.exception.SequenceIdNotSetException;
 import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.repository.LearningSequenceRepository;
 import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.MenuStudentView;
-import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 import com.trnka.trnkadevice.ui.messages.Messages;
@@ -28,42 +30,43 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IndividualLearningView implements IView {
 
+    private final LearningSequenceRepository repository;
     private IRenderer renderer;
-    private SequenceComponent<LearningSequence> learningSequenceComponent;
     private InputReader inputReader;
     private Navigator navigator;
     private StatisticService statisticService;
 
     private UserSession userSession;
+    private Long sequenceId;
 
     @Autowired
     public IndividualLearningView(final IRenderer renderer,
                                   final InputReader inputReader,
                                   final Navigator navigator,
                                   final UserSession userSession,
-                                  final StatisticService statisticService) {
+                                  final StatisticService statisticService,
+                                  final LearningSequenceRepository repository) {
         this.renderer = renderer;
         this.inputReader = inputReader;
         this.navigator = navigator;
         this.userSession = userSession;
         this.statisticService = statisticService;
+        this.repository = repository;
     }
 
-    public void refresh(final SequenceComponent learningSequenceComponent) {
-        this.learningSequenceComponent = learningSequenceComponent;
+    public void refresh(final Long sequenceId) {
+        this.sequenceId = sequenceId;
     }
 
     @Override
     @Transactional
     public void enter() {
-        if (learningSequenceComponent == null) {
-            log.error("Learning sequence component is null, this CANNOT HAPPEN");
-            return;
+        if (sequenceId == null) {
+            log.error("Sequence id is null!");
+            throw new SequenceIdNotSetException("Sequence ID is null on entering the View!");
         }
-        this.renderer.renderLabel(learningSequenceComponent);
-
-        LearningSequence seq = this.learningSequenceComponent.getSequence();
-
+        LearningSequence seq = repository.findById(sequenceId).get();
+        this.renderer.renderMessage(seq.getAudioMessage());
         SequenceStatistic seqStats = SequenceStatistic.create(seq, userSession.getUser().get());
         for (Step step : seq.getSteps()) {
             renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
@@ -80,7 +83,7 @@ public class IndividualLearningView implements IView {
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
         statisticService.saveSequenceStats(seqStats);
         renderStats(seqStats);
-        navigator.navigate(MenuStudentView.class);
+        navigator.navigateAsync(MenuStudentView.class);
     }
 
     private void renderStats(final SequenceStatistic seqStats) {

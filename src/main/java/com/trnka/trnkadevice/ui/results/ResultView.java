@@ -34,7 +34,7 @@ public class ResultView implements IView {
     }
 
     private void renderStats(final SequenceStatistic seqStats) {
-        StatisticRenderer.renderStepsDetails(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
+        StatisticRenderer.renderStatisticForTest(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
     }
 
     @Override

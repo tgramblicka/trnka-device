@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.domain.Sequence;
 import com.trnka.trnkadevice.ui.SequenceComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -45,16 +46,16 @@ public class IndividualLearningMenuView implements IView {
 
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.METHODICAL_LEARNING_MENU);
+        renderer.renderMessage(Messages.LEARNING_VIEW_MENU);
         Set<LearningSequence> sequences = learningSequenceDAO.getLearningSequences(userSession.getUsername());
 
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
-        cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index)), selection);
+        cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index).getSequence()), selection);
     }
 
-    private void startLearningWithSequence(final SequenceComponent selectedComponent) {
-        individualLearningView.refresh(selectedComponent);
-        navigator.navigate(individualLearningView);
+    private void startLearningWithSequence(final Sequence sequence) {
+        individualLearningView.refresh(sequence.getId());
+        navigator.navigateAsync(IndividualLearningView.class);
     }
 
     @Override

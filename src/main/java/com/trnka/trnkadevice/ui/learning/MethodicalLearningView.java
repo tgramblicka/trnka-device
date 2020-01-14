@@ -28,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class MethodicalLearningView implements IView {
 
     private IRenderer renderer;
@@ -66,6 +65,7 @@ public class MethodicalLearningView implements IView {
     }
 
     @Override
+    @Transactional
     public void enter() {
         if (sequenceId == null) {
             log.error("Sequence id is null!");
@@ -85,7 +85,7 @@ public class MethodicalLearningView implements IView {
         }
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
         methodicalTestingView.refresh(seq.getId());
-        navigator.navigate(methodicalTestingView);
+        navigator.navigateAsync(methodicalTestingView.getClass());
     }
 
     @Override

@@ -34,7 +34,6 @@ import javax.persistence.NoResultException;
 
 @Component
 @Slf4j
-@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class MethodicalTestingView implements IView {
     private SequenceComponent<MethodicalLearningSequence> sequenceComponent;
 
@@ -72,6 +71,7 @@ public class MethodicalTestingView implements IView {
     }
 
     @Override
+    @Transactional
     public void enter() {
         if (sequenceId == null) {
             log.error("Sequence id is null!");
@@ -104,11 +104,11 @@ public class MethodicalTestingView implements IView {
         }
         renderStats(seqStats);
         renderer.renderMessage(Messages.METHODICAL_LEARNING_ENDED);
-        navigator.navigate(MenuStudentView.class);
+        navigator.navigateAsync(MenuStudentView.class);
     }
 
     private void renderStats(final SequenceStatistic seqStats) {
-        StatisticRenderer.renderStepsDetails(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
+        StatisticRenderer.renderStatisticForTest(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
     }
 
     @Override

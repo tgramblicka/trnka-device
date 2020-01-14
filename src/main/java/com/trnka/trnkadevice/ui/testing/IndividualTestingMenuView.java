@@ -53,7 +53,7 @@ public class IndividualTestingMenuView implements IView {
 
     private void startTestingWithSequence(final SequenceComponent selectedComponent) {
         individualTestingView.refresh(selectedComponent);
-        navigator.navigate(individualTestingView);
+        navigator.navigateAsync(individualTestingView.getClass());
     }
 
     @Override

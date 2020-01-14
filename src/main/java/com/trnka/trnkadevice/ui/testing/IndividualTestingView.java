@@ -78,11 +78,11 @@ public class IndividualTestingView implements IView {
         renderStats(seqStats);
         renderer.renderMessage(Messages.TESTING_SEQUENCE_END);
 
-        navigator.navigate(MenuStudentView.class);
+        navigator.navigateAsync(MenuStudentView.class);
     }
 
     private void renderStats(final SequenceStatistic seqStats) {
-        StatisticRenderer.renderStepsDetails(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
+        StatisticRenderer.renderStatisticForTest(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
     }
 
     @Override

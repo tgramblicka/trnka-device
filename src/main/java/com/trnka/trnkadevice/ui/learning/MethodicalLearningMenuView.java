@@ -6,19 +6,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.persistence.NoResultException;
 
-import com.trnka.trnkadevice.TransactionalUtil;
-import javafx.collections.transformation.SortedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.trnka.trnkadevice.TransactionalUtil;
 import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.repository.MethodicalLearningSequenceRepository;
@@ -33,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class MethodicalLearningMenuView implements IView {
 
     private Navigator navigator;
@@ -99,7 +93,7 @@ public class MethodicalLearningMenuView implements IView {
 
     private void startLearningWithSequence(final SequenceComponent selectedComponent) {
         methodicalLearningView.refresh(selectedComponent.getSequence().getId());
-        navigator.navigate(methodicalLearningView);
+        navigator.navigateAsync(methodicalLearningView.getClass());
     }
 
     @Override
