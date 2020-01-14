@@ -13,8 +13,15 @@ public class StatisticRenderer {
         renderStepsDetails(renderer, seqStats, maxAllowedRetries);
 
         long correct = seqStats.getStepStats().stream().filter(StepStatistic::isCorrect).count();
-        String result = String.format("%d / %d", correct, seqStats.getStepStats().size());
-        renderer.renderMessage(Messages.TESTING_SEQUENCE_OVERALL_RESULT, result);
+        int allStepsCount = seqStats.getStepStats().size();
+        String result = String.format("%d / %d", correct, allStepsCount);
+        renderer.renderMessage(Messages.TESTING_SEQUENCE_OVERALL_RESULT, result, calculatePercentage(correct, allStepsCount));
+    }
+
+    private static String calculatePercentage(Long correct,
+                                              Integer all) {
+        double percentage = (correct.doubleValue() / all.doubleValue()) * 100.0D;
+        return String.valueOf(percentage);
     }
 
     public static void renderStepsDetails(final IRenderer renderer,
