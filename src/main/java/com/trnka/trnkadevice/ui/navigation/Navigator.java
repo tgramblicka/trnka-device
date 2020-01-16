@@ -6,7 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.google.common.eventbus.EventBus;
@@ -14,7 +16,7 @@ import com.google.common.eventbus.Subscribe;
 import com.trnka.trnkadevice.ui.IView;
 
 @Component
-@Singleton
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class Navigator implements EventListener {
 
     @Autowired
@@ -49,6 +51,13 @@ public class Navigator implements EventListener {
     public <T extends IView> void navigateAsync(Class<T> viewClass) {
         eventBus.post(new NavigationEvent(viewClass,
                                           currentView));
+    }
+
+    public void navigateAsync(IView view) {
+        ViewNavigationEvent ev = new ViewNavigationEvent();
+        ev.setDestinationView(view);
+        ev.setOriginView(view);
+        eventBus.post(ev);
     }
 
     @Subscribe
