@@ -2,10 +2,10 @@ package com.trnka.trnkadevice.ui.learning;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trnka.trnkadevice.domain.LearningSequence;
@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class IndividualLearningView implements IView {
 
     private final LearningSequenceRepository repository;
@@ -83,7 +84,7 @@ public class IndividualLearningView implements IView {
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
         statisticService.saveSequenceStats(seqStats);
         renderStats(seqStats);
-        navigator.navigateAsync(MenuStudentView.class);
+        navigator.navigate(MenuStudentView.class);
     }
 
     private void renderStats(final SequenceStatistic seqStats) {

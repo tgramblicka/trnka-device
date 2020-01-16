@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
@@ -19,6 +20,7 @@ import com.trnka.trnkadevice.ui.navigation.NavigationUtils;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 @Component
+@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class ResultsSelectionView implements IView {
 
     private IRenderer renderer;

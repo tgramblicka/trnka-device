@@ -25,9 +25,12 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Slf4j
+@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class MethodicalLearningMenuView implements IView {
 
     private Navigator navigator;
@@ -68,6 +71,7 @@ public class MethodicalLearningMenuView implements IView {
         }
         Integer highestPassedSequenceOrder = sequences.stream().max(Comparator.comparingInt(MethodicalLearningSequence::getOrder))
                 .map(MethodicalLearningSequence::getOrder).get();
+
         Optional<MethodicalLearningSequence> notPassedSequence = getNthSequence(highestPassedSequenceOrder+1);
         if (notPassedSequence.isPresent()) {
             sequences.add(notPassedSequence.get());
@@ -93,7 +97,7 @@ public class MethodicalLearningMenuView implements IView {
 
     private void startLearningWithSequence(final SequenceComponent selectedComponent) {
         methodicalLearningView.refresh(selectedComponent.getSequence().getId());
-        navigator.navigateAsync(methodicalLearningView.getClass());
+        navigator.navigate(methodicalLearningView);
     }
 
     @Override

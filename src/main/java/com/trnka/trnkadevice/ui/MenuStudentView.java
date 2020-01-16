@@ -15,8 +15,11 @@ import com.trnka.trnkadevice.ui.learning.IndividualLearningMenuView;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.testing.IndividualTestingMenuView;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class MenuStudentView implements IView {
 
     private IRenderer renderer;
@@ -52,7 +55,7 @@ public class MenuStudentView implements IView {
             return;
         }
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUsername());
-        Consumer<Integer> consumer = index -> navigator.navigateAsync(MENU.get(index));
+        Consumer<Integer> consumer = index -> navigator.navigate(MENU.get(index));
         cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
 

@@ -3,6 +3,7 @@ package com.trnka.trnkadevice.ui.results;
 import java.util.Collections;
 import java.util.List;
 
+import com.trnka.trnkadevice.ui.navigation.NavigationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,13 +16,17 @@ import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
 @Component
 public class ResultView implements IView {
 
+    private final NavigationUtils navigationUtils;
     private SequenceStatistic sequenceStatistic;
 
     private IRenderer renderer;
 
+
+
     @Autowired
-    public ResultView(final IRenderer renderer) {
+    public ResultView(final IRenderer renderer, final NavigationUtils navigationUtils) {
         this.renderer = renderer;
+        this.navigationUtils = navigationUtils;
     }
 
     public void refresh(SequenceStatistic sequenceStatistic) {
@@ -35,6 +40,7 @@ public class ResultView implements IView {
 
     private void renderStats(final SequenceStatistic seqStats) {
         StatisticRenderer.renderStatisticForTest(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
+        navigationUtils.waitForMenuClick();
     }
 
     @Override

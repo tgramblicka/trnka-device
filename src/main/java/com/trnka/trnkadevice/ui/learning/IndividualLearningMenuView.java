@@ -18,8 +18,11 @@ import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class IndividualLearningMenuView implements IView {
 
     private Navigator navigator;
@@ -55,7 +58,7 @@ public class IndividualLearningMenuView implements IView {
 
     private void startLearningWithSequence(final Sequence sequence) {
         individualLearningView.refresh(sequence.getId());
-        navigator.navigateAsync(IndividualLearningView.class);
+        navigator.navigate(individualLearningView);
     }
 
     @Override

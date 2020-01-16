@@ -34,6 +34,7 @@ import javax.persistence.NoResultException;
 
 @Component
 @Slf4j
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class MethodicalTestingView implements IView {
     private SequenceComponent<MethodicalLearningSequence> sequenceComponent;
 
@@ -104,7 +105,7 @@ public class MethodicalTestingView implements IView {
         }
         renderStats(seqStats);
         renderer.renderMessage(Messages.METHODICAL_LEARNING_ENDED);
-        navigator.navigateAsync(MenuStudentView.class);
+        navigator.navigate(MenuStudentView.class);
     }
 
     private void renderStats(final SequenceStatistic seqStats) {

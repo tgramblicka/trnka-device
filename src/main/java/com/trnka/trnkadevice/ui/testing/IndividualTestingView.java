@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trnka.trnkadevice.service.StatisticService;
@@ -26,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class IndividualTestingView implements IView {
     private SequenceComponent<TestingSequence> testingSequenceComponent;
 
@@ -78,7 +80,7 @@ public class IndividualTestingView implements IView {
         renderStats(seqStats);
         renderer.renderMessage(Messages.TESTING_SEQUENCE_END);
 
-        navigator.navigateAsync(MenuStudentView.class);
+        navigator.navigate(MenuStudentView.class);
     }
 
     private void renderStats(final SequenceStatistic seqStats) {

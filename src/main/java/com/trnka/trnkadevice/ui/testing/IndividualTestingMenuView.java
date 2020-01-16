@@ -17,8 +17,11 @@ import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@Transactional(propagation =  Propagation.REQUIRES_NEW)
 public class IndividualTestingMenuView implements IView {
 
     private IRenderer renderer;
@@ -53,7 +56,7 @@ public class IndividualTestingMenuView implements IView {
 
     private void startTestingWithSequence(final SequenceComponent selectedComponent) {
         individualTestingView.refresh(selectedComponent);
-        navigator.navigateAsync(individualTestingView.getClass());
+        navigator.navigate(individualTestingView);
     }
 
     @Override

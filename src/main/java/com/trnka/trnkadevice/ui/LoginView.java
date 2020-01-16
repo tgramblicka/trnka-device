@@ -45,7 +45,7 @@ public class LoginView implements IView {
         Boolean authenticated = authentication.authenticate(code);
         if (authenticated) {
             renderer.renderMessage(Messages.YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN);
-            navigator.navigateAsync(MenuStudentView.class);
+            navigator.navigate(MenuStudentView.class);
             return;
         }
         renderer.renderMessage(Messages.WRONG_PASSWORD);
