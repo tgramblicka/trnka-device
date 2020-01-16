@@ -1,1 +1,5 @@
 lombok to entities
+
+
+remove TransactionalUtil - no need after async navigator (retest needed)
+poradie MenuStudentView

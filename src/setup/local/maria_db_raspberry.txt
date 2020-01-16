@@ -7,20 +7,32 @@ SHOW DATABASES;
 create database `trnka-device`;
 
 ----------------------
+Ako executenut liquibase z local PC na raspberry:
+1.
 Pridaj access clientovi: https://websiteforstudents.com/configure-remote-access-mysql-mariadb-databases/
-
 sudo nano /etc/mysql/my.cnf
 pridaj
 bind-address=0.0.0.0
 
+2.
 sudo service mysql restart
 
+3.
 grantni clientovi (laptopu) access
 mysql -u root -p (prihlas sa ako admin)
 GRANT ALL ON `trnka-device`.* TO 'root'@'192.168.1.17' IDENTIFIED BY 'raspberry';
 GRANT ALL ON `trnka-device`.* TO 'pi'@'localhost' IDENTIFIED BY 'raspberry';
 
+4.
+spusti liquibase z lokal PC
+
+
+5. uncomment the bind address cause mysql -u root -p won't be able to login
 ---------------------------
+
+DUMP DB
+mysqldump --databases trnka-device > /home/pi/trnka-device/trnka-device.sql
+
 
 
 
