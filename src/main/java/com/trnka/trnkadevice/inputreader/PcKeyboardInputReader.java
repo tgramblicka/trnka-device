@@ -55,7 +55,6 @@ public class PcKeyboardInputReader implements InputReader {
         Optional<BiConsumer<Keystroke, Navigator>> specialBehaviour = specialKeyBehaviourHandler.getSpecialKeyBehaviour(tmpPressedKey);
         if (specialBehaviour.isPresent()) {
             specialBehaviour.get().accept(tmpPressedKey, navigator);
-            return tmpPressedKey;
         }
 
         unregisterListener(); // read comment on method
