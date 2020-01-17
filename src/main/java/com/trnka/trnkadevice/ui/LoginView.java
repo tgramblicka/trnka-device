@@ -1,9 +1,13 @@
 package com.trnka.trnkadevice.ui;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.Authentication;
@@ -17,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class LoginView implements IView {
     public static final String TEST_PASSWORD = "aaaa";
     private static final int PASSWORD_LENGHT = 4;
@@ -49,16 +54,19 @@ public class LoginView implements IView {
             return;
         }
         renderer.renderMessage(Messages.WRONG_PASSWORD);
-        navigator.navigate(LoginView.class);
+        navigator.navigateAsync(LoginView.class);
     }
 
     private String readCode() {
-        StringBuilder builder = new StringBuilder("");
-        for (int i = 0; i < PASSWORD_LENGHT; i++) {
-            Keystroke key = inputReader.readFromInput();
-            builder.append(key.getValue());
+        List<Keystroke> keyStrokes = new ArrayList<>();
+        Keystroke keystroke = inputReader.readFromInput();
+
+        while (!keystroke.equals(Keystroke.SUBMIT)) {
+            log.info(keystroke.getValue());
+            keyStrokes.add(keystroke);
+            keystroke = inputReader.readFromInput();
         }
-        return builder.toString();
+        return keyStrokes.stream().map(Keystroke::getValue).collect(Collectors.joining(""));
     }
 
     @Override
