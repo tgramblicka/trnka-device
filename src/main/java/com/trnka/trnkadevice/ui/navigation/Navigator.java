@@ -3,7 +3,6 @@ package com.trnka.trnkadevice.ui.navigation;
 import java.util.EventListener;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Singleton;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -53,7 +52,7 @@ public class Navigator implements EventListener {
                                           currentView));
     }
 
-    public void navigateAsync(IView view) {
+    private void navigateAsync(IView view) {
         ViewNavigationEvent ev = new ViewNavigationEvent();
         ev.setDestinationView(view);
         ev.setOriginView(view);

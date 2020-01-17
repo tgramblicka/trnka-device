@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class IndividualTestingView implements IView {
     private SequenceComponent<TestingSequence> testingSequenceComponent;
 
@@ -87,7 +90,7 @@ public class IndividualTestingView implements IView {
 
     @Override
     public Messages getLabel() {
-        return Messages.TESTING_LABEL;
+        return Messages.TESTING_LABEL_MENU;
     }
 
     @Override

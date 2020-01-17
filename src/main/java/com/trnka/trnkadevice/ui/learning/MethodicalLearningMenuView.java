@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 import javax.persistence.NoResultException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.TransactionalUtil;
@@ -28,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class MethodicalLearningMenuView implements IView {
 
     private Navigator navigator;

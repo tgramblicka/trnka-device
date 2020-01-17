@@ -17,7 +17,7 @@ public class NavigationUtils {
 
         InputReader inputReader = context.getBean(InputReader.class);
         Keystroke key = inputReader.readFromInput();
-        while (key != null) {
+        while (key != null && key != Keystroke.MENU_1) {
             key = inputReader.readFromInput();
         }
     }

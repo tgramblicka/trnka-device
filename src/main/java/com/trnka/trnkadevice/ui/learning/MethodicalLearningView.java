@@ -7,6 +7,8 @@ import java.util.Optional;
 import com.trnka.trnkadevice.TransactionalUtil;
 import com.trnka.trnkadevice.exception.SequenceIdNotSetException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class MethodicalLearningView implements IView {
 
     private IRenderer renderer;

@@ -10,8 +10,9 @@ import com.trnka.trnkadevice.exception.SequenceIdNotSetException;
 import com.trnka.trnkadevice.repository.MethodicalLearningSequenceRepository;
 import com.trnka.trnkadevice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trnka.trnkadevice.service.StatisticService;
@@ -34,6 +35,7 @@ import javax.persistence.NoResultException;
 
 @Component
 @Slf4j
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class MethodicalTestingView implements IView {
     private SequenceComponent<MethodicalLearningSequence> sequenceComponent;
 
@@ -113,7 +115,7 @@ public class MethodicalTestingView implements IView {
 
     @Override
     public Messages getLabel() {
-        return Messages.TESTING_LABEL;
+        return Messages.TESTING_LABEL_MENU;
     }
 
     @Override

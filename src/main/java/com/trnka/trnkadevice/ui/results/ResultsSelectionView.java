@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,7 @@ import com.trnka.trnkadevice.ui.navigation.NavigationUtils;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class ResultsSelectionView implements IView {
 
     private IRenderer renderer;
@@ -67,12 +70,12 @@ public class ResultsSelectionView implements IView {
 
     private void navigateToSelectedResults(final ResultsComponent resultsComponent) {
         resultView.refresh(resultsComponent.getStatistic());
-        navigator.navigate(resultView);
+        navigator.navigateAsync(resultView.getClass());
     }
 
     @Override
     public Messages getLabel() {
-        return Messages.RESULTS_LABEL;
+        return Messages.RESULTS_LABEL_MENU;
     }
 
     @Override

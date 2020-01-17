@@ -13,7 +13,7 @@ public class SpecialKeyBehaviourHandler {
     private static Map<Keystroke, BiConsumer<Keystroke, Navigator>> SPECIAL_BEHAVIOURS = new HashMap<>();
     static {
         SPECIAL_BEHAVIOURS.put(Keystroke.MENU_1, (k,
-                                                  n) -> n.navigate(MenuStudentView.class));
+                                                  n) -> n.navigateAsync(MenuStudentView.class));
 
     }
 

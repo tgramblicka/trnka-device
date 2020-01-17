@@ -45,6 +45,8 @@ public class CycledComponent {
                                   : index;
                 renderer.renderLabel(list.get(index));
                 break;
+            case MENU_1:
+                return;
             case SUBMIT:
                 onSubmit.accept(index);
                 return;
@@ -70,6 +72,8 @@ public class CycledComponent {
                                   : index;
                 renderLabel(list, index);
                 break;
+            case MENU_1:
+                return;
             case SUBMIT:
                 onSubmit.accept(index);
                 return;

@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import com.trnka.trnkadevice.domain.Sequence;
 import com.trnka.trnkadevice.ui.SequenceComponent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.dao.LearningSequenceDAO;
@@ -20,6 +22,7 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class IndividualLearningMenuView implements IView {
 
     private Navigator navigator;
@@ -60,7 +63,7 @@ public class IndividualLearningMenuView implements IView {
 
     @Override
     public Messages getLabel() {
-        return Messages.LEARNING_LABEL;
+        return Messages.LEARNING_LABEL_MENU;
     }
 
     @Override public List<String> getMessageParams() {

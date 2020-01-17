@@ -48,7 +48,7 @@ public class MenuStudentView implements IView {
     @Override
     public void enter() {
         if (userSession.getUserId() == null) {
-            navigator.navigate(LoginView.class);
+            navigator.navigateAsync(LoginView.class);
             return;
         }
         renderer.renderMessage(Messages.MAIN_MENU, userSession.getUsername());
