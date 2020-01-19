@@ -1,0 +1,50 @@
+Ahoj Jana,
+
+Dole su texty resp. audio vystupy vo formate KOD_TEXTU : Znenie textu
+Poprosim ta potom upravuj len cast znenie, aby som si to vedel sparovat.
+
+
+LOGIN_VIEW_LABEL : Prihlasenie
+TYPE_IN_YOUR_PASSWORD : Zadaj 4 miestny prihlasovaci kod a potvrd
+YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN : Boli ste uspesne prihlaseny
+WRONG_PASSWORD : Heslo nespravne
+MAIN_MENU_LABEL : Sekcia: Hlavne menu - Student
+MAIN_MENU : Vitaj {}. Posun v menu tlacidlami hore/dole. Vstup do menu potvrdzovacim tlacidlom
+LEARNING_LABEL_MENU : Vyuka
+LEARNING_VIEW_MENU : Sekcia: Vyuka, vyber moznosti tlacidlami hore/dole
+METHODICAL_LEARNING_MENU : Metodicka vyuka
+METHODICAL_LEARNING_VIEW : Sekcia: Metodicka Vyuka, vyber moznosti tlacidlami hore/dole
+TESTING_LABEL_MENU : Testovanie
+TESTING_VIEW : Sekcia: Testovanie. Vyber test tlacidlami hore/dole
+RESULTS_LABEL_MENU : Vysledky
+RESULTS_SELECTION_VIEW : Sekcia Vysledky: Vyber vysledok testu zo zoznamu tlacidlami hore/dole
+RESULTS_VIEW : Vysledky pre vybrany test
+RESULT_NO_RESULTS_TO_DISPLAY : Nenasli sa ziadne Vase vysledky
+LEARNING_TYPE_IN_CHARACTER_BRAIL : Zadaj brail sekvenciu pre '{}' a potvrd!
+LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED : Spravne, pokracujem na dalsie pismeno
+LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED : NESPRAVNE! Spravna sekvencia je: '{}' .Ostava {} pokusov.
+LEARNING_SEQUENCE_END : Koniec uciacej sekvencie!
+METHODICAL_LEARNING_TEST_ENTERED : Zacina sa postupovy test
+METHODICAL_LEARNING_ENDED : Koniec postupoveho testu!
+METHODICAL_LEARNING_TEST_PASSED : Gratulujem! Uspesne ste presli postupovym testom!
+METHODICAL_LEARNING_TEST_NOT_PASSED : Bohuzial, vase skore nie je dostatocne, postupovym testom ste nepresli!
+TESTING_TYPE_IN_CHARACTER_BRAIL : Zadaj brail sekvenciu pre pismeno '{}' a potvrd!
+TESTING_SEQUENCE_END : Koniec testu!
+TESTING_SEQUENCE_OVERALL_RESULT : Vysledok testu {}, uspesnost: {}%
+SEQUENCE_STATISTIC : Statistika sekvencie:
+LOG_OUT : Odhlasenie
+LOGGING_OUT : Pouzivatel bude odhlaseny
+
+Dalej budem potrebovat:
+1. Nazvy metodickych uciacich sekvenci (VSETKYCH 25 pre pismena). To je Audio ktore trnka prehra v momente, ked bude student sipkami vyberat ktoru chce otvorit
+2. Nazvy testov : to bude asi nahravat ucitel mp3ku pri vytvoreni testu.
+
+
+Dalej treba doriesit pre vysledky:
+Ked ziak absolvuje nejaky test viac ako 1x (vysledky vsetkych sa ukladaju do databazy). Potom vo vysledkoch (pri vyberani sipkami hore dole) mu ma prehrat moznost pozretia vysledku len POSLEDNEHO vykonania testu alebo vsetkych vykonani tohoto testu ?
+Ak vsetkych AKO ich mam rozlisovat pri prehrati audia ?
+
+Dakujem
+zatial to bude vsetko
+
+

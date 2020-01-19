@@ -36,9 +36,6 @@ import lombok.Setter;
 // @NamedQuery(name = SequenceStatistic.FIND_ALL_TEST_STATS_FOR_USER,
 // query = "SELECT stats from User user INNER JOIN user.statistics stats INNER JOIN TestingSequence as seq ON seq.id = stats.sequenceId WHERE TYPE(seq) =
 // TestingSequence AND user.id = :userId")
-@NamedQuery(name = SequenceStatistic.FIND_ALL_TEST_STATS_FOR_USER,
-            query = "SELECT stats from User user INNER JOIN user.statistics stats INNER JOIN stats.sequence as seq WHERE TYPE(seq) = TestingSequence AND user.id = :userId")
-
 public class SequenceStatistic {
     public static final String FIND_ALL_TEST_STATS_FOR_USER = "SequenceStatistic.findAllTestResultsForUser";
     @Id

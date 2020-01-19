@@ -9,31 +9,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.ui.interaction.UserInteraction;
+import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
 
 @Component
 public class CycledComponent {
 
     private IRenderer renderer;
-    private InputReader inputReader;
+    private UserInteractionHandler userInteractionHandler;
 
     @Autowired
     private ApplicationContext context;
 
     @Autowired
     public CycledComponent(final IRenderer renderer,
-                           final InputReader inputReader) {
+                           final UserInteractionHandler userInteractionHandler) {
         this.renderer = renderer;
-        this.inputReader = inputReader;
+        this.userInteractionHandler = userInteractionHandler;
     }
 
     public void cycleThroughComponents(final Consumer<Integer> onSubmit,
                                        final List<? extends Renderable> list) {
-        Keystroke key = inputReader.readFromInput();
+        UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
         int index = 0;
-        while (true) {
+        while (!userInteraction.isFlowBreakingCondition()) {
+            Keystroke key = userInteraction.getKeystroke();
             switch (key) {
             case UP:
                 index = (index + 1) % list.size();
@@ -45,22 +47,21 @@ public class CycledComponent {
                                   : index;
                 renderer.renderLabel(list.get(index));
                 break;
-            case MENU_1:
-                return;
             case SUBMIT:
                 onSubmit.accept(index);
                 return;
             }
-            key = inputReader.readFromInput();
+            userInteraction = userInteractionHandler.readUserInteraction();
         }
     }
 
     public <E extends Renderable> void cycleThroughMenu(final Consumer<Integer> onSubmit,
                                                         final Class<E>... renderables) {
         List<Class<E>> list = Stream.of(renderables).collect(Collectors.toList());
-        Keystroke key = inputReader.readFromInput();
+        UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
         int index = 0;
-        while (true) {
+        while (!userInteraction.isFlowBreakingCondition()) {
+            Keystroke key = userInteraction.getKeystroke();
             switch (key) {
             case UP:
                 index = (index + 1) % list.size();
@@ -72,13 +73,11 @@ public class CycledComponent {
                                   : index;
                 renderLabel(list, index);
                 break;
-            case MENU_1:
-                return;
             case SUBMIT:
                 onSubmit.accept(index);
                 return;
             }
-            key = inputReader.readFromInput();
+            userInteraction = userInteractionHandler.readUserInteraction();
         }
     }
 

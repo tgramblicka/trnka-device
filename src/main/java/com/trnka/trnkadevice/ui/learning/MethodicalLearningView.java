@@ -2,26 +2,21 @@ package com.trnka.trnkadevice.ui.learning;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
-import com.trnka.trnkadevice.TransactionalUtil;
-import com.trnka.trnkadevice.exception.SequenceIdNotSetException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import com.trnka.trnkadevice.domain.Step;
-import com.trnka.trnkadevice.inputreader.InputReader;
+import com.trnka.trnkadevice.exception.SequenceIdNotSetException;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.repository.MethodicalLearningSequenceRepository;
-import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.ui.IView;
-import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
+import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.testing.MethodicalTestingView;
@@ -34,31 +29,22 @@ import lombok.extern.slf4j.Slf4j;
 public class MethodicalLearningView implements IView {
 
     private IRenderer renderer;
-    private InputReader inputReader;
+    private UserInteractionHandler userInteractionHandler;
     private Navigator navigator;
-    private StatisticService statisticService;
     private MethodicalTestingView methodicalTestingView;
     private MethodicalLearningSequenceRepository repo;
-    private UserSession userSession;
 
     private Long sequenceId;
 
     @Autowired
-    private TransactionalUtil transactionalUtil;
-
-    @Autowired
     public MethodicalLearningView(final IRenderer renderer,
-                                  final InputReader inputReader,
+                                  final UserInteractionHandler userInteractionHandler,
                                   final Navigator navigator,
-                                  final UserSession userSession,
-                                  final StatisticService statisticService,
                                   final MethodicalLearningSequenceRepository repo,
                                   final MethodicalTestingView methodicalTestingView) {
         this.renderer = renderer;
-        this.inputReader = inputReader;
+        this.userInteractionHandler = userInteractionHandler;
         this.navigator = navigator;
-        this.userSession = userSession;
-        this.statisticService = statisticService;
         this.repo = repo;
         this.methodicalTestingView = methodicalTestingView;
     }
@@ -83,7 +69,7 @@ public class MethodicalLearningView implements IView {
             Integer negativeRetries = 0;
 
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
-                                                                inputReader);
+                                                                userInteractionHandler);
             evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
         }
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);

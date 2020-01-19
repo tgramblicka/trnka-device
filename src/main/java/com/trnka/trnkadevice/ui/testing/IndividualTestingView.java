@@ -9,17 +9,17 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.TestingSequence;
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
-import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
+import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
@@ -34,19 +34,19 @@ public class IndividualTestingView implements IView {
 
     private IRenderer renderer;
     private Navigator navigator;
-    private InputReader inputReader;
+    private UserInteractionHandler userInteractionHandler;
     private UserSession userSession;
     private StatisticService statisticService;
 
     @Autowired
     public IndividualTestingView(final IRenderer renderer,
                                  final Navigator navigator,
-                                 final InputReader inputReader,
+                                 final UserInteractionHandler userInteractionHandler,
                                  final UserSession userSession,
                                  final StatisticService statisticService) {
         this.renderer = renderer;
         this.navigator = navigator;
-        this.inputReader = inputReader;
+        this.userInteractionHandler = userInteractionHandler;
         this.userSession = userSession;
         this.statisticService = statisticService;
     }
@@ -71,7 +71,7 @@ public class IndividualTestingView implements IView {
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
-                                                                inputReader);
+                                                                userInteractionHandler);
             SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
             long took = System.currentTimeMillis() - start;
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
