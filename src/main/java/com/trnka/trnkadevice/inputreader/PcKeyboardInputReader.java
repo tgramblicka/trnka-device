@@ -1,7 +1,6 @@
 package com.trnka.trnkadevice.inputreader;
 
 import java.util.Optional;
-import java.util.function.BiConsumer;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -9,13 +8,10 @@ import java.util.logging.Logger;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,15 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 public class PcKeyboardInputReader implements InputReader {
 
     private volatile Keystroke pressedKey = null;
-    private SpecialKeyBehaviourHandler specialKeyBehaviourHandler;
-
-
-    public PcKeyboardInputReader() {
-        specialKeyBehaviourHandler = new SpecialKeyBehaviourHandler();
-    }
-
-    @Autowired
-    private Navigator navigator;
 
     /**
      * Registering and unregistering GlobalScreen hook on every keystroke has a readon.
@@ -52,10 +39,6 @@ public class PcKeyboardInputReader implements InputReader {
         pressedKey = null;
 
         // log.info("Keystroke: " + tmpPressedKey.getValue());
-        Optional<BiConsumer<Keystroke, Navigator>> specialBehaviour = specialKeyBehaviourHandler.getSpecialKeyBehaviour(tmpPressedKey);
-        if (specialBehaviour.isPresent()) {
-            specialBehaviour.get().accept(tmpPressedKey, navigator);
-        }
 
         unregisterListener(); // read comment on method
         return tmpPressedKey;
@@ -100,7 +83,7 @@ public class PcKeyboardInputReader implements InputReader {
 
     private void unregisterListener() {
         try {
-//            CustomGlobalScreen.removeNativeKeyListener(registeredKeyListener);
+            // CustomGlobalScreen.removeNativeKeyListener(registeredKeyListener);
             CustomGlobalScreen.removeAllListeners();
             CustomGlobalScreen.unregisterNativeHook();
         } catch (NativeHookException e) {
