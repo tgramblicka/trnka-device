@@ -11,9 +11,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.Authentication;
-import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.ui.interaction.UserInteraction;
+import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
@@ -28,17 +29,17 @@ public class LoginView implements IView {
 
     private IRenderer renderer;
     private Navigator navigator;
-    private InputReader inputReader;
+    private UserInteractionHandler userInteractionHandler;
     private Authentication authentication;
 
     @Autowired
     public LoginView(IRenderer renderer,
                      Navigator navigator,
-                     InputReader inputReader,
+                     UserInteractionHandler userInteractionHandler,
                      Authentication authentication) {
         this.renderer = renderer;
         this.navigator = navigator;
-        this.inputReader = inputReader;
+        this.userInteractionHandler = userInteractionHandler;
         this.authentication = authentication;
     }
 
@@ -46,7 +47,7 @@ public class LoginView implements IView {
     public void enter() {
         log.info("Entering login UI");
         renderer.renderMessage(Messages.TYPE_IN_YOUR_PASSWORD);
-        String code = readCode();
+        String code = readLoginCode();
         Boolean authenticated = authentication.authenticate(code);
         if (authenticated) {
             renderer.renderMessage(Messages.YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN);
@@ -57,14 +58,13 @@ public class LoginView implements IView {
         navigator.navigateAsync(LoginView.class);
     }
 
-    private String readCode() {
+    private String readLoginCode() {
         List<Keystroke> keyStrokes = new ArrayList<>();
-        Keystroke keystroke = inputReader.readFromInput();
+        UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
 
-        while (!keystroke.equals(Keystroke.SUBMIT)) {
-            log.info(keystroke.getValue());
-            keyStrokes.add(keystroke);
-            keystroke = inputReader.readFromInput();
+        while (!userInteraction.getKeystroke().equals(Keystroke.SUBMIT)) {
+            keyStrokes.add(userInteraction.getKeystroke());
+            userInteraction = userInteractionHandler.readUserInteraction();
         }
         return keyStrokes.stream().map(Keystroke::getValue).collect(Collectors.joining(""));
     }

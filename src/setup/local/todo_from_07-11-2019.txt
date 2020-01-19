@@ -27,3 +27,9 @@ MENU
 Hned po vyuke1 ho naviguje na postupovy test1, uklada len vysledky z postupoveho testu, nie z vyukyu
 Vysledky z ostreho testovanie uklada nezavisle
 ked vojde do vyuky bude mat vzdy prednastavenu poslednu najvyussiu sekvenciu
+
+--------------------------------
+
+- Po skonceni metodickeho testu otazka > Chces spustit postupovy test (ANO/NIE potvrd).
+- Vlado pripomienky
+

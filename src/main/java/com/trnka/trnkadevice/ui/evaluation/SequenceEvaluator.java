@@ -1,26 +1,28 @@
 package com.trnka.trnkadevice.ui.evaluation;
 
-import com.trnka.trnkadevice.domain.Step;
-import com.trnka.trnkadevice.inputreader.InputReader;
-import com.trnka.trnkadevice.inputreader.Keystroke;
-import com.trnka.trnkadevice.renderer.IRenderer;
-import com.trnka.trnkadevice.ui.messages.Messages;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.trnka.trnkadevice.domain.Step;
+import com.trnka.trnkadevice.inputreader.Keystroke;
+import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.ui.interaction.UserInteraction;
+import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
+import com.trnka.trnkadevice.ui.messages.Messages;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SequenceEvaluator {
 
     private final IRenderer renderer;
-    private final InputReader inputReader;
+    private final UserInteractionHandler userInteractionHandler;
 
     public SequenceEvaluator(final IRenderer renderer,
-                             final InputReader inputReader) {
+                             final UserInteractionHandler userInteractionHandler) {
         this.renderer = renderer;
-        this.inputReader = inputReader;
+        this.userInteractionHandler = userInteractionHandler;
     }
 
     public Evaluate evaluateUserInput(Step step,
@@ -47,12 +49,11 @@ public class SequenceEvaluator {
 
     private List<Keystroke> readInputKeystrokes() {
         List<Keystroke> keyStrokes = new ArrayList<>();
-        Keystroke keystroke = inputReader.readFromInput();
-
-        while (!keystroke.equals(Keystroke.SUBMIT) && keystroke.equals(Keystroke.MENU_1)) {
-            log.info(keystroke.getValue());
-            keyStrokes.add(keystroke);
-            keystroke = inputReader.readFromInput();
+        UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
+        while (!userInteraction.getKeystroke().equals(Keystroke.SUBMIT) && !userInteraction.isFlowBreakingCondition()) {
+            log.info(userInteraction.getKeystroke().getValue());
+            keyStrokes.add(userInteraction.getKeystroke());
+            userInteraction = userInteractionHandler.readUserInteraction();
         }
         return keyStrokes;
     }

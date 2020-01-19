@@ -13,7 +13,6 @@ import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
 import com.trnka.trnkadevice.exception.SequenceIdNotSetException;
-import com.trnka.trnkadevice.inputreader.InputReader;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.repository.LearningSequenceRepository;
 import com.trnka.trnkadevice.service.StatisticService;
@@ -21,6 +20,7 @@ import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
+import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
@@ -34,7 +34,7 @@ public class IndividualLearningView implements IView {
 
     private final LearningSequenceRepository repository;
     private IRenderer renderer;
-    private InputReader inputReader;
+    private UserInteractionHandler userInteractionHandler;
     private Navigator navigator;
     private StatisticService statisticService;
 
@@ -43,13 +43,13 @@ public class IndividualLearningView implements IView {
 
     @Autowired
     public IndividualLearningView(final IRenderer renderer,
-                                  final InputReader inputReader,
+                                  final UserInteractionHandler userInteractionHandler,
                                   final Navigator navigator,
                                   final UserSession userSession,
                                   final StatisticService statisticService,
                                   final LearningSequenceRepository repository) {
         this.renderer = renderer;
-        this.inputReader = inputReader;
+        this.userInteractionHandler = userInteractionHandler;
         this.navigator = navigator;
         this.userSession = userSession;
         this.statisticService = statisticService;
@@ -75,8 +75,7 @@ public class IndividualLearningView implements IView {
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
 
-            SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
-                                                                inputReader);
+            SequenceEvaluator evaluator = new SequenceEvaluator(renderer, userInteractionHandler);
             long took = System.currentTimeMillis() - start;
             SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
             seqStats.addStepStatistic(seqStats, step, took, evaluated);

@@ -62,21 +62,23 @@ public class MethodicalLearningMenuView implements IView {
     public void enter() {
         renderer.renderMessage(Messages.LEARNING_VIEW_MENU);
 
-        List<SequenceComponent> selection = new ArrayList<>();
-        Set<MethodicalLearningSequence> sequences = userSession.getUser().get().getPassedSequences();
-        List<MethodicalLearningSequence> sequenceList = sequences.stream().collect(Collectors.toList());
 
-        if (sequences.isEmpty()) {
-            sequences.add(getFirstSequence());
+        Set<MethodicalLearningSequence> passedSequences = userSession.getUser().get().getPassedSequences();
+
+        Integer highestPassedSequenceOrder = 0;
+        if (!passedSequences.isEmpty()) {
+            highestPassedSequenceOrder = passedSequences.stream().max(Comparator.comparingInt(MethodicalLearningSequence::getOrder))
+                    .map(MethodicalLearningSequence::getOrder).get();
         }
-        Integer highestPassedSequenceOrder = sequences.stream().max(Comparator.comparingInt(MethodicalLearningSequence::getOrder))
-                .map(MethodicalLearningSequence::getOrder).get();
-        Optional<MethodicalLearningSequence> notPassedSequence = getNthSequence(highestPassedSequenceOrder+1);
+        Optional<MethodicalLearningSequence> notPassedSequence = getNthSequence(highestPassedSequenceOrder + 1);
         if (notPassedSequence.isPresent()) {
-            sequences.add(notPassedSequence.get());
+            passedSequences.add(notPassedSequence.get());
         }
+        List<MethodicalLearningSequence> sequenceList = passedSequences.stream().collect(Collectors.toList());
         Collections.sort(sequenceList, Comparator.comparingInt(MethodicalLearningSequence::getOrder));
-        selection.addAll(sequences.stream().map(SequenceComponent::new).collect(Collectors.toList()));
+
+        List<SequenceComponent> selection = new ArrayList<>();
+        selection.addAll(passedSequences.stream().map(SequenceComponent::new).collect(Collectors.toList()));
         cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index)), selection);
     }
 
