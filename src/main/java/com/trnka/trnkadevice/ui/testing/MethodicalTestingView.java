@@ -47,8 +47,6 @@ public class MethodicalTestingView implements IView {
     private MethodicalLearningSequenceRepository methodicalLearningSequenceRepository;
 
     private Long sequenceId;
-    @Autowired
-    private TransactionalUtil transactionalUtil;
 
     @Autowired
     public MethodicalTestingView(final IRenderer renderer,
