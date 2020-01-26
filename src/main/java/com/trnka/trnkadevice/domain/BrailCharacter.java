@@ -51,6 +51,11 @@ public class BrailCharacter implements IMessage {
         return this.brailRepresentation.stream().map(String::valueOf).map(Keystroke::getByValue).collect(Collectors.toList());
     }
 
+    @Transient
+    public String getBrailRepresentationAsString(){
+        return this.brailRepresentation.stream().map(String :: valueOf).collect(Collectors.joining(", "));
+    }
+
     @Override
     public String getText() {
         return letter;

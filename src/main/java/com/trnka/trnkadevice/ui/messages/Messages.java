@@ -22,7 +22,7 @@ public enum Messages implements IMessage {
     RESULTS_VIEW("Vysledky pre vybrany test", "audio"),
     RESULT_NO_RESULTS_TO_DISPLAY("Nenasli sa ziadne Vase vysledky", "audio"),
 
-    LEARNING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre '{}' a potvrd!", "audio"),
+    LEARNING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre '{}' a potvrd! Pismeno pozostava z bodov: {} ", "audio"),
     LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("Spravne, pokracujem na dalsie pismeno", "audio"),
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Spravna sekvencia je: '{}' .Ostava {} pokusov.", "audio"),
     LEARNING_SEQUENCE_END("Koniec uciacej sekvencie!", "audio"),

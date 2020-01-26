@@ -71,7 +71,10 @@ public class IndividualLearningView implements IView {
         this.renderer.renderMessage(seq.getAudioMessage());
         SequenceStatistic seqStats = SequenceStatistic.create(seq, userSession.getUser().get());
         for (Step step : seq.getSteps()) {
-            renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
+
+            String brailCharacter = step.getBrailCharacter().getLetter();
+            String brailRepresentation = step.getBrailCharacter().getBrailRepresentationAsString();
+            renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, brailCharacter, brailRepresentation);
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
 

@@ -65,7 +65,7 @@ public class MethodicalLearningView implements IView {
         this.renderer.renderMessage(seq.getAudioMessage());
 
         for (Step step : seq.getSteps()) {
-            renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
+            renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter(), step.getBrailCharacter().getBrailRepresentationAsString());
             Integer negativeRetries = 0;
 
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
