@@ -90,7 +90,7 @@ public class IndividualTestingView implements IView {
 
     @Override
     public Messages getLabel() {
-        return Messages.TESTING_LABEL_MENU;
+        return Messages.TESTING_LETTERS_LABEL_MENU;
     }
 
     @Override

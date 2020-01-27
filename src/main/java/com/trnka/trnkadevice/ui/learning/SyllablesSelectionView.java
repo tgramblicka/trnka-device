@@ -13,18 +13,18 @@ import com.trnka.trnkadevice.ui.navigation.NavigationUtils;
 
 @Component
 
-public class SyllablesView implements IView {
+public class SyllablesSelectionView implements IView {
     private IRenderer renderer;
     private NavigationUtils navigationUtils;
 
     @Autowired
-    public SyllablesView(final IRenderer renderer, final NavigationUtils navigationUtils) {
+    public SyllablesSelectionView(final IRenderer renderer, final NavigationUtils navigationUtils) {
         this.renderer = renderer;
         this.navigationUtils = navigationUtils;
     }
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.LEARNING_SYLLABLES_MENU);
+        renderer.renderMessage(Messages.LEARNING_SYLLABLES_SELECTION_VIEW);
         renderer.renderMessage(Messages.NO_SEQUENCES_FOUND);
         NavigationUtils navUtils = new NavigationUtils();
         navUtils.waitForMenuClick();
@@ -32,7 +32,7 @@ public class SyllablesView implements IView {
 
     @Override
     public Messages getLabel() {
-        return Messages.LEARNING_SYLLABLES_MENU;
+        return Messages.LEARNING_SYLLABLES_SELECTION_MENU;
     }
 
     @Override

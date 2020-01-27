@@ -19,34 +19,34 @@ import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
-import com.trnka.trnkadevice.ui.testing.MethodicalTestingView;
+import com.trnka.trnkadevice.ui.testing.LettersTestingView;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class MethodicalLearningView implements IView {
+public class LettersLearningView implements IView {
 
     private IRenderer renderer;
     private UserInteractionHandler userInteractionHandler;
     private Navigator navigator;
-    private MethodicalTestingView methodicalTestingView;
+    private LettersTestingView lettersTestingView;
     private MethodicalLearningSequenceRepository repo;
 
     private Long sequenceId;
 
     @Autowired
-    public MethodicalLearningView(final IRenderer renderer,
-                                  final UserInteractionHandler userInteractionHandler,
-                                  final Navigator navigator,
-                                  final MethodicalLearningSequenceRepository repo,
-                                  final MethodicalTestingView methodicalTestingView) {
+    public LettersLearningView(final IRenderer renderer,
+                               final UserInteractionHandler userInteractionHandler,
+                               final Navigator navigator,
+                               final MethodicalLearningSequenceRepository repo,
+                               final LettersTestingView lettersTestingView) {
         this.renderer = renderer;
         this.userInteractionHandler = userInteractionHandler;
         this.navigator = navigator;
         this.repo = repo;
-        this.methodicalTestingView = methodicalTestingView;
+        this.lettersTestingView = lettersTestingView;
     }
 
     public void refresh(final Long sequenceId) {
@@ -73,13 +73,13 @@ public class MethodicalLearningView implements IView {
             evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
         }
         renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
-        methodicalTestingView.refresh(seq.getId());
-        navigator.navigateAsync(methodicalTestingView.getClass());
+        lettersTestingView.refresh(seq.getId());
+        navigator.navigateAsync(lettersTestingView.getClass());
     }
 
     @Override
     public Messages getLabel() {
-        return Messages.METHODICAL_LEARNING_VIEW;
+        return null;
     }
 
     @Override

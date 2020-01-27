@@ -3,37 +3,36 @@ package com.trnka.trnkadevice.ui.learning;
 import java.util.Collections;
 import java.util.List;
 
+import com.trnka.trnkadevice.ui.navigation.NavigationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.messages.Messages;
-import com.trnka.trnkadevice.ui.navigation.NavigationUtils;
 
 @Component
 
-public class SentencesView implements IView {
+public class WordsSelectionView implements IView {
     private IRenderer renderer;
     private NavigationUtils navigationUtils;
 
     @Autowired
-    public SentencesView(final IRenderer renderer, final NavigationUtils navigationUtils) {
+    public WordsSelectionView(final IRenderer renderer, final NavigationUtils navigationUtils) {
         this.renderer = renderer;
         this.navigationUtils = navigationUtils;
     }
 
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.LEARNING_SENTENCES_VIEW);
+        renderer.renderMessage(Messages.LEARNING_WORDS_SELECTION_VIEW);
         renderer.renderMessage(Messages.NO_SEQUENCES_FOUND);
-        NavigationUtils navUtils = new NavigationUtils();
-        navUtils.waitForMenuClick();
+        navigationUtils.waitForMenuClick();
     }
 
     @Override
     public Messages getLabel() {
-        return Messages.LEARNING_SENTENCES_MENU;
+        return Messages.LEARNING_WORDS_SELECTION_MENU;
     }
 
     @Override

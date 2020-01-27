@@ -25,33 +25,33 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class LettersView implements IView {
+public class LettersSelectionView implements IView {
     private Navigator navigator;
     private IRenderer renderer;
     private MethodicalLearningSequenceRepository repo;
     private UserSession userSession;
     private CycledComponent cycledComponent;
-    private MethodicalLearningView methodicalLearningView;
+    private LettersLearningView lettersLearningView;
 
     @Autowired
-    public LettersView(final Navigator navigator,
-                       final IRenderer renderer,
-                       final MethodicalLearningSequenceRepository repo,
-                       final UserSession userSession,
-                       final CycledComponent cycledComponent,
-                       final MethodicalLearningView methodicalLearningView) {
+    public LettersSelectionView(final Navigator navigator,
+                                final IRenderer renderer,
+                                final MethodicalLearningSequenceRepository repo,
+                                final UserSession userSession,
+                                final CycledComponent cycledComponent,
+                                final LettersLearningView lettersLearningView) {
         this.navigator = navigator;
         this.renderer = renderer;
         this.repo = repo;
         this.userSession = userSession;
         this.cycledComponent = cycledComponent;
-        this.methodicalLearningView = methodicalLearningView;
+        this.lettersLearningView = lettersLearningView;
     }
 
     @Override
 
     public void enter() {
-        renderer.renderMessage(Messages.LEARNING_LETTERS_VIEW);
+        renderer.renderMessage(Messages.LEARNING_LETTERS_SELECTION_VIEW);
 
         Set<MethodicalLearningSequence> passedSequences = userSession.getUser().get().getPassedSequences();
 
@@ -77,14 +77,14 @@ public class LettersView implements IView {
     }
 
     private void startLearningWithSequence(final SequenceComponent selectedComponent) {
-        methodicalLearningView.refresh(selectedComponent.getSequence().getId());
-        navigator.navigateAsync(methodicalLearningView.getClass());
+        lettersLearningView.refresh(selectedComponent.getSequence().getId());
+        navigator.navigateAsync(lettersLearningView.getClass());
     }
 
 
     @Override
     public Messages getLabel() {
-        return Messages.LEARNING_LETTERS_MENU;
+        return Messages.LEARNING_LETTERS_SELECTION_MENU;
     }
 
     @Override

@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trnka.trnkadevice.TransactionalUtil;
 import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.User;
@@ -36,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class MethodicalTestingView implements IView {
+public class LettersTestingView implements IView {
 
     private IRenderer renderer;
     private Navigator navigator;
@@ -49,13 +48,13 @@ public class MethodicalTestingView implements IView {
     private Long sequenceId;
 
     @Autowired
-    public MethodicalTestingView(final IRenderer renderer,
-                                 final Navigator navigator,
-                                 final UserInteractionHandler userInteractionHandler,
-                                 final UserSession userSession,
-                                 final UserRepository userRepo,
-                                 final StatisticService statisticService,
-                                 final MethodicalLearningSequenceRepository methodicalLearningSequenceRepository) {
+    public LettersTestingView(final IRenderer renderer,
+                              final Navigator navigator,
+                              final UserInteractionHandler userInteractionHandler,
+                              final UserSession userSession,
+                              final UserRepository userRepo,
+                              final StatisticService statisticService,
+                              final MethodicalLearningSequenceRepository methodicalLearningSequenceRepository) {
         this.renderer = renderer;
         this.navigator = navigator;
         this.userInteractionHandler = userInteractionHandler;
@@ -112,7 +111,7 @@ public class MethodicalTestingView implements IView {
 
     @Override
     public Messages getLabel() {
-        return Messages.TESTING_LABEL_MENU;
+        return Messages.TESTING_LETTERS_LABEL_MENU;
     }
 
     @Override
