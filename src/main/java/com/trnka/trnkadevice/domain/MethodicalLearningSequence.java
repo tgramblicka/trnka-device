@@ -1,6 +1,5 @@
 package com.trnka.trnkadevice.domain;
 
-import feign.RequestLine;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
