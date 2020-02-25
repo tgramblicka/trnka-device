@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `code` varchar(4) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_username` (`username`)
+  UNIQUE KEY `UK_code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 

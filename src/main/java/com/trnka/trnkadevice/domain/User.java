@@ -36,10 +36,10 @@ public class User {
     @Id
     private Long id;
 
-    @Column(name = "username", unique = true)
+    @Column(name = "username")
     private String username;
 
-    @Column(name = "code", length = 4)
+    @Column(name = "code", length = 4, unique = true)
     private String code;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
