@@ -20,7 +20,7 @@ public class SyncOnStartup implements InitializingBean {
         try {
             syncService.syncronize();
         } catch (FeignException e) {
-            log.warn("VST backend is not available, or threw an error", e);
+            log.warn("VST backend is not available, or threw an error");
         } catch (Exception e) {
             log.error("An exception occured during sync with VST.", e);
         }
