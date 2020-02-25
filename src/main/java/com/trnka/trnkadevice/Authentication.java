@@ -7,6 +7,8 @@ import com.trnka.trnkadevice.domain.User;
 import com.trnka.trnkadevice.repository.UserRepository;
 import com.trnka.trnkadevice.ui.UserSession;
 
+import java.util.Optional;
+
 @Service
 public class Authentication {
 
@@ -21,12 +23,12 @@ public class Authentication {
     }
 
     public Boolean authenticate(String code) {
-        User user = userRepository.findByCode(code);
-        if (user == null) {
+        Optional<User> user = userRepository.findByCode(code);
+        if (!user.isPresent()) {
             return false;
         }
-        userSession.setUserId(user.getId());
-        userSession.setUsername(user.getUsername());
+        userSession.setUserId(user.get().getId());
+        userSession.setUsername(user.get().getUsername());
         return true;
     }
 
