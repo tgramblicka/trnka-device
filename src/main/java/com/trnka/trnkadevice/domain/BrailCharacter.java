@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -20,8 +18,9 @@ import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.ui.messages.IMessage;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "brail_character")
