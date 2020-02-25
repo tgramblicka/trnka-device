@@ -23,15 +23,17 @@ public class SyncService {
         this.userRepository = userRepository;
     }
 
+
     public void syncronize() {
         SyncDto syncDto = studentSyncEndpoint.syncAll();
 
         syncPureUsers(syncDto);
+        // todo sync tests
         System.out.println(syncDto);
     }
 
     private void syncPureUsers(final SyncDto syncDto) {
-        // deleteStudents(syncDto);
+        // deleteStudents(syncDto); // todo clarify deletion
 
         syncDto.getStudents().forEach(student -> {
             Optional<User> foundUser = userRepository.findByCode(student.getCode());
