@@ -1,8 +1,7 @@
 package com.trnka.trnkadevice.renderer;
 
-import javax.inject.Singleton;
-
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import com.trnka.trnkadevice.ui.Renderable;
 import com.trnka.trnkadevice.ui.messages.IMessage;
@@ -10,8 +9,8 @@ import com.trnka.trnkadevice.ui.messages.IMessage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Singleton
-@Component
+@Service
+@Profile("dev")
 public class ConsolRenderer implements IRenderer {
 
     @Override
