@@ -102,7 +102,7 @@ public enum Messages implements IMessage {
 
     @Override
     public String getAudioFile() {
-        return audioFile;
+        return String.format("%s.wav", name());
     }
 
     private static String exportMessages() {
