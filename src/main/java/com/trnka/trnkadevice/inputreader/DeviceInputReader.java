@@ -6,14 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Component
-@Profile("production")
 public class DeviceInputReader implements InputReader {
 
     @Override

@@ -1,10 +1,10 @@
 package com.trnka.trnkadevice.ui;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.trnka.trnkadevice.domain.Sequence;
 import com.trnka.trnkadevice.ui.messages.Messages;
-
-import java.util.Collections;
-import java.util.List;
 
 public class SequenceComponent<T extends Sequence> implements Renderable {
     private T sequence;
@@ -14,7 +14,7 @@ public class SequenceComponent<T extends Sequence> implements Renderable {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return this.sequence.getAudioMessage();
     }
 
@@ -27,7 +27,7 @@ public class SequenceComponent<T extends Sequence> implements Renderable {
     }
 
     @Override
-    public List<String> getMessageParams() {
-        return Collections.emptyList();
+    public List<Messages> getParams() {
+        return getSequence().getSteps().stream().map(s -> s.getBrailCharacter().getLetterMessage()).collect(Collectors.toList());
     }
 }

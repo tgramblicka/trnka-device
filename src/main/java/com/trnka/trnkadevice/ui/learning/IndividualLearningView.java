@@ -2,7 +2,10 @@ package com.trnka.trnkadevice.ui.learning;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.domain.BrailCharacter;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -68,23 +71,24 @@ public class IndividualLearningView implements IView {
             throw new SequenceIdNotSetException("Sequence ID is null on entering the View!");
         }
         LearningSequence seq = repository.findById(sequenceId).get();
-        this.renderer.renderMessage(seq.getAudioMessage());
         SequenceStatistic seqStats = SequenceStatistic.create(seq, userSession.getUser().get());
         for (Step step : seq.getSteps()) {
 
-            String brailCharacter = step.getBrailCharacter().getLetter();
-            String brailRepresentation = step.getBrailCharacter().getBrailRepresentationAsString();
-            renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, brailCharacter, brailRepresentation);
+            AudioMessage audioMessage1 = AudioMessage.of(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage());
+            renderer.renderMessage(audioMessage1);
+            renderer.renderMessages(step.getBrailCharacter().getBrailRepresentationAsMessages());
+
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
 
-            SequenceEvaluator evaluator = new SequenceEvaluator(renderer, userInteractionHandler);
+            SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
+                                                                userInteractionHandler);
             long took = System.currentTimeMillis() - start;
             SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
 
-        renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
+        renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SEQUENCE_END, seq.getAllStepsAsMessagesList()));
         statisticService.saveSequenceStats(seqStats);
         renderStats(seqStats);
         navigator.navigateAsync(MenuStudentView.class);
@@ -95,12 +99,12 @@ public class IndividualLearningView implements IView {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.LEARNING_VIEW_MENU;
     }
 
     @Override
-    public List<String> getMessageParams() {
+    public List<Messages> getParams() {
         return Collections.emptyList();
     }
 

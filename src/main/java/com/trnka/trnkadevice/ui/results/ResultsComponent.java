@@ -20,12 +20,12 @@ public class ResultsComponent implements Renderable {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.TEST_RESULT_COMPONENT_LABEL;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return null;
     }
 

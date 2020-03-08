@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import com.trnka.trnkadevice.ui.SequenceComponent;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
@@ -51,7 +52,7 @@ public class LettersSelectionView implements IView {
     @Override
 
     public void enter() {
-        renderer.renderMessage(Messages.LEARNING_LETTERS_SELECTION_VIEW);
+        renderer.renderMessage(AudioMessage.of(Messages.LEARNING_LETTERS_SELECTION_VIEW));
 
         Set<MethodicalLearningSequence> passedSequences = userSession.getUser().get().getPassedSequences();
 
@@ -83,12 +84,12 @@ public class LettersSelectionView implements IView {
 
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.LEARNING_LETTERS_SELECTION_MENU;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return Collections.emptyList();
     }
 }

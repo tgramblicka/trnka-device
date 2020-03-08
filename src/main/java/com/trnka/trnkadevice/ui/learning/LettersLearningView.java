@@ -3,6 +3,7 @@ package com.trnka.trnkadevice.ui.learning;
 import java.util.Collections;
 import java.util.List;
 
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -62,28 +63,32 @@ public class LettersLearningView implements IView {
         }
 
         MethodicalLearningSequence seq = repo.findById(sequenceId).get();
-        this.renderer.renderMessage(seq.getAudioMessage());
+        this.renderer.renderMessage(AudioMessage.of(seq.getAudioMessage()));
 
         for (Step step : seq.getSteps()) {
-            renderer.renderMessage(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter(), step.getBrailCharacter().getBrailRepresentationAsString());
+
+            AudioMessage audioMessage1 = AudioMessage.of(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage());
+            renderer.renderMessage(audioMessage1);
+
+            renderer.renderMessages(step.getBrailCharacter().getBrailRepresentationAsMessages());
             Integer negativeRetries = 0;
 
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
                                                                 userInteractionHandler);
             evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
         }
-        renderer.renderMessage(Messages.LEARNING_SEQUENCE_END);
+        renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SEQUENCE_END, seq.getAllStepsAsMessagesList()));
         lettersTestingView.refresh(seq.getId());
         navigator.navigateAsync(lettersTestingView.getClass());
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return null;
     }
 
     @Override
-    public List<String> getMessageParams() {
+    public List<Messages> getParams() {
         return Collections.emptyList();
     }
 

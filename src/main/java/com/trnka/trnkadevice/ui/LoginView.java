@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -46,15 +47,15 @@ public class LoginView implements IView {
     @Override
     public void enter() {
         log.info("Entering login UI");
-        renderer.renderMessage(Messages.TYPE_IN_YOUR_PASSWORD);
+        renderer.renderMessage(AudioMessage.of(Messages.TYPE_IN_YOUR_PASSWORD));
         String code = readLoginCode();
         Boolean authenticated = authentication.authenticate(code);
         if (authenticated) {
-            renderer.renderMessage(Messages.YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN);
+            renderer.renderMessage(AudioMessage.of(Messages.YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN));
             navigator.navigateAsync(MenuStudentView.class);
             return;
         }
-        renderer.renderMessage(Messages.WRONG_PASSWORD);
+        renderer.renderMessage(AudioMessage.of(Messages.WRONG_PASSWORD));
         navigator.navigateAsync(LoginView.class);
     }
 
@@ -70,12 +71,12 @@ public class LoginView implements IView {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.LOGIN_VIEW_LABEL;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return Collections.emptyList();
     }
 

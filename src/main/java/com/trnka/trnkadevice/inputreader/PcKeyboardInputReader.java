@@ -14,8 +14,6 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 //@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-@Component
-@Profile("dev")
 @Slf4j
 public class PcKeyboardInputReader implements InputReader {
 

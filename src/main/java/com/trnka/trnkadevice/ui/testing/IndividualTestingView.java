@@ -3,6 +3,7 @@ package com.trnka.trnkadevice.ui.testing;
 import java.util.Collections;
 import java.util.List;
 
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -62,12 +63,13 @@ public class IndividualTestingView implements IView {
             log.error("Testing sequence component is null, this CANNOT HAPPEN");
             return;
         }
-        this.renderer.renderLabel(testingSequenceComponent);
+        this.renderer.renderMessage(testingSequenceComponent);
 
         TestingSequence seq = this.testingSequenceComponent.getSequence();
         SequenceStatistic seqStats = SequenceStatistic.create(seq, userSession.getUser().get());
         for (Step step : seq.getSteps()) {
-            renderer.renderMessage(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
+            AudioMessage audioMessage = AudioMessage.of(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getBrailRepresentationAsMessages());
+            renderer.renderMessage(audioMessage);
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
@@ -79,7 +81,7 @@ public class IndividualTestingView implements IView {
         statisticService.saveSequenceStats(seqStats);
 
         renderStats(seqStats);
-        renderer.renderMessage(Messages.TESTING_SEQUENCE_END);
+        renderer.renderMessage(AudioMessage.of(Messages.TESTING_SEQUENCE_END));
 
         navigator.navigateAsync(MenuStudentView.class);
     }
@@ -89,12 +91,12 @@ public class IndividualTestingView implements IView {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.TESTING_LETTERS_LABEL_MENU;
     }
 
     @Override
-    public List<String> getMessageParams() {
+    public List<Messages> getParams() {
         return Collections.emptyList();
     }
 

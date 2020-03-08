@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.trnka.trnkadevice.domain.Sequence;
 import com.trnka.trnkadevice.ui.SequenceComponent;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -49,7 +50,7 @@ public class IndividualLearningMenuView implements IView {
 
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.LEARNING_VIEW_MENU);
+        renderer.renderMessage(AudioMessage.of(Messages.LEARNING_VIEW_MENU));
         Set<LearningSequence> sequences = learningSequenceDAO.getLearningSequences(userSession.getUsername());
 
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
@@ -62,11 +63,12 @@ public class IndividualLearningMenuView implements IView {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.LEARNING_LABEL_MENU;
     }
 
-    @Override public List<String> getMessageParams() {
+    @Override
+    public List<Messages> getParams() {
         return Collections.emptyList();
     }
 }

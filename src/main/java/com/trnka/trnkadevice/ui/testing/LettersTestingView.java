@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -76,14 +77,15 @@ public class LettersTestingView implements IView {
             throw new SequenceIdNotSetException("Sequence ID is null on entering the View!");
         }
 
-        this.renderer.renderMessage(Messages.METHODICAL_LEARNING_TEST_ENTERED);
+        this.renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_ENTERED));
         MethodicalLearningSequence sequence = methodicalLearningSequenceRepository.findById(sequenceId)
                 .orElseThrow(() -> new NoResultException("Sequence was not found!"));
 
         User user = userSession.getUser().get();
         SequenceStatistic seqStats = SequenceStatistic.create(sequence, user);
         for (Step step : sequence.getSteps()) {
-            renderer.renderMessage(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetter());
+
+            renderer.renderMessage(AudioMessage.of(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage()));
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
@@ -94,14 +96,14 @@ public class LettersTestingView implements IView {
         }
         statisticService.saveMethodicalLearingTestStats(seqStats);
         if (seqStats.getScore().multiply(BigDecimal.valueOf(100.0D)).compareTo(sequence.getPassingRate()) > 0) {
-            renderer.renderMessage(Messages.METHODICAL_LEARNING_TEST_PASSED);
+            renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_PASSED));
             user.addPassedMethodic(sequence);
             userRepo.save(user);
         } else {
-            renderer.renderMessage(Messages.METHODICAL_LEARNING_TEST_NOT_PASSED);
+            renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_NOT_PASSED));
         }
         renderStats(seqStats);
-        renderer.renderMessage(Messages.METHODICAL_LEARNING_ENDED);
+        renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_ENDED));
         navigator.navigateAsync(MenuStudentView.class);
     }
 
@@ -110,12 +112,12 @@ public class LettersTestingView implements IView {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.TESTING_LETTERS_LABEL_MENU;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return Collections.emptyList();
     }
 

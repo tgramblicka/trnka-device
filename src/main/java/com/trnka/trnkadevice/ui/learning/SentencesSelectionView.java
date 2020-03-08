@@ -3,6 +3,7 @@ package com.trnka.trnkadevice.ui.learning;
 import java.util.Collections;
 import java.util.List;
 
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,19 +26,19 @@ public class SentencesSelectionView implements IView {
 
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.LEARNING_SENTENCES_VIEW);
-        renderer.renderMessage(Messages.NO_SEQUENCES_FOUND);
+        renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SENTENCES_VIEW));
+        renderer.renderMessage(AudioMessage.of(Messages.NO_SEQUENCES_FOUND));
         NavigationUtils navUtils = new NavigationUtils();
         navUtils.waitForMenuClick();
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.LEARNING_SENTENCES_MENU;
     }
 
     @Override
-    public List<String> getMessageParams() {
+    public List<Messages> getParams() {
         return Collections.EMPTY_LIST;
     }
 }

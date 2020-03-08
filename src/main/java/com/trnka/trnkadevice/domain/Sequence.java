@@ -3,6 +3,7 @@ package com.trnka.trnkadevice.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,6 +50,11 @@ public abstract class Sequence {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id", name = "sequence_id")
     private List<Step> steps = new ArrayList<>();
+
+
+    public List<Messages> getAllStepsAsMessagesList(){
+        return getSteps().stream().map(Step::getBrailCharacter).map(BrailCharacter::getLetterMessage).collect(Collectors.toList());
+    }
 
 
     @Override

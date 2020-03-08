@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.sun.org.apache.regexp.internal.RE;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.interaction.UserInteraction;
 import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,14 +37,16 @@ public class SequenceEvaluator {
         List<Keystroke> keystrokes = readInputKeystrokes();
         boolean isCorrect = step.getBrailCharacter().getBrailRepresentationKeystrokes().equals(keystrokes);
         if (isCorrect) {
-            renderer.renderMessage(Messages.LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED);
+            renderer.renderMessage(AudioMessage.of(Messages.LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED));
             return new Evaluate(true,
                                 negativeTries);
         } else {
             negativeTries++;
-            renderer.renderMessage(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED,
-                    step.getBrailCharacter().getBrailRepresentation().stream().map(String::valueOf).collect(Collectors.joining(",")),
-                    String.valueOf(maxAllowedTries - negativeTries));
+
+            renderer.renderMessage(AudioMessage.of(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED, step.getBrailCharacter().getBrailRepresentationAsMessages()));
+
+            renderer.renderMessage(AudioMessage.of(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED_LEFT_RETRIES, Messages.fromNumber(maxAllowedTries - negativeTries)));
+
             return evaluateUserInput(step, maxAllowedTries, negativeTries);
         }
     }

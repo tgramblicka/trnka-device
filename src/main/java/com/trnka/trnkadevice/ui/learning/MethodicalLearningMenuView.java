@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -48,18 +49,18 @@ public class MethodicalLearningMenuView implements IView {
 
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.METHODICAL_LEARNING_MENU_VIEW);
+        renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_MENU_VIEW));
         Consumer<Integer> consumer = index -> navigator.navigateAsync(MENU.get(index));
         cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.METHODICAL_LEARNING_MENU;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return Collections.emptyList();
     }
 

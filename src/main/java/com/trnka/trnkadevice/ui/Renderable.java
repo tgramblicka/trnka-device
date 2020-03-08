@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Renderable {
 
-    Messages getLabel();
+    Messages getMessage();
 
-    List<String> getMessageParams();
+    List<Messages> getParams();
 }

@@ -41,12 +41,12 @@ public class ResultView implements IView {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.RESULTS_VIEW;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return Collections.emptyList();
     }
 }

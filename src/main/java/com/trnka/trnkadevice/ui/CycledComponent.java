@@ -39,13 +39,13 @@ public class CycledComponent {
             switch (key) {
             case UP:
                 index = (index + 1) % list.size();
-                renderer.renderLabel(list.get(index));
+                renderer.renderMessage(list.get(index));
                 break;
             case DOWN:
                 index = (index - 1) % list.size();
                 index = index < 0 ? list.size() - 1
                                   : index;
-                renderer.renderLabel(list.get(index));
+                renderer.renderMessage(list.get(index));
                 break;
             case SUBMIT:
                 onSubmit.accept(index);
@@ -84,6 +84,6 @@ public class CycledComponent {
     private <E extends Renderable> void renderLabel(final List<Class<E>> component,
                                                     final int index) {
         Class<? extends Renderable> renderableClass = component.get(index);
-        renderer.renderLabel(context.getBean(renderableClass));
+        renderer.renderMessage(context.getBean(renderableClass));
     }
 }

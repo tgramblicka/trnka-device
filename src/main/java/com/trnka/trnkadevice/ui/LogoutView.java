@@ -1,6 +1,7 @@
 package com.trnka.trnkadevice.ui;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -31,18 +32,18 @@ public class LogoutView implements IView {
 
     @Override
     public void enter() {
-        renderer.renderMessage(Messages.LOGGING_OUT);
+        renderer.renderMessage(AudioMessage.of(Messages.LOGGING_OUT));
         userSession.logout();
         navigator.navigateAsync(LoginView.class);
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.LOG_OUT;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return Collections.emptyList();
     }
 

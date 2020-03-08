@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
+import com.trnka.trnkadevice.ui.messages.Messages;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -51,9 +53,27 @@ public class BrailCharacter implements IMessage {
     }
 
     @Transient
-    public String getBrailRepresentationAsString(){
-        return this.brailRepresentation.stream().map(String :: valueOf).collect(Collectors.joining(", "));
+    public String getBrailRepresentationAsString() {
+        return this.brailRepresentation.stream().map(String::valueOf).collect(Collectors.joining(", "));
     }
+
+    @Transient
+    public List<Messages> getBrailRepresentationAsMessages() {
+        return this.brailRepresentation.stream().map(number -> Messages.fromNumber(number)).collect(Collectors.toList());
+    }
+
+    @Transient
+    public String getBrailRepresentationAsText() {
+        return this.brailRepresentation.stream().map(String::valueOf).collect(Collectors.joining(", "));
+    }
+
+
+    @Transient
+    public Messages getLetterMessage() {
+        return Messages.fromText(this.letter);
+    }
+
+
 
     @Override
     public String getText() {

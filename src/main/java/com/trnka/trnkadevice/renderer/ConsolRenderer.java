@@ -1,27 +1,21 @@
 package com.trnka.trnkadevice.renderer;
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
-
 import com.trnka.trnkadevice.ui.Renderable;
-import com.trnka.trnkadevice.ui.messages.IMessage;
 
+import com.trnka.trnkadevice.ui.messages.Messages;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 @Slf4j
-@Service
-@Profile("dev")
 public class ConsolRenderer implements IRenderer {
 
     @Override
-    public void renderMessage(final IMessage message,
-                              String... params) {
-        log.info(">>> " + message.getText() + " <<<", params);
+    public void renderMessage(final Renderable message) {
+        log.info(">>> " + message.getMessage().getText() + " <<<", message.getParams());
     }
 
-    @Override
-    public void renderLabel(final Renderable component,
-                            final String... params) {
-        renderMessage(component.getLabel(), params);
+    @Override public void renderMessages(final List<Messages> messagesList) {
+        log.info(">>> {} <<<", messagesList);
     }
 }

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -53,12 +54,12 @@ public class ResultsSelectionView implements IView {
     @Override
     @Transactional
     public void enter() {
-        renderer.renderMessage(Messages.RESULTS_SELECTION_VIEW);
+        renderer.renderMessage(AudioMessage.of(Messages.RESULTS_SELECTION_VIEW));
 
         List<SequenceStatistic> results = resultsRepository.findAllTestResultsForUser(userSession.getUserId());
 
         if (results.isEmpty()) {
-            renderer.renderMessage(Messages.RESULT_NO_RESULTS_TO_DISPLAY);
+            renderer.renderMessage(AudioMessage.of(Messages.RESULT_NO_RESULTS_TO_DISPLAY));
             navigationUtils.waitForMenuClick();
             return;
         }
@@ -74,12 +75,12 @@ public class ResultsSelectionView implements IView {
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.RESULTS_LABEL_MENU;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return Collections.emptyList();
     }
 

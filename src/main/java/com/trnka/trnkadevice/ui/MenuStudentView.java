@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.trnka.trnkadevice.ui.learning.MethodicalLearningMenuView;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.results.ResultsSelectionView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -51,18 +52,18 @@ public class MenuStudentView implements IView {
             navigator.navigateAsync(LoginView.class);
             return;
         }
-        renderer.renderMessage(Messages.MAIN_MENU, userSession.getUsername());
+//        renderer.renderMessage(AudioMessage.of(Messages.MAIN_MENU));
         Consumer<Integer> consumer = index -> navigator.navigateAsync(MENU.get(index));
         cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
 
     @Override
-    public Messages getLabel() {
+    public Messages getMessage() {
         return Messages.MAIN_MENU_LABEL;
     }
 
     @Override
-    public List<String> getMessageParams() {
+public List<Messages> getParams() {
         return Collections.emptyList();
     }
 
