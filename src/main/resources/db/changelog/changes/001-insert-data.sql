@@ -47,8 +47,8 @@ INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`)
 
 
 -- LEARNING SEQUENCES
-INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 101, 2, 'ONE', 100000);
-INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 106, 2, 'TWO', 100000);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 101, 2, 'LEARNING_SEQUENCE_NAME', 100000);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 106, 2, 'LEARNING_SEQUENCE_NAME', 100000);
 
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (102, b'0', 1, 101);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (103, b'0', 2, 101);
@@ -59,8 +59,8 @@ INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`)
 
 
 -- TESTING SEQUENCES
-INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 107, 1, 'ONE', 100000);
-INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 108, 1, 'TWO', 100000);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 107, 1, 'TESTING_SEQUENCE_NAME', 100000);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 108, 1, 'TESTING_SEQUENCE_NAME', 100000);
 
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (109, b'0', 1, 107);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (110, b'0', 2, 107);
