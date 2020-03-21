@@ -12,8 +12,8 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (8, NULL, '[1,2,5]', 'h');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (9, NULL, '[2,4]', 'i');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (10, NULL, '[2,4,5]', 'j');
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (11, NULL, '[3,4]', 'k');
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (12, NULL, '[4,5,6]', 'l');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (11, NULL, '[1,3]', 'k');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (12, NULL, '[1,2,3]', 'l');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (13, NULL, '[1,3,4]', 'm');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (14, NULL, '[1,3,4,5]', 'n');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (15, NULL, '[1,3,5]', 'o');
@@ -24,9 +24,49 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (20, NULL, '[2,3,4,5]', 't');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (21, NULL, '[1,3,6]', 'u');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (22, NULL, '[1,2,3,6]', 'v');
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (23, NULL, '[1,3,4,6]', 'x');
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (24, NULL, '[1,3,4,5,6]', 'y');
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (25, NULL, '[1,3,5,6]', 'z');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (23, NULL, '[2,4,5,6]', 'w');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (24, NULL, '[1,3,4,6]', 'x');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (25, NULL, '[1,3,4,5,6]', 'y');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (26, NULL, '[1,3,5,6]', 'z');
+-- special characters"
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (27, NULL, '[1,6]', 'á');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (28, NULL, '[4]', 'ä');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (29, NULL, '[1,4,6]', '?');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (30, NULL, '[1,4,5,6]', '?');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (31, NULL, '[3,4,5]', 'é');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (32, NULL, '[3,4]', 'í');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (33, NULL, '[4,6]', '?');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (34, NULL, '[4,5,6]', '?'); -- makke l
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (35, NULL, '[1,2,4,6]', '?');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (36, NULL, '[2,4,6]', 'ó');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (37, NULL, '[2,3,4,5,6]', 'ô');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (38, NULL, '[1,2,3,5,6]', '?');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (39, NULL, '[1,5,6]', '?');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (40, NULL, '[1,2,5,6]', '?');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (41, NULL, '[3,4,6]', 'ú');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (42, NULL, '[1,2,3,4,6]', 'ý');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (43, NULL, '[2,3,4,6]', '?');
+
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (44, NULL, '[3,4,5,6]', '??'); -- ?iselny znak
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (45, NULL, '[1,2,3,4,5,6]', 'pz');  -- plny znak
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (46, NULL, '[6]', 'vp');  -- znak velke pismeno
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (47, NULL, '[2]', ',');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (48, NULL, '[2,5,6]', '.');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (49, NULL, '[2,3,5]', '!');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (50, NULL, '[3,6]', '-');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (51, NULL, '[2,5]', ':');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (52, NULL, '[2,3,5,6]', '"');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (53, NULL, '[3]', 'apostrof');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (54, NULL, '[2,3,6]', '(');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (55, NULL, '[3,5,6]', ')');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (56, NULL, '[3,5]', '*');
+
+
+
+
+
+
+
 
 
 
@@ -36,13 +76,115 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 -- METHODICAL LEARNING SEQUENCES
 INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 120, 1, 'ONE', 100000, 1, 80, 1);
 INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 121, 1, 'TWO', 100000, 1, 80, 2);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 122, 1, 'THREE', 100000, 1, 80, 3);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 123, 1, 'FOUR', 100000, 1, 80, 4);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 124, 1, 'FIVE', 100000, 1, 80, 5);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 125, 1, 'SIX', 100000, 1, 80, 6);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 126, 1, 'SEVEN', 100000, 1, 80, 7);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 127, 1, 'EIGHT', 100000, 1, 80, 8);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 128, 1, 'NINE', 100000, 1, 80, 9);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 129, 1, 'TEN', 100000, 1, 80, 10);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 130, 1, 'ELEVEN', 100000, 1, 80, 11);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 131, 1, 'TWELVE', 100000, 1, 80, 12);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 132, 1, 'THIRTEEN', 100000, 1, 80, 13);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 133, 1, 'FOURTEEN', 100000, 1, 80, 14);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 134, 1, 'FIFTEEN', 100000, 1, 80, 15);
+INSERT INTO `sequence` (`dtype`, `id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 135, 1, 'SIXTEEN', 100000, 1, 80, 16);
 
+-- a,b,l,e
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (122, b'0', 1, 120);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (123, b'0', 2, 120);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (124, b'0', 12, 120);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (125, b'0', 5, 120);
+
+-- k,u
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (126, b'0', 11, 121);
 INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (127, b'0', 21, 121);
+
+-- c,o,m,i
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (128, b'0', 3, 122);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (129, b'0', 15, 122);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (130, b'0', 13, 122);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (131, b'0', 9, 122);
+
+-- v,á,?,r
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (132, b'0', 3, 123);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (133, b'0', 27, 123);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (134, b'0', 29, 123);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (135, b'0', 18, 123);
+
+-- , s ú p
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (136, b'0', 47, 124);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (137, b'0', 19, 124);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (138, b'0', 41, 124);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (139, b'0', 18, 124);
+
+-- pz . í ?
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (140, b'0', 45, 125);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (141, b'0', 48, 125);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (142, b'0', 32, 125);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (143, b'0', 39, 125);
+
+
+-- D, ?, N, G, É
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (144, b'0', 4, 126);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (145, b'0', 30, 126);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (146, b'0', 14, 126);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (147, b'0', 7, 126);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (148, b'0', 31, 126);
+
+
+-- j t y
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (149, b'0', 10, 127);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (150, b'0', 20, 127);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (151, b'0', 25, 127);
+
+-- !
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (152, b'0', 49, 128);
+
+-- Z, F, ?, Ý, poml?ka
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (153, b'0', 26, 129);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (154, b'0', 6, 129);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (155, b'0', 35, 129);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (156, b'0', 42, 129);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (157, b'0', 50, 129);
+
+
+-- H, ?, ?, dvojbodka
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (158, b'0', 8, 130);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (159, b'0', 40, 130);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (160, b'0', 43, 130);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (161, b'0', 51, 130);
+
+--  Ô, ?, Ó, ?
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (162, b'0', 37, 131);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (163, b'0', 34, 131);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (164, b'0', 36, 131);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (165, b'0', 33, 131);
+
+-- Ä, ?, X, úvodzovky
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (166, b'0', 27, 132);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (167, b'0', 38, 132);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (168, b'0', 24, 132);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (169, b'0', 52, 132);
+
+
+-- apostrof
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (170, b'0', 53, 133);
+
+-- q w ( )
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (171, b'0', 17, 134);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (172, b'0', 23, 134);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (173, b'0', 54, 134);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (174, b'0', 55, 134);
+
+-- VP, ?Z, *
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (175, b'0', 45, 135);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (176, b'0', 44, 135);
+INSERT INTO `step` (`id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (177, b'0', 56, 135);
+
+
+
 
 
 
