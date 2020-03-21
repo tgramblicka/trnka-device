@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `brail_character` (
   `brail_representation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`brail_representation`)),
   `letter` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_brail_character_letter` (`letter`)
+  UNIQUE KEY `UK_brail_representation` (`brail_representation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Data exporting was unselected.
