@@ -21,23 +21,27 @@ public class AudioRenderer implements IRenderer {
     @Override
     public void renderMessage(final Renderable renderable) {
         String messageText = renderable.getMessage().getText();
-        log.info(">>> " + messageText + " <<<", renderable.getParams());
+
+        // render to consol as well
+        ConsolRenderer consolRenderer = new ConsolRenderer();
+        consolRenderer.renderMessage(renderable);
+
         RenderableToAudioPlaylistCompiler compiler = new RenderableToAudioPlaylistCompiler();
         List<String> playlist = compiler.compileToPlaylist(renderable);
 
-        List<String> fullFilepathPlaylist = playlist.stream().map(this :: getFullFilepath).collect(Collectors.toList());
+        List<String> fullFilepathPlaylist = playlist.stream().map(this::getFullFilepath).collect(Collectors.toList());
         PlaySound playSound = new PlaySound();
 
         fullFilepathPlaylist.forEach(audioFilepath -> playSound.playInMainThreadBlocking(audioFilepath));
     }
 
-
-
-    @Override public void renderMessages(final List<Messages> messagesList) {
+    @Override
+    public void renderMessages(final List<Messages> messagesList) {
         playAllParams(messagesList, new PlaySound());
     }
 
-    private void playAllParams(List<Messages> params, PlaySound playSound){
+    private void playAllParams(List<Messages> params,
+                               PlaySound playSound) {
         params.stream().forEach(p -> {
             String fullFilePath = getFullFilepath(p.getAudioFile());
             playSound.playInMainThreadBlocking(fullFilePath);
@@ -52,7 +56,7 @@ public class AudioRenderer implements IRenderer {
         String msg = "{} adalsd{}{} asdasd";
         String[] split = msg.split("\\{\\}");
         System.out.println(split.length);
-        for (String s : split){
+        for (String s : split) {
             System.out.println("param: " + s);
         }
     }
