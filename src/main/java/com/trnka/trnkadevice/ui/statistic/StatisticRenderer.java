@@ -49,7 +49,7 @@ public class StatisticRenderer {
 
 
             AudioMessage audio1= AudioMessage.of(Messages.STATISTIC_LETTER, Messages.fromText(letter));
-            AudioMessage audio2= AudioMessage.of(Messages.STATISTIC_LETTER_GUESSED, correctMessage);
+            AudioMessage audio2= AudioMessage.of(Messages.STATISTIC_LETTER_GUESSED, Messages.fromText(letter), correctMessage);
             AudioMessage audio3 = AudioMessage.of(Messages.STATISTIC_INCORRECT_RETRIES, Messages.fromNumber(negativeRetries), Messages.Z, Messages.fromNumber(maxAllowedRetries));
             renderer.renderMessage(audio1);
             renderer.renderMessage(audio2);
