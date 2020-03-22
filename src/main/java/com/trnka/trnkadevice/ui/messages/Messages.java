@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Messages {
-    AAAA("Ahoj {1,2,3}}", "commands/"),
-
     LOGIN_VIEW_LABEL("Prihlasenie", "commands/"),
     TYPE_IN_YOUR_PASSWORD("Zadaj 4 miestny prihlasovaci kod a potvrd", "commands/"),
     YOU_HAVE_BEEN_SUCCESSFULY_LOGGED_IN("Boli ste uspesne prihlaseny", "commands/"),
@@ -27,8 +25,6 @@ public enum Messages {
     RESULT_NO_RESULTS_TO_DISPLAY("Nenasli sa ziadne Vase vysledky", "commands/"),
 
     LEARNING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre {} a potvrd! Pismeno pozostava z bodov:", "commands/"),
-    LEARNING_TYPE_IN_CHARACTER_BRAIL_1("Zadaj brail sekvenciu pre {}", "commands/"),
-    LEARNING_TYPE_IN_CHARACTER_BRAIL_2("a potvrd! Pismeno pozostava z bodov:", "commands/"),
 
     LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("Spravne, pokracujem na dalsie pismeno", "commands/"),
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Správne poradie bodov v znaku je {}", "commands/"),
@@ -118,6 +114,36 @@ public enum Messages {
     X("x", "letters/"),
     Y("y", "letters/"),
     Z("z", "letters/"),
+
+    A_DLHE("á", "letters/"),
+    A_PREHLASOVANE("ä", "letters/"),
+    C_MAKCEN("č", "letters/"),
+    D_MAKCEN("ď", "letters/"),
+    E_DLHE_ALEBO_ZNAMIENKO_VACSI("é", "letters/"),
+    L_DLHE("ĺ", "letters/"),
+    L_MAKKE("ľ", "letters/"),
+    N_MAKCEN("ň", "letters/"),
+    O_DLHE("ó", "letters/"),
+    O_VOKAN("ň", "letters/"),
+    R_DLHE("ŕ", "letters/"),
+    S_MAKCEN("š", "letters/"),
+    T_MAKCEN("ť", "letters/"),
+    U_DLHE_ALEBO_PARAGRAF("ú", "letters/"),
+    Y_DLHE("ý", "letters/"),
+    Z_MAKCEN("ž", "letters/"),
+    CZ("čz", "letters/"),
+    PZ("pz", "letters/"),
+    VP("vp", "letters/"),
+    CIARKA(",", "letters/"),
+    BODKA(".", "letters/"),
+    VYKRICNIK_ALEBO_ZNAMIENKO_PLUS("!", "letters/"),
+    POMLCKA("-", "letters/"),
+    DVOJBODKA(":", "letters/"),
+    UVODZOVKY("\"", "letters/"),
+    APOSTROF("apostrof", "letters/"),
+    LAVA_ZATVORKA("(", "letters/"),
+    PRAVA_ZATVORKA("(", "letters/"),
+    HVIEZDICKA("*", "letters/"),
 
 
     // for testing messageToAudioPlayilist compiler
