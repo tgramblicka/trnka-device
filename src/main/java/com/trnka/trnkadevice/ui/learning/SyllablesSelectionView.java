@@ -3,6 +3,7 @@ package com.trnka.trnkadevice.ui.learning;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.corba.se.impl.corba.NamedValueImpl;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,8 +28,7 @@ public class SyllablesSelectionView implements IView {
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SYLLABLES_SELECTION_VIEW));
         renderer.renderMessage(AudioMessage.of(Messages.NO_SEQUENCES_FOUND));
-        NavigationUtils navUtils = new NavigationUtils();
-        navUtils.waitForMenuClick();
+        navigationUtils.waitForMenuClick();
     }
 
     @Override
