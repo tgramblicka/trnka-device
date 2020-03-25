@@ -2,10 +2,7 @@ package com.trnka.trnkadevice.ui.learning;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.trnka.trnkadevice.domain.BrailCharacter;
-import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -24,6 +21,7 @@ import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
@@ -95,7 +93,7 @@ public class IndividualLearningView implements IView {
     }
 
     private void renderStats(final SequenceStatistic seqStats) {
-        StatisticRenderer.renderStepsDetails(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
+        StatisticRenderer.renderStatisticForTest(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
     }
 
     @Override

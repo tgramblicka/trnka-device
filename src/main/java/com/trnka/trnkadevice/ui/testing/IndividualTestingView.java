@@ -63,13 +63,11 @@ public class IndividualTestingView implements IView {
             log.error("Testing sequence component is null, this CANNOT HAPPEN");
             return;
         }
-        this.renderer.renderMessage(testingSequenceComponent);
 
         TestingSequence seq = this.testingSequenceComponent.getSequence();
         SequenceStatistic seqStats = SequenceStatistic.create(seq, userSession.getUser().get());
         for (Step step : seq.getSteps()) {
-            AudioMessage audioMessage = AudioMessage.of(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getBrailRepresentationAsMessages());
-            renderer.renderMessage(audioMessage);
+            renderer.renderMessage(AudioMessage.of(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage()));
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,

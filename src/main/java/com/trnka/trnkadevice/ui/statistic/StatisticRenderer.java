@@ -16,7 +16,7 @@ public class StatisticRenderer {
                                               final SequenceStatistic seqStats,
                                               final int maxAllowedRetries) {
         renderer.renderMessage(AudioMessage.of(Messages.STATISTIC_SEQUENCE));
-        renderStepsDetails(renderer, seqStats, maxAllowedRetries);
+        // renderStepsDetails(renderer, seqStats, maxAllowedRetries);
 
         Long correct = seqStats.getStepStats().stream().filter(StepStatistic::isCorrect).count();
         int allStepsCount = seqStats.getStepStats().size();
@@ -44,13 +44,13 @@ public class StatisticRenderer {
 
             boolean correctGuess = maxAllowedRetries - negativeRetries > 0;
             Messages correctMessage = correctGuess ? Messages.CORRECT_GUESS
-                                                : Messages.INCORRECT_GUESS;
+                                                   : Messages.INCORRECT_GUESS;
             String took = String.valueOf(s.getTook() / 1000.0F); // todo : think about rendering millis
 
-
-            AudioMessage audio1= AudioMessage.of(Messages.STATISTIC_LETTER, Messages.fromText(letter));
-            AudioMessage audio2= AudioMessage.of(Messages.STATISTIC_LETTER_GUESSED, Messages.fromText(letter), correctMessage);
-            AudioMessage audio3 = AudioMessage.of(Messages.STATISTIC_INCORRECT_RETRIES, Messages.fromNumber(negativeRetries), Messages.Z, Messages.fromNumber(maxAllowedRetries));
+            AudioMessage audio1 = AudioMessage.of(Messages.STATISTIC_LETTER, Messages.fromText(letter));
+            AudioMessage audio2 = AudioMessage.of(Messages.STATISTIC_LETTER_GUESSED, Messages.fromText(letter), correctMessage);
+            AudioMessage audio3 = AudioMessage.of(Messages.STATISTIC_INCORRECT_RETRIES, Messages.fromNumber(negativeRetries), Messages.Z,
+                    Messages.fromNumber(maxAllowedRetries));
             renderer.renderMessage(audio1);
             renderer.renderMessage(audio2);
             renderer.renderMessage(audio3);
