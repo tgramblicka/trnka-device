@@ -176,7 +176,7 @@ public enum Messages {
     }
 
     public String getAudioFile() {
-        return String.format("%s%s.wav", directory, name());
+        return String.format("%s%s.wav", directory, name().toLowerCase());
     }
 
     public String getNthPartOfAudioFile(Integer n) {
