@@ -5,14 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.trnka.trnkadevice.ui.learning.MethodicalLearningMenuView;
-import com.trnka.trnkadevice.ui.messages.AudioMessage;
-import com.trnka.trnkadevice.ui.results.ResultsSelectionView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.learning.IndividualLearningMenuView;
+import com.trnka.trnkadevice.ui.learning.MethodicalLearningMenuView;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.testing.IndividualTestingMenuView;
@@ -31,7 +30,7 @@ public class MenuStudentView implements IView {
         MENU.add(MethodicalLearningMenuView.class);
         MENU.add(IndividualLearningMenuView.class);
         MENU.add(IndividualTestingMenuView.class);
-        MENU.add(ResultsSelectionView.class);
+//        MENU.add(ResultsSelectionView.class);
         MENU.add(LogoutView.class);
     }
 
