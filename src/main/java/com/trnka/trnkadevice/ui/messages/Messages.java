@@ -180,14 +180,13 @@ public enum Messages {
     }
 
     public String getNthPartOfAudioFile(Integer n) {
-        return String.format("%s%s_%s.wav", directory, name(), n);
+        return String.format("%s%s_%s.wav", directory, name().toLowerCase(), n);
     }
 
     private static String exportMessages() {
         EnumSet<Messages> set = EnumSet.allOf(Messages.class);
         StringBuilder b = new StringBuilder();
         for (Messages m : set) {
-            // b.append(String.format("%s|%s", m.name(), m.getText()));
             b.append(String.format("%s", m.getText()));
             b.append("\n");
         }
