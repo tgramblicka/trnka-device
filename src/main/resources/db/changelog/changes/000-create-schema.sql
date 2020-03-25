@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 CREATE TABLE IF NOT EXISTS `brail_character` (
   `id` bigint(20) NOT NULL,
   `audio_file` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `brail_representation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`brail_representation`)),
+  `brail_representation` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `letter` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_brail_representation` (`brail_representation`)
