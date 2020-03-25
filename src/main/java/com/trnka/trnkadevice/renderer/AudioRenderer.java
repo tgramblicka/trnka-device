@@ -8,6 +8,7 @@ import com.trnka.trnkadevice.ui.Renderable;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +50,7 @@ public class AudioRenderer implements IRenderer {
     }
 
     private String getFullFilepath(String filename) {
-        return String.format("%s\\%s", soundsLocation, filename);
+        return String.format("%s%s%s", soundsLocation, File.separator, filename);
     }
 
     public static void main(String[] args) {
