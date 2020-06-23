@@ -63,7 +63,7 @@ public class LettersLearningView implements IView {
         }
 
         MethodicalLearningSequence seq = repo.findById(sequenceId).get();
-        this.renderer.renderMessage(AudioMessage.of(seq.getAudioMessage()));
+        this.renderer.renderMessage(AudioMessage.of(Messages.SEQUENCE, seq.getAudioMessage()));
 
         for (Step step : seq.getSteps()) {
 

@@ -77,6 +77,8 @@ public enum Messages {
     STATISTIC_LETTER_GUESSED("Pismeno {} uhadnute {}", "commands/"),
     STATISTIC_INCORRECT_RETRIES("Pocet nespravnych pokusov {}{}{}", "commands/"), // NAHRAT
 
+    SEQUENCE("Sekvencia", "commands/"),
+
     ZERO("0", "letters/"),   // PRENAHRAT
     ONE("1", "letters/"),
     TWO("2", "letters/"),
