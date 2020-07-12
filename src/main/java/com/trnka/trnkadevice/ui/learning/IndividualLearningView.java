@@ -70,8 +70,9 @@ public class IndividualLearningView implements IView {
         }
         LearningSequence seq = repository.findById(sequenceId).get();
         SequenceStatistic seqStats = SequenceStatistic.create(seq, userSession.getUser().get());
+        int index = -1;
         for (Step step : seq.getSteps()) {
-
+            index++;
             AudioMessage audioMessage1 = AudioMessage.of(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage());
             renderer.renderMessage(audioMessage1);
             renderer.renderMessages(step.getBrailCharacter().getBrailRepresentationAsMessages());
@@ -82,7 +83,7 @@ public class IndividualLearningView implements IView {
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
                                                                 userInteractionHandler);
             long took = System.currentTimeMillis() - start;
-            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
+            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries, index+1 == seq.getSteps().size());
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
 

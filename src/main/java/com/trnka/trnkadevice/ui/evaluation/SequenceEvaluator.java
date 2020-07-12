@@ -29,7 +29,8 @@ public class SequenceEvaluator {
 
     public Evaluate evaluateUserInput(Step step,
                                       int maxAllowedTries,
-                                      Integer negativeTries) {
+                                      Integer negativeTries,
+                                      final Boolean isLastStep) {
         if (negativeTries == maxAllowedTries) {
             return new Evaluate(false,
                                 negativeTries);
@@ -37,7 +38,12 @@ public class SequenceEvaluator {
         List<Keystroke> keystrokes = readInputKeystrokes();
         boolean isCorrect = step.getBrailCharacter().getBrailRepresentationKeystrokes().equals(keystrokes);
         if (isCorrect) {
-            renderer.renderMessage(AudioMessage.of(Messages.LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED));
+            if (isLastStep){
+                renderer.renderMessage(AudioMessage.of(Messages.CORRECT));
+            } else {
+                renderer.renderMessage(AudioMessage.of(Messages.LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED));
+            }
+
             return new Evaluate(true,
                                 negativeTries);
         } else {
@@ -47,7 +53,7 @@ public class SequenceEvaluator {
 
             renderer.renderMessage(AudioMessage.of(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED_LEFT_RETRIES, Messages.fromNumber(maxAllowedTries - negativeTries)));
 
-            return evaluateUserInput(step, maxAllowedTries, negativeTries);
+            return evaluateUserInput(step, maxAllowedTries, negativeTries, isLastStep);
         }
     }
 

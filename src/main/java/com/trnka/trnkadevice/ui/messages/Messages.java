@@ -26,6 +26,7 @@ public enum Messages {
 
     LEARNING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre {} a potvrd! Pismeno pozostava z bodov:", "commands/"),
 
+    CORRECT("Spravne !", "commands/"),
     LEARNING_CORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("Spravne, pokracujem na dalsie pismeno", "commands/"),
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Správne poradie bodov v znaku je {}", "commands/"),
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED_LEFT_RETRIES("Ostáva {} pokusov", "commands/"),

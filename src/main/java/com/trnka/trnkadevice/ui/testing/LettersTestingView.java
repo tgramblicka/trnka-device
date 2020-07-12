@@ -83,6 +83,7 @@ public class LettersTestingView implements IView {
 
         User user = userSession.getUser().get();
         SequenceStatistic seqStats = SequenceStatistic.create(sequence, user);
+        int index = -1;
         for (Step step : sequence.getSteps()) {
 
             renderer.renderMessage(AudioMessage.of(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage()));
@@ -90,7 +91,7 @@ public class LettersTestingView implements IView {
             Integer negativeRetries = 0;
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
                                                                 userInteractionHandler);
-            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, sequence.getAllowedTestRetries(), negativeRetries);
+            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, sequence.getAllowedTestRetries(), negativeRetries, index+1==sequence.getSteps().size());
             long took = System.currentTimeMillis() - start;
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }

@@ -65,8 +65,9 @@ public class LettersLearningView implements IView {
         MethodicalLearningSequence seq = repo.findById(sequenceId).get();
         this.renderer.renderMessage(AudioMessage.of(Messages.SEQUENCE, seq.getAudioMessage()));
 
+        int index = -1;
         for (Step step : seq.getSteps()) {
-
+            index++;
             AudioMessage audioMessage1 = AudioMessage.of(Messages.LEARNING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage());
             renderer.renderMessage(audioMessage1);
 
@@ -75,7 +76,8 @@ public class LettersLearningView implements IView {
 
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
                                                                 userInteractionHandler);
-            evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
+
+            evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries, index+1 == seq.getSteps().size());
         }
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SEQUENCE_END, seq.getAllStepsAsMessagesList()));
         lettersTestingView.refresh(seq.getId());

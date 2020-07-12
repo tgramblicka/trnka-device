@@ -66,13 +66,14 @@ public class IndividualTestingView implements IView {
 
         TestingSequence seq = this.testingSequenceComponent.getSequence();
         SequenceStatistic seqStats = SequenceStatistic.create(seq, userSession.getUser().get());
+        int index=-1;
         for (Step step : seq.getSteps()) {
             renderer.renderMessage(AudioMessage.of(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage()));
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
                                                                 userInteractionHandler);
-            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries);
+            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries, index+1==seq.getSteps().size());
             long took = System.currentTimeMillis() - start;
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
