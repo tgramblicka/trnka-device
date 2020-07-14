@@ -56,6 +56,10 @@ public class MenuStudentView implements IView {
         cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     @Override
     public Messages getMessage() {
         return Messages.MAIN_MENU_LABEL;

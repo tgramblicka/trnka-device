@@ -59,6 +59,10 @@ public class LoginView implements IView {
         navigator.navigateAsync(LoginView.class);
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     private String readLoginCode() {
         List<Keystroke> keyStrokes = new ArrayList<>();
         UserInteraction userInteraction = userInteractionHandler.readUserInteraction();

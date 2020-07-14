@@ -4,4 +4,6 @@ public interface IView extends Renderable{
 
     void enter();
 
+    IView onEscape();
+
 }

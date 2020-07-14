@@ -31,6 +31,10 @@ public class SyllablesSelectionView implements IView {
         navigationUtils.waitForMenuClick();
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     @Override
     public Messages getMessage() {
         return Messages.LEARNING_SYLLABLES_SELECTION_MENU;

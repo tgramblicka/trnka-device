@@ -67,7 +67,9 @@ public class ResultsSelectionView implements IView {
         cycledComponent.cycleThroughComponents(selectedIndex -> navigateToSelectedResults(resultComponents.get(selectedIndex)), resultComponents);
     }
 
-
+    @Override public IView onEscape() {
+        return null;
+    }
 
     private void navigateToSelectedResults(final ResultsComponent resultsComponent) {
         resultView.refresh(resultsComponent.getStatistic());

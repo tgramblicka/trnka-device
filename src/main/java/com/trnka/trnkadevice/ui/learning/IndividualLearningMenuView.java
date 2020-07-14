@@ -57,6 +57,10 @@ public class IndividualLearningMenuView implements IView {
         cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index).getSequence()), selection);
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     private void startLearningWithSequence(final Sequence sequence) {
         individualLearningView.refresh(sequence.getId());
         navigator.navigateAsync(IndividualLearningView.class);

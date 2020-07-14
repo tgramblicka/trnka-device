@@ -85,6 +85,10 @@ public class IndividualTestingView implements IView {
         navigator.navigateAsync(MenuStudentView.class);
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     private void renderStats(final SequenceStatistic seqStats) {
         StatisticRenderer.renderStatisticForTest(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
     }

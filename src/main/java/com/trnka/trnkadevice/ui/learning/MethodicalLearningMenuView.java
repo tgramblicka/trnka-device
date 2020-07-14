@@ -54,6 +54,10 @@ public class MethodicalLearningMenuView implements IView {
         cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     @Override
     public Messages getMessage() {
         return Messages.METHODICAL_LEARNING_MENU;

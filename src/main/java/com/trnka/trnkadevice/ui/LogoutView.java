@@ -37,6 +37,10 @@ public class LogoutView implements IView {
         navigator.navigateAsync(LoginView.class);
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     @Override
     public Messages getMessage() {
         return Messages.LOG_OUT;

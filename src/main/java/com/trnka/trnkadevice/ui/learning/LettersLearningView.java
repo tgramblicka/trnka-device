@@ -84,6 +84,10 @@ public class LettersLearningView implements IView {
         navigator.navigateAsync(lettersTestingView.getClass());
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     @Override
     public Messages getMessage() {
         return null;

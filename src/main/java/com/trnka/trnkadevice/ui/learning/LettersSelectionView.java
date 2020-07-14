@@ -73,6 +73,10 @@ public class LettersSelectionView implements IView {
         cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index)), selection);
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     private Optional<MethodicalLearningSequence> getNthSequence(final Integer n) {
         return repo.findByOrder(n);
     }

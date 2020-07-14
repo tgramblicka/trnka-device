@@ -36,6 +36,10 @@ public class ResultView implements IView {
         renderStats(sequenceStatistic);
     }
 
+    @Override public IView onEscape() {
+        return null;
+    }
+
     private void renderStats(final SequenceStatistic seqStats) {
         StatisticRenderer.renderStatisticForTest(renderer, seqStats, seqStats.getSequence().getAllowedRetries());
     }
