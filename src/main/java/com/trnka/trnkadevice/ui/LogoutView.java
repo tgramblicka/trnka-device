@@ -37,7 +37,8 @@ public class LogoutView implements IView {
         navigator.navigateAsync(LoginView.class);
     }
 
-    @Override public IView onEscape() {
+    @Override
+    public Class<? extends IView> onEscape() {
         return null;
     }
 

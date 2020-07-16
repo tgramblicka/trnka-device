@@ -12,5 +12,6 @@ public class RendererConfig {
     @Bean
     public IRenderer renderer() {
         return new AudioRenderer();
+        // return new ConsolRenderer();
     }
 }

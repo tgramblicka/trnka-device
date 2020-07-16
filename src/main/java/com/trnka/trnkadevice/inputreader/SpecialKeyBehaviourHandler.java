@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
+import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
@@ -14,6 +15,14 @@ public class SpecialKeyBehaviourHandler {
     static {
         SPECIAL_BEHAVIOURS.put(Keystroke.MENU_1, (k,
                                                   n) -> n.navigateAsync(MenuStudentView.class));
+        SPECIAL_BEHAVIOURS.put(Keystroke.MENU_2, (k,
+                                                  n) -> {
+            Class<? extends IView> onEscapeBackView = n.getCurrentView().onEscape();
+            if (onEscapeBackView != null) {
+                n.navigateAsync(onEscapeBackView);
+            }
+        });
+
 
     }
 

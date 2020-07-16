@@ -20,8 +20,10 @@ public class Navigator implements EventListener {
 
     @Autowired
     private ApplicationContext context;
+
     private EventBus eventBus;
-    private Class<?> currentView;
+    private Class<?> currentViewClass;
+    private IView currentView;
 
     @PostConstruct
     public void init() {
@@ -35,21 +37,25 @@ public class Navigator implements EventListener {
     }
 
     public <T extends IView> void navigate(T view) {
+        setCurrentViewClass(view.getClass());
+        setCurrentView(view);
         view.enter();
-        setCurrentView(view.getClass());
     }
 
-    public Class<?> getCurrentView() {
+    public void setCurrentView(final IView view) {
+        this.currentView= view;
+    }
+
+    public IView getCurrentView() {
         return currentView;
     }
 
-    public void setCurrentView(final Class<?> currentView) {
-        this.currentView = currentView;
+    public void setCurrentViewClass(final Class<?> currentViewClass) {
+        this.currentViewClass = currentViewClass;
     }
 
     public <T extends IView> void navigateAsync(Class<T> viewClass) {
-        eventBus.post(new NavigationEvent(viewClass,
-                                          currentView));
+        eventBus.post(new NavigationEvent(viewClass, currentViewClass));
     }
 
     private void navigateAsync(IView view) {

@@ -3,13 +3,12 @@ package com.trnka.trnkadevice.ui.learning;
 import java.util.Collections;
 import java.util.List;
 
-import com.sun.corba.se.impl.corba.NamedValueImpl;
-import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.IView;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.NavigationUtils;
 
@@ -31,7 +30,8 @@ public class SyllablesSelectionView implements IView {
         navigationUtils.waitForMenuClick();
     }
 
-    @Override public IView onEscape() {
+    @Override
+    public Class<? extends IView> onEscape() {
         return null;
     }
 

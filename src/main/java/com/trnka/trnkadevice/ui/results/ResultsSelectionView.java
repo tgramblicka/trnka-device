@@ -67,7 +67,8 @@ public class ResultsSelectionView implements IView {
         cycledComponent.cycleThroughComponents(selectedIndex -> navigateToSelectedResults(resultComponents.get(selectedIndex)), resultComponents);
     }
 
-    @Override public IView onEscape() {
+    @Override
+    public Class<? extends IView> onEscape() {
         return null;
     }
 

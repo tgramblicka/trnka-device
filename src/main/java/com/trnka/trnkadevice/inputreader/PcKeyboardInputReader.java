@@ -8,8 +8,6 @@ import java.util.logging.Logger;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 

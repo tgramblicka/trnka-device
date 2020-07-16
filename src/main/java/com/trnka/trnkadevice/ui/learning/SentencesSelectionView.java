@@ -31,7 +31,8 @@ public class SentencesSelectionView implements IView {
         navigationUtils.waitForMenuClick();
     }
 
-    @Override public IView onEscape() {
+    @Override
+    public Class<? extends IView> onEscape() {
         return null;
     }
 

@@ -73,7 +73,8 @@ public class LettersSelectionView implements IView {
         cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index)), selection);
     }
 
-    @Override public IView onEscape() {
+    @Override
+    public Class<? extends IView> onEscape() {
         return null;
     }
 

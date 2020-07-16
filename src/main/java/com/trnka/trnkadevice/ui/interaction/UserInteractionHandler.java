@@ -19,7 +19,7 @@ public class UserInteractionHandler {
 
     @Autowired
     public UserInteractionHandler(final InputReader inputReader,
-                                  Navigator navigator) {
+                                  final Navigator navigator) {
         this.inputReader = inputReader;
         this.navigator = navigator;
     }

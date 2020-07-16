@@ -77,14 +77,15 @@ public class LettersLearningView implements IView {
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
                                                                 userInteractionHandler);
 
-            evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries, index+1 == seq.getSteps().size());
+            evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries, index + 1 == seq.getSteps().size());
         }
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SEQUENCE_END, seq.getAllStepsAsMessagesList()));
         lettersTestingView.refresh(seq.getId());
         navigator.navigateAsync(lettersTestingView.getClass());
     }
 
-    @Override public IView onEscape() {
+    @Override
+    public Class<? extends IView> onEscape() {
         return null;
     }
 

@@ -55,7 +55,8 @@ public class IndividualTestingMenuView implements IView {
         cycledComponent.cycleThroughComponents(index -> startTestingWithSequence(selection.get(index)), selection);
     }
 
-    @Override public IView onEscape() {
+    @Override
+    public Class<? extends IView> onEscape() {
         return null;
     }
 

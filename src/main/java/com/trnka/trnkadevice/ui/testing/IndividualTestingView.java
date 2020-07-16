@@ -85,7 +85,8 @@ public class IndividualTestingView implements IView {
         navigator.navigateAsync(MenuStudentView.class);
     }
 
-    @Override public IView onEscape() {
+    @Override
+    public Class<? extends IView> onEscape() {
         return null;
     }
 
