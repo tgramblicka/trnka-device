@@ -11,12 +11,13 @@ import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 public class SpecialKeyBehaviourHandler {
 
+    private static final String CODE_EXECUTION_MESSAGE = "Stopping code execution with an Exception after special key pressed!";
     private static Map<Keystroke, BiConsumer<Keystroke, Navigator>> SPECIAL_BEHAVIOURS = new HashMap<>();
     static {
         SPECIAL_BEHAVIOURS.put(Keystroke.MENU_1, (k,
                                                   n) -> {
             n.navigateAsync(MenuStudentView.class);
-            throw new RuntimeException("Stopping code execution after navigation event.");
+            throw new RuntimeException(CODE_EXECUTION_MESSAGE);
         });
 
         SPECIAL_BEHAVIOURS.put(Keystroke.MENU_2, (k,
@@ -24,7 +25,7 @@ public class SpecialKeyBehaviourHandler {
             Class<? extends IView> onEscapeBackView = n.getCurrentView().onEscape();
             if (onEscapeBackView != null) {
                 n.navigateAsync(onEscapeBackView);
-                throw new RuntimeException("Stopping code execution after navigation event.");
+                throw new RuntimeException(CODE_EXECUTION_MESSAGE);
             }
         });
 
