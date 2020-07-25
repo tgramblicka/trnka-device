@@ -4,6 +4,7 @@ import java.util.EventListener;
 
 import javax.annotation.PostConstruct;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +17,7 @@ import com.trnka.trnkadevice.ui.IView;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@Slf4j
 public class Navigator implements EventListener {
 
     @Autowired
@@ -56,6 +58,7 @@ public class Navigator implements EventListener {
 
     public <T extends IView> void navigateAsync(Class<T> viewClass) {
         eventBus.post(new NavigationEvent(viewClass, currentViewClass));
+        throw new RuntimeException("Stopping code execution after navigation event.");
     }
 
     private void navigateAsync(IView view) {
@@ -69,5 +72,4 @@ public class Navigator implements EventListener {
     public <T extends IView> void onNavigationEvent(NavigationEvent<T> navigationEvent) {
         navigate(navigationEvent.getDestinationViewClass());
     }
-
 }
