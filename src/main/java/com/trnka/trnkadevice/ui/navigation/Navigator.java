@@ -58,7 +58,6 @@ public class Navigator implements EventListener {
 
     public <T extends IView> void navigateAsync(Class<T> viewClass) {
         eventBus.post(new NavigationEvent(viewClass, currentViewClass));
-        throw new RuntimeException("Stopping code execution after navigation event.");
     }
 
     private void navigateAsync(IView view) {

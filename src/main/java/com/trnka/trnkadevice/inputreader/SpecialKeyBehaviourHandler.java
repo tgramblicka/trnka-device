@@ -14,15 +14,19 @@ public class SpecialKeyBehaviourHandler {
     private static Map<Keystroke, BiConsumer<Keystroke, Navigator>> SPECIAL_BEHAVIOURS = new HashMap<>();
     static {
         SPECIAL_BEHAVIOURS.put(Keystroke.MENU_1, (k,
-                                                  n) -> n.navigateAsync(MenuStudentView.class));
+                                                  n) -> {
+            n.navigateAsync(MenuStudentView.class);
+            throw new RuntimeException("Stopping code execution after navigation event.");
+        });
+
         SPECIAL_BEHAVIOURS.put(Keystroke.MENU_2, (k,
                                                   n) -> {
             Class<? extends IView> onEscapeBackView = n.getCurrentView().onEscape();
             if (onEscapeBackView != null) {
                 n.navigateAsync(onEscapeBackView);
+                throw new RuntimeException("Stopping code execution after navigation event.");
             }
         });
-
 
     }
 
