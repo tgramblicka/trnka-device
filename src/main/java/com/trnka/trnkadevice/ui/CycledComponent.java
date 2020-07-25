@@ -34,7 +34,7 @@ public class CycledComponent {
                                        final List<? extends Renderable> list) {
         UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
         int index = 0;
-        while (!userInteraction.isFlowBreakingCondition()) {
+        while (true) {
             Keystroke key = userInteraction.getKeystroke();
             switch (key) {
             case UP:
@@ -60,7 +60,7 @@ public class CycledComponent {
         List<Class<E>> list = Stream.of(renderables).collect(Collectors.toList());
         UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
         int index = 0;
-        while (!userInteraction.isFlowBreakingCondition()) {
+        while (true) {
             Keystroke key = userInteraction.getKeystroke();
             switch (key) {
             case UP:

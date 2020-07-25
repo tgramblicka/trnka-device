@@ -26,11 +26,9 @@ public class UserInteractionHandler {
 
     public UserInteraction readUserInteraction() {
         Keystroke keystroke = inputReader.readFromInput();
-        UserInteraction interaction = new UserInteraction(false,
-                                                          keystroke);
+        UserInteraction interaction = new UserInteraction(keystroke);
         Optional<BiConsumer<Keystroke, Navigator>> specialBehaviour = new SpecialKeyBehaviourHandler().getSpecialKeyBehaviour(keystroke);
         if (specialBehaviour.isPresent()) {
-            interaction.setFlowBreakingCondition(true);
             specialBehaviour.get().accept(keystroke, navigator);
         }
         return interaction;

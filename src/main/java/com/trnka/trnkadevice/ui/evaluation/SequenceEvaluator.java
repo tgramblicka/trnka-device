@@ -60,7 +60,7 @@ public class SequenceEvaluator {
     private List<Keystroke> readInputKeystrokes() {
         List<Keystroke> keyStrokes = new ArrayList<>();
         UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
-        while (!userInteraction.getKeystroke().equals(Keystroke.SUBMIT) && !userInteraction.isFlowBreakingCondition()) {
+        while (!userInteraction.getKeystroke().equals(Keystroke.SUBMIT)) {
             log.info(userInteraction.getKeystroke().getValue());
             keyStrokes.add(userInteraction.getKeystroke());
             userInteraction = userInteractionHandler.readUserInteraction();

@@ -13,7 +13,6 @@ import lombok.Setter;
 @Setter
 public class UserInteraction {
 
-    private boolean flowBreakingCondition;
     private Keystroke keystroke;
 
 }

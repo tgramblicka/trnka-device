@@ -27,7 +27,7 @@ public class SyllablesSelectionView implements IView {
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SYLLABLES_SELECTION_VIEW));
         renderer.renderMessage(AudioMessage.of(Messages.NO_SEQUENCES_FOUND));
-        navigationUtils.waitForMenuClick();
+        navigationUtils.waitForFlowBreakingButtonClik();
     }
 
     @Override

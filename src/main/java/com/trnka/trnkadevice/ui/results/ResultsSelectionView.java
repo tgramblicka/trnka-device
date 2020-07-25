@@ -61,7 +61,7 @@ public class ResultsSelectionView implements IView {
 
         if (results.isEmpty()) {
             renderer.renderMessage(AudioMessage.of(Messages.RESULT_NO_RESULTS_TO_DISPLAY));
-            navigationUtils.waitForMenuClick();
+            navigationUtils.waitForFlowBreakingButtonClik();
             return;
         }
         List<ResultsComponent> resultComponents = results.stream().map(res -> new ResultsComponent(res)).collect(Collectors.toList());

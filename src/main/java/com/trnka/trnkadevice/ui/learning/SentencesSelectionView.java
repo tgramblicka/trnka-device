@@ -28,7 +28,7 @@ public class SentencesSelectionView implements IView {
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SENTENCES_VIEW));
         renderer.renderMessage(AudioMessage.of(Messages.NO_SEQUENCES_FOUND));
-        navigationUtils.waitForMenuClick();
+        navigationUtils.waitForFlowBreakingButtonClik();
     }
 
     @Override

@@ -29,7 +29,7 @@ public class WordsSelectionView implements IView {
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_WORDS_SELECTION_VIEW));
         renderer.renderMessage(AudioMessage.of(Messages.NO_SEQUENCES_FOUND));
-        navigationUtils.waitForMenuClick();
+        navigationUtils.waitForFlowBreakingButtonClik();
     }
 
     @Override
