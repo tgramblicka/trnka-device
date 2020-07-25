@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.trnka.trnkadevice.domain.Sequence;
+import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,7 @@ public class IndividualLearningMenuView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return null;
+        return MenuStudentView.class;
     }
 
     private void startLearningWithSequence(final Sequence sequence) {

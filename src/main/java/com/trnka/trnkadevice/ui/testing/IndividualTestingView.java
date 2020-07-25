@@ -87,7 +87,7 @@ public class IndividualTestingView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return null;
+        return IndividualTestingMenuView.class;
     }
 
     private void renderStats(final SequenceStatistic seqStats) {

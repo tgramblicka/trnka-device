@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -57,7 +58,7 @@ public class IndividualTestingMenuView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return null;
+        return MenuStudentView.class;
     }
 
     private void startTestingWithSequence(final SequenceComponent selectedComponent) {

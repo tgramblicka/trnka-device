@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import com.trnka.trnkadevice.ui.learning.LettersSelectionView;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -110,7 +111,7 @@ public class LettersTestingView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return null;
+        return LettersSelectionView.class;
     }
 
     private void renderStats(final SequenceStatistic seqStats) {

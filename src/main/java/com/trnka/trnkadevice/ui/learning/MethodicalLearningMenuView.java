@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -56,7 +57,7 @@ public class MethodicalLearningMenuView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return null;
+        return MenuStudentView.class;
     }
 
     @Override

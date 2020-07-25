@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
+import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class LettersSelectionView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return null;
+        return MethodicalLearningMenuView.class;
     }
 
     private Optional<MethodicalLearningSequence> getNthSequence(final Integer n) {

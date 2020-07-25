@@ -38,7 +38,7 @@ public class ResultView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return null;
+        return ResultView.class;
     }
 
     private void renderStats(final SequenceStatistic seqStats) {

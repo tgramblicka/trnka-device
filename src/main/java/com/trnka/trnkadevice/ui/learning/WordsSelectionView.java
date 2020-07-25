@@ -34,7 +34,7 @@ public class WordsSelectionView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return null;
+        return MethodicalLearningMenuView.class;
     }
 
     @Override
