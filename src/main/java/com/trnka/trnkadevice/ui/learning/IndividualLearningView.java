@@ -95,7 +95,7 @@ public class IndividualLearningView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return IndividualLearningView.class;
+        return IndividualLearningMenuView.class;
     }
 
     private void renderStats(final SequenceStatistic seqStats) {
