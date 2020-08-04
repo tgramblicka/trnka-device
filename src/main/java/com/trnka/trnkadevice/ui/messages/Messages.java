@@ -56,6 +56,8 @@ public enum Messages {
     METHODICAL_LEARNING_TEST_PASSED("Gratulujem! Uspesne ste presli postupovym testom!", "commands/"),
     METHODICAL_LEARNING_TEST_NOT_PASSED(
             "Žial, vase skore nie je dostatocne pre postup do ďalšieho výučbového bloku. Opakujte prosím test alebo sa vráťte späť na výučbu.", "commands/"),
+    METHODICAL_LEARNING_TEST_NOT_PASSED_REPEAT("Chces zopakovat vyucbovu sekvenciu {}, Vyber moznosti ANO/NIE tlacidlami HORE/DOLE", "commands/"),
+
 
     TESTING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre pismeno '{}' a potvrd!", "commands/"),
     TESTING_SEQUENCE_END("Koniec testu!", "commands/"),

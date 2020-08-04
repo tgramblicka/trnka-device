@@ -97,15 +97,20 @@ public class LettersTestingView implements IView {
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
         statisticService.saveMethodicalLearingTestStats(seqStats);
-        if (seqStats.getScore().multiply(BigDecimal.valueOf(100.0D)).compareTo(sequence.getPassingRate()) > 0) {
+        boolean passedTest = seqStats.getScore().multiply(BigDecimal.valueOf(100.0D)).compareTo(sequence.getPassingRate()) > 0;
+        if (passedTest) {
             renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_PASSED));
             user.addPassedMethodic(sequence);
             userRepo.save(user);
+            renderStats(seqStats);
+            renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_ENDED));
         } else {
             renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_NOT_PASSED));
+            renderStats(seqStats);
+            renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_NOT_PASSED_REPEAT));
+            // todo implement yes no logic
         }
-        renderStats(seqStats);
-        renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_ENDED));
+
         navigator.navigateAsync(MenuStudentView.class);
     }
 
