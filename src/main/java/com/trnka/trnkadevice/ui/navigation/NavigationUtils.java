@@ -16,7 +16,7 @@ public class NavigationUtils {
     @Autowired
     private ApplicationContext context;
 
-    public void waitForFlowBreakingButtonClik() {
+    public void waitForFlowBreakingButtonClick() {
 
         UserInteractionHandler userInteractionHandler = context.getBean(UserInteractionHandler.class);
         UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
