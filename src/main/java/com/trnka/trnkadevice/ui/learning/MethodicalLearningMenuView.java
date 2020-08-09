@@ -52,7 +52,7 @@ public class MethodicalLearningMenuView implements IView {
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_MENU_VIEW));
         Consumer<Integer> consumer = index -> navigator.navigateAsync(MENU.get(index));
-        cycledComponent.cycleThroughMenu(consumer, MENU.toArray(new Class[MENU.size()]));
+        cycledComponent.cycleThroughMenu(consumer, MENU);
     }
 
     @Override
