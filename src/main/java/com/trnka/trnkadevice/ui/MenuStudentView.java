@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
@@ -16,13 +15,16 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.testing.IndividualTestingMenuView;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class MenuStudentView implements IView {
 
-    private IRenderer renderer;
-    private UserSession userSession;
-    private Navigator navigator;
-    private CycledComponent cycledComponent;
+    private final IRenderer renderer;
+    private final UserSession userSession;
+    private final Navigator navigator;
+    private final CycledComponent cycledComponent;
 
     private static List<Class<? extends IView>> MENU = new ArrayList<>();
 
@@ -30,19 +32,7 @@ public class MenuStudentView implements IView {
         MENU.add(MethodicalLearningMenuView.class);
         MENU.add(IndividualLearningMenuView.class);
         MENU.add(IndividualTestingMenuView.class);
-//        MENU.add(ResultsSelectionView.class);
         MENU.add(LogoutView.class);
-    }
-
-    @Autowired
-    public MenuStudentView(final IRenderer renderer,
-                           final UserSession userSession,
-                           final Navigator navigator,
-                           final CycledComponent cycledComponent) {
-        this.renderer = renderer;
-        this.userSession = userSession;
-        this.navigator = navigator;
-        this.cycledComponent = cycledComponent;
     }
 
     @Override
