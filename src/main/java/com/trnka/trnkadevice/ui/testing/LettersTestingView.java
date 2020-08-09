@@ -96,7 +96,7 @@ public class LettersTestingView implements IView {
             renderStats(seqStats);
 
             yesOrNoView.refresh(yesSelected -> handleYesNoSelection(yesSelected, sequenceId),
-                    AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_NOT_PASSED_REPEAT));
+                    AudioMessage.of(Messages.DO_YOU_WANT_TO_REPEAT_TESTING_SEQUENCE_YES_NO));
             navigator.navigateAsync(YesOrNoView.class);
         }
     }
