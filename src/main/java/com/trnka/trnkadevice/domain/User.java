@@ -1,9 +1,9 @@
 package com.trnka.trnkadevice.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,15 +15,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "user")
@@ -58,13 +60,14 @@ public class User {
      */
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
+    @OrderBy("order ASC")
     @JoinTable(name = "passed_methodics",
                joinColumns = @JoinColumn(referencedColumnName = "id", name = "user_id"),
                inverseJoinColumns = @JoinColumn(name = "sequence_id"))
-    private Set<MethodicalLearningSequence> passedSequences = new HashSet<>();
+    private SortedSet<MethodicalLearningSequence> passedSequences = new TreeSet<>();
 
-    public void addPassedMethodic(MethodicalLearningSequence methodicSequence) {
-        getPassedSequences().add(methodicSequence);
+    public void addPassedMethodic(MethodicalLearningSequence methodicalSequence) {
+        getPassedSequences().add(methodicalSequence);
     }
 
 }
