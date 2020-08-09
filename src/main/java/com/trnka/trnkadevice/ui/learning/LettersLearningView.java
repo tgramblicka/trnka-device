@@ -3,8 +3,9 @@ package com.trnka.trnkadevice.ui.learning;
 import java.util.Collections;
 import java.util.List;
 
+import com.trnka.trnkadevice.ui.YesOrNoView;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -27,28 +28,17 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@RequiredArgsConstructor
 public class LettersLearningView implements IView {
 
-    private IRenderer renderer;
-    private UserInteractionHandler userInteractionHandler;
-    private Navigator navigator;
-    private LettersTestingView lettersTestingView;
-    private MethodicalLearningSequenceRepository repo;
+    private final IRenderer renderer;
+    private final UserInteractionHandler userInteractionHandler;
+    private final Navigator navigator;
+    private final LettersTestingView lettersTestingView;
+    private final MethodicalLearningSequenceRepository repo;
+    private final YesOrNoView yesOrNoView;
 
     private Long sequenceId;
-
-    @Autowired
-    public LettersLearningView(final IRenderer renderer,
-                               final UserInteractionHandler userInteractionHandler,
-                               final Navigator navigator,
-                               final MethodicalLearningSequenceRepository repo,
-                               final LettersTestingView lettersTestingView) {
-        this.renderer = renderer;
-        this.userInteractionHandler = userInteractionHandler;
-        this.navigator = navigator;
-        this.repo = repo;
-        this.lettersTestingView = lettersTestingView;
-    }
 
     public void refresh(final Long sequenceId) {
         this.sequenceId = sequenceId;
@@ -80,8 +70,19 @@ public class LettersLearningView implements IView {
             evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries, index + 1 == seq.getSteps().size());
         }
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_SEQUENCE_END, seq.getAllStepsAsMessagesList()));
-        lettersTestingView.refresh(seq.getId());
-        navigator.navigateAsync(lettersTestingView.getClass());
+
+        yesOrNoView.refresh(yesSelected -> handleYesNoSelection(yesSelected, seq.getId()), AudioMessage.of(Messages.DO_YOU_WANT_TO_START_TEST));
+        navigator.navigateAsync(YesOrNoView.class);
+    }
+
+
+    private void handleYesNoSelection(Boolean yesSelected, Long sequenceId) {
+        if (yesSelected) {
+            lettersTestingView.refresh(sequenceId);
+            navigator.navigateAsync(lettersTestingView.getClass());
+        } else {
+            navigator.navigateAsync(LettersSelectionView.class);
+        }
     }
 
     @Override

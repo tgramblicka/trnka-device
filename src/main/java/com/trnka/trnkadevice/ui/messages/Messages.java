@@ -31,7 +31,8 @@ public enum Messages {
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED("NESPRAVNE! Správne poradie bodov v znaku je {}", "commands/"),
     LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED_LEFT_RETRIES("Ostáva {} pokusov", "commands/"),
 
-    LEARNING_SEQUENCE_END("Koniec výučbového bloku {}. Chceš spustiť postupový test?", "commands/"),
+    LEARNING_SEQUENCE_END("Koniec výučbového bloku {}.", "commands/"),
+    DO_YOU_WANT_TO_START_TEST("Chceš spustiť postupový test?", "commands/"),
 
     TESTING_LETTERS_LABEL_MENU("Testovanie pismen", "commands/"),
 
@@ -56,7 +57,7 @@ public enum Messages {
     METHODICAL_LEARNING_TEST_PASSED("Gratulujem! Uspesne ste presli postupovym testom!", "commands/"),
     METHODICAL_LEARNING_TEST_NOT_PASSED(
             "Žial, vase skore nie je dostatocne pre postup do ďalšieho výučbového bloku. Opakujte prosím test alebo sa vráťte späť na výučbu.", "commands/"),
-    METHODICAL_LEARNING_TEST_NOT_PASSED_REPEAT("Chces zopakovat vyucbovu sekvenciu {}, Vyber moznosti ANO/NIE tlacidlami HORE/DOLE", "commands/"),
+    METHODICAL_LEARNING_TEST_NOT_PASSED_REPEAT("Chces zopakovat testovaciu sekvenciu {}, Vyber moznosti ANO/NIE tlacidlami HORE/DOLE", "commands/"),
 
 
     TESTING_TYPE_IN_CHARACTER_BRAIL("Zadaj brail sekvenciu pre pismeno '{}' a potvrd!", "commands/"),
@@ -81,6 +82,10 @@ public enum Messages {
     STATISTIC_INCORRECT_RETRIES("Pocet nespravnych pokusov {}{}{}", "commands/"), // NAHRAT
 
     SEQUENCE("Sekvencia", "commands/"),
+
+    YES("Ano", "commands/"),
+    NO("Nie", "commands/"),
+
 
     ZERO("0", "letters/"),   // PRENAHRAT
     ONE("1", "letters/"),

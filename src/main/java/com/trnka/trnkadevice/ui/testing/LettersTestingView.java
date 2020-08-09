@@ -6,9 +6,6 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
-import com.trnka.trnkadevice.ui.learning.LettersSelectionView;
-import com.trnka.trnkadevice.ui.messages.AudioMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -24,47 +21,35 @@ import com.trnka.trnkadevice.repository.MethodicalLearningSequenceRepository;
 import com.trnka.trnkadevice.repository.UserRepository;
 import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.ui.IView;
-import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.UserSession;
+import com.trnka.trnkadevice.ui.YesOrNoView;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
+import com.trnka.trnkadevice.ui.learning.LettersSelectionView;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@RequiredArgsConstructor
 public class LettersTestingView implements IView {
 
-    private IRenderer renderer;
-    private Navigator navigator;
-    private UserInteractionHandler userInteractionHandler;
-    private UserSession userSession;
-    private UserRepository userRepo;
-    private StatisticService statisticService;
-    private MethodicalLearningSequenceRepository methodicalLearningSequenceRepository;
+    private final IRenderer renderer;
+    private final Navigator navigator;
+    private final UserInteractionHandler userInteractionHandler;
+    private final UserSession userSession;
+    private final UserRepository userRepo;
+    private final StatisticService statisticService;
+    private final MethodicalLearningSequenceRepository methodicalLearningSequenceRepository;
+    private final YesOrNoView yesOrNoView;
 
     private Long sequenceId;
-
-    @Autowired
-    public LettersTestingView(final IRenderer renderer,
-                              final Navigator navigator,
-                              final UserInteractionHandler userInteractionHandler,
-                              final UserSession userSession,
-                              final UserRepository userRepo,
-                              final StatisticService statisticService,
-                              final MethodicalLearningSequenceRepository methodicalLearningSequenceRepository) {
-        this.renderer = renderer;
-        this.navigator = navigator;
-        this.userInteractionHandler = userInteractionHandler;
-        this.userSession = userSession;
-        this.userRepo = userRepo;
-        this.statisticService = statisticService;
-        this.methodicalLearningSequenceRepository = methodicalLearningSequenceRepository;
-    }
 
     public void refresh(final Long sequenceId) {
         this.sequenceId = sequenceId;
@@ -92,7 +77,8 @@ public class LettersTestingView implements IView {
             Integer negativeRetries = 0;
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
                                                                 userInteractionHandler);
-            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, sequence.getAllowedTestRetries(), negativeRetries, index+1==sequence.getSteps().size());
+            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, sequence.getAllowedTestRetries(), negativeRetries,
+                    index + 1 == sequence.getSteps().size());
             long took = System.currentTimeMillis() - start;
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
@@ -104,14 +90,25 @@ public class LettersTestingView implements IView {
             userRepo.save(user);
             renderStats(seqStats);
             renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_ENDED));
+            navigator.navigateAsync(LettersSelectionView.class);
         } else {
             renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_NOT_PASSED));
             renderStats(seqStats);
-            renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_NOT_PASSED_REPEAT));
-            // todo implement yes no logic
-        }
 
-        navigator.navigateAsync(MenuStudentView.class);
+            yesOrNoView.refresh(yesSelected -> handleYesNoSelection(yesSelected, sequenceId),
+                    AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_NOT_PASSED_REPEAT));
+            navigator.navigateAsync(YesOrNoView.class);
+        }
+    }
+
+    private void handleYesNoSelection(Boolean yesSelected,
+                                      Long sequenceId) {
+        if (yesSelected) {
+            this.refresh(sequenceId);
+            navigator.navigateAsync(LettersTestingView.class);
+        } else {
+            navigator.navigateAsync(LettersSelectionView.class);
+        }
     }
 
     @Override
@@ -129,7 +126,7 @@ public class LettersTestingView implements IView {
     }
 
     @Override
-public List<Messages> getParams() {
+    public List<Messages> getParams() {
         return Collections.emptyList();
     }
 
