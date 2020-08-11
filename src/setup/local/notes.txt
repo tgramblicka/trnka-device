@@ -1,8 +1,8 @@
 pi
 raspberry
-ip: 192.168.1.15
+ip: 192.168.0.104
 
-ssh pi@192.168.1.15
+ssh pi@192.168.0.104
 
 
 5key event at 1559201302.748662, 6 (KEY_5), down

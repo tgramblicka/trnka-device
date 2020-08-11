@@ -1,0 +1,48 @@
+DONE Metodicka vyucba po skonceni vyucbovej casti testu sa spyta ci pokracovat na postupovy test a hned nan pokracuje bez moznosti volby. Opravit - treba dat moznost volby ANO/NIE. Moznosti ano nie budu implementovane ako menu, bude sa cez ne moct cyklovat az kym nepotvrdi potvrdz. tlacidlom
+
+
+DONE Pri vstupe do vyucboveho testu treba prehrat pred nazvom testu (cislom)este zvuk "sekvencia"
+pri metodickom testovani musi byt 100% uspesnost.
+
+DONE Za poslednym pismenom da hlasku "pokracujem na dalsie pismeno" odstranit to.
+
+
+DONE Vycba - premenovat na lepsi nazov -> "individualna vyucba" (dolpni vlado)
+
+DONE vyskocit zo stredu sekvencie tlacidlom hlavne menu - overit transakcnost, aby nezapisalo do DB, budem musiet asi manualne handlovat transakciu
+
+
+DONE - Doplnit tlacitko escape - (v 4 - menu uplne prave). Escape posunie vzdy o uroven vyssie, pokial som v menu. Pokial som v sekvencii vyskoci zo sekvencie bez ulozenia - transakcia. Takisto by mal vyskocit aj MENU
+
+
+
+DONE: Po neuspesnom ukonceni testu v metodickej vyucbe, spytat sa ho "Chces si zopakovat vyucbovu sekvenciu 1, alebo chces ukoncit ? Vyber tlacidlami hore dole". Potom sa pri pohybe hore dole budu prehravat audia ZOPAKOVAT/UKONCIT. Ak ukoncit naviguje ho na hlavne menu ak zopakovat tak zacne prehravat tuto vyucbovu metodiku (aj s vyucbou)
+
+IN PROGRESS: pri otvoreni/navigacii do nejakeho menu, treba hned prehrat prvu moznost este predtym ako klikne tlacidlo hore/dole
+
+
+
+NA RASPBIANE Pri testovani ignorovat vsetky tlacidla okrem enter, sestbodu a hlavneho menu a escapu
+
+
+
+BUGS
+?? DONE neuklada sa cas trvanie sekvencie took (v tabulke je null)
+
+
+
+
+DOROBIT
+
+
+ak mam otvorenu sekvenciu a stlacim menu tak bez potvrdenia povie, ze nespravne. V strede sekvencie by mal vzdy len potvrdit
+
+VST BACKEND WEB:
+
+dokodit moznost pri generaci testu zakliknut checkbox "nahodne vygeneruj N pismen", ktory hned vyberie nahodne tychto N pismen a vytvori test na backende. Ucitel hned uvidi tieto nahodne pismena.
+
+
+poslat znovu do mailu view diagram - doplnit tlacitko spat
+
+
+

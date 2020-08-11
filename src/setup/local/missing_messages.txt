@@ -1,0 +1,13 @@
+ZERO
+STATISTIC_INCORRECT_RETRIES("Pocet nespravnych pokusov {}{}{}", ""),
+STATISTIC_LETTER("Statistika pre pismeno {}", ""),
+STATISTIC_LETTER_GUESSED("Pismeno {} uhadnute {}", "commands/"),
+CORRECT
+
+LEARNING_LABEL_MENU("Vyuka", "commands/")  --> prerobit na Individualna Vyuka
+LEARNING_VIEW_MENU("Sekcia: Vyuka, vyber moznosti tlacidlami hore/dole", "commands/"), --> prerobit na: Sekcia: Individualna Vyuka, vyber moznosti tlacidlami hore/dole
+
+METHODICAL_LEARNING_TEST_NOT_PASSED_REPEAT --> prerobit na "Chces zopakovat testovaciu sekvenciu {}, Vyber moznosti ANO/NIE tlacidlami HORE/DOLE"
+YES
+NO
+

@@ -5,6 +5,7 @@
 ----------------
 SHOW DATABASES;
 create database `trnka-device`;
+drop database `trnka-device`;
 
 ----------------------
 Ako executenut liquibase z local PC na raspberry:
@@ -20,8 +21,9 @@ sudo service mysql restart
 3.
 grantni clientovi (laptopu) access
 mysql -u root -p (prihlas sa ako admin)
-GRANT ALL ON `trnka-device`.* TO 'root'@'192.168.1.17' IDENTIFIED BY 'raspberry';
+GRANT ALL ON `trnka-device`.* TO 'root'@'192.168.1.24' IDENTIFIED BY 'raspberry';
 GRANT ALL ON `trnka-device`.* TO 'pi'@'localhost' IDENTIFIED BY 'raspberry';
+
 
 4.
 spusti liquibase z lokal PC
