@@ -8,7 +8,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
+import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.messages.Messages;

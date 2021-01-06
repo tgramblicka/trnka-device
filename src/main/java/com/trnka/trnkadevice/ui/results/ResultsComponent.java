@@ -1,6 +1,6 @@
 package com.trnka.trnkadevice.ui.results;
 
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
+import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.ui.Renderable;
 import com.trnka.trnkadevice.ui.messages.Messages;
 

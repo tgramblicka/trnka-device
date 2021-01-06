@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.User;
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
+import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.exception.SequenceIdNotSetException;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.repository.MethodicalLearningSequenceRepository;

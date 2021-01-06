@@ -1,7 +1,7 @@
 package com.trnka.trnkadevice.ui.statistic;
 
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
-import com.trnka.trnkadevice.domain.statistics.StepStatistic;
+import com.trnka.trnkadevice.domain.SequenceStatistic;
+import com.trnka.trnkadevice.domain.StepStatistic;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;

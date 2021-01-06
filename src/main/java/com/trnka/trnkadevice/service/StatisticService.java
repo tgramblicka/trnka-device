@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
+import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 
 import lombok.extern.slf4j.Slf4j;

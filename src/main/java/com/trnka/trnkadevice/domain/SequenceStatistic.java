@@ -1,4 +1,4 @@
-package com.trnka.trnkadevice.domain.statistics;
+package com.trnka.trnkadevice.domain;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,14 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.trnka.trnkadevice.domain.Sequence;
-import com.trnka.trnkadevice.domain.Step;
-import com.trnka.trnkadevice.domain.User;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 
 import lombok.EqualsAndHashCode;

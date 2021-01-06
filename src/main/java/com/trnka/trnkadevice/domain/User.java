@@ -21,8 +21,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

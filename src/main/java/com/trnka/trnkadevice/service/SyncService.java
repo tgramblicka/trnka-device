@@ -2,7 +2,7 @@ package com.trnka.trnkadevice.service;
 
 import com.trnka.restapi.dto.StudentDTO;
 import com.trnka.restapi.dto.SyncDto;
-import com.trnka.restapi.endpoint.StudentSyncEndpoint;
+import com.trnka.restapi.endpoint.SyncEndpoint;
 import com.trnka.trnkadevice.domain.User;
 import com.trnka.trnkadevice.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 @Service
 public class SyncService {
 
-    private StudentSyncEndpoint studentSyncEndpoint;
+    private SyncEndpoint studentSyncEndpoint;
     private UserRepository userRepository;
 
-    public SyncService(final StudentSyncEndpoint studentSyncEndpoint,
+    public SyncService(final SyncEndpoint studentSyncEndpoint,
                        final UserRepository userRepository) {
         this.studentSyncEndpoint = studentSyncEndpoint;
         this.userRepository = userRepository;

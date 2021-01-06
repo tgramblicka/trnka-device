@@ -1,4 +1,4 @@
-package com.trnka.trnkadevice.domain.statistics;
+package com.trnka.trnkadevice.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ public class StepStatistic {
     @OneToOne
     @JoinColumn(name = "step_id", referencedColumnName = "id", nullable = false)
     @NotNull
-    private Step Step;
+    private Step step;
 
     @Column(name = "retries")
     private Integer retries;

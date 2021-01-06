@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.TestingSequence;
-import com.trnka.trnkadevice.domain.statistics.SequenceStatistic;
+import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.ui.IView;
