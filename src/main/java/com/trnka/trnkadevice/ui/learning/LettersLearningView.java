@@ -87,7 +87,7 @@ public class LettersLearningView implements IView {
 
     @Override
     public Class<? extends IView> onEscape() {
-        return MethodicalLearningMenuView.class;
+        return LettersSelectionView.class;
     }
 
     @Override
