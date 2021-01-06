@@ -102,6 +102,15 @@ CREATE TABLE IF NOT EXISTS `passed_methodics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
+CREATE TABLE IF NOT EXISTS `synchronization` (
+    `id` bigint(20) NOT NULL,
+    `executed_on` datetime NOT NULL,
+    `type` varchar(255) NOT NULL,
+    `status` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 -- Data exporting was unselected.
 
 

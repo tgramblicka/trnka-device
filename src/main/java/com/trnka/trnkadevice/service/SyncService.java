@@ -2,6 +2,7 @@ package com.trnka.trnkadevice.service;
 
 import com.trnka.restapi.dto.StudentDTO;
 import com.trnka.restapi.dto.SyncDto;
+import com.trnka.restapi.dto.statistics.DeviceStatisticsSyncDto;
 import com.trnka.restapi.endpoint.SyncEndpoint;
 import com.trnka.trnkadevice.domain.User;
 import com.trnka.trnkadevice.repository.UserRepository;
@@ -29,7 +30,14 @@ public class SyncService {
 
         syncPureUsers(syncDto);
         // todo sync tests
+        // todo save into sync table
         System.out.println(syncDto);
+    }
+
+    public void sendExaminationStatistics(){
+        // todo implement
+        // send only those examination stats, where updatedOn > latest synchronization.executed_on where type=UPDATED_EXAMINATION_STATISTICS_ON_SERVER
+        studentSyncEndpoint.updateExaminationStatisticsToAllStudents(new DeviceStatisticsSyncDto());
     }
 
     private void syncPureUsers(final SyncDto syncDto) {
