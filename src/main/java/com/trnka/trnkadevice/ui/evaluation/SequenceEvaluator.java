@@ -2,9 +2,8 @@ package com.trnka.trnkadevice.ui.evaluation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.sun.org.apache.regexp.internal.RE;
+import com.trnka.restapi.dto.statistics.Evaluate;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
@@ -66,26 +65,6 @@ public class SequenceEvaluator {
             userInteraction = userInteractionHandler.readUserInteraction();
         }
         return keyStrokes;
-    }
-
-    public class Evaluate {
-        private final Boolean correct;
-        private final Integer negativeTries;
-
-        public Evaluate(Boolean correct,
-                        Integer negativeTries) {
-            this.correct = correct;
-            this.negativeTries = negativeTries;
-        }
-
-        public Boolean getCorrect() {
-            return correct;
-        }
-
-        public Integer getNegativeTries() {
-            return negativeTries;
-        }
-
     }
 
 }

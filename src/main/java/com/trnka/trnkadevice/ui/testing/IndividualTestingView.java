@@ -3,6 +3,7 @@ package com.trnka.trnkadevice.ui.testing;
 import java.util.Collections;
 import java.util.List;
 
+import com.trnka.restapi.dto.statistics.Evaluate;
 import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -73,7 +74,7 @@ public class IndividualTestingView implements IView {
             Integer negativeRetries = 0;
             SequenceEvaluator evaluator = new SequenceEvaluator(renderer,
                                                                 userInteractionHandler);
-            SequenceEvaluator.Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries, index+1==seq.getSteps().size());
+            Evaluate evaluated = evaluator.evaluateUserInput(step, seq.getAllowedRetries(), negativeRetries, index+1==seq.getSteps().size());
             long took = System.currentTimeMillis() - start;
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }

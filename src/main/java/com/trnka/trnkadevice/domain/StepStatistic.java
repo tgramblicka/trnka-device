@@ -10,7 +10,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.trnka.trnkadevice.domain.Step;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

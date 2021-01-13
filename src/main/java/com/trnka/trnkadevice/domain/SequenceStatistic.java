@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.trnka.restapi.dto.statistics.Evaluate;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 
 import lombok.EqualsAndHashCode;
@@ -68,7 +69,7 @@ public class SequenceStatistic {
     public StepStatistic addStepStatistic(final SequenceStatistic seqStats,
                                           final Step step,
                                           final long took,
-                                          final SequenceEvaluator.Evaluate evaluationOfSequence) {
+                                          final Evaluate evaluationOfSequence) {
         StepStatistic stepStats = new StepStatistic();
         stepStats.setStep(step);
         stepStats.setTook(took);
