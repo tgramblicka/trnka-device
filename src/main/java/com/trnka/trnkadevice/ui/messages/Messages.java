@@ -71,13 +71,10 @@ public enum Messages {
     LOG_OUT("Odhlasenie", "commands/"),
     LOGGING_OUT("Pouzivatel bude odhlaseny", "commands/"),
 
-    XXX("XXXX, !", "commands/"),
 
     CORRECT_GUESS("Spravne", "commands/"),
     INCORRECT_GUESS("Nespravne", "commands/"),
 
-    LEARNING_SEQUENCE_NAME("Vyuka {}", "commands/"), // parameter bude brail representation
-    TESTING_SEQUENCE_NAME("Testovanie {}", "commands/"), // parameter bude brail representation
     STATISTIC_LETTER_GUESSED("Pismeno {} uhadnute {}", "commands/"),
     STATISTIC_INCORRECT_RETRIES("Pocet nespravnych pokusov {}{}{}", "commands/"), // NAHRAT
 
@@ -166,11 +163,9 @@ public enum Messages {
     TEST6("text{}", "commands/"),
     TEST7("{}text", "commands/"),
     TEST8("text{}text", "commands/"),
-    TEST9("text{}{}text", "commands/"),
+    TEST9("text{}{}text", "commands/");
 
 
-    LEARNING_SEQUENCE_STARTED("Zacali ste sekvenciu ucenia cislo {}", "commands/"),
-    UNKNOWN("Unknown", "commands/");
 
     private final String text;
     private final String directory;
