@@ -38,10 +38,10 @@
 ```   
 
 ## build & copy new jar to raspberry
-1. make sure prod profile is set in application.properties
+1. make sure `production` profile is set in application.properties
 2. make sure Audio renderer is setup in RendererConfig
 3. build jar ( mvn clean package)
-4. use the copy.sh script containing followingly from project root directory. Uncomment only needed parts
+4. run the copy.sh script from project root directory. Uncomment only needed parts
 ```
 ./scripts/copy.sh
 ```
