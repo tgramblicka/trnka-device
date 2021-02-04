@@ -2,7 +2,7 @@
 
 
 mariaDbClientJar="/c/Users/200000591/apps/mariadb-java-client-2.4.3.jar"
-raspi_host="jdbc:mariadb://192.168.0.104:3306/trnka-device"
+raspi_host="jdbc:mariadb://192.168.0.110:3306/trnka-device"
 pwd="root"
 raspi_pwd="raspberry"
 
