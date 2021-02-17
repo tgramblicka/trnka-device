@@ -69,6 +69,10 @@ public class Navigator implements EventListener {
 
     @Subscribe
     public <T extends IView> void onNavigationEvent(NavigationEvent<T> navigationEvent) {
-        navigate(navigationEvent.getDestinationViewClass());
+        try {
+            navigate(navigationEvent.getDestinationViewClass());
+        } catch (Exception e){
+            log.error("Exception occurred: {}", e);
+        }
     }
 }
