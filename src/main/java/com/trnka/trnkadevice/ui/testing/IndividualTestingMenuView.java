@@ -5,53 +5,41 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.trnka.trnkadevice.ui.MenuStudentView;
-import com.trnka.trnkadevice.ui.messages.AudioMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.trnka.trnkadevice.dao.TestingSequenceDAO;
 import com.trnka.trnkadevice.domain.TestingSequence;
 import com.trnka.trnkadevice.renderer.IRenderer;
+import com.trnka.trnkadevice.repository.TestingSequenceRepository;
 import com.trnka.trnkadevice.ui.CycledComponent;
 import com.trnka.trnkadevice.ui.IView;
+import com.trnka.trnkadevice.ui.MenuStudentView;
 import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.UserSession;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@RequiredArgsConstructor
 public class IndividualTestingMenuView implements IView {
 
-    private IRenderer renderer;
-    private Navigator navigator;
-    private UserSession userSession;
-    private IndividualTestingView individualTestingView;
-    private TestingSequenceDAO testingSequenceDao;
-    private CycledComponent cycledComponent;
+    private final IRenderer renderer;
+    private final Navigator navigator;
+    private final UserSession userSession;
+    private final IndividualTestingView individualTestingView;
+    private final TestingSequenceRepository testingSequenceRepository;
+    private final CycledComponent cycledComponent;
 
-    @Autowired
-    public IndividualTestingMenuView(final Navigator navigator,
-                                     final IRenderer renderer,
-                                     final UserSession userSession,
-                                     final CycledComponent cycledComponent,
-                                     final TestingSequenceDAO testingSequenceDao,
-                                     final IndividualTestingView individualTestingView) {
-        this.navigator = navigator;
-        this.renderer = renderer;
-        this.testingSequenceDao = testingSequenceDao;
-        this.userSession = userSession;
-        this.cycledComponent = cycledComponent;
-        this.individualTestingView = individualTestingView;
-    }
 
     @Override
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.TESTING_VIEW));
-        Set<TestingSequence> sequences = testingSequenceDao.getSequences(userSession.getUsername());
+        Set<TestingSequence> sequences = testingSequenceRepository.findAllTestingSequencesForUser(userSession.getUsername());
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
         cycledComponent.cycleThroughComponents(index -> startTestingWithSequence(selection.get(index)), selection);
     }

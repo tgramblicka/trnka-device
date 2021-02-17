@@ -39,7 +39,7 @@ public class IndividualLearningMenuView implements IView {
     @Override
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_VIEW_MENU));
-        Set<LearningSequence> sequences = learningSequenceRepository.findAllLearningSequencesOfUser(userSession.getUsername());
+        Set<LearningSequence> sequences = learningSequenceRepository.findAllLearningSequencesForUser(userSession.getUsername());
 
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
         cycledComponent.cycleThroughComponents(index -> startLearningWithSequence(selection.get(index).getSequence()), selection);
