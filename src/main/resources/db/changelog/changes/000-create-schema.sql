@@ -95,12 +95,20 @@ CREATE TABLE IF NOT EXISTS `step_statistic` (
 CREATE TABLE IF NOT EXISTS `passed_methodics` (
     `sequence_id` bigint(20) NOT NULL,
     `user_id` bigint(20) NOT NULL,
-    KEY `FK_sequence_id` (`sequence_id`),
-    KEY `FK_user_id` (`user_id`),
-    CONSTRAINT `FK_sequence_id` FOREIGN KEY (`sequence_id`) REFERENCES `sequence` (`id`),
-    CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+    KEY `FK_sequence_id_passed_methodics` (`sequence_id`),
+    KEY `FK_user_id_passed_methodics` (`user_id`),
+    CONSTRAINT `FK_sequence_id_passed_methodics` FOREIGN KEY (`sequence_id`) REFERENCES `sequence` (`id`),
+    CONSTRAINT `FK_user_id_passed_methodics` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE IF NOT EXISTS `user_sequences` (
+    `sequence_id` bigint(20) NOT NULL,
+    `user_id` bigint(20) NOT NULL,
+    KEY `FK_sequence_id_user_sequences` (`sequence_id`),
+    KEY `FK_user_id_user_sequences` (`user_id`),
+    CONSTRAINT `FK_sequence_id_user_sequences` FOREIGN KEY (`sequence_id`) REFERENCES `sequence` (`id`),
+    CONSTRAINT `FK_user_id_user_sequences` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE IF NOT EXISTS `synchronization` (
     `id` bigint(20) NOT NULL,

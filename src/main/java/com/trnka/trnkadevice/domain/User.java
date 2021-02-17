@@ -2,6 +2,7 @@ package com.trnka.trnkadevice.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -43,12 +44,15 @@ public class User {
     private String code;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    // @JoinColumn(referencedColumnName = "id", name = "user_id")
     List<SequenceStatistic> statistics = new ArrayList<>();
 
-    public User() {
-        super();
-    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @OrderBy("order ASC")
+    @JoinTable(name = "user_sequences",
+            joinColumns = @JoinColumn(referencedColumnName = "id", name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "sequence_id"))
+    private Set<Sequence> sequences = new TreeSet<>();
 
     /**
      * Holds info about those MethodicalLearningSequences that have been passed. Passed sequences unlock other, more advanced, sequences for user.
@@ -63,6 +67,17 @@ public class User {
                joinColumns = @JoinColumn(referencedColumnName = "id", name = "user_id"),
                inverseJoinColumns = @JoinColumn(name = "sequence_id"))
     private SortedSet<MethodicalLearningSequence> passedSequences = new TreeSet<>();
+
+
+
+    public User() {
+        super();
+    }
+
+    public void addSequnce(Sequence sequence) {
+        getSequences().add(sequence);
+    }
+
 
     public void addPassedMethodic(MethodicalLearningSequence methodicalSequence) {
         getPassedSequences().add(methodicalSequence);

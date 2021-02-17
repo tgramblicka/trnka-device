@@ -220,5 +220,11 @@ INSERT INTO hibernate_sequence (next_val) VALUES (119);
 
 
 
+-- user_sequences
+INSERT INTO `user_sequences` (`user_id`, `sequence_id`) VALUES (1, 101);
+INSERT INTO `user_sequences` (`user_id`, `sequence_id`) VALUES (1, 106);
+INSERT INTO `user_sequences` (`user_id`, `sequence_id`) VALUES (1, 107);
+INSERT INTO `user_sequences` (`user_id`, `sequence_id`) VALUES (1, 108);
+
 
 SET FOREIGN_KEY_CHECKS=1; --
