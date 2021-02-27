@@ -7,6 +7,7 @@ USE `trnka-device`;
 -- Dumping structure for table trnka-device.user
 CREATE TABLE IF NOT EXISTS `user` (
   `id` bigint(20) NOT NULL,
+  `external_id` bigint(20),
   `username` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `code` varchar(4) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
@@ -37,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 CREATE TABLE IF NOT EXISTS `sequence` (
   `dtype` varchar(31) COLLATE utf8_bin NOT NULL,
   `id` bigint(20) NOT NULL,
+  `external_id` bigint(20),
   `allowed_retries` int(11) DEFAULT NULL,
   `allowed_test_retries` int(2) DEFAULT NULL,
   `passing_rate_percentage` DOUBLE(4,2) DEFAULT NULL,
@@ -65,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `sequence_statistic` (
 -- Dumping structure for table trnka-device.step
 CREATE TABLE IF NOT EXISTS `step` (
   `id` bigint(20) NOT NULL,
+  `external_id` bigint(20),
   `preserve_order` bit(1) DEFAULT NULL,
   `brail_character_id` bigint(20) NOT NULL,
   `sequence_id` bigint(20) DEFAULT NULL,

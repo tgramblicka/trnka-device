@@ -26,6 +26,9 @@ public class Step {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "external_id")
+    private Long externalId;
+
     @OneToOne
     @JoinColumn(name = "brail_character_id", referencedColumnName = "id", nullable = false)
     @NotNull

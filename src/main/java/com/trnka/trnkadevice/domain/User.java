@@ -37,6 +37,9 @@ public class User {
     @Id
     private Long id;
 
+    @Column(name = "external_id")
+    private Long externalId;
+
     @Column(name = "username")
     private String username;
 
