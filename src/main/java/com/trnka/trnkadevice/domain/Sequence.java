@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.trnka.trnkadevice.ui.messages.Messages;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,6 +38,9 @@ public abstract class Sequence {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "external_id")
+    private Long externalId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "audio_message")

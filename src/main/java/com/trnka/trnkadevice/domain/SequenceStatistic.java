@@ -19,7 +19,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.trnka.restapi.dto.statistics.Evaluate;
-import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,9 +29,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-// @NamedQuery(name = SequenceStatistic.FIND_ALL_TEST_STATS_FOR_USER,
-// query = "SELECT stats from User user INNER JOIN user.statistics stats INNER JOIN TestingSequence as seq ON seq.id = stats.sequenceId WHERE TYPE(seq) =
-// TestingSequence AND user.id = :userId")
 public class SequenceStatistic {
     public static final String FIND_ALL_TEST_STATS_FOR_USER = "SequenceStatistic.findAllTestResultsForUser";
     @Id
@@ -40,11 +36,11 @@ public class SequenceStatistic {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", name = "sequence_id", nullable = true)
+    @JoinColumn(referencedColumnName = "id", name = "sequence_id")
     private Sequence sequence;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "id", name = "sequence_statistic_id", nullable = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(referencedColumnName = "id", name = "sequence_statistic_id")
     private List<StepStatistic> stepStats = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
