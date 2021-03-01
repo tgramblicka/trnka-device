@@ -1,4 +1,4 @@
-package com.trnka.trnkadevice.service;
+package com.trnka.trnkadevice.service.sync;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class SyncOnStartup implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         log.info("Will sync all the data from VST");
         try {
-            syncService.syncronize();
+            syncService.synchronize();
         } catch (FeignException e) {
             log.warn("VST backend is not available, or threw an error");
         } catch (Exception e) {

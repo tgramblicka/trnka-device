@@ -32,6 +32,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 public class User {
+    public static final Long DEFAULT_USER_ID = 1L; // static user that is always on device DB, cannot be deleted or updated.
 
     @GeneratedValue
     @Id

@@ -4,7 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.trnka.trnkadevice.domain.BrailCharacter;
 
+import java.util.Optional;
+
 public interface BrailCharacterRepository extends CrudRepository<BrailCharacter, Long> {
 
-    BrailCharacter findByLetter(String letter);
+    Optional<BrailCharacter> findByLetter(String letter);
 }

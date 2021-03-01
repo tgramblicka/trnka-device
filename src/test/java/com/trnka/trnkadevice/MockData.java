@@ -1,6 +1,7 @@
 package com.trnka.trnkadevice;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import com.trnka.trnkadevice.domain.BrailCharacter;
@@ -53,11 +54,11 @@ public class MockData {
     }
 
     private Step step(String letter) {
-        BrailCharacter brailCharacter = brailRepository.findByLetter(letter);
+        Optional<BrailCharacter> brailCharacter = brailRepository.findByLetter(letter);
 
         Step step = new Step();
         step.setPreserveOrder(false);
-        step.setBrailCharacter(brailCharacter);
+        step.setBrailCharacter(brailCharacter.get());
         return step;
     }
 

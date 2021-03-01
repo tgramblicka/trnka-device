@@ -1,5 +1,6 @@
 package com.trnka.trnkadevice.repository;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,10 @@ public interface LearningSequenceRepository extends CrudRepository<LearningSeque
 
     @Query(value = "SELECT userSeq from User usr JOIN usr.sequences AS userSeq WHERE usr.username = :username AND type(userSeq) IN ('LS')")
     Set<LearningSequence> findAllLearningSequencesForUser(@Param("username") String username);
+
+    Optional<LearningSequence> findByExternalId(final Long id);
+
+    Set<LearningSequence> findByExternalIdNotIn(final Set<Long> id);
 
 
 }

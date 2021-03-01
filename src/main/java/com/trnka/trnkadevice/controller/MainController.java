@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trnka.trnkadevice.AsyncGateway;
 import com.trnka.trnkadevice.database.DbQueries;
 import com.trnka.trnkadevice.inputreader.DeviceInputReader;
-import com.trnka.trnkadevice.service.SyncService;
+import com.trnka.trnkadevice.service.sync.SyncService;
 
 @RestController
 @RequestMapping(path = "device")
@@ -53,7 +53,7 @@ public class MainController {
 
     @GetMapping(path = "sync")
     public String sync() {
-        syncService.syncronize();
+        syncService.synchronize();
         return "synced";
     }
 
