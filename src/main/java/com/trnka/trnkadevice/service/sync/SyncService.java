@@ -1,5 +1,6 @@
 package com.trnka.trnkadevice.service.sync;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import com.trnka.restapi.dto.SyncDto;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class SyncService {
 
     private final SyncEndpoint studentSyncEndpoint;
@@ -18,7 +20,9 @@ public class SyncService {
 
 
     public void synchronize() {
+        log.info("Syncing: Will download SyncDto from VST server.");
         SyncDto syncDto = studentSyncEndpoint.syncAll();
+        log.info("Syncing: Downloaded SyncDto: {}", syncDto);
 
         sequenceSyncService.syncSequences(syncDto.getExaminations());
         // transaction must be commited here
