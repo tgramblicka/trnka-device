@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import com.trnka.trnkadevice.inputreader.InputReader;
 
 @Configuration
-@Profile("dev")
+@Profile({"dev", "unittest"})
 public class PcKeybordReaderConfig {
     @Bean
     public InputReader inputReader() {
