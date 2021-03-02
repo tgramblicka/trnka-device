@@ -5,6 +5,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.trnka.restapi.dto.SequenceType;
+import com.trnka.trnkadevice.domain.LearningSequence;
+import com.trnka.trnkadevice.domain.TestingSequence;
+import com.trnka.trnkadevice.ui.messages.Messages;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,7 +53,35 @@ public class SequenceSyncService {
     }
 
     private void createSequence(final ExaminationDto exam) {
+        Optional<Sequence> sequenceOptional = createSequenceByType(exam.getType());
+        if (!sequenceOptional.isPresent()) {
+            log.error("Skipping sequenceOptional creation due to error!");
+            return;
+        }
+        Sequence seq = sequenceOptional.get();
+        seq.setTimeout(exam.getTimeout());
+        seq.setAllowedRetries(exam.getAllowedRetries());
+        seq.setExternalId(exam.getId());
+        addNewSequenceSteps(seq, exam);
+        sequenceRepository.save(seq);
+    }
 
+    private Optional<Sequence> createSequenceByType(final SequenceType type) {
+        Sequence sequence = null;
+        switch (type) {
+        case LEARNING:
+            sequence = new LearningSequence();
+            sequence.setAudioMessage(Messages.LEARNING_SEQUENCE_NAME);
+            break;
+        case TESTING:
+            sequence = new TestingSequence();
+            sequence.setAudioMessage(Messages.TESTING_SEQUENCE_NAME);
+            break;
+        case METHODICAL:
+            log.error("Methodical sequence cannot be synced from VST !");
+            return null;
+        }
+        return Optional.of(sequence);
     }
 
     // yet no difference between learning vs testing sequence, so common method can be used

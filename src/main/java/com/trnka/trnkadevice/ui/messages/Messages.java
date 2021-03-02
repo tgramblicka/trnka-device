@@ -76,8 +76,8 @@ public enum Messages {
     INCORRECT_GUESS("Nespravne", "commands/"),
 
     // MESSAGES FOM DB sequence.audio_message, do note remove
-    LEARNING_SEQUENCE_NAME("Vyuka {}", "commands/"), // parameter bude brail representation
-    TESTING_SEQUENCE_NAME("Testovanie {}", "commands/"), // parameter bude brail representation
+    LEARNING_SEQUENCE_NAME("Vyuka {}", "commands/"), // DO NOT DELETE! Stoded in DB, parameter will be brail representation
+    TESTING_SEQUENCE_NAME("Testovanie {}", "commands/"), // DO NOT DELETE! Stoded in DB, parameter will be brail representation
 
     STATISTIC_LETTER_GUESSED("Pismeno {} uhadnute {}", "commands/"),
     STATISTIC_INCORRECT_RETRIES("Pocet nespravnych pokusov {}{}{}", "commands/"), // NAHRAT
