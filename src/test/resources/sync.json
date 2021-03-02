@@ -1,0 +1,133 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "userName": "username",
+      "code": "0000",
+      "examinationIds": [
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  ],
+  "examinations": [
+    {
+      "id": 10,
+      "name": "???",
+      "audio": null,
+      "timeout": 1000,
+      "complexity": null,
+      "type": "LEARNING",
+      "allowedRetries": 2,
+      "steps": [
+        {
+          "brailCharacter": {
+            "letter": "a"
+          },
+          "preserveOrder": true
+        },
+        {
+          "brailCharacter": {
+            "letter": "b"
+          },
+          "preserveOrder": true
+        },
+        {
+          "brailCharacter": {
+            "letter": "l"
+          },
+          "preserveOrder": true
+        },
+        {
+          "brailCharacter": {
+            "letter": "e"
+          },
+          "preserveOrder": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "???",
+      "audio": null,
+      "timeout": 1000,
+      "complexity": null,
+      "type": "LEARNING",
+      "allowedRetries": 2,
+      "steps": [
+        {
+          "brailCharacter": {
+            "letter": "k"
+          },
+          "preserveOrder": true
+        },
+        {
+          "brailCharacter": {
+            "letter": "u"
+          },
+          "preserveOrder": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "???",
+      "audio": null,
+      "timeout": 1000,
+      "complexity": null,
+      "type": "TESTING",
+      "allowedRetries": 2,
+      "steps": [
+        {
+          "brailCharacter": {
+            "letter": "a"
+          },
+          "preserveOrder": true
+        },
+        {
+          "brailCharacter": {
+            "letter": "b"
+          },
+          "preserveOrder": true
+        },
+        {
+          "brailCharacter": {
+            "letter": "l"
+          },
+          "preserveOrder": true
+        },
+        {
+          "brailCharacter": {
+            "letter": "e"
+          },
+          "preserveOrder": true
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "???",
+      "audio": null,
+      "timeout": 1000,
+      "complexity": null,
+      "type": "TESTING",
+      "allowedRetries": 2,
+      "steps": [
+        {
+          "brailCharacter": {
+            "letter": "k"
+          },
+          "preserveOrder": true
+        },
+        {
+          "brailCharacter": {
+            "letter": "u"
+          },
+          "preserveOrder": true
+        }
+      ]
+    }
+  ]
+}

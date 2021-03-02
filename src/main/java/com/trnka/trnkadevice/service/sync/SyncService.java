@@ -14,14 +14,14 @@ import lombok.RequiredArgsConstructor;
 @Slf4j
 public class SyncService {
 
-    private final SyncEndpoint studentSyncEndpoint;
+    private final SyncEndpoint client;
     private final UserSyncService userSyncService;
     private final SequenceSyncService sequenceSyncService;
 
 
     public void synchronize() {
         log.info("Syncing: Will download SyncDto from VST server.");
-        SyncDto syncDto = studentSyncEndpoint.syncAll();
+        SyncDto syncDto = client.syncAll();
         log.info("Syncing: Downloaded SyncDto: {}", syncDto);
 
         sequenceSyncService.syncSequences(syncDto.getExaminations());
@@ -35,7 +35,7 @@ public class SyncService {
     public void sendExaminationStatistics(){
         // todo implement
         // send only those examination stats, where updatedOn > latest synchronization.executed_on where type=UPDATED_EXAMINATION_STATISTICS_ON_SERVER
-        studentSyncEndpoint.updateExaminationStatisticsToAllStudents(new DeviceStatisticsSyncDto());
+        client.updateExaminationStatisticsToAllStudents(new DeviceStatisticsSyncDto());
     }
 
 
