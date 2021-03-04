@@ -92,96 +92,96 @@ INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 135, null, 1, 'SIXTEEN', 100000, 1, 80, 16);
 
 -- a,b,l,e
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (122, null, b'0', 1, 120);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (123, null, b'0', 2, 120);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (124, null, b'0', 12, 120);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (125, null, b'0', 5, 120);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (122, null, TRUE, 1, 120);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (123, null, TRUE, 2, 120);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (124, null, TRUE, 12, 120);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (125, null, TRUE, 5, 120);
 
 -- k,u
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (126, null, b'0', 11, 121);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (127, null, b'0', 21, 121);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (126, null, TRUE, 11, 121);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (127, null, TRUE, 21, 121);
 
 -- c,o,m,i
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (128, null, b'0', 3, 122);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (129, null, b'0', 15, 122);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (130, null, b'0', 13, 122);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (131, null, b'0', 9, 122);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (128, null, TRUE, 3, 122);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (129, null, TRUE, 15, 122);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (130, null, TRUE, 13, 122);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (131, null, TRUE, 9, 122);
 
 -- v,á,?,r
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (132, null, b'0', 3, 123);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (133, null, b'0', 27, 123);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (134, null, b'0', 29, 123);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (135, null, b'0', 18, 123);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (132, null, TRUE, 3, 123);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (133, null, TRUE, 27, 123);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (134, null, TRUE, 29, 123);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (135, null, TRUE, 18, 123);
 
 -- , s ú p
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (136, null, b'0', 47, 124);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (137, null, b'0', 19, 124);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (138, null, b'0', 41, 124);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (139, null, b'0', 18, 124);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (136, null, TRUE, 47, 124);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (137, null, TRUE, 19, 124);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (138, null, TRUE, 41, 124);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (139, null, TRUE, 18, 124);
 
 -- pz . í ?
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (140, null, b'0', 45, 125);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (141, null, b'0', 48, 125);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (142, null, b'0', 32, 125);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (143, null, b'0', 39, 125);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (140, null, TRUE, 45, 125);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (141, null, TRUE, 48, 125);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (142, null, TRUE, 32, 125);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (143, null, TRUE, 39, 125);
 
 
 -- D, ?, N, G, É
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (144, null, b'0', 4, 126);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (145, null, b'0', 30, 126);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (146, null, b'0', 14, 126);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (147, null, b'0', 7, 126);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (148, null, b'0', 31, 126);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (144, null, TRUE, 4, 126);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (145, null, TRUE, 30, 126);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (146, null, TRUE, 14, 126);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (147, null, TRUE, 7, 126);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (148, null, TRUE, 31, 126);
 
 
 -- j t y
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (149, null, b'0', 10, 127);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (150, null, b'0', 20, 127);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (151, null, b'0', 25, 127);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (149, null, TRUE, 10, 127);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (150, null, TRUE, 20, 127);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (151, null, TRUE, 25, 127);
 
 -- !
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (152, null, b'0', 49, 128);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (152, null, TRUE, 49, 128);
 
 -- Z, F, ?, Ý, poml?ka
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (153, null, b'0', 26, 129);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (154, null, b'0', 6, 129);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (155, null, b'0', 35, 129);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (156, null, b'0', 42, 129);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (157, null, b'0', 50, 129);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (153, null, TRUE, 26, 129);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (154, null, TRUE, 6, 129);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (155, null, TRUE, 35, 129);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (156, null, TRUE, 42, 129);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (157, null, TRUE, 50, 129);
 
 
 -- H, ?, ?, dvojbodka
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (158, null, b'0', 8, 130);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (159, null, b'0', 40, 130);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (160, null, b'0', 43, 130);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (161, null, b'0', 51, 130);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (158, null, TRUE, 8, 130);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (159, null, TRUE, 40, 130);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (160, null, TRUE, 43, 130);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (161, null, TRUE, 51, 130);
 
 --  Ô, ?, Ó, ?
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (162, null, b'0', 37, 131);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (163, null, b'0', 34, 131);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (164, null, b'0', 36, 131);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (165, null, b'0', 33, 131);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (162, null, TRUE, 37, 131);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (163, null, TRUE, 34, 131);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (164, null, TRUE, 36, 131);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (165, null, TRUE, 33, 131);
 
 -- Ä, ?, X, úvodzovky
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (166, null, b'0', 27, 132);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (167, null, b'0', 38, 132);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (168, null, b'0', 24, 132);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (169, null, b'0', 52, 132);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (166, null, TRUE, 27, 132);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (167, null, TRUE, 38, 132);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (168, null, TRUE, 24, 132);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (169, null, TRUE, 52, 132);
 
 
 -- apostrof
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (170, null, b'0', 53, 133);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (170, null, TRUE, 53, 133);
 
 -- q w ( )
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (171, null, b'0', 17, 134);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (172, null, b'0', 23, 134);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (173, null, b'0', 54, 134);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (174, null, b'0', 55, 134);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (171, null, TRUE, 17, 134);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (172, null, TRUE, 23, 134);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (173, null, TRUE, 54, 134);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (174, null, TRUE, 55, 134);
 
 -- VP, ?Z, *
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (175, null, b'0', 45, 135);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (176, null, b'0', 44, 135);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (177, null, b'0', 56, 135);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (175, null, TRUE, 45, 135);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (176, null, TRUE, 44, 135);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (177, null, TRUE, 56, 135);
 
 
 
@@ -192,24 +192,24 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 101, 2, 1, 'LEARNING_SEQUENCE_NAME', 100000);
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 106, 3, 1, 'LEARNING_SEQUENCE_NAME', 100000);
 
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (102, null, b'0', 1, 101);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (103, null, b'0', 2, 101);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (104, null, b'0', 12, 101);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (105, null, b'0', 5, 101);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (107, null, b'0', 11, 106);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (108, null, b'0', 21, 106);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (102, null, TRUE, 1, 101);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (103, null, TRUE, 2, 101);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (104, null, TRUE, 12, 101);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (105, null, TRUE, 5, 101);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (107, null, TRUE, 11, 106);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (108, null, TRUE, 21, 106);
 
 
 -- TESTING SEQUENCES
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 107, 4, 1, 'TESTING_SEQUENCE_NAME', 100000);
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 108, 5, 1, 'TESTING_SEQUENCE_NAME', 100000);
 
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (109, null, b'0', 1, 107);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (110, null, b'0', 2, 107);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (111, null, b'0', 12, 107);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (112, null, b'0', 5, 107);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (113, null, b'0', 11, 108);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (114, null, b'0', 21, 108);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (109, null, TRUE, 1, 107);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (110, null, TRUE, 2, 107);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (111, null, TRUE, 12, 107);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (112, null, TRUE, 5, 107);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (113, null, TRUE, 11, 108);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (114, null, TRUE, 21, 108);
 
 
 INSERT INTO hibernate_sequence (next_val) VALUES (115);
