@@ -5,25 +5,24 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
-import com.trnka.trnkadevice.ui.MenuStudentView;
-import com.trnka.trnkadevice.ui.SequenceComponent;
-import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
+import com.trnka.trnkadevice.domain.UserPassedMethodicalSequence;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.repository.MethodicalLearningSequenceRepository;
 import com.trnka.trnkadevice.ui.CycledComponent;
 import com.trnka.trnkadevice.ui.IView;
+import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.UserSession;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -55,7 +54,10 @@ public class LettersSelectionView implements IView {
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_LETTERS_SELECTION_VIEW));
 
-        Set<MethodicalLearningSequence> passedSequences = userSession.getUser().get().getPassedSequences();
+        List<MethodicalLearningSequence> passedSequences = userSession.getUser().get().getPassedSequences().stream().map(UserPassedMethodicalSequence ::getSequence).collect(
+                Collectors.toList());
+        Collections.sort(passedSequences, Comparator.comparing(MethodicalLearningSequence::getOrder));
+
 
         Integer highestPassedSequenceOrder = 0;
         if (!passedSequences.isEmpty()) {

@@ -51,7 +51,7 @@ public abstract class Sequence {
     @Column(name = "timeout")
     private long timeout;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "sequence_id")
     private List<Step> steps = new ArrayList<>();
 

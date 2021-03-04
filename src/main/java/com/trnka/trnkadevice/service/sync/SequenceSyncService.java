@@ -5,23 +5,25 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.trnka.restapi.dto.SequenceType;
-import com.trnka.trnkadevice.domain.LearningSequence;
-import com.trnka.trnkadevice.domain.TestingSequence;
-import com.trnka.trnkadevice.ui.messages.Messages;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trnka.restapi.dto.ExaminationDto;
 import com.trnka.restapi.dto.ExaminationStepDto;
+import com.trnka.restapi.dto.SequenceType;
 import com.trnka.trnkadevice.domain.BrailCharacter;
+import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.domain.Sequence;
 import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.domain.Step;
+import com.trnka.trnkadevice.domain.TestingSequence;
+import com.trnka.trnkadevice.domain.UserSequence;
 import com.trnka.trnkadevice.repository.BrailCharacterRepository;
 import com.trnka.trnkadevice.repository.SequenceRepository;
 import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 import com.trnka.trnkadevice.repository.SequenceStepRepository;
+import com.trnka.trnkadevice.repository.UserSequenceRepository;
+import com.trnka.trnkadevice.ui.messages.Messages;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +34,10 @@ import lombok.extern.slf4j.Slf4j;
 public class SequenceSyncService {
 
     private final SequenceStatisticRepository sequenceStatisticRepository;
+
+    private final UserSequenceRepository userSequenceRepository;
     private final SequenceRepository sequenceRepository;
+
     private final SequenceStepRepository sequenceStepRepository;
     private final BrailCharacterRepository brailCharacterRepository;
 
@@ -142,10 +147,14 @@ public class SequenceSyncService {
     }
 
     private void deleteSequences(final List<ExaminationDto> exams) {
-        Set<Sequence> sequencesToDelete = sequenceRepository
+        Set<Long> sequencesToDelete = sequenceRepository
                 .findLearningAndTestingSequencesByExternalIdNotIn(exams.stream().map(ExaminationDto::getId).collect(Collectors.toSet()));
-        log.info("Deleting learning sequences with ids:{}", sequencesToDelete.stream().map(Sequence::getId).collect(Collectors.toList()));
-        sequencesToDelete.stream().forEach(seq -> sequenceRepository.delete(seq));
+        log.info("Deleting learning sequences with ids:{}", sequencesToDelete);
+
+        List<UserSequence> userSequences = userSequenceRepository.findAllBySequenceIds(sequencesToDelete);
+        userSequences.removeAll(userSequences);
+
+        sequencesToDelete.forEach(id -> sequenceRepository.deleteById(id));
     }
 
 }

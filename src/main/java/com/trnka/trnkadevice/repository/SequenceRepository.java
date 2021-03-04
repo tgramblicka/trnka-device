@@ -19,8 +19,8 @@ public interface SequenceRepository extends CrudRepository<Sequence, Long> {
     Set<Long> getSequenceStepExternalIds(final Long sequenceId);
 
 
-    @Query(value = "SELECT seq from Sequence seq WHERE seq.externalId NOT IN (:ids) AND type(seq) IN ('LS')")
-    Set<Sequence> findLearningAndTestingSequencesByExternalIdNotIn(Set<Long> ids);
+    @Query(value = "SELECT seq.id from Sequence seq WHERE seq.externalId NOT IN (:ids) AND ( type(seq) IN ('LS') OR type(seq) IN ('TS') )")
+    Set<Long> findLearningAndTestingSequencesByExternalIdNotIn(Set<Long> ids);
 
 
 

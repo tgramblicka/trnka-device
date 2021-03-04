@@ -12,11 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -50,13 +46,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<SequenceStatistic> statistics = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @Fetch(value = FetchMode.SUBSELECT)
-    @OrderBy("order ASC")
-    @JoinTable(name = "user_sequences",
-            joinColumns = @JoinColumn(referencedColumnName = "id", name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "sequence_id"))
-    private Set<Sequence> sequences = new TreeSet<>();
+    private Set<UserSequence> sequences = new TreeSet<>();
 
     /**
      * Holds info about those MethodicalLearningSequences that have been passed. Passed sequences unlock other, more advanced, sequences for user.
@@ -64,13 +56,9 @@ public class User {
      * this table,
      * rather than filling SequenceStatistics table with fake records.
      */
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sequence")
     @Fetch(value = FetchMode.SUBSELECT)
-    @OrderBy("order ASC")
-    @JoinTable(name = "passed_methodics",
-               joinColumns = @JoinColumn(referencedColumnName = "id", name = "user_id"),
-               inverseJoinColumns = @JoinColumn(name = "sequence_id"))
-    private SortedSet<MethodicalLearningSequence> passedSequences = new TreeSet<>();
+    private Set<UserPassedMethodicalSequence> passedSequences = new TreeSet<>();
 
 
 
@@ -78,13 +66,21 @@ public class User {
         super();
     }
 
-    public void addSequnce(Sequence sequence) {
-        getSequences().add(sequence);
+
+    public void addAllSequnces(List<Sequence> sequences) {
+        sequences.stream().forEach(this::addSequnce);
     }
 
+    public void addSequnce(Sequence sequence) {
+        getSequences().add(new UserSequence(this.getId(), sequence.getId()));
+    }
+
+    public void addAllPassedMethodics(List<MethodicalLearningSequence> sequences) {
+        sequences.stream().forEach(this::addPassedMethodic);
+    }
 
     public void addPassedMethodic(MethodicalLearningSequence methodicalSequence) {
-        getPassedSequences().add(methodicalSequence);
+        getPassedSequences().add(new UserPassedMethodicalSequence(this.getId(), methodicalSequence.getId()));
     }
 
 }

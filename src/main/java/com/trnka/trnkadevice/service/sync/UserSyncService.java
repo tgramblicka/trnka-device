@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.domain.UserSequence;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,7 +52,7 @@ public class UserSyncService {
         userRepository.save(usr);
 
         List<Sequence> toBeAddedSequences = sequenceRepository.findByExternalIdIn(student.getExaminationIds());
-        usr.getSequences().addAll(toBeAddedSequences);
+        usr.addAllSequnces(toBeAddedSequences);
     }
 
     private void deleteUsers(final List<StudentDTO> students) {
@@ -78,13 +79,13 @@ public class UserSyncService {
                                                 Set<Long> serverSequenceExternalIds) {
         log.info("Updating user - sequence associations. User id: {}", user.getId());
         // remove
-        user.getSequences().removeIf(seq -> !serverSequenceExternalIds.contains(seq.getExternalId())); // remove only association from collection
+        user.getSequences().removeIf(seq -> !serverSequenceExternalIds.contains(seq.getSequence().getExternalId())); // remove only association from collection
         // add
-        Set<Long> deviceSequenceExternalIds = user.getSequences().stream().map(Sequence :: getExternalId).collect(Collectors.toSet());
+        Set<Long> deviceSequenceExternalIds = user.getSequences().stream().map(UserSequence :: getSequence).map(Sequence::getExternalId).collect(Collectors.toSet());
         Set<Long> toBeAddedSequenceExternalIds = serverSequenceExternalIds.stream().filter(serverId -> !deviceSequenceExternalIds.contains(serverId)).collect(
                 Collectors.toSet());
         List<Sequence> toBeAddedSequences = sequenceRepository.findByExternalIdIn(toBeAddedSequenceExternalIds);
-        user.getSequences().addAll(toBeAddedSequences);
+        user.addAllSequnces(toBeAddedSequences);
     }
 
 }
