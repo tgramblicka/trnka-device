@@ -3,30 +3,27 @@ package com.trnka.trnkadevice.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "user")
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
+@EqualsAndHashCode(exclude = {"sequences", "passedSequences"})
+@ToString(exclude = {"sequences", "passedSequences"})
 public class User extends BaseEntity {
     public static final Long DEFAULT_USER_ID = 1L; // static user that is always on device DB, cannot be deleted or updated.
 
@@ -52,7 +49,7 @@ public class User extends BaseEntity {
      * this table,
      * rather than filling SequenceStatistics table with fake records.
      */
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sequence")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @Fetch(value = FetchMode.SUBSELECT)
     private Set<UserPassedMethodicalSequence> passedSequences = new TreeSet<>();
 

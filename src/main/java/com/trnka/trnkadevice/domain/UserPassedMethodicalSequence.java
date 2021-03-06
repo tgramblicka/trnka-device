@@ -22,12 +22,12 @@ public class UserPassedMethodicalSequence {
 
     @ManyToOne
     @MapsId("userId")
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", updatable = false, insertable = false)
     private User user;
 
     @ManyToOne
     @MapsId("sequenceId")
-    @JoinColumn(name = "sequence_id")
+    @JoinColumn(name = "sequence_id", updatable = false, insertable = false)
     private MethodicalLearningSequence sequence;
 
     public UserPassedMethodicalSequence(final Long userId, final Long sequenceId) {
