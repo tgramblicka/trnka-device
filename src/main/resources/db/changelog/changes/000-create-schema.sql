@@ -1,8 +1,12 @@
 SET FOREIGN_KEY_CHECKS=0; --
 
 -- Dumping database structure for trnka-device
--- CREATE DATABASE IF NOT EXISTS `trnka-device` /*!40100 DEFAULT CHARACTER SET utf8  */;
+-- CREATE DATABASE `trnka-device2` CHARACTER SET = 'utf8' COLLATE = 'utf8_bin';
+-- SET character_set_server = 'utf8';
 -- USE `trnka-device`;
+
+
+
 
 -- Dumping structure for table trnka-device.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -27,10 +31,13 @@ CREATE TABLE IF NOT EXISTS `brail_character` (
 
 -- Data exporting was unselected.
 
--- Dumping structure for table trnka-device.hibernate_sequence
-CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-);
+-- Hibernate_sequence
+create sequence hibernate_sequence start with 200 minvalue 100 maxvalue 9223372036854775806 increment by 1 cache 20
+            nocycle;
+--CREATE SEQUENCE hibernate_sequence START WITH 100 INCREMENT BY 1;
+--CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
+--  `next_val` bigint(20) DEFAULT NULL
+--);
 
 -- Data exporting was unselected.
 
@@ -42,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `sequence` (
   `allowed_retries` int(11) DEFAULT NULL,
   `allowed_test_retries` int(2) DEFAULT NULL,
   `passing_rate_percentage` DECIMAL(4,2) DEFAULT NULL,
-  `order` int(3) DEFAULT NULL,
+  `level` int(3) DEFAULT NULL,
   `audio_message` varchar(255)  DEFAULT NULL,
   `timeout` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)

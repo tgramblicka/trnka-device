@@ -74,22 +74,22 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 
 
 -- METHODICAL LEARNING SEQUENCES
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 120, null, 1, 'ONE', 100000, 1, 80, 1);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 121, null, 1, 'TWO', 100000, 1, 80, 2);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 122, null, 1, 'THREE', 100000, 1, 80, 3);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 123, null, 1, 'FOUR', 100000, 1, 80, 4);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 124, null, 1, 'FIVE', 100000, 1, 80, 5);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 125, null, 1, 'SIX', 100000, 1, 80, 6);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 126, null, 1, 'SEVEN', 100000, 1, 80, 7);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 127, null, 1, 'EIGHT', 100000, 1, 80, 8);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 128, null, 1, 'NINE', 100000, 1, 80, 9);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 129, null, 1, 'TEN', 100000, 1, 80, 10);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 130, null, 1, 'ELEVEN', 100000, 1, 80, 11);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 131, null, 1, 'TWELVE', 100000, 1, 80, 12);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 132, null, 1, 'THIRTEEN', 100000, 1, 80, 13);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 133, null, 1, 'FOURTEEN', 100000, 1, 80, 14);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 134, null, 1, 'FIFTEEN', 100000, 1, 80, 15);
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`order`) VALUES ('MLS', 135, null, 1, 'SIXTEEN', 100000, 1, 80, 16);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 120, null, 1, 'ONE', 100000, 1, 80, 1);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 121, null, 1, 'TWO', 100000, 1, 80, 2);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 122, null, 1, 'THREE', 100000, 1, 80, 3);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 123, null, 1, 'FOUR', 100000, 1, 80, 4);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 124, null, 1, 'FIVE', 100000, 1, 80, 5);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 125, null, 1, 'SIX', 100000, 1, 80, 6);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 126, null, 1, 'SEVEN', 100000, 1, 80, 7);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 127, null, 1, 'EIGHT', 100000, 1, 80, 8);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 128, null, 1, 'NINE', 100000, 1, 80, 9);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 129, null, 1, 'TEN', 100000, 1, 80, 10);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 130, null, 1, 'ELEVEN', 100000, 1, 80, 11);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 131, null, 1, 'TWELVE', 100000, 1, 80, 12);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 132, null, 1, 'THIRTEEN', 100000, 1, 80, 13);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 133, null, 1, 'FOURTEEN', 100000, 1, 80, 14);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 134, null, 1, 'FIFTEEN', 100000, 1, 80, 15);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `allowed_test_retries`, `passing_rate_percentage`,`level`) VALUES ('MLS', 135, null, 1, 'SIXTEEN', 100000, 1, 80, 16);
 
 -- a,b,l,e
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (122, null, TRUE, 1, 120);
@@ -212,11 +212,11 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (114, null, TRUE, 21, 108);
 
 
-INSERT INTO hibernate_sequence (next_val) VALUES (115);
-INSERT INTO hibernate_sequence (next_val) VALUES (116);
-INSERT INTO hibernate_sequence (next_val) VALUES (117);
-INSERT INTO hibernate_sequence (next_val) VALUES (118);
-INSERT INTO hibernate_sequence (next_val) VALUES (119);
+--INSERT INTO hibernate_sequence (next_val) VALUES (115);
+--INSERT INTO hibernate_sequence (next_val) VALUES (116);
+--INSERT INTO hibernate_sequence (next_val) VALUES (117);
+--INSERT INTO hibernate_sequence (next_val) VALUES (118);
+--INSERT INTO hibernate_sequence (next_val) VALUES (119);
 
 
 

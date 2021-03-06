@@ -1,12 +1,20 @@
 ## Database update with liquibase on raspberry: 
 1. connect to raspberry
+2. add character sets of mysql to utf8 if needed in ```/etc/my.cnf``` to
+   ```
+   character-set-server=utf8 
+   collation-server=utf8_bin
+   ```
+   and restart mysql DB      
 2. connect to mariaDB
 3. ```mysql -u root -p  ( pwd is raspberry)```
-4. 
+4. create DB with "utf8_slovak_ci" encoding
    ```
    SHOW DATABASES;
    drop database `trnka-device`;
-   create database `trnka-device`;
+   CREATE DATABASE `trnka-device2` CHARACTER SET = 'utf8' COLLATE = 'utf8_bin';
+   SET character_set_server = 'utf8';
+   SET collation_connection = 'utf8_bin';
    ```
 ## Executing liquibase from local PC on raspberry
 1. Add access to client ( not necessarily needed ) : https://websiteforstudents.com/configure-remote-access-mysql-mariadb-databases/
@@ -56,5 +64,14 @@
    How to DUMP the DB
    ```
    mysqldump --databases trnka-device > /home/pi/trnka-device/trnka-device.sql
+   ```
+   
+   
+   
+### LOCAL Windows / Mac setup for DB ###
+Set character_set_server in your C:\Program Files\MariaDB 10.4\data to
+   ```
+   character-set-server=utf8 
+   collation-server=utf8_bin
    ```
 
