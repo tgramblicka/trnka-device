@@ -21,6 +21,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
 import lombok.Getter;
@@ -32,12 +33,7 @@ import lombok.Setter;
 @Table(name = "sequence")
 @Getter
 @Setter
-public abstract class Sequence {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public abstract class Sequence extends BaseEntity {
 
     @Column(name = "external_id")
     private Long externalId;
@@ -68,11 +64,11 @@ public abstract class Sequence {
         if (o == null || getClass() != o.getClass())
             return false;
         Sequence sequence = (Sequence) o;
-        return id.equals(sequence.id);
+        return getId().equals(sequence.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 }

@@ -27,12 +27,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class User {
+public class User extends BaseEntity {
     public static final Long DEFAULT_USER_ID = 1L; // static user that is always on device DB, cannot be deleted or updated.
-
-    @GeneratedValue
-    @Id
-    private Long id;
 
     @Column(name = "external_id")
     private Long externalId;

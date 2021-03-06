@@ -10,7 +10,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,10 +19,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "step_statistic")
 @EqualsAndHashCode
-public class StepStatistic {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class StepStatistic extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "step_id", referencedColumnName = "id", nullable = false)

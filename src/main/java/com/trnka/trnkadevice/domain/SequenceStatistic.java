@@ -29,11 +29,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class SequenceStatistic {
+public class SequenceStatistic extends BaseEntity {
     public static final String FIND_ALL_TEST_STATS_FOR_USER = "SequenceStatistic.findAllTestResultsForUser";
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "sequence_id")

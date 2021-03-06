@@ -6,7 +6,8 @@ SET FOREIGN_KEY_CHECKS=0; --
 -- USE `trnka-device`;
 
 
-
+-- Device sequence
+create sequence `device_seq` start with 200 minvalue 200 maxvalue 9223372036854775806 increment by 1 cache 20 nocycle;
 
 -- Dumping structure for table trnka-device.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -29,17 +30,6 @@ CREATE TABLE IF NOT EXISTS `brail_character` (
   UNIQUE KEY `UK_brail_representation` (`brail_representation`)
 );
 
--- Data exporting was unselected.
-
--- Hibernate_sequence
-create sequence hibernate_sequence start with 200 minvalue 100 maxvalue 9223372036854775806 increment by 1 cache 20
-            nocycle;
---CREATE SEQUENCE hibernate_sequence START WITH 100 INCREMENT BY 1;
---CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
---  `next_val` bigint(20) DEFAULT NULL
---);
-
--- Data exporting was unselected.
 
 -- Dumping structure for table trnka-device.sequence
 CREATE TABLE IF NOT EXISTS `sequence` (

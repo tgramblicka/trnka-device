@@ -30,11 +30,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class BrailCharacter implements IMessage {
+public class BrailCharacter extends BaseEntity implements IMessage {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @Column(name = "letter", unique = true)
     private String letter;
     @Column(name = "brail_representation", columnDefinition = "json")

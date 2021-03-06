@@ -20,10 +20,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Synchronization {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Synchronization extends BaseEntity {
 
     @NotNull
     @Column(name = "executed_on")
