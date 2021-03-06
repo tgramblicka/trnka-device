@@ -29,8 +29,8 @@ public class MethodicalLearningSequence extends Sequence implements Comparable {
     /**
      * Sequence index, if sequence with index=1 is passed, then sequence with index=2 is unlocked etc.
      */
-    @Column(name = "order")
-    private Integer order;
+    @Column(name = "level")
+    private Integer level;
 
     /**
      * In % 0-100
@@ -43,7 +43,7 @@ public class MethodicalLearningSequence extends Sequence implements Comparable {
     public int compareTo(final Object o) {
         if (o instanceof MethodicalLearningSequence) {
             MethodicalLearningSequence other = (MethodicalLearningSequence)o;
-            return this.getOrder().compareTo(other.getOrder());
+            return this.getLevel().compareTo(other.getLevel());
         }
         return 0;
     }

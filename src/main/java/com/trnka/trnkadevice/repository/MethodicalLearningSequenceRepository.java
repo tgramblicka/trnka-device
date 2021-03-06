@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface MethodicalLearningSequenceRepository extends CrudRepository<MethodicalLearningSequence, Long> {
 
-    Optional<MethodicalLearningSequence> findByOrder(final Integer order);
+    Optional<MethodicalLearningSequence> findByLevel(final Integer level);
 }

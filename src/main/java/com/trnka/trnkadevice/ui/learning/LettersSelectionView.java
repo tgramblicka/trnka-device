@@ -56,20 +56,20 @@ public class LettersSelectionView implements IView {
 
         List<MethodicalLearningSequence> passedSequences = userSession.getUser().get().getPassedSequences().stream().map(UserPassedMethodicalSequence ::getSequence).collect(
                 Collectors.toList());
-        Collections.sort(passedSequences, Comparator.comparing(MethodicalLearningSequence::getOrder));
+        Collections.sort(passedSequences, Comparator.comparing(MethodicalLearningSequence:: getLevel));
 
 
-        Integer highestPassedSequenceOrder = 0;
+        Integer highestPassedSequenceLevel = 0;
         if (!passedSequences.isEmpty()) {
-            highestPassedSequenceOrder = passedSequences.stream().max(Comparator.comparingInt(MethodicalLearningSequence::getOrder))
-                    .map(MethodicalLearningSequence::getOrder).get();
+            highestPassedSequenceLevel = passedSequences.stream().max(Comparator.comparingInt(MethodicalLearningSequence:: getLevel))
+                    .map(MethodicalLearningSequence:: getLevel).get();
         }
-        Optional<MethodicalLearningSequence> notPassedSequence = getNthSequence(highestPassedSequenceOrder + 1);
+        Optional<MethodicalLearningSequence> notPassedSequence = getNthSequence(highestPassedSequenceLevel + 1);
         if (notPassedSequence.isPresent()) {
             passedSequences.add(notPassedSequence.get());
         }
         List<MethodicalLearningSequence> sequenceList = passedSequences.stream().collect(Collectors.toList());
-        Collections.sort(sequenceList, Comparator.comparingInt(MethodicalLearningSequence::getOrder));
+        Collections.sort(sequenceList, Comparator.comparingInt(MethodicalLearningSequence:: getLevel));
 
         List<SequenceComponent> selection = new ArrayList<>();
         selection.addAll(passedSequences.stream().map(SequenceComponent::new).collect(Collectors.toList()));
@@ -82,7 +82,7 @@ public class LettersSelectionView implements IView {
     }
 
     private Optional<MethodicalLearningSequence> getNthSequence(final Integer n) {
-        return repo.findByOrder(n);
+        return repo.findByLevel(n);
     }
 
     private void startLearningWithSequence(final SequenceComponent selectedComponent) {
