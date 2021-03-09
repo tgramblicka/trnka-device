@@ -2,28 +2,20 @@ package com.trnka.trnkadevice.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "user")
-@Data
-@EqualsAndHashCode(exclude = {"sequences", "passedSequences"})
-@ToString(exclude = {"sequences", "passedSequences"})
+@Getter
+@Setter
 public class User extends BaseEntity {
     public static final Long DEFAULT_USER_ID = 1L; // static user that is always on device DB, cannot be deleted or updated.
 
@@ -39,9 +31,9 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<SequenceStatistic> statistics = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @Fetch(value = FetchMode.SUBSELECT)
-    private Set<UserSequence> sequences = new TreeSet<>();
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    private Set<UserSequence> sequences = new TreeSet<>();
 
     /**
      * Holds info about those MethodicalLearningSequences that have been passed. Passed sequences unlock other, more advanced, sequences for user.
@@ -49,9 +41,9 @@ public class User extends BaseEntity {
      * this table,
      * rather than filling SequenceStatistics table with fake records.
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @Fetch(value = FetchMode.SUBSELECT)
-    private Set<UserPassedMethodicalSequence> passedSequences = new TreeSet<>();
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    private Set<UserPassedMethodicalSequence> passedSequences = new TreeSet<>();
 
 
 
@@ -60,20 +52,21 @@ public class User extends BaseEntity {
     }
 
 
-    public void addAllSequnces(List<Sequence> sequences) {
-        sequences.stream().forEach(this::addSequnce);
-    }
-
-    public void addSequnce(Sequence sequence) {
-        getSequences().add(new UserSequence(this.getId(), sequence.getId()));
-    }
-
-    public void addAllPassedMethodics(List<MethodicalLearningSequence> sequences) {
-        sequences.stream().forEach(this::addPassedMethodic);
-    }
-
-    public void addPassedMethodic(MethodicalLearningSequence methodicalSequence) {
-        getPassedSequences().add(new UserPassedMethodicalSequence(this.getId(), methodicalSequence.getId()));
-    }
+//    public void addAllSequnces(List<Sequence> sequences) {
+//        sequences.stream().forEach(this::addSequnce);
+//    }
+//
+//    public void addSequnce(Sequence sequence) {
+//
+//        getSequences().add(new UserSequence(this, sequence));
+//    }
+//
+//    public void addAllPassedMethodics(List<MethodicalLearningSequence> sequences) {
+//        sequences.stream().forEach(this::addPassedMethodic);
+//    }
+//
+//    public void addPassedMethodic(MethodicalLearningSequence methodicalSequence) {
+//        getPassedSequences().add(new UserPassedMethodicalSequence(this, methodicalSequence));
+//    }
 
 }
