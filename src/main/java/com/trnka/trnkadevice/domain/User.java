@@ -31,42 +31,9 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<SequenceStatistic> statistics = new ArrayList<>();
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-//    @Fetch(value = FetchMode.SUBSELECT)
-//    private Set<UserSequence> sequences = new TreeSet<>();
-
-    /**
-     * Holds info about those MethodicalLearningSequences that have been passed. Passed sequences unlock other, more advanced, sequences for user.
-     * This info could be queried also from SequenceStatistics, however when want to manually unlock all sequences to some user, it would be easier to do it in
-     * this table,
-     * rather than filling SequenceStatistics table with fake records.
-     */
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    @Fetch(value = FetchMode.SUBSELECT)
-//    private Set<UserPassedMethodicalSequence> passedSequences = new TreeSet<>();
-
-
 
     public User() {
         super();
     }
-
-
-//    public void addAllSequnces(List<Sequence> sequences) {
-//        sequences.stream().forEach(this::addSequnce);
-//    }
-//
-//    public void addSequnce(Sequence sequence) {
-//
-//        getSequences().add(new UserSequence(this, sequence));
-//    }
-//
-//    public void addAllPassedMethodics(List<MethodicalLearningSequence> sequences) {
-//        sequences.stream().forEach(this::addPassedMethodic);
-//    }
-//
-//    public void addPassedMethodic(MethodicalLearningSequence methodicalSequence) {
-//        getPassedSequences().add(new UserPassedMethodicalSequence(this, methodicalSequence));
-//    }
 
 }
