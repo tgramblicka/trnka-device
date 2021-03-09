@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.NoResultException;
 
 import com.trnka.restapi.dto.statistics.Evaluate;
+import com.trnka.trnkadevice.domain.UserPassedMethodicalSequence;
+import com.trnka.trnkadevice.repository.UserPassedMethodicsRepository;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -49,6 +51,7 @@ public class LettersTestingView implements IView {
     private final StatisticService statisticService;
     private final MethodicalLearningSequenceRepository methodicalLearningSequenceRepository;
     private final YesOrNoView yesOrNoView;
+    private final UserPassedMethodicsRepository passedMethodicsRepository;
 
     private Long sequenceId;
 
@@ -87,8 +90,7 @@ public class LettersTestingView implements IView {
         boolean passedTest = seqStats.getScore().multiply(BigDecimal.valueOf(100.0D)).compareTo(sequence.getPassingRate()) > 0;
         if (passedTest) {
             renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_TEST_PASSED));
-            user.addPassedMethodic(sequence);
-            userRepo.save(user);
+            passedMethodicsRepository.save(new UserPassedMethodicalSequence(user,sequence));
             renderStats(seqStats);
             renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_ENDED));
             navigator.navigateAsync(LettersSelectionView.class);

@@ -8,6 +8,7 @@ import com.trnka.restapi.dto.statistics.DeviceStatisticsSyncDto;
 import com.trnka.restapi.endpoint.SyncEndpoint;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,7 @@ public class SyncService {
     private final SequenceSyncService sequenceSyncService;
 
 
+    @Transactional
     public void synchronize() {
         log.info("Syncing: Will download SyncDto from VST server.");
         SyncDto syncDto = client.syncAll();

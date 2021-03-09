@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -16,6 +15,7 @@ import com.trnka.trnkadevice.domain.MethodicalLearningSequence;
 import com.trnka.trnkadevice.domain.UserPassedMethodicalSequence;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.repository.MethodicalLearningSequenceRepository;
+import com.trnka.trnkadevice.repository.UserPassedMethodicsRepository;
 import com.trnka.trnkadevice.ui.CycledComponent;
 import com.trnka.trnkadevice.ui.IView;
 import com.trnka.trnkadevice.ui.SequenceComponent;
@@ -24,38 +24,27 @@ import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@RequiredArgsConstructor
 public class LettersSelectionView implements IView {
-    private Navigator navigator;
-    private IRenderer renderer;
-    private MethodicalLearningSequenceRepository repo;
-    private UserSession userSession;
-    private CycledComponent cycledComponent;
-    private LettersLearningView lettersLearningView;
+    private final Navigator navigator;
+    private final IRenderer renderer;
+    private final MethodicalLearningSequenceRepository repo;
+    private final UserSession userSession;
+    private final CycledComponent cycledComponent;
+    private final LettersLearningView lettersLearningView;
+    private final UserPassedMethodicsRepository passedMethodicsRepository;
 
-    @Autowired
-    public LettersSelectionView(final Navigator navigator,
-                                final IRenderer renderer,
-                                final MethodicalLearningSequenceRepository repo,
-                                final UserSession userSession,
-                                final CycledComponent cycledComponent,
-                                final LettersLearningView lettersLearningView) {
-        this.navigator = navigator;
-        this.renderer = renderer;
-        this.repo = repo;
-        this.userSession = userSession;
-        this.cycledComponent = cycledComponent;
-        this.lettersLearningView = lettersLearningView;
-    }
 
     @Override
 
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_LETTERS_SELECTION_VIEW));
 
-        List<MethodicalLearningSequence> passedSequences = userSession.getUser().get().getPassedSequences().stream().map(UserPassedMethodicalSequence ::getSequence).collect(
-                Collectors.toList());
+        List<MethodicalLearningSequence> passedSequences =  passedMethodicsRepository.findAllById_UserId(userSession.getUserId()).stream().map(UserPassedMethodicalSequence::getSequence).collect(Collectors.toList());
         Collections.sort(passedSequences, Comparator.comparing(MethodicalLearningSequence:: getLevel));
 
 

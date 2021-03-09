@@ -19,7 +19,6 @@ public class UserPassedMethodicalSequence {
     @EmbeddedId
     private UserSequenceKey id;
 
-
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id", updatable = false, insertable = false)
@@ -30,9 +29,18 @@ public class UserPassedMethodicalSequence {
     @JoinColumn(name = "sequence_id", updatable = false, insertable = false)
     private MethodicalLearningSequence sequence;
 
-    public UserPassedMethodicalSequence(final Long userId, final Long sequenceId) {
-        this.id = new UserSequenceKey(userId, sequenceId);
+    public UserPassedMethodicalSequence(final Long userId,
+                                        final Long sequenceId) {
+        this.id = new UserSequenceKey(userId,
+                                      sequenceId);
     }
 
+    public UserPassedMethodicalSequence(User user,
+                                        MethodicalLearningSequence sequence) {
+        this.id = new UserSequenceKey(user.getId(),
+                                      sequence.getId());
+        this.user = user;
+        this.sequence = sequence;
+    }
 
 }
