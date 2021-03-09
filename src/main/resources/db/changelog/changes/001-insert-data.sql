@@ -189,7 +189,9 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 
 
 -- LEARNING SEQUENCES
+-- a,b,l,e
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 101, 2, 1, 'LEARNING_SEQUENCE_NAME', 100000);
+-- k,u
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('LS', 106, 3, 1, 'LEARNING_SEQUENCE_NAME', 100000);
 
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (102, null, TRUE, 1, 101);
@@ -201,7 +203,9 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 
 
 -- TESTING SEQUENCES
+-- a,b,l,e
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 107, 4, 1, 'TESTING_SEQUENCE_NAME', 100000);
+-- k,u
 INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 108, 5, 1, 'TESTING_SEQUENCE_NAME', 100000);
 
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (109, null, TRUE, 1, 107);
