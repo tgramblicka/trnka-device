@@ -9,15 +9,14 @@ import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trnka.restapi.dto.SequenceType;
 import com.trnka.restapi.dto.SyncDto;
 import com.trnka.restapi.endpoint.SyncEndpoint;
 import com.trnka.trnkadevice.BaseTest;
-import com.trnka.trnkadevice.domain.User;
 import com.trnka.trnkadevice.domain.UserSequence;
 import com.trnka.trnkadevice.repository.LearningSequenceRepository;
 import com.trnka.trnkadevice.repository.SequenceRepository;
@@ -63,19 +62,38 @@ public class SyncServiceTest extends BaseTest {
     public void createNewTestsFromSync() throws IOException {
         // BEFORE
         SyncDto data = SyncDataFactory.getSyncData();
-        Mockito.doReturn(data).when(client).syncAll();
-        // Mockito.when(client.syncAll()).thenReturn(data);
 
         // WHEN
-        syncService.synchronize();
+        syncService.synchronize(data);
 
         // THEN
         Assertions.assertEquals(2, learningSequenceRepository.count());
         Assertions.assertEquals(2, testingSequenceRepository.count());
 
-        User user = userRepository.findById(USER_ID).get();
         List<UserSequence> userSequences = userSequenceRepository.findAllById_UserId(USER_ID);
         Assertions.assertEquals(4, userSequences.size());
+    }
+
+
+    @Test
+    public void sequenceDeletedOnVstShouldBeDeletedAfterSync() throws IOException {
+        // FILL UP DB
+        SyncDto data = SyncDataFactory.getSyncData();
+        syncService.synchronize(data);
+
+        // delete from sync data all LEARNING sequences
+        data.getExaminations().removeIf(e -> e.getType().equals(SequenceType.LEARNING));
+
+        // WHEN
+        syncService.synchronize(data);
+        em.clear();
+
+        // THEN
+        Assertions.assertEquals(0, learningSequenceRepository.count());
+        Assertions.assertEquals(2, testingSequenceRepository.count());
+
+        List<UserSequence> userSequences = userSequenceRepository.findAllById_UserId(USER_ID);
+        Assertions.assertEquals(2, userSequences.size());
     }
 
 }
