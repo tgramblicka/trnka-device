@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import com.trnka.trnkadevice.repository.LearningSequenceRepository;
-import com.trnka.trnkadevice.repository.TestingSequenceRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -113,7 +112,9 @@ public class SequenceSyncService {
 
     private void addNewSequenceSteps(Sequence sequence,
                                      ExaminationDto dto) {
-        for (ExaminationStepDto stepDto : dto.getSteps()) {
+        List<Long> existingStepExternalIds = sequence.getSteps().stream().map(Step :: getExternalId).collect(Collectors.toList());
+        Stream<ExaminationStepDto> stepsToAdd = dto.getSteps().stream().filter(step -> !existingStepExternalIds.contains(step.getId()));
+        stepsToAdd.forEach(stepDto -> {
             Optional<BrailCharacter> brailOptional = brailCharacterRepository.findByLetter(stepDto.getBrailCharacter().getLetter());
             if (brailOptional.isPresent()) {
                 Step step = new Step();
@@ -124,7 +125,7 @@ public class SequenceSyncService {
             } else {
                 log.error("Brail with letter {} not found in device DB! Skipping this step sync!", stepDto.getBrailCharacter().getLetter());
             }
-        }
+        });
     }
 
     private void deleteOldSequenceSteps(Sequence sequence,
