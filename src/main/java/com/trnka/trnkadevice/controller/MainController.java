@@ -1,5 +1,8 @@
 package com.trnka.trnkadevice.controller;
 
+import com.trnka.restapi.dto.SyncDto;
+import com.trnka.restapi.endpoint.SyncEndpoint;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +15,15 @@ import com.trnka.trnkadevice.service.sync.SyncService;
 
 @RestController
 @RequestMapping(path = "device")
+@Slf4j
 public class MainController {
 
     @Autowired
     private AsyncGateway asyncGateway;
     @Autowired
     private SyncService syncService;
+    @Autowired
+    private SyncEndpoint client;
 
     @GetMapping(path = "health")
     public String health() {
@@ -53,7 +59,9 @@ public class MainController {
 
     @GetMapping(path = "sync")
     public String sync() {
-        syncService.synchronize();
+        log.info("Syncing: Will download SyncDto from VST server.");
+        SyncDto syncDto = client.syncAll();
+        syncService.synchronize(syncDto);
         return "synced";
     }
 

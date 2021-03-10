@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.trnka.trnkadevice.repository.LearningSequenceRepository;
+import com.trnka.trnkadevice.repository.TestingSequenceRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -149,12 +151,14 @@ public class SequenceSyncService {
     private void deleteSequences(final List<ExaminationDto> exams) {
         Set<Long> sequencesToDelete = sequenceRepository
                 .findLearningAndTestingSequencesByExternalIdNotIn(exams.stream().map(ExaminationDto::getId).collect(Collectors.toSet()));
-        log.info("Deleting learning sequences with ids:{}", sequencesToDelete);
+        log.info("Deleting sequences with ids:{}", sequencesToDelete);
 
         List<UserSequence> userSequences = userSequenceRepository.findAllBySequenceIds(sequencesToDelete);
-        userSequences.removeAll(userSequences);
+        userSequenceRepository.deleteAll(userSequences);
 
-        sequencesToDelete.forEach(id -> sequenceRepository.deleteById(id));
+        sequencesToDelete.forEach(id -> {
+            sequenceRepository.deleteById(id);
+        });
     }
 
 }
