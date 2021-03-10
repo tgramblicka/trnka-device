@@ -15,7 +15,7 @@
   "examinations": [
     {
       "id": 10,
-      "name": "???",
+      "name": "a,b,l,e",
       "audio": null,
       "timeout": 1000,
       "complexity": null,
@@ -23,24 +23,28 @@
       "allowedRetries": 2,
       "steps": [
         {
+          "id": 1,
           "brailCharacter": {
             "letter": "a"
           },
           "preserveOrder": true
         },
         {
+          "id": 2,
           "brailCharacter": {
             "letter": "b"
           },
           "preserveOrder": true
         },
         {
+          "id": 3,
           "brailCharacter": {
             "letter": "l"
           },
           "preserveOrder": true
         },
         {
+          "id": 4,
           "brailCharacter": {
             "letter": "e"
           },
@@ -50,7 +54,7 @@
     },
     {
       "id": 11,
-      "name": "???",
+      "name": "k,u",
       "audio": null,
       "timeout": 1000,
       "complexity": null,
@@ -58,12 +62,14 @@
       "allowedRetries": 2,
       "steps": [
         {
+          "id": 5,
           "brailCharacter": {
             "letter": "k"
           },
           "preserveOrder": true
         },
         {
+          "id": 6,
           "brailCharacter": {
             "letter": "u"
           },
@@ -73,7 +79,7 @@
     },
     {
       "id": 12,
-      "name": "???",
+      "name": "a,b,l,e",
       "audio": null,
       "timeout": 1000,
       "complexity": null,
@@ -81,24 +87,28 @@
       "allowedRetries": 2,
       "steps": [
         {
+          "id": 7,
           "brailCharacter": {
             "letter": "a"
           },
           "preserveOrder": true
         },
         {
+          "id": 8,
           "brailCharacter": {
             "letter": "b"
           },
           "preserveOrder": true
         },
         {
+          "id": 9,
           "brailCharacter": {
             "letter": "l"
           },
           "preserveOrder": true
         },
         {
+          "id": 10,
           "brailCharacter": {
             "letter": "e"
           },
@@ -108,7 +118,7 @@
     },
     {
       "id": 13,
-      "name": "???",
+      "name": "k,u",
       "audio": null,
       "timeout": 1000,
       "complexity": null,
@@ -116,12 +126,14 @@
       "allowedRetries": 2,
       "steps": [
         {
+          "id": 11,
           "brailCharacter": {
             "letter": "k"
           },
           "preserveOrder": true
         },
         {
+          "id": 12,
           "brailCharacter": {
             "letter": "u"
           },
