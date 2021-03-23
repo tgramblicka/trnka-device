@@ -150,10 +150,18 @@ public class SequenceSyncService {
     }
 
     private void deleteSequences(final List<ExaminationDto> exams) {
+        Set<Long> examExtIds = exams.stream().map(ExaminationDto :: getId).collect(Collectors.toSet());
+        if (examExtIds.isEmpty()){
+            examExtIds.add(-1L); // add negative ID in case list is empty. Empty NOT IN clause behaves incorrectly
+        }
         Set<Long> sequencesToDelete = sequenceRepository
-                .findLearningAndTestingSequencesByExternalIdNotIn(exams.stream().map(ExaminationDto::getId).collect(Collectors.toSet()));
-        log.info("Deleting sequences with ids:{}", sequencesToDelete);
+                .findLearningAndTestingSequencesByExternalIdNotIn(examExtIds);
+        if (sequencesToDelete.isEmpty()){
+            log.info("Deleting sequences with ids:{}");
+            return;
+        }
 
+        log.info("Deleting sequences with ids:{}", sequencesToDelete);
         List<UserSequence> userSequences = userSequenceRepository.findAllBySequenceIds(sequencesToDelete);
         userSequenceRepository.deleteAll(userSequences);
 

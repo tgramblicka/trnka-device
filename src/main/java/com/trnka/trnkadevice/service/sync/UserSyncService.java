@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.trnka.trnkadevice.domain.UserSequenceKey;
+import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,7 @@ public class UserSyncService {
     private final SequenceRepository sequenceRepository;
     private final UserSequenceRepository userSequenceRepository;
     private final UserPassedMethodicsRepository passedMethodicsRepository;
+    private final SequenceStatisticRepository sequenceStatisticRepository;
 
     @Transactional
     public void syncUsers(final List<StudentDTO> students) {
@@ -61,10 +63,25 @@ public class UserSyncService {
     }
 
     private void deleteUsers(final List<StudentDTO> students) {
-        Set<User> usersToDelete = userRepository.findByExternalIdNotIn(students.stream().map(StudentDTO::getId).collect(Collectors.toSet()));
-        log.info("Deleting users with ids:{}", usersToDelete.stream().map(User::getId).collect(Collectors.toList()));
+        Set<Long> studentExtIds = students.stream().map(StudentDTO :: getId).collect(Collectors.toSet());
+        if (studentExtIds.isEmpty()) {
+            studentExtIds.add(-1L); // add negative ID in case list is empty. Empty NOT IN clause behaves incorrectly
+        }
+        Set<User> usersToDelete = userRepository.findByExternalIdNotIn(studentExtIds);
         usersToDelete.removeIf(u -> u.getId().equals(User.DEFAULT_USER_ID)); // default user on device must not be deleted !
-        // todo delete manually because of many-to-many issues
+        if (usersToDelete.isEmpty()){
+            log.info("No users to be deleted.");
+            return;
+        }
+
+        log.info("Deleting users with ids:{}", usersToDelete.stream().map(User::getId).collect(Collectors.toList()));
+
+        usersToDelete.forEach(usr -> {
+            usr.getStatistics().forEach(stats -> {
+                sequenceStatisticRepository.delete(stats);
+            });
+            usr.getStatistics().clear();
+        });
 
         // delete UserSequence associations
         List<UserSequence> userSequenceTuplesToDelete = userSequenceRepository
@@ -76,9 +93,7 @@ public class UserSyncService {
                 .findAllByUserIds(usersToDelete.stream().map(User::getId).collect(Collectors.toSet()));
         passedMethodicsRepository.deleteAll(userPassedMethodicsTuplesToDelete);
 
-        usersToDelete.stream().forEach(user -> {
-            userRepository.deleteById(user.getId());
-        });
+        userRepository.deleteAll(usersToDelete);
     }
 
     private void updateUser(User user,
