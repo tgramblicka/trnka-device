@@ -1,6 +1,6 @@
 ## Database update with liquibase on raspberry: 
 1. connect to raspberry
-2. add character sets of mysql to utf8 if needed in ```/etc/my.cnf``` to
+2. add character sets of mysql to utf8 if needed in ```/etc/mysql/my.cnf``` to
    ```
    character-set-server=utf8 
    collation-server=utf8_bin
@@ -74,4 +74,25 @@ Set character_set_server in your C:\Program Files\MariaDB 10.4\data to
    character-set-server=utf8 
    collation-server=utf8_bin
    ```
+
+### Raspberry ENV variables and startup commands ###
+All the env variables and startup scripts are located in rc.local
+
+python3 /home/pi/trnka-device/wait_until_program_starts.py
+```
+cat /etc/rc.local
+```
+
+
+### Raspberry MYSQL commands examples ###
+Connect and select:
+```
+   mysql -u root -p  
+   SHOW DATABASES;
+   use trnka-device;
+   select * from user;
+```
+
+
+
 
