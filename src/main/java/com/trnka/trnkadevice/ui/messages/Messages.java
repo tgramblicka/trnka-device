@@ -131,6 +131,7 @@ public enum Messages {
     C_MAKCEN("č", "letters/"),
     D_MAKCEN("ď", "letters/"),
     E_DLHE_ALEBO_ZNAMIENKO_VACSI("é", "letters/"),
+    I_MAKKE("í", "letters/"),
     L_DLHE("ĺ", "letters/"),
     L_MAKKE("ľ", "letters/"),
     N_MAKCEN("ň", "letters/"),

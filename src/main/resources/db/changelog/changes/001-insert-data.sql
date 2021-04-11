@@ -47,7 +47,7 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (42, NULL, '[1,2,3,4,6]', 'ý');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (43, NULL, '[2,3,4,6]', 'ž');
 
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (44, NULL, '[3,4,5,6]', '??'); -- čiselny znak
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (44, NULL, '[3,4,5,6]', 'čz'); -- čiselny znak
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (45, NULL, '[1,2,3,4,5,6]', 'pz');  -- plny znak
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (46, NULL, '[6]', 'vp');  -- znak velke pismeno
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (47, NULL, '[2]', ',');
@@ -55,7 +55,7 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (49, NULL, '[2,3,5]', '!');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (50, NULL, '[3,6]', '-');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (51, NULL, '[2,5]', ':');
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (52, NULL, '[2,3,5,6]', '"');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (52, NULL, '[2,3,5,6]', '"'); -- uvodzovky
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (53, NULL, '[3]', 'apostrof');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (54, NULL, '[2,3,6]', '(');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (55, NULL, '[3,5,6]', ')');
@@ -107,7 +107,7 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (130, null, TRUE, 13, 122);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (131, null, TRUE, 9, 122);
 
--- v,á,?,r
+-- v,á,č,r
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (132, null, TRUE, 3, 123);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (133, null, TRUE, 27, 123);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (134, null, TRUE, 29, 123);
@@ -119,14 +119,14 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (138, null, TRUE, 41, 124);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (139, null, TRUE, 18, 124);
 
--- pz . í ?
+-- pz . í š
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (140, null, TRUE, 45, 125);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (141, null, TRUE, 48, 125);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (142, null, TRUE, 32, 125);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (143, null, TRUE, 39, 125);
 
 
--- D, ?, N, G, É
+-- D  Ď  N  G  É
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (144, null, TRUE, 4, 126);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (145, null, TRUE, 30, 126);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (146, null, TRUE, 14, 126);
@@ -142,7 +142,7 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 -- !
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (152, null, TRUE, 49, 128);
 
--- Z, F, ?, Ý, poml?ka
+-- Z, F, ň, Ý, pomlčka
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (153, null, TRUE, 26, 129);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (154, null, TRUE, 6, 129);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (155, null, TRUE, 35, 129);
@@ -150,19 +150,19 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (157, null, TRUE, 50, 129);
 
 
--- H, ?, ?, dvojbodka
+-- H, ť, ž, dvojbodka
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (158, null, TRUE, 8, 130);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (159, null, TRUE, 40, 130);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (160, null, TRUE, 43, 130);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (161, null, TRUE, 51, 130);
 
---  Ô, ?, Ó, ?
+--  Ô, ľ, Ó, ĺ
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (162, null, TRUE, 37, 131);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (163, null, TRUE, 34, 131);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (164, null, TRUE, 36, 131);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (165, null, TRUE, 33, 131);
 
--- Ä, ?, X, úvodzovky
+-- Ä, ŕ, X, úvodzovky
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (166, null, TRUE, 27, 132);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (167, null, TRUE, 38, 132);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (168, null, TRUE, 24, 132);
@@ -178,7 +178,7 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (173, null, TRUE, 54, 134);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (174, null, TRUE, 55, 134);
 
--- VP, ?Z, *
+-- VP, čZ, *
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (175, null, TRUE, 45, 135);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (176, null, TRUE, 44, 135);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (177, null, TRUE, 56, 135);
