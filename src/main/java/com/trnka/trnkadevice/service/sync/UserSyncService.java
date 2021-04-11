@@ -5,8 +5,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.trnka.trnkadevice.domain.UserSequenceKey;
-import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +14,7 @@ import com.trnka.trnkadevice.domain.User;
 import com.trnka.trnkadevice.domain.UserPassedMethodicalSequence;
 import com.trnka.trnkadevice.domain.UserSequence;
 import com.trnka.trnkadevice.repository.SequenceRepository;
+import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 import com.trnka.trnkadevice.repository.UserPassedMethodicsRepository;
 import com.trnka.trnkadevice.repository.UserRepository;
 import com.trnka.trnkadevice.repository.UserSequenceRepository;
@@ -76,11 +75,9 @@ public class UserSyncService {
 
         log.info("Deleting users with ids:{}", usersToDelete.stream().map(User::getId).collect(Collectors.toList()));
 
+        // delete user statistics
         usersToDelete.forEach(usr -> {
-            usr.getStatistics().forEach(stats -> {
-                sequenceStatisticRepository.delete(stats);
-            });
-            usr.getStatistics().clear();
+                sequenceStatisticRepository.deleteAll(usr.getStatistics(sequenceStatisticRepository));
         });
 
         // delete UserSequence associations
@@ -109,7 +106,8 @@ public class UserSyncService {
         log.info("Updating user - sequence associations. User id: {}", user.getId());
         // remove
         List<UserSequence> userSequencesToBeRemoved = userSequenceRepository.findAllById_UserId(user.getId());
-        userSequencesToBeRemoved.removeIf(seq -> serverSequenceExternalIds.contains(seq.getSequence().getExternalId())); // remove only association from collection
+        // first remove those association from collection, which are not in serverSequences anymore
+        userSequencesToBeRemoved.removeIf(seq -> serverSequenceExternalIds.contains(seq.getSequence().getExternalId()));
         userSequenceRepository.deleteAll(userSequencesToBeRemoved);
 
         // add

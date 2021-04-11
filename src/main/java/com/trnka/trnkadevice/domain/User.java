@@ -6,9 +6,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
+import com.trnka.trnkadevice.repository.UserSequenceRepository;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,12 +29,16 @@ public class User extends BaseEntity {
     @Column(name = "code", length = 4, unique = true)
     private String code;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<SequenceStatistic> statistics = new ArrayList<>();
-
-
     public User() {
         super();
+    }
+
+    public List<UserSequence> getAllSequences(UserSequenceRepository userSequenceRepository) {
+        return userSequenceRepository.findAllById_UserId(this.getId());
+    }
+
+    public List<SequenceStatistic> getStatistics(SequenceStatisticRepository seqStatsRepository) {
+        return seqStatsRepository.findByUser_Id(this.getId());
     }
 
 }

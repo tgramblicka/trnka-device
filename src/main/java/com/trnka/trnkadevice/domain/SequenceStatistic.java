@@ -54,7 +54,6 @@ public class SequenceStatistic extends BaseEntity {
         SequenceStatistic seqStats = new SequenceStatistic();
         seqStats.setSequence(seq);
         seqStats.setCreatedOn(new Date());
-        user.getStatistics().add(seqStats);
         seqStats.setUser(user);
         return seqStats;
     }
