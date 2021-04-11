@@ -18,7 +18,7 @@
 
 
 #copy wait script
-#rsync --progress -avz ./wait_until_program_starts.py pi@192.168.0.104:/home/pi/trnka-device
+rsync --progress -avz ./scripts/wait_until_program_starts.py pi@192.168.0.110:/home/pi/trnka-device/
 
 
 
