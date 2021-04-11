@@ -22,6 +22,7 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -37,6 +38,7 @@ public class IndividualTestingMenuView implements IView {
 
 
     @Override
+    @Transactional
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.TESTING_VIEW));
         Set<TestingSequence> sequences = testingSequenceRepository.findAllTestingSequencesForUser(userSession.getUsername());

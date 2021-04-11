@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trnka.trnkadevice.renderer.IRenderer;
@@ -16,6 +14,9 @@ import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.testing.IndividualTestingMenuView;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -36,6 +37,7 @@ public class MenuStudentView implements IView {
     }
 
     @Override
+    @Transactional
     public void enter() {
         if (userSession.getUserId() == null) {
             navigator.navigateAsync(LoginView.class);

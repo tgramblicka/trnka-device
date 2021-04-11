@@ -19,6 +19,7 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Slf4j
@@ -49,6 +50,7 @@ public class MethodicalLearningMenuView implements IView {
     }
 
     @Override
+    @Transactional
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.METHODICAL_LEARNING_MENU_VIEW));
         Consumer<Integer> consumer = index -> navigator.navigateAsync(MENU.get(index));

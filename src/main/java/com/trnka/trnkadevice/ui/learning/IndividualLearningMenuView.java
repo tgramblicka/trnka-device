@@ -23,6 +23,7 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -37,6 +38,7 @@ public class IndividualLearningMenuView implements IView {
     private final IndividualLearningView individualLearningView;
 
     @Override
+    @Transactional
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.LEARNING_VIEW_MENU));
         Set<LearningSequence> sequences = learningSequenceRepository.findAllLearningSequencesForUser(userSession.getUsername());
