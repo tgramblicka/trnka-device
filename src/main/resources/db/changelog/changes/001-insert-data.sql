@@ -31,7 +31,7 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 -- special characters"
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (27, NULL, '[1,6]', 'á');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (28, NULL, '[4]', 'ä');
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (29, NULL, '[1,4,6]', '?');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (29, NULL, '[1,4,6]', 'č');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (30, NULL, '[1,4,5,6]', 'ď');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (31, NULL, '[3,4,5]', 'é');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (32, NULL, '[3,4]', 'í');
