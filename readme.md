@@ -57,7 +57,8 @@
 
 ## How to create SD card image
 1. remove the SD card from raspberry
-2. use the "USB Image Tool" app
+2. use the Samsung SD card reader (white) and put SD inside
+3. use the "USB Image Tool" app ( installed on work laptop)
 
    
 ###
