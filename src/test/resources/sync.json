@@ -1,7 +1,7 @@
 {
   "students": [
     {
-      "id": 1,
+      "id": 2,
       "userName": "username",
       "code": "0000",
       "examinationIds": [
@@ -136,6 +136,84 @@
           "id": 12,
           "brailCharacter": {
             "letter": "u"
+          },
+          "preserveOrder": true
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "c,o,m,i",
+      "audio": null,
+      "timeout": 1000,
+      "complexity": null,
+      "type": "TESTING",
+      "allowedRetries": 2,
+      "steps": [
+        {
+          "id": 3,
+          "brailCharacter": {
+            "letter": "c"
+          },
+          "preserveOrder": true
+        },
+        {
+          "id": 15,
+          "brailCharacter": {
+            "letter": "o"
+          },
+          "preserveOrder": true
+        },
+        {
+          "id": 13,
+          "brailCharacter": {
+            "letter": "m"
+          },
+          "preserveOrder": true
+        },
+        {
+          "id": 10,
+          "brailCharacter": {
+            "letter": "i"
+          },
+          "preserveOrder": true
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "v,a,c,r",
+      "audio": null,
+      "timeout": 1000,
+      "complexity": null,
+      "type": "TESTING",
+      "allowedRetries": 2,
+      "steps": [
+        {
+          "id": 22,
+          "brailCharacter": {
+            "letter": "v"
+          },
+          "preserveOrder": true
+        },
+        {
+          "id": 1,
+          "brailCharacter": {
+            "letter": "a"
+          },
+          "preserveOrder": true
+        },
+        {
+          "id": 3,
+          "brailCharacter": {
+            "letter": "č"
+          },
+          "preserveOrder": true
+        },
+        {
+          "id": 18,
+          "brailCharacter": {
+            "letter": "r"
           },
           "preserveOrder": true
         }
