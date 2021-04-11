@@ -2,5 +2,5 @@
 
 import os
 
-os.system("aplay /home/pi/trnka-device/sounds/commands/PLEASE_WAIT_UNTIL_PROGRAM_STARTS.wav")
+os.system("aplay /home/pi/trnka-device/sounds/commands/please_wait_until_program_starts.wav")
 
