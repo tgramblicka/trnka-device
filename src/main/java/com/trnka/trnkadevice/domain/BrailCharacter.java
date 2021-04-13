@@ -5,19 +5,15 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.trnka.trnkadevice.ui.messages.AudioMessage;
-import com.trnka.trnkadevice.ui.messages.Messages;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.ui.messages.IMessage;
+import com.trnka.trnkadevice.ui.messages.Messages;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 
 import lombok.EqualsAndHashCode;
