@@ -7,8 +7,8 @@ public class PcKeystroak {
     public static final Map<Integer, Keystroke> MAP = new HashMap<>();
 
     static {
-        MAP.put(57416, Keystroke.UP);
-        MAP.put(57424, Keystroke.DOWN);
+        MAP.put(57424, Keystroke.UP);
+        MAP.put(57416, Keystroke.DOWN);
 
         MAP.put(58, Keystroke.MENU_1); // CAPS LOCK
         MAP.put(42, Keystroke.MENU_2); // SHIFT

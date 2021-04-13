@@ -10,8 +10,8 @@ public enum Keystroke {
     BRAIL_KEY_5(245, "5", false),
     BRAIL_KEY_6(246, "6", false),
 
-    UP(67, "up", false), // add volume on device
-    DOWN(66, "down", false), // add volume on device
+    UP(66, "up", false), // add volume on device
+    DOWN(67, "down", false), // add volume on device
     SUBMIT(59, "submit", false), // help on device
 
     RESERVED_1(60, "reserve1", true),
