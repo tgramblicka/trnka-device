@@ -75,7 +75,7 @@ public class LettersTestingView implements IView {
         SequenceStatistic seqStats = SequenceStatistic.create(sequence, user);
         int index = -1;
         for (Step step : sequence.getSteps()) {
-
+            index++;
             renderer.renderMessage(AudioMessage.of(Messages.TESTING_TYPE_IN_CHARACTER_BRAIL, step.getBrailCharacter().getLetterMessage()));
             long start = System.currentTimeMillis();
             Integer negativeRetries = 0;
