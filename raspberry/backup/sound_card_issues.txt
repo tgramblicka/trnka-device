@@ -1,0 +1,144 @@
+------
+test:
+aplay /usr/share/sounds/alsa/Front_Center.wav
+speaker-test -t sine -f 440 -c 2 -s 1
+speaker-test -t sine -f 440 -c 2 -s 2
+aplay trnka-device/sounds/commands/yes.wav
+aplay -Dsysdefault trnka-device/sounds/commands/yes.wav
+
+time aplay -Ddmix_debug_35mm trnka-device/sounds/commands/yes.wav
+time aplay -Dsysdefault trnka-device/sounds/commands/yes.wav
+time aplay -Ddmix_debug_HDMI trnka-device/sounds/commands/yes.wav
+---
+
+scp -r pi@192.168.0.110:/usr/share/alsa/alsa.conf ./
+
+
+
+----
+
+getting audio work: http://cagewebdev.com/raspberry-pi-getting-audio-working/
+
+snd-bcm2835
+
+cat /proc/asound/cards
+
+ALSA CONFIG:
+less /usr/share/alsa/alsa.conf
+---
+
+what I did :
+reverted kernel to previous version: https://www.raspberrypi.org/forums/viewtopic.php?t=294710
+sudo rpi-update 367c84201db35a85979f1482ebd78e1eef910efc
+
+---
+check if i2c is enabled
+lsmod | grep i2c_
+
+---
+sudo nano /usr/share/alsa/alsa.conf
+changed below
+defaults.ctl.card 0
+defaults.pcm.card 0
+
+to
+defaults.ctl.card 1
+defaults.pcm.card 1
+
+then
+changed cards to 1 in .asoundrc
+
+
+then rescan alsa reload
+sudo alsactl kill rescan
+
+then add into /etc/modules
+snd-bcm2835
+
+then add to boot/config.txt
+dtoverlay=audremap,enable_jack=on
+
+
+then reboot
+
+
+
+then:
+pi@raspberrypi-0:~ $ aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: Headphones [bcm2835 Headphones], device 0: bcm2835 Headphones [bcm2835 Headphones]
+  Subdevices: 8/8
+  Subdevice #0: subdevice #0
+  Subdevice #1: subdevice #1
+  Subdevice #2: subdevice #2
+  Subdevice #3: subdevice #3
+  Subdevice #4: subdevice #4
+  Subdevice #5: subdevice #5
+  Subdevice #6: subdevice #6
+  Subdevice #7: subdevice #7
+
+
+i installed
+sudo apt-get install raspi-gpio
+
+---
+reloading drivers:
+
+check drivers
+lsmod | grep snd
+lsmod | grep 2835
+
+sudo modprobe snd-bcm2835
+sudo modprobe i2c_bcm2835
+sudo modprobe snd_bcm2835
+
+modprobe i2c-bcm2835
+
+i2c_bcm2835
+
+---
+
+this was in boot/config.txt
+dtoverlay=audremap,enable_jack=on
+
+
+
+----------------
+SETUP
+dtoverlay=audremap,enable_jack=on
+defaults.ctl.card 0
+defaults.pcm.card 0
+.asourdrc > cards 0
+
+> nefunguje vypisuje no soundcards found
+---------------------------
+
+SETUP 2
+    dtparam=audio=on
+    hdmi_force_edid_audio=1
+    dtoverlay=audremap,enableless _jack=on
+
+defaults.ctl.card 0
+defaults.pcm.card 0
+.asourdrc > cards 0 (automatically reloaded)
+
+aplay -l >  vypise aspon headphone sound card sound cards
+ale
+pi@raspberrypi-0:~ $ aplay /usr/share/sounds/alsa/Front_Center.wav
+neprehra nic
+
+pi@raspberrypi-0:~ $ lsmod | grep snd
+snd_bcm2835            24576  1
+
+----------
+
+
+uninstall pulseaudio
+sudo apt-get remove --purge pulseaudio
+sudo apt-get install pulseaudio
+
+
+
+
+
+java -DMARIA_DB_USER=pi -DMARIA_DB_PWD=raspberry -DTRNKA_SOUNDS_LOCATION=/home/pi/trnka-device/sounds/ -jar /home/pi/trnka-device/trnka-device.jar

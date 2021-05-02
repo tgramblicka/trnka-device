@@ -1,3 +1,10 @@
+## Raspbian prerequisites:
+Raspbian needs to be on version 10 buster. Won't work with version 9 stretch. Reason is that MariaDB10.1 (highest possible on 9 - stretch) does not support Sequences. Sequences are supported from MariaDB version 10.3+. MariaDB 10.3+ on raspbian requires a version 10 - buster.  
+
+See tutorial how to upgrade stretch to buster: https://pimylifeup.com/upgrade-raspbian-stretch-to-raspbian-buster/
+
+
+
 ## Database update with liquibase on raspberry: 
 1. connect to raspberry
 2. add character sets of mysql to utf8 if needed in ```/etc/mysql/my.cnf``` to
@@ -12,7 +19,7 @@
    ```
    SHOW DATABASES;
    drop database `trnka-device`;
-   CREATE DATABASE `trnka-device2` CHARACTER SET = 'utf8' COLLATE = 'utf8_bin';
+   CREATE DATABASE `trnka-device` CHARACTER SET = 'utf8' COLLATE = 'utf8_bin';
    SET character_set_server = 'utf8';
    SET collation_connection = 'utf8_bin';
    ```
@@ -30,7 +37,7 @@
       
 ```   
    mysql -u root -p (prihlas sa ako admin)
-   GRANT ALL ON `trnka-device`.* TO 'root'@'192.168.1.24' IDENTIFIED BY 'raspberry';
+   GRANT ALL ON `trnka-device`.* TO 'root'@'192.168.0.101' IDENTIFIED BY 'raspberry';
    GRANT ALL ON `trnka-device`.* TO 'pi'@'localhost' IDENTIFIED BY 'raspberry';
 ```   
       
@@ -93,6 +100,30 @@ Connect and select:
    use trnka-device;
    select * from user;
 ```
+
+
+### Compiling Kernel in Virtual Box Ubuntu ###
+- install VirtualBox
+- Download Ubuntu 20+ ISO
+- Create new Virtual Machine in VirtualBox ( 1GB RAM & at least 15GB disk space)
+- Install Ubuntu
+- git clone raspberry 5.10 git repo into Ubuntu https://www.raspberrypi.org/documentation/linux/kernel/building.md  
+- Use menuconfig tool https://www.raspberrypi.org/documentation/linux/kernel/configuring.md 
+```
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+```
+- enable TCA8418 with Y ( * )
+- copy the tublet-overlay.dts into linux's arch/arm/boot/dts/overlays/  
+- Compile kernel 
+- After compiled insert SD Card & mount it to virtual box http://rizwanansari.net/access-sd-card-on-linux-from-windows-using-virtualbox/
+- check with lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+- trouble shooting of SDCARD mounting - make sure IO Cache is enabled: https://scribles.net/accessing-sd-card-from-linux-virtualbox-guest-on-windows-host/
+
+
+### Setting up raspberry ###
+- Make faster boot: raspi-config > system-options > network & boot (disable wait for network until booot)
+
+
 
 
 

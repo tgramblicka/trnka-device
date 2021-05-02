@@ -1,0 +1,26 @@
+content below
+located in /home/pi
+
+pcm.!default {
+  type asym
+  playback.pcm {
+    type plug
+    slave.pcm "output"
+  }
+  capture.pcm {
+    type plug
+    slave.pcm "sysdefault"
+  }
+}
+
+pcm.output {
+  type hw
+  card 0
+  slave.pcm "sysdefault"
+}
+
+ctl.!default {
+  type hw
+  card 0
+  slave.pcm "sysdefault"
+}

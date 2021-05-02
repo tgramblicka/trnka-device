@@ -1,0 +1,3 @@
+pcm.dmix_debug_auto {         type plug         slave.pcm "sysdefault" }
+pcm.dmix_debug_35mm {         type plug         slave.pcm "dmix:CARD=ALSA,DEV=1" }
+pcm.dmix_debug_HDMI {         type plug         slave.pcm "dmix:CARD=ALSA,DEV=2" }
