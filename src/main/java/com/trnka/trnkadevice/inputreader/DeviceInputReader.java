@@ -26,6 +26,7 @@ public class DeviceInputReader implements InputReader {
 
             return pressedKey;
         } catch (IOException e) {
+            log.error("Exception occured during reading the key: ", e);
             throw new RuntimeException(e.getCause());
         }
     }
