@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `external_id` bigint(20),
   `username` varchar(255) DEFAULT NULL,
   `code` varchar(4) NOT NULL,
+  `login_count` int(5) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_code` (`code`)
 ) ;
@@ -54,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `sequence_statistic` (
   `sequence_id` bigint(20) DEFAULT NULL,
   `took` bigint(20) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
+  `passed` BOOL DEFAULT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FK1t3orv1oobdje4q8oy8u5uut0` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ;

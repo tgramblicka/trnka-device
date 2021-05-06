@@ -1,6 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0; --
 
-insert into user (id, external_id, username, code) values (1, 1, 'test1', 'aaaa');
+insert into user (id, external_id, username, code, login_count) values (1, 1, 'test1', 'aaaa', 0);
 
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (1, NULL, '[1]', 'a');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (2, NULL, '[1,2]', 'b');
@@ -207,9 +207,9 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 
 -- TESTING SEQUENCES
 -- a,b,l,e
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 107, 4, 1, 'TESTING_SEQUENCE_NAME', 100000);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `passing_rate_percentage`) VALUES ('TS', 107, 4, 1, 'TESTING_SEQUENCE_NAME', 100000, 80);
 -- k,u
-INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`) VALUES ('TS', 108, 5, 1, 'TESTING_SEQUENCE_NAME', 100000);
+INSERT INTO `sequence` (`dtype`, `id`, `external_id`, `allowed_retries`, `audio_message`, `timeout`, `passing_rate_percentage`) VALUES ('TS', 108, 5, 1, 'TESTING_SEQUENCE_NAME', 100000, 80);
 
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (109, null, TRUE, 1, 107);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (110, null, TRUE, 2, 107);
@@ -232,6 +232,10 @@ INSERT INTO `user_sequences` (`user_id`, `sequence_id`) VALUES (1, 101);
 INSERT INTO `user_sequences` (`user_id`, `sequence_id`) VALUES (1, 106);
 INSERT INTO `user_sequences` (`user_id`, `sequence_id`) VALUES (1, 107);
 INSERT INTO `user_sequences` (`user_id`, `sequence_id`) VALUES (1, 108);
+
+
+
+INSERT INTO `synchronization` (`id`, `executed_on`, `type`, `status`) VALUES (1, '2021-01-01 00:00:00', 'SYNCED_ALL_FROM_SERVER', 'SUCCESS');
 
 
 SET FOREIGN_KEY_CHECKS=1; --
