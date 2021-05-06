@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.trnka.trnkadevice.domain.visitor.SequenceVisitor;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,6 +40,11 @@ public class MethodicalLearningSequence extends Sequence implements Comparable {
     @Range(min = 0, max = 100)
     @Column(name = "passing_rate_percentage")
     private BigDecimal passingRate;
+
+    @Override
+    public <T> T accept(final SequenceVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
 
     @Override
     public int compareTo(final Object o) {

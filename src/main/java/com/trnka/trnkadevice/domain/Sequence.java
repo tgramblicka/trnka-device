@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.trnka.trnkadevice.domain.visitor.SequenceVisitor;
 import com.trnka.trnkadevice.ui.messages.Messages;
 
 import lombok.Getter;
@@ -67,4 +68,7 @@ public abstract class Sequence extends BaseEntity {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    public abstract <T> T accept(final SequenceVisitor<T> visitor) ;
+
 }

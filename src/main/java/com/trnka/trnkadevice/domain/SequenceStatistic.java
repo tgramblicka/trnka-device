@@ -1,6 +1,7 @@
 package com.trnka.trnkadevice.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,9 +10,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,6 +21,7 @@ import com.trnka.restapi.dto.statistics.Evaluate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "sequence_statistic")
@@ -45,15 +44,18 @@ public class SequenceStatistic extends BaseEntity {
     @NotNull
     private User user;
 
-    @Column
-    private Date createdOn;
+    @CreationTimestamp
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
+
     private Long took;
+
+    private Boolean passed = false;
 
     public static SequenceStatistic create(final Sequence seq,
                                            final User user) {
         SequenceStatistic seqStats = new SequenceStatistic();
         seqStats.setSequence(seq);
-        seqStats.setCreatedOn(new Date());
         seqStats.setUser(user);
         return seqStats;
     }
