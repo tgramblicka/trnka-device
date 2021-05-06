@@ -1,19 +1,19 @@
 package com.trnka.trnkadevice.ui.testing;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
-import com.trnka.restapi.dto.statistics.Evaluate;
-import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trnka.restapi.dto.statistics.Evaluate;
+import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.domain.Step;
 import com.trnka.trnkadevice.domain.TestingSequence;
-import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.service.StatisticService;
 import com.trnka.trnkadevice.ui.IView;
@@ -22,6 +22,7 @@ import com.trnka.trnkadevice.ui.SequenceComponent;
 import com.trnka.trnkadevice.ui.UserSession;
 import com.trnka.trnkadevice.ui.evaluation.SequenceEvaluator;
 import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
+import com.trnka.trnkadevice.ui.messages.AudioMessage;
 import com.trnka.trnkadevice.ui.messages.Messages;
 import com.trnka.trnkadevice.ui.navigation.Navigator;
 import com.trnka.trnkadevice.ui.statistic.StatisticRenderer;
@@ -78,6 +79,8 @@ public class IndividualTestingView implements IView {
             long took = System.currentTimeMillis() - start;
             seqStats.addStepStatistic(seqStats, step, took, evaluated);
         }
+        boolean passedTest = seqStats.getScore().multiply(BigDecimal.valueOf(100.0D)).compareTo(seq.getPassingRate()) > 0;
+        seqStats.setPassed(passedTest);
         statisticService.saveSequenceStats(seqStats);
 
         renderStats(seqStats);
