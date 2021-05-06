@@ -23,12 +23,15 @@ public class Authentication {
     }
 
     public Boolean authenticate(String code) {
-        Optional<User> user = userRepository.findByCode(code);
-        if (!user.isPresent()) {
+        Optional<User> userOptional = userRepository.findByCode(code);
+        if (!userOptional.isPresent()) {
             return false;
         }
-        userSession.setUserId(user.get().getId());
-        userSession.setUsername(user.get().getUsername());
+        User user = userOptional.get();
+        userSession.setUserId(user.getId());
+        userSession.setUsername(user.getUsername());
+        user.setLoginCount(user.getLoginCount()+1);
+        userRepository.save(user);
         return true;
     }
 
