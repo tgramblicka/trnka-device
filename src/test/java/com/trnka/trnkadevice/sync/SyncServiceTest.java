@@ -1,7 +1,7 @@
 package com.trnka.trnkadevice.sync;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -276,7 +276,7 @@ public class SyncServiceTest extends BaseTest {
     private SequenceStatistic sequenceStatistic(User user, Long sequenceExternalId) {
         Sequence sequence = sequenceRepository.findByExternalId(sequenceExternalId).get();
         SequenceStatistic stat = new SequenceStatistic();
-        stat.setCreatedOn(new Date());
+        stat.setCreatedOn(LocalDateTime.now());
         stat.setSequence(sequence);
         stat.setUser(user);
 
