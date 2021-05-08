@@ -98,7 +98,7 @@ public class SequenceSyncService {
 
         if (hasSequenceStepsChanged(sequence, dto.getSteps())) {
             // delete all statistics with steps which are referring this sequence
-            deleteAllSequenceStatistics(sequence);
+            deleteAllSequenceStatistics(sequence.getId());
         }
 
         // delete old steps
@@ -136,8 +136,8 @@ public class SequenceSyncService {
         stepsToDelete.forEach(step -> sequenceStepRepository.delete(step));
     }
 
-    private void deleteAllSequenceStatistics(Sequence sequence) {
-        List<SequenceStatistic> statisticsToDelete = sequenceStatisticRepository.findBySequence_Id(sequence.getId());
+    private void deleteAllSequenceStatistics(Long sequenceId) {
+        List<SequenceStatistic> statisticsToDelete = sequenceStatisticRepository.findBySequence_Id(sequenceId);
         sequenceStatisticRepository.deleteAll(statisticsToDelete);
         // todo check whether relation from user site is deleted as well
     }
@@ -157,7 +157,7 @@ public class SequenceSyncService {
         Set<Long> sequencesToDelete = sequenceRepository
                 .findLearningAndTestingSequencesByExternalIdNotIn(examExtIds);
         if (sequencesToDelete.isEmpty()){
-            log.info("Deleting sequences with ids:{}");
+            log.info("No sequences will be deleted!");
             return;
         }
 
@@ -166,6 +166,7 @@ public class SequenceSyncService {
         userSequenceRepository.deleteAll(userSequences);
 
         sequencesToDelete.forEach(id -> {
+            deleteAllSequenceStatistics(id);
             sequenceRepository.deleteById(id);
         });
     }
