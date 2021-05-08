@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trnka.restapi.dto.BrailCharacterDto;
@@ -21,7 +20,6 @@ import com.trnka.restapi.dto.ExaminationStepDto;
 import com.trnka.restapi.dto.SequenceType;
 import com.trnka.restapi.dto.StudentDTO;
 import com.trnka.restapi.dto.SyncDto;
-import com.trnka.restapi.endpoint.SyncEndpoint;
 import com.trnka.trnkadevice.BaseTest;
 import com.trnka.trnkadevice.domain.LearningSequence;
 import com.trnka.trnkadevice.domain.Sequence;
@@ -42,8 +40,6 @@ public class SyncServiceTest extends BaseTest {
 
     @Autowired
     private SyncService syncService;
-    @MockBean
-    private SyncEndpoint client;
     @Autowired
     private SequenceRepository sequenceRepository;
     @Autowired
@@ -58,7 +54,6 @@ public class SyncServiceTest extends BaseTest {
     private UserSequenceRepository userSequenceRepository;
     @Autowired
     private SequenceStatisticRepository sequenceStatisticRepository;
-
 
     @PersistenceContext
     private EntityManager em;
@@ -96,7 +91,7 @@ public class SyncServiceTest extends BaseTest {
         long originalTestingSeqCount = data.getExaminations().stream().filter(e -> e.getType().equals(SequenceType.TESTING)).count();
 
         // WHEN
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
 
         // THEN
         Assertions.assertEquals(originalLearningSeqCount, learningSequenceRepository.count());
@@ -107,9 +102,9 @@ public class SyncServiceTest extends BaseTest {
         Assertions.assertEquals(4, userSequences.size());
     }
 
-
-
-    public Long getStudentCountOfExamsFromSyncDto(SyncDto data, Long userExtId, SequenceType sequenceType){
+    public Long getStudentCountOfExamsFromSyncDto(SyncDto data,
+                                                  Long userExtId,
+                                                  SequenceType sequenceType) {
         Set<Long> studentExaminationIds = data.getStudents().stream().filter(u -> u.getId().equals(userExtId)).findFirst().get().getExaminationIds();
         return data.getExaminations().stream().filter(e -> e.getType().equals(sequenceType) && studentExaminationIds.contains(e.getId())).count();
     }
@@ -119,27 +114,30 @@ public class SyncServiceTest extends BaseTest {
     public void syncAfterSequenceDeletedOnVst() throws IOException {
         // FILL UP DB
         SyncDto data = SyncDataFactory.getSyncData();
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
+
+        User user = userRepository.findByExternalId(STUDENT_EXT_ID).get();
+        sequenceStatisticRepository.save(sequenceStatistic(user, SEQ_LEARNING_ABLE_EXT_ID));
+
         long originalTestingSeqCount = data.getExaminations().stream().filter(e -> e.getType().equals(SequenceType.TESTING)).count();
-
-
-        long originalUserTestingExamCount = getStudentCountOfExamsFromSyncDto(data,STUDENT_EXT_ID, SequenceType.TESTING);
-
+        long originalUserTestingExamCount = getStudentCountOfExamsFromSyncDto(data, STUDENT_EXT_ID, SequenceType.TESTING);
 
         // delete ALL sync data all LEARNING sequences
         data.getExaminations().removeIf(e -> e.getType().equals(SequenceType.LEARNING));
+        // delete only one TESTING sequence
+        data.getExaminations().removeIf(e -> e.getType().equals(SequenceType.TESTING) && e.getId().equals(SEQ_TESTING_ABLE_EXT_ID));
 
         // WHEN
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
         em.clear();
 
         // THEN
         Assertions.assertEquals(0, learningSequenceRepository.count());
-        Assertions.assertEquals(originalTestingSeqCount, testingSequenceRepository.count());
+        Assertions.assertEquals(originalTestingSeqCount - 1, testingSequenceRepository.count());
 
         User newUser = userRepository.findByExternalId(STUDENT_EXT_ID).get();
         List<UserSequence> userSequences = userSequenceRepository.findAllById_UserId(newUser.getId());
-        Assertions.assertEquals(originalUserTestingExamCount, userSequences.size());
+        Assertions.assertEquals(originalUserTestingExamCount - 1, userSequences.size());
     }
 
     @Test
@@ -150,7 +148,7 @@ public class SyncServiceTest extends BaseTest {
         long originalLearningSeqCount = data.getExaminations().stream().filter(e -> e.getType().equals(SequenceType.LEARNING)).count();
         long originalTestingSeqCount = data.getExaminations().stream().filter(e -> e.getType().equals(SequenceType.TESTING)).count();
 
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
 
         // add user statistics for ABLE
         User user = userRepository.findByExternalId(STUDENT_EXT_ID).get();
@@ -171,7 +169,7 @@ public class SyncServiceTest extends BaseTest {
         learningSeqDto.getSteps().add(examinationStep(newLetterStep, 99L));
 
         // WHEN
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
         em.flush();
         em.clear();
 
@@ -192,7 +190,7 @@ public class SyncServiceTest extends BaseTest {
     public void createNewStudentFromSync() throws IOException {
         // BEFORE
         SyncDto data = SyncDataFactory.getSyncData();
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
 
         // 1st user is a default one from liquibase scripts, another one was added by sync
         Assertions.assertEquals(2, userRepository.count());
@@ -204,7 +202,7 @@ public class SyncServiceTest extends BaseTest {
     public void syncAfterStudentDeletedOnVst() throws IOException {
         // Fill DB with students
         SyncDto data = SyncDataFactory.getSyncData();
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
 
         User user = userRepository.findByExternalId(STUDENT_EXT_ID).get();
 
@@ -215,8 +213,7 @@ public class SyncServiceTest extends BaseTest {
         data.getStudents().removeIf(s -> s.getId().equals(STUDENT_EXT_ID));
 
         // sync again, above removed user should be deleted with his statistics...
-        syncService.synchronize(data);
-
+        syncService.synchronizeFromServer(data);
 
         em.flush();
         em.clear();
@@ -229,7 +226,7 @@ public class SyncServiceTest extends BaseTest {
     public void syncAfterStudentExaminationsMovedToAnotherCourseOnVst() throws IOException {
         // Fill DB with students
         SyncDto data = SyncDataFactory.getSyncData();
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
 
         User user = userRepository.findByExternalId(STUDENT_EXT_ID).get();
         int originalUserSeqCount = user.getAllSequences(userSequenceRepository).size();
@@ -249,7 +246,7 @@ public class SyncServiceTest extends BaseTest {
         studentDto.getExaminationIds().add(SEQ_TESTING_VACR_EXT_ID);
 
         // sync again (now with removed and added new sequences)
-        syncService.synchronize(data);
+        syncService.synchronizeFromServer(data);
 
         em.flush();
         em.clear();
@@ -261,7 +258,8 @@ public class SyncServiceTest extends BaseTest {
         Assertions.assertEquals(originalUserSeqCount, newUserSequences.size());
         Assertions.assertTrue(newUserSequences.stream().anyMatch(seq -> seq.getSequence().getExternalId().equals(SEQ_TESTING_COMI_EXT_ID)));
         Assertions.assertTrue(newUserSequences.stream().anyMatch(seq -> seq.getSequence().getExternalId().equals(SEQ_TESTING_VACR_EXT_ID)));
-        Assertions.assertEquals(1, user.getStatistics(sequenceStatisticRepository).size()); // old sequence Statistic will be preserved, because it is still in the DB
+        Assertions.assertEquals(1, user.getStatistics(sequenceStatisticRepository).size()); // old sequence Statistic will be preserved, because it is still in
+                                                                                            // the DB
     }
 
     private ExaminationStepDto examinationStep(String letter,
@@ -273,7 +271,8 @@ public class SyncServiceTest extends BaseTest {
         return dto;
     }
 
-    private SequenceStatistic sequenceStatistic(User user, Long sequenceExternalId) {
+    private SequenceStatistic sequenceStatistic(User user,
+                                                Long sequenceExternalId) {
         Sequence sequence = sequenceRepository.findByExternalId(sequenceExternalId).get();
         SequenceStatistic stat = new SequenceStatistic();
         stat.setCreatedOn(LocalDateTime.now());
@@ -286,7 +285,7 @@ public class SyncServiceTest extends BaseTest {
         return stat;
     }
 
-    private StepStatistic stepStatistic(Long stepId){
+    private StepStatistic stepStatistic(Long stepId) {
         StepStatistic stepStat = new StepStatistic();
         stepStat.setCorrect(true);
         stepStat.setRetries(1);
@@ -294,6 +293,5 @@ public class SyncServiceTest extends BaseTest {
         return stepStat;
 
     }
-
 
 }

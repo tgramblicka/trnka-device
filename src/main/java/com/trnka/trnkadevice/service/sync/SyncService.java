@@ -2,6 +2,7 @@ package com.trnka.trnkadevice.service.sync;
 
 import com.trnka.restapi.endpoint.SyncEndpoint;
 import com.trnka.trnkadevice.domain.SequenceStatistic;
+import com.trnka.trnkadevice.domain.SyncStatus;
 import com.trnka.trnkadevice.domain.SyncType;
 import com.trnka.trnkadevice.domain.Synchronization;
 import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
@@ -28,28 +29,60 @@ public class SyncService {
     private final SynchronizationRepository synchronizationRepository;
     private final SyncEndpoint syncClient;
 
+    public void syncFromServerAndThenToServer(){
+        synchronizeFromServer();
+        synchronizeToServer();
+    }
+
+
+    public void synchronizeFromServer() {
+        SyncDto syncDto = syncClient.getSyncDto();
+        synchronizeFromServer(syncDto);
+    }
+
+
     @Transactional
-    public void synchronize(final SyncDto syncDto) {
+    public void synchronizeFromServer(final SyncDto syncDto) {
         log.info("Syncing from server: Downloaded SyncDto: {}", syncDto);
         sequenceSyncService.syncSequences(syncDto.getExaminations());
         log.info("Syncing from server: Sequences sync finished!");
         userSyncService.syncUsers(syncDto.getStudents());
         log.info("Syncing from server: Users sync finished!");
+    }
+
+    @Transactional
+    public void synchronizeToServer() {
         sendExaminationStatistics();
         log.info("Syncing to server: Student statistics sync finished!");
     }
 
-    public void sendExaminationStatistics() {
-        LocalDateTime lastStatisticUpdateToServerRun = synchronizationRepository.findLastSyncRun(SyncType.UPDATED_EXAMINATION_STATISTICS_TO_SERVER)
+    private void sendExaminationStatistics() {
+        LocalDateTime lastStatisticUpdateToServerRun = synchronizationRepository.findLastSuccessfulSyncRun(SyncType.UPDATED_EXAMINATION_STATISTICS_TO_SERVER)
                 .stream()
                 .findFirst()
                 .map(Synchronization::getExecutedOn)
                 .orElse(LocalDateTime.MIN);
         log.info("Last run of statistic update to server was on: {}.", lastStatisticUpdateToServerRun);
         List<SequenceStatistic> sequencStats = sequenceStatisticRepository.findAllByCreatedOnAfter(lastStatisticUpdateToServerRun);
-        log.info("Cince last sync on {} , found {} sequence statistics due to be synced to server, will sync to server now!", lastStatisticUpdateToServerRun);
+        log.info("Since last sync on {} , found {} sequence statistics due to be synced to server, will sync to server now!", lastStatisticUpdateToServerRun, sequencStats.size());
 
-        syncClient.updateExaminationStatisticsToAllStudents(new StatsMapper().mapToStatisticsSyncDto(sequencStats));
+        try {
+            Boolean updated = syncClient.updateExaminationStatisticsToAllStudents(new StatsMapper().mapToStatisticsSyncDto(sequencStats));
+            if (updated) {
+                saveStudentStatsSync(SyncStatus.SUCCESS);
+                return;
+            }
+            saveStudentStatsSync(SyncStatus.ERROR);
+        } catch (Exception e) {
+            log.error("Exception occurred during update of Student statistics: {}", e);
+            saveStudentStatsSync(SyncStatus.ERROR);
+            return;
+        }
+    }
+
+    private void saveStudentStatsSync(final SyncStatus error) {
+        Synchronization sync = new Synchronization(LocalDateTime.now(), SyncType.UPDATED_EXAMINATION_STATISTICS_TO_SERVER, error);
+        synchronizationRepository.save(sync);
     }
 
 }

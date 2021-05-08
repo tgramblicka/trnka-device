@@ -18,7 +18,7 @@ public class SyncOnStartup implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         log.info("Will sync all the data from VST");
         try {
-//            syncService.synchronize();
+//            syncService.synchronizeFromServer();
         } catch (FeignException e) {
             log.warn("VST backend is not available, or threw an error");
         } catch (Exception e) {
