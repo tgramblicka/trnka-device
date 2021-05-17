@@ -48,6 +48,7 @@ public class SyncService {
         log.info("Syncing from server: Sequences sync finished!");
         userSyncService.syncUsers(syncDto.getStudents());
         log.info("Syncing from server: Users sync finished!");
+        saveSyncFromServerEvent(SyncStatus.SUCCESS);
     }
 
     @Transactional
@@ -69,19 +70,24 @@ public class SyncService {
         try {
             Boolean updated = syncClient.updateExaminationStatisticsToAllStudents(new StatsMapper().mapToStatisticsSyncDto(sequencStats));
             if (updated) {
-                saveStudentStatsSync(SyncStatus.SUCCESS);
+                saveStudentStatsSyncEvent(SyncStatus.SUCCESS);
                 return;
             }
-            saveStudentStatsSync(SyncStatus.ERROR);
+            saveStudentStatsSyncEvent(SyncStatus.ERROR);
         } catch (Exception e) {
             log.error("Exception occurred during update of Student statistics: {}", e);
-            saveStudentStatsSync(SyncStatus.ERROR);
+            saveStudentStatsSyncEvent(SyncStatus.ERROR);
             return;
         }
     }
 
-    private void saveStudentStatsSync(final SyncStatus error) {
-        Synchronization sync = new Synchronization(LocalDateTime.now(), SyncType.UPDATED_EXAMINATION_STATISTICS_TO_SERVER, error);
+    private void saveStudentStatsSyncEvent(final SyncStatus status) {
+        Synchronization sync = new Synchronization(LocalDateTime.now(), SyncType.UPDATED_EXAMINATION_STATISTICS_TO_SERVER, status);
+        synchronizationRepository.save(sync);
+    }
+
+    private void saveSyncFromServerEvent(final SyncStatus status) {
+        Synchronization sync = new Synchronization(LocalDateTime.now(), SyncType.SYNCED_ALL_FROM_SERVER, status);
         synchronizationRepository.save(sync);
     }
 

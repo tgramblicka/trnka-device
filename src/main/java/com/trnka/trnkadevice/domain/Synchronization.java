@@ -14,6 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "synchronization")
@@ -24,6 +25,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Synchronization extends BaseEntity {
 
+    @CreationTimestamp
     @NotNull
     @Column(name = "executed_on")
     private LocalDateTime executedOn;
