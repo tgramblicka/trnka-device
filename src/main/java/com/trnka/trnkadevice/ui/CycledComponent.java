@@ -3,33 +3,33 @@ package com.trnka.trnkadevice.ui;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.trnka.trnkadevice.inputreader.Keystroke;
 import com.trnka.trnkadevice.renderer.IRenderer;
 import com.trnka.trnkadevice.ui.interaction.UserInteraction;
 import com.trnka.trnkadevice.ui.interaction.UserInteractionHandler;
+import com.trnka.trnkadevice.ui.navigation.NavigationUtils;
 
-@Component
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
 public class CycledComponent {
 
-    private IRenderer renderer;
-    private UserInteractionHandler userInteractionHandler;
-
-    @Autowired
-    private ApplicationContext context;
-
-    @Autowired
-    public CycledComponent(final IRenderer renderer,
-                           final UserInteractionHandler userInteractionHandler) {
-        this.renderer = renderer;
-        this.userInteractionHandler = userInteractionHandler;
-    }
+    private final IRenderer renderer;
+    private final UserInteractionHandler userInteractionHandler;
+    private final ApplicationContext context;
+    private final NavigationUtils navigationUtils;
 
     public void cycleThroughComponents(final Consumer<Integer> onSubmit,
                                        final List<? extends Renderable> list) {
+        if (CollectionUtils.isEmpty(list)){
+            navigationUtils.waitForFlowBreakingButtonClick();
+            return;
+        }
         renderer.renderMessage(list.get(0));
 
         UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
