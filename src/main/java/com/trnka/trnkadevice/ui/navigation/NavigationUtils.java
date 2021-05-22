@@ -19,9 +19,9 @@ public class NavigationUtils {
     public void waitForFlowBreakingButtonClick() {
 
         UserInteractionHandler userInteractionHandler = context.getBean(UserInteractionHandler.class);
-        UserInteraction userInteraction = userInteractionHandler.readUserInteraction();
+        userInteractionHandler.readUserInteraction();
         while (true){
-            userInteraction = userInteractionHandler.readUserInteraction();
+            userInteractionHandler.readUserInteraction();
         }
     }
 }
