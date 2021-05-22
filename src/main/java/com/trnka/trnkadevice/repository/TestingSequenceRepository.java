@@ -12,8 +12,8 @@ import com.trnka.trnkadevice.domain.TestingSequence;
 
 public interface TestingSequenceRepository extends CrudRepository<TestingSequence, Long> {
 
-    @Query(value = "SELECT seq from UserSequence AS usrSeq JOIN usrSeq.sequence AS seq WHERE usrSeq.user.username = :username AND type(seq) IN ('TS')")
-    List<TestingSequence> findAllTestingSequencesForUser(@Param("username") String username);
+    @Query(value = "SELECT seq from UserSequence AS usrSeq JOIN usrSeq.sequence AS seq WHERE usrSeq.user.id = :id AND type(seq) IN ('TS')")
+    List<TestingSequence> findAllTestingSequencesForUser(@Param("id") Long id);
 
     Optional<TestingSequence> findByExternalId(final Long id);
 

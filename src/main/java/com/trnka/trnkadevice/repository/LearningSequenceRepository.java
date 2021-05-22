@@ -11,8 +11,8 @@ import com.trnka.trnkadevice.domain.LearningSequence;
 
 public interface LearningSequenceRepository extends CrudRepository<LearningSequence, Long> {
 
-    @Query(value = "SELECT seq from UserSequence AS usrSeq JOIN usrSeq.sequence AS seq WHERE usrSeq.user.username = :username AND type(seq) IN ('LS')")
-    Set<LearningSequence> findAllLearningSequencesForUser(@Param("username") String username);
+    @Query(value = "SELECT seq from UserSequence AS usrSeq JOIN usrSeq.sequence AS seq WHERE usrSeq.user.id = :id AND type(seq) IN ('LS')")
+    Set<LearningSequence> findAllLearningSequencesForUser(@Param("id") Long id);
 
     Optional<LearningSequence> findByExternalId(final Long id);
 

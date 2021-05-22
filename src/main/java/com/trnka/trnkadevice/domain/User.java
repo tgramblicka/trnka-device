@@ -22,6 +22,7 @@ public class User extends BaseEntity {
     @Column(name = "external_id")
     private Long externalId;
 
+    // todo: remove column > unused due to GDPR
     @Column(name = "username")
     private String username;
 

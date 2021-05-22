@@ -27,14 +27,6 @@ public class UserSession {
     private Long userId;
     private String username;
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(final Long userId) {
-        this.userId = userId;
-    }
-
     public void logout() {
         this.userId = null;
         this.username = null;

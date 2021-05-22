@@ -41,7 +41,7 @@ public class IndividualTestingMenuView implements IView {
     @Transactional
     public void enter() {
         renderer.renderMessage(AudioMessage.of(Messages.TESTING_VIEW));
-        List<TestingSequence> sequences = testingSequenceRepository.findAllTestingSequencesForUser(userSession.getUsername());
+        List<TestingSequence> sequences = testingSequenceRepository.findAllTestingSequencesForUser(userSession.getUserId());
         List<SequenceComponent> selection = sequences.stream().map(SequenceComponent::new).collect(Collectors.toList());
         cycledComponent.cycleThroughComponents(index -> startTestingWithSequence(selection.get(index)), selection);
     }
