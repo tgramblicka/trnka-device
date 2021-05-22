@@ -59,7 +59,7 @@ public class SequenceSyncService {
     }
 
     private void createSequence(final ExaminationDto exam) {
-        Optional<Sequence> sequenceOptional = createSequenceByType(exam.getType());
+        Optional<Sequence> sequenceOptional = createSequenceByType(exam);
         if (!sequenceOptional.isPresent()) {
             log.error("Skipping sequenceOptional creation due to error!");
             return;
@@ -72,22 +72,23 @@ public class SequenceSyncService {
         sequenceRepository.save(seq);
     }
 
-    private Optional<Sequence> createSequenceByType(final SequenceType type) {
-        Sequence sequence = null;
-        switch (type) {
+    private Optional<Sequence> createSequenceByType(final ExaminationDto examinationDto) {
+        switch (examinationDto.getType()) {
         case LEARNING:
-            sequence = new LearningSequence();
-            sequence.setAudioMessage(Messages.LEARNING_SEQUENCE_NAME);
-            break;
+            LearningSequence learningSeq = new LearningSequence();
+            learningSeq.setAudioMessage(Messages.LEARNING_SEQUENCE_NAME);
+            return Optional.of(learningSeq);
         case TESTING:
-            sequence = new TestingSequence();
-            sequence.setAudioMessage(Messages.TESTING_SEQUENCE_NAME);
-            break;
+            TestingSequence testingSeq = new TestingSequence();
+            testingSeq.setAudioMessage(Messages.TESTING_SEQUENCE_NAME);
+            testingSeq.setPassingRate(examinationDto.getPassingRate());
+            return Optional.of(testingSeq);
         case METHODICAL:
             log.error("Methodical sequence cannot be synced from VST !");
-            return null;
+            return Optional.empty();
+        default:
+            return Optional.empty();
         }
-        return Optional.of(sequence);
     }
 
     // yet no difference between learning vs testing sequence, so common method can be used
