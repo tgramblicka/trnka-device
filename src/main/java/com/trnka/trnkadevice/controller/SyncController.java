@@ -1,5 +1,6 @@
 package com.trnka.trnkadevice.controller;
 
+import com.trnka.trnkadevice.job.SyncJob;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SyncController {
 
     private final SyncService syncService;
+    private final SyncJob syncJob;
 
     @GetMapping(path = "download")
     public String download() {
@@ -35,6 +37,13 @@ public class SyncController {
     public String all() {
         syncService.syncFromServerAndThenToServer();
         return "synced ALL";
+    }
+
+
+    @GetMapping(path = "simulate-scheduled-job")
+    public String simulateScheduledJob() {
+        syncJob.sync();
+        return "Scheduled Sync Job started";
     }
 
 }

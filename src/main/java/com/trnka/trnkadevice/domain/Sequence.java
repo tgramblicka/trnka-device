@@ -40,9 +40,9 @@ public abstract class Sequence extends BaseEntity {
     private Messages audioMessage;
 
     @Column(name = "allowed_retries")
-    private int allowedRetries;
+    private Integer allowedRetries;
     @Column(name = "timeout")
-    private long timeout;
+    private Long timeout;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "sequence_id")
