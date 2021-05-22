@@ -1,9 +1,9 @@
 package com.trnka.trnkadevice.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,12 +16,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.trnka.restapi.dto.statistics.Evaluate;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "sequence_statistic")
@@ -30,6 +31,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @EqualsAndHashCode
 public class SequenceStatistic extends BaseEntity {
     public static final String FIND_ALL_TEST_STATS_FOR_USER = "SequenceStatistic.findAllTestResultsForUser";
+    private static final Integer SCALE = 2;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "sequence_id")
@@ -74,7 +76,10 @@ public class SequenceStatistic extends BaseEntity {
     }
 
     public BigDecimal getScore() {
-        return BigDecimal.valueOf(getStepStats().stream().filter(StepStatistic::isCorrect).count()).divide(BigDecimal.valueOf(getStepStats().size()));
+        BigDecimal correctCount = BigDecimal.valueOf(getStepStats().stream().filter(StepStatistic :: isCorrect).count());
+        BigDecimal stepCount = BigDecimal.valueOf(getStepStats().size());
+        return correctCount
+                .divide(stepCount, SCALE, RoundingMode.HALF_UP);
     }
 
 }
