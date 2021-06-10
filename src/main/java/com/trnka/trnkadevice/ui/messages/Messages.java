@@ -82,6 +82,18 @@ public enum Messages {
     STATISTIC_LETTER_GUESSED("Pismeno {} uhadnute {}", "commands/"),
     STATISTIC_INCORRECT_RETRIES("Pocet nespravnych pokusov {}{}{}", "commands/"), // NAHRAT
 
+    // SYNC
+    SYNCING_FROM_SERVER_STARTED("Synchronizacia: Stahujem data zo serveru", "commands/"),
+    SYNCING_FROM_SERVER_FINISHED("Synchronizacia: Data zo serveru uspesne stiahnute", "commands/"),
+    SYNCING_FROM_SERVER_FAILED("Synchronizacia: Nastala chyba pri stahovani dat zo serveru", "commands/"),
+
+    SYNCING_TO_SERVER_STARTED("Synchronizacia: Posielam vysledky testov zo zariadenia na server", "commands/"),
+    SYNCING_TO_SERVER_FINISHED("Synchronizacia: Vysledky testov zo zariadenia uspesne odoslane na server", "commands/"),
+    SYNCING_TO_SERVER_FAILED("Synchronizacia: Nastala chyba pri odosielani dat na server", "commands/"),
+
+
+
+
     SEQUENCE("Sekvencia", "commands/"),
 
     YES("Ano", "commands/"),
@@ -169,6 +181,9 @@ public enum Messages {
     TEST7("{}text", "commands/"),
     TEST8("text{}text", "commands/"),
     TEST9("text{}{}text", "commands/");
+
+
+
 
 
 
