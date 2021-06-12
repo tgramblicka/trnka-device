@@ -112,6 +112,17 @@ public enum Messages {
     NINE("9", "letters/"),
     TEN("10", "letters/"),
 
+    ELEVEN("11", "letters/"),
+    TWELVE("12", "letters/"),
+    THIRTEEN("13", "letters/"),
+    FORTEEN("14", "letters/"),
+    FIFTEEN("15", "letters/"),
+    SIXTEEN("16", "letters/"),
+    SEVENTEEN("17", "letters/"),
+    EIGHTEEN("18", "letters/"),
+    NINETEEN("19", "letters/"),
+    TWENTY("20", "letters/"),
+
     A("a", "letters/"),
     B("b", "letters/"),
     C("c", "letters/"),
