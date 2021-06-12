@@ -115,7 +115,7 @@ public enum Messages {
     ELEVEN("11", "letters/"),
     TWELVE("12", "letters/"),
     THIRTEEN("13", "letters/"),
-    FORTEEN("14", "letters/"),
+    FOURTEEN("14", "letters/"),
     FIFTEEN("15", "letters/"),
     SIXTEEN("16", "letters/"),
     SEVENTEEN("17", "letters/"),
@@ -139,6 +139,7 @@ public enum Messages {
     N("n", "letters/"),
     O("o", "letters/"),
     P("p", "letters/"),
+    Q("q", "letters/"),
     R("r", "letters/"),
     S("s", "letters/"),
     T("t", "letters/"),
@@ -159,7 +160,7 @@ public enum Messages {
     L_MAKKE("ľ", "letters/"),
     N_MAKCEN("ň", "letters/"),
     O_DLHE("ó", "letters/"),
-    O_VOKAN("ň", "letters/"),
+    O_VOKAN("ô", "letters/"),
     R_DLHE("ŕ", "letters/"),
     S_MAKCEN("š", "letters/"),
     T_MAKCEN("ť", "letters/"),
@@ -177,8 +178,9 @@ public enum Messages {
     UVODZOVKY("\"", "letters/"),
     APOSTROF("apostrof", "letters/"),
     LAVA_ZATVORKA("(", "letters/"),
-    PRAVA_ZATVORKA("(", "letters/"),
+    PRAVA_ZATVORKA(")", "letters/"),
     HVIEZDICKA("*", "letters/"),
+    OTAZNIK("?", "letters/"),
 
 
     // for testing messageToAudioPlayilist compiler
