@@ -35,7 +35,7 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (30, NULL, '[1,4,5,6]', 'ď');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (31, NULL, '[3,4,5]', 'é');  -- aj znak: '>'
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (32, NULL, '[3,4]', 'í');
-INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (33, NULL, '[4,6]', 'ľ');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (33, NULL, '[4,6]', 'ĺ');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (34, NULL, '[4,5,6]', 'ľ'); -- makke l
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (35, NULL, '[1,2,4,6]', 'ň');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (36, NULL, '[2,4,6]', 'ó');
