@@ -55,7 +55,7 @@ See tutorial how to upgrade stretch to buster: https://pimylifeup.com/upgrade-ra
 ## build & copy new jar to raspberry
 1. make sure `production` profile is set in application.properties
 2. make sure Audio renderer is setup in RendererConfig
-3. build jar ( mvn clean package)
+3. build jar ( mvn clean package -Dmaven.test.skip=true )
 4. run the copy.sh script from project root directory. Uncomment only needed parts
 ```
 ./scripts/copy.sh
@@ -63,14 +63,13 @@ See tutorial how to upgrade stretch to buster: https://pimylifeup.com/upgrade-ra
 5. copy also the necessary run.sh which is in copy.sh
 
 
-## How to create SD card image
+### How to create SD card image ###
 1. remove the SD card from raspberry
 2. use the Samsung SD card reader (white) and put SD inside
 3. use the "USB Image Tool" app ( installed on work laptop)
 
    
-###
-   How to DUMP the DB
+###   How to DUMP the DB ###
    ```
    mysqldump --databases trnka-device > /home/pi/trnka-device/trnka-device.sql
    ```
