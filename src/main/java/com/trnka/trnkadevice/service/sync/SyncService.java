@@ -35,14 +35,14 @@ public class SyncService {
 
 
 
-    public void syncFromServerAndThenToServer(){
+    public void syncFromServerAndThenToServer() {
         synchronizeFromServer();
         synchronizeToServer();
     }
 
 
     public void synchronizeFromServer() {
-        SyncDto syncDto = syncClient.getSyncDto();
+        SyncDto syncDto = syncClient.getSyncDto(deviceId);
         synchronizeFromServer(syncDto);
     }
 
