@@ -1,5 +1,13 @@
 package com.trnka.trnkadevice.service.sync;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.trnka.restapi.dto.SyncDto;
 import com.trnka.restapi.endpoint.SyncEndpoint;
 import com.trnka.trnkadevice.domain.SequenceStatistic;
 import com.trnka.trnkadevice.domain.SyncStatus;
@@ -7,17 +15,9 @@ import com.trnka.trnkadevice.domain.SyncType;
 import com.trnka.trnkadevice.domain.Synchronization;
 import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 import com.trnka.trnkadevice.repository.SynchronizationRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import com.trnka.restapi.dto.SyncDto;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
