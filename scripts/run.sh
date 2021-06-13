@@ -11,6 +11,8 @@ export MARIA_DB_USER=pi
 export MARIA_DB_PWD=raspberry
 export TRNKA_VST_REST_URL=http://192.168.0.101:8080
 export TRNKA_SOUNDS_LOCATION=/home/pi/trnka-device/sounds/
+export TRNKA_CLIENT_USERNAME=redacted
+export TRNKA_CLIENT_PASSWORD=redacted
 
 
 logFile="/home/pi/trnka-device/logs/log-`date '+%Y-%m-%d-%H:%M:%S'`.log"
