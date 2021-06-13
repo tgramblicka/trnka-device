@@ -8,6 +8,7 @@ import com.trnka.trnkadevice.domain.Synchronization;
 import com.trnka.trnkadevice.repository.SequenceStatisticRepository;
 import com.trnka.trnkadevice.repository.SynchronizationRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.trnka.restapi.dto.SyncDto;
@@ -28,6 +29,11 @@ public class SyncService {
     private final SequenceStatisticRepository sequenceStatisticRepository;
     private final SynchronizationRepository synchronizationRepository;
     private final SyncEndpoint syncClient;
+
+    @Value("${device.id}")
+    private String deviceId;
+
+
 
     public void syncFromServerAndThenToServer(){
         synchronizeFromServer();
@@ -68,7 +74,7 @@ public class SyncService {
         log.info("Since last sync on {} , found {} sequence statistics due to be synced to server, will sync to server now!", lastStatisticUpdateToServerRun, sequencStats.size());
 
         try {
-            Boolean updated = syncClient.updateExaminationStatisticsToAllStudents(new StatsMapper().mapToStatisticsSyncDto(sequencStats));
+            Boolean updated = syncClient.updateExaminationStatisticsToAllStudents(new StatsMapper().mapToStatisticsSyncDto(sequencStats, deviceId));
             if (updated) {
                 saveStudentStatsSyncEvent(SyncStatus.SUCCESS);
                 return;

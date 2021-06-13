@@ -23,7 +23,7 @@ import com.trnka.trnkadevice.ui.messages.Messages;
 
 public class StatsMapper {
 
-    public DeviceStatisticsSyncDto mapToStatisticsSyncDto(final List<SequenceStatistic> sequencStats){
+    public DeviceStatisticsSyncDto mapToStatisticsSyncDto(final List<SequenceStatistic> sequencStats, final String deviceId){
         Map<String, StudentDeviceStatisticsDto> map = new HashMap<>(); // key = studentCode
         for (SequenceStatistic stat : sequencStats) {
             User user = stat.getUser();
@@ -41,6 +41,7 @@ public class StatsMapper {
         }
         DeviceStatisticsSyncDto syncDto = new DeviceStatisticsSyncDto();
         syncDto.setStatistics(map.values().stream().collect(Collectors.toList()));
+        syncDto.setDeviceId(deviceId);
         return syncDto;
     }
 
