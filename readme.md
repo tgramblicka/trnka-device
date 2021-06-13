@@ -60,6 +60,7 @@ See tutorial how to upgrade stretch to buster: https://pimylifeup.com/upgrade-ra
 ```
 ./scripts/copy.sh
 ```
+5. copy also the necessary run.sh which is in copy.sh
 
 
 ## How to create SD card image
@@ -84,7 +85,7 @@ Set character_set_server in your C:\Program Files\MariaDB 10.4\data to
    ```
 
 ### Raspberry ENV variables and startup commands ###
-All the env variables and startup scripts are located in rc.local
+All the env variables and startup scripts are located in run.sh script. This script is executed from /etc/rc.local as well as startup audio:
 
 python3 /home/pi/trnka-device/wait_until_program_starts.py
 ```
