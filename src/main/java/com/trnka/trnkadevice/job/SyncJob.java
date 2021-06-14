@@ -36,7 +36,7 @@ public class SyncJob {
     }
 
     private void syncToServer(final SyncConfigDto syncConfig) {
-        if (syncConfig.getEnableDownloadFromServerToDevice()) {
+        if (syncConfig.getEnableUploadFromDeviceToServer()) {
             renderer.renderMessages(Collections.singletonList(Messages.SYNCING_FROM_SERVER_STARTED));
             log.info("Syncing: Will upload Student Stats to VST server.");
             try {
