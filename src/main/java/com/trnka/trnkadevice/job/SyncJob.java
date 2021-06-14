@@ -37,14 +37,14 @@ public class SyncJob {
 
     private void syncToServer(final SyncConfigDto syncConfig) {
         if (syncConfig.getEnableUploadFromDeviceToServer()) {
-            renderer.renderMessages(Collections.singletonList(Messages.SYNCING_FROM_SERVER_STARTED));
+            renderer.renderMessages(Collections.singletonList(Messages.SYNCING_TO_SERVER_STARTED));
             log.info("Syncing: Will upload Student Stats to VST server.");
             try {
                 syncService.synchronizeToServer();
-                renderer.renderMessages(Collections.singletonList(Messages.SYNCING_FROM_SERVER_FINISHED));
+                renderer.renderMessages(Collections.singletonList(Messages.SYNCING_TO_SERVER_FINISHED));
             } catch (Exception e) {
                 log.error("Error occurred during upload Student Stats to VST server: {}", e);
-                renderer.renderMessages(Collections.singletonList(Messages.SYNCING_FROM_SERVER_FAILED));
+                renderer.renderMessages(Collections.singletonList(Messages.SYNCING_TO_SERVER_FAILED));
             }
         } else {
             log.info("Syncing: Skipping upload Student Stats to VST server, upload sync disabled on VST!");
@@ -53,14 +53,14 @@ public class SyncJob {
 
     private void syncFromServer(final SyncConfigDto syncConfig) {
         if (syncConfig.getEnableDownloadFromServerToDevice()) {
-            renderer.renderMessages(Collections.singletonList(Messages.SYNCING_TO_SERVER_STARTED));
+            renderer.renderMessages(Collections.singletonList(Messages.SYNCING_FROM_SERVER_STARTED));
             log.info("Syncing: Will download SyncDto from VST server.");
             try {
                 syncService.synchronizeFromServer();
-                renderer.renderMessages(Collections.singletonList(Messages.SYNCING_TO_SERVER_FINISHED));
+                renderer.renderMessages(Collections.singletonList(Messages.SYNCING_FROM_SERVER_FINISHED));
             } catch (Exception e) {
                 log.error("Error occurred during sync from server: {}", e);
-                renderer.renderMessages(Collections.singletonList(Messages.SYNCING_TO_SERVER_FAILED));
+                renderer.renderMessages(Collections.singletonList(Messages.SYNCING_FROM_SERVER_FAILED));
             }
         } else {
             log.info("Syncing: Skipping download from VST server, download sync disabled on VST!");
