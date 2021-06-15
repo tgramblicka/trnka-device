@@ -53,7 +53,6 @@ public class StatsMapper {
         examinationStatDto.setFinishedOn(stat.getCreatedOn());
         examinationStatDto.setPassed(stat.getPassed());
         examinationStatDto.setSequenceType(sequence.accept(new SequenceVisitorImpl()));
-        examinationStatDto.setTotalTimeInMs(stat.getTook());
 
         stat.getStepStats().forEach(stepStat -> {
             ExaminationStepStatisticDto stepStatDto = new ExaminationStepStatisticDto();
@@ -64,6 +63,9 @@ public class StatsMapper {
             stepStatDto.setRetries(stepStat.getRetries());
             examinationStatDto.getStepStatistics().add(stepStatDto);
         });
+
+        Long overallDuration = examinationStatDto.getStepStatistics().stream().map(ExaminationStepStatisticDto::getDurationInMs).reduce(0L, Long :: sum);
+        examinationStatDto.setTotalTimeInMs(overallDuration);
         return  examinationStatDto;
     }
 
