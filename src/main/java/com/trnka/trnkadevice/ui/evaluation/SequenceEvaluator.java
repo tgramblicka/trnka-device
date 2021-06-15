@@ -48,8 +48,11 @@ public class SequenceEvaluator {
         } else {
             negativeTries++;
 
-            renderer.renderMessage(AudioMessage.of(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED, step.getBrailCharacter().getBrailRepresentationAsMessages()));
-
+            if (negativeTries == maxAllowedTries) {
+               renderer.renderMessage(AudioMessage.of(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED, step.getBrailCharacter().getBrailRepresentationAsMessages()));
+            } else {
+                renderer.renderMessage(AudioMessage.of(Messages.INCORRECT_GUESS));
+            }
             renderer.renderMessage(AudioMessage.of(Messages.LEARNING_INCORRECT_CHARACTER_BRAIL_SEQUENCE_SUBMITTED_LEFT_RETRIES, Messages.fromNumber(maxAllowedTries - negativeTries)));
 
             return evaluateUserInput(step, maxAllowedTries, negativeTries, isLastStep);
