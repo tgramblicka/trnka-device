@@ -14,7 +14,8 @@ public interface SequenceStatisticRepository extends CrudRepository<SequenceStat
 
     List<SequenceStatistic> findByUser_Id(Long id);
 
-    List<SequenceStatistic> findAllByCreatedOnAfter(LocalDateTime dateTime);
+    @Query("SELECT stats from SequenceStatistic  stats INNER JOIN stats.sequence as seq WHERE TYPE(seq) = TestingSequence AND stats.createdOn > :dateTime")
+    List<SequenceStatistic> findAllTestResultsCreatedOnAfter(LocalDateTime dateTime);
 
     @Query("SELECT stats from SequenceStatistic  stats INNER JOIN stats.sequence as seq WHERE TYPE(seq) = TestingSequence AND stats.user.id = :userId")
     List<SequenceStatistic> findAllTestResultsForUser(Long userId);

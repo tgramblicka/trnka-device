@@ -3,6 +3,7 @@ package com.trnka.trnkadevice.service.sync;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.trnka.restapi.dto.statistics.DeviceStatisticsSyncDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,11 +71,13 @@ public class SyncService {
                 .map(Synchronization::getExecutedOn)
                 .orElse(LocalDateTime.MIN);
         log.info("Last run of statistic update to server was on: {}.", lastStatisticUpdateToServerRun);
-        List<SequenceStatistic> sequencStats = sequenceStatisticRepository.findAllByCreatedOnAfter(lastStatisticUpdateToServerRun);
+        List<SequenceStatistic> sequencStats = sequenceStatisticRepository.findAllTestResultsCreatedOnAfter(lastStatisticUpdateToServerRun);
         log.info("Since last sync on {} , found {} sequence statistics due to be synced to server, will sync to server now!", lastStatisticUpdateToServerRun, sequencStats.size());
 
         try {
-            Boolean updated = syncClient.updateExaminationStatisticsToAllStudents(new StatsMapper().mapToStatisticsSyncDto(sequencStats, deviceId));
+            DeviceStatisticsSyncDto updateDto = new StatsMapper().mapToStatisticsSyncDto(sequencStats, deviceId);
+            log.info("Will send user stats DTO to server {}", updateDto);
+            Boolean updated = syncClient.updateExaminationStatisticsToAllStudents(updateDto);
             if (updated) {
                 saveStudentStatsSyncEvent(SyncStatus.SUCCESS);
                 return;
