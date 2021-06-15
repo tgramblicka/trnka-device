@@ -23,7 +23,7 @@ public class StatisticRenderer {
 
         // String result = String.format("%d / %d", correct, allStepsCount);
         // calculatePercentage(correct, allStepsCount);
-        List<Messages> params = Stream.of(Messages.fromNumber(correct.intValue()), Messages.Z, Messages.fromNumber(allStepsCount)).collect(Collectors.toList());
+        List<Messages> params = Stream.of(Messages.fromNumber(correct.intValue()), Messages.Z_PREPOSITION, Messages.fromNumber(allStepsCount)).collect(Collectors.toList());
 
         renderer.renderMessage(AudioMessage.of(Messages.TESTING_SEQUENCE_OVERALL_RESULT, params));
     }

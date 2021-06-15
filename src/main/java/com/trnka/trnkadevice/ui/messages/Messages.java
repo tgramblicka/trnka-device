@@ -99,6 +99,7 @@ public enum Messages {
     YES("Ano", "commands/"),
     NO("Nie", "commands/"),
 
+    Z_PREPOSITION("zo", "commands/"),
 
     ZERO("0", "letters/"),   // PRENAHRAT
     ONE("1", "letters/"),
