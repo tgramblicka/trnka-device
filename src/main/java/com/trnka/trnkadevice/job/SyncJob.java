@@ -29,10 +29,15 @@ public class SyncJob {
             log.warn("Syncing: Will be skipped due to logged-in user. Please logout.");
             return;
         }
-        SyncConfigDto syncConfig = syncClient.getConfig();
-
-        syncFromServer(syncConfig);
-        syncToServer(syncConfig);
+        SyncConfigDto syncConfig;
+        try {
+            syncConfig = syncClient.getConfig();
+            syncFromServer(syncConfig);
+            syncToServer(syncConfig);
+        } catch (Exception e) {
+            renderer.renderMessages(Collections.singletonList(Messages.SYNCING_FROM_SERVER_FAILED));
+            log.error("Syncing: Download of config from server failed! Exception: {}", e);
+        }
     }
 
     private void syncToServer(final SyncConfigDto syncConfig) {
