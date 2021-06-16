@@ -4,13 +4,8 @@
 #mvn clean install
 
 
-#scp ./target/trnka-device.jar pi@192.168.0.104:trnka-device/
-#scp pi@192.168.0.104:/home/pi/audio/* ./
-#scp ./* pi@192.168.0.104:/home/pi/audio/
-
-
 # copy jar
-#rsync --progress -avz target/trnka-device.jar pi@192.168.0.110:/home/pi/trnka-device
+# rsync --progress -avz target/trnka-device.jar pi@192.168.0.110:/home/pi/trnka-device
 
 #copy sounds
 #rsync --progress -avz ./audio/commands/* pi@192.168.0.110:/home/pi/trnka-device/sounds/commands
