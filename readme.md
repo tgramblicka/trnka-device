@@ -33,7 +33,7 @@ See tutorial how to upgrade stretch to buster: https://pimylifeup.com/upgrade-ra
 2. restart mysql service
    ```sudo service mysql restart``` 
 3.
-   grant access to laptop client 
+   grant access to laptop client (NOT NEEDED ANYMORE) 
       
 ```   
    mysql -u root -p (prihlas sa ako admin)
@@ -55,12 +55,13 @@ See tutorial how to upgrade stretch to buster: https://pimylifeup.com/upgrade-ra
 ## build & copy new jar to raspberry
 1. make sure `production` profile is set in application.properties
 2. make sure Audio renderer is setup in RendererConfig
-3. build jar ( mvn clean package -Dmaven.test.skip=true )
+3. build jar ```mvn clean package -Dmaven.test.skip=true```
 4. run the copy.sh script from project root directory. Uncomment only needed parts
 ```
 ./scripts/copy.sh
 ```
 5. copy also the necessary run.sh which is in copy.sh
+6. copy also the audio files if they changed
 
 
 ### How to create SD card image ###
