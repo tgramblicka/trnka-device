@@ -61,7 +61,8 @@ INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `lett
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (55, NULL, '[3,5,6]', ')');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (56, NULL, '[3,5]', '*');
 INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (57, NULL, '[2,6]', '?');
-
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (58, NULL, '[1,2,4,5,6]', '/');
+INSERT INTO `brail_character` (`id`, `audio_file`, `brail_representation`, `letter`) VALUES (59, NULL, '[1,2,6]', 'ě'); -- znak mensi
 
 
 
@@ -127,12 +128,11 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (143, null, TRUE, 39, 125);
 
 
--- D  Ď  N  G  É
+-- D  Ď  N  G
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (144, null, TRUE, 4, 126);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (145, null, TRUE, 30, 126);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (146, null, TRUE, 14, 126);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (147, null, TRUE, 7, 126);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (148, null, TRUE, 31, 126);
 
 
 -- j t y
@@ -164,7 +164,7 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (165, null, TRUE, 33, 131);
 
 -- Ä, ŕ, X, úvodzovky
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (166, null, TRUE, 27, 132);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (166, null, TRUE, 28, 132);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (167, null, TRUE, 38, 132);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (168, null, TRUE, 24, 132);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (169, null, TRUE, 52, 132);
@@ -179,12 +179,32 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (173, null, TRUE, 54, 134);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (174, null, TRUE, 55, 134);
 
--- VP, čZ, *, >, ?
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (175, null, TRUE, 45, 135);
+-- VP, čZ, *, ?, /
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (175, null, TRUE, 46, 135);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (176, null, TRUE, 44, 135);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (177, null, TRUE, 56, 135);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (178, null, TRUE, 31, 135);
-INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (179, null, TRUE, 57, 135);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (178, null, TRUE, 57, 135);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (179, null, TRUE, 58, 135);
+
+
+-- user 1 (1111) will have all methodics unlocked
+insert into passed_methodics (sequence_id, user_id) values (120,1);
+insert into passed_methodics (sequence_id, user_id) values (121,1);
+insert into passed_methodics (sequence_id, user_id) values (122,1);
+insert into passed_methodics (sequence_id, user_id) values (123,1);
+insert into passed_methodics (sequence_id, user_id) values (124,1);
+insert into passed_methodics (sequence_id, user_id) values (125,1);
+insert into passed_methodics (sequence_id, user_id) values (126,1);
+insert into passed_methodics (sequence_id, user_id) values (127,1);
+insert into passed_methodics (sequence_id, user_id) values (128,1);
+insert into passed_methodics (sequence_id, user_id) values (129,1);
+insert into passed_methodics (sequence_id, user_id) values (130,1);
+insert into passed_methodics (sequence_id, user_id) values (131,1);
+insert into passed_methodics (sequence_id, user_id) values (132,1);
+insert into passed_methodics (sequence_id, user_id) values (133,1);
+insert into passed_methodics (sequence_id, user_id) values (134,1);
+insert into passed_methodics (sequence_id, user_id) values (135,1);
+
 
 
 

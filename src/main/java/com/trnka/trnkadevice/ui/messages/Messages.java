@@ -156,6 +156,7 @@ public enum Messages {
     C_MAKCEN("č", "letters/"),
     D_MAKCEN("ď", "letters/"),
     E_DLHE_ALEBO_ZNAMIENKO_VACSI("é", "letters/"),
+    E_MAKCEN_ALEBO_ZNAMIENKO_MENSI("ě", "letters/"),  // audio sound does not exist !! need to be recorded !!
     I_MAKKE("í", "letters/"),
     L_DLHE("ĺ", "letters/"),
     L_MAKKE("ľ", "letters/"),
@@ -182,6 +183,8 @@ public enum Messages {
     PRAVA_ZATVORKA(")", "letters/"),
     HVIEZDICKA("*", "letters/"),
     OTAZNIK("?", "letters/"),
+    LOMKA("/", "letters/"),
+
 
 
     // for testing messageToAudioPlayilist compiler
