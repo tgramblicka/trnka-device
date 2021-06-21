@@ -128,11 +128,12 @@ INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`,
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (143, null, TRUE, 39, 125);
 
 
--- D  Ď  N  G
+-- D  Ď  N  G > (resp. é)
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (144, null, TRUE, 4, 126);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (145, null, TRUE, 30, 126);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (146, null, TRUE, 14, 126);
 INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (147, null, TRUE, 7, 126);
+INSERT INTO `step` (`id`, `external_id`, `preserve_order`, `brail_character_id`, `sequence_id`) VALUES (148, null, TRUE, 31, 126);
 
 
 -- j t y
