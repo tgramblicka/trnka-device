@@ -21,7 +21,7 @@
         <version.trnka-restapi>1.0-SNAPSHOT</version.trnka-restapi>
         <java.version>1.8</java.version>
         <hibernate.version>5.4.4.Final</hibernate.version>
-        <version.springboot>2.2.4.RELEASE</version.springboot>
+        <version.springboot>2.5.12</version.springboot>
     </properties>
 
     <dependencies>
